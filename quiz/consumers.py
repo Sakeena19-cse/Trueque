@@ -1,4 +1,4 @@
-import json
+import json 
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from .models import Quiz, Question
@@ -8,7 +8,6 @@ class QuizConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.room_code = self.scope['url_route']['kwargs']['room_code']
         self.room_group_name = f'quiz_{self.room_code}'
-
         await self.channel_layer.group_add(
             self.room_group_name,
             self.channel_name
