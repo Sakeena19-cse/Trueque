@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'channels',
     'quiz',
+    'accounts',
+    'matches',
+    'skills',
+    'mentor',
 ]
 
 MIDDLEWARE = [
