@@ -1,5 +1,9 @@
 """
+<<<<<<< HEAD
 WSGI config for quizbattle project.
+=======
+WSGI config for trueque project.
+>>>>>>> a8a466dec217b88dc27b4de0968cef64e358741e
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

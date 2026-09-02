@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-=m6h@^sgg6r3-+44ix5ck+x#fiw1-u^mp3exuv@a1+g_o1h%%h'
+SECRET_KEY = 'django-insecure-r2!ykr)#%3nr!@6nc-8%1v_2#xrnv((1h@h$!!+-97lg_u10-6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -29,7 +30,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +43,17 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+
+    'rest_framework',
+    'corsheaders',
+
+    'accounts',
+    'skills',
+    'matches',
+]
+
+MIDDLEWARE = [
+      'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,6 +95,8 @@ DATABASES = {
         'PASSWORD': 'Simba@2022',   
         'HOST': 'localhost',
         'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -134,6 +147,7 @@ MAILERS = {
     },
 }
 
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -142,3 +156,5 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+CORS_ALLOW_ALL_ORIGINS = True   
