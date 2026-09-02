@@ -13,7 +13,7 @@ def start_verification_quiz(user_skill):
     return quiz
 
 
-def complete_verification(user_skill, quiz, score_percentage, passing_threshold=70):
+def complete_verification(user_skill, quiz, score_percentage, passing_threshold=50):
     """Call this once the student has answered the quiz questions and you've scored it."""
     if score_percentage >= passing_threshold:
         user_skill.is_verified = True
