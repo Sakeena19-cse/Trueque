@@ -35,3 +35,10 @@ class UserSkill(models.Model):
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name='user_skills')
     proficiency = models.CharField(max_length=20, choices=PROFICIENCY_CHOICES, default='beginner')
     skill_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'skill', 'skill_type')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.skill.name} ({self.skill_type})"
