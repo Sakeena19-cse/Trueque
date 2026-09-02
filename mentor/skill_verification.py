@@ -1,7 +1,5 @@
 from quiz.quiz_helpers import create_ai_quiz
 from django.utils import timezone
-
-
 def start_verification_quiz(user_skill):
     """Generates an AI quiz for a UserSkill's claimed proficiency."""
     quiz = create_ai_quiz(
@@ -11,8 +9,6 @@ def start_verification_quiz(user_skill):
         num_questions=10,
     )
     return quiz
-
-
 def complete_verification(user_skill, quiz, score_percentage, passing_threshold=50):
     """Call this once the student has answered the quiz questions and you've scored it."""
     if score_percentage >= passing_threshold:
