@@ -1,10 +1,7 @@
 import os
 import requests
 from dotenv import load_dotenv
-
 load_dotenv()
-
-
 def call_gemini(prompt):
     api_key = os.environ.get("GEMINI_API_KEY")
     response = requests.post(
