@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from skills.models import UserSkill
+import uuid
 
 class Match(models.Model):
     STATUS_CHOICES = [
@@ -36,8 +37,24 @@ class Session(models.Model):
     notes = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    room_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    learning_confirmed = models.BooleanField(default=False)
+
     def __str__(self):
         return f"Session for {self.match} at {self.scheduled_time}"
+
+    @property
+    def video_call_url(self):
+        return f"https://meet.jit.si/trueque-{self.room_id}"
+
+    @property
+    def teacher(self):
+        return self.match.user1 if self.match.user1_skill.skill_type == 'offering' else self.match.user2
+
+    @property
+    def learner(self):
+        return self.match.user1 if self.match.user1_skill.skill_type == 'wanting' else self.match.user2
+    
 
 
 class Review(models.Model):
