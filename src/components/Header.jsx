@@ -1,69 +1,47 @@
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../assets/trueque-logo.png";
 
-export default function Header() {
+function Header() {
   return (
-    <header style={{ background: 'var(--gold)', padding: '18px 0' }}>
-      <div
-        className="container"
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '16px',
-        }}
-      >
-        <Link
-          to="/"
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: '1.5rem',
-            color: 'var(--oxford-blue)',
-            fontWeight: 700,
-          }}
-        >
-          Trueque
+    <header className="main-header">
+      <div className="header-container">
+
+        {/* TRUEQUE Logo */}
+        <Link to="/" className="brand">
+          <img
+            src={logo}
+            alt="Trueque"
+            className="brand-logo"
+          />
+
+          <span className="brand-name">
+            True<span>que</span>
+          </span>
         </Link>
 
-        <nav style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
-          <Link to="/" style={{ color: 'var(--oxford-blue)', fontWeight: 500 }}>
-            Home
-          </Link>
-          <Link to="/matching" style={{ color: 'var(--oxford-blue)', fontWeight: 500 }}>
-            Search Skills
-          </Link>
-          <Link to="/dashboard" style={{ color: 'var(--oxford-blue)', fontWeight: 500 }}>
-            Dashboard
-          </Link>
-          <Link to="/profile" style={{ color: 'var(--oxford-blue)', fontWeight: 500 }}>
-            Profile
-          </Link>
+        {/* Navigation */}
+        <nav className="navigation">
+          <Link to="/">Home</Link>
+          <Link to="/search">Search Skills</Link>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/profile">Profile</Link>
         </nav>
 
-        <div style={{ display: 'flex', gap: '12px' }}>
-          <Link
-            to="/login"
-            className="btn"
-            style={{
-              background: 'transparent',
-              color: 'var(--oxford-blue)',
-              border: '1.5px solid var(--oxford-blue)',
-            }}
-          >
+        {/* Login / Sign Up */}
+        <div className="auth-buttons">
+          <Link to="/login" className="login-button">
             Log In
           </Link>
-          <Link
-            to="/register"
-            className="btn"
-            style={{
-              background: 'var(--oxford-blue)',
-              color: 'var(--tan)',
-            }}
-          >
+
+          <Link to="/register" className="signup-button">
             Sign Up
           </Link>
         </div>
+
       </div>
     </header>
   );
 }
+
+export default Header;

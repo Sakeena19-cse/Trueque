@@ -125,3 +125,109 @@ h1, h2, h3 {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .form-row { flex-direction: column; gap: 0; }
 }
+/* TRUEQUE HEADER */
+
+.main-header {
+  width: 100%;
+  background: #d2b48c;
+  border-bottom: 1px solid rgba(13, 27, 42, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1400px;
+  height: 82px;
+  margin: 0 auto;
+  padding: 0 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #0d1b2a;
+}
+
+.brand-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #0d1b2a;
+}
+
+.brand-name span {
+  color: #c9a227;
+}
+
+/* Navigation */
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #0d1b2a;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.navigation a:hover {
+  color: #c9a227;
+}
+
+/* Buttons */
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-button,
+.signup-button {
+  text-decoration: none;
+  padding: 12px 23px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.login-button {
+  color: #0d1b2a;
+  background: transparent;
+  border: 1.5px solid #0d1b2a;
+}
+
+.signup-button {
+  color: white;
+  background: #0d1b2a;
+  border: 1.5px solid #0d1b2a;
+}
+
+.login-button:hover {
+  background: #0d1b2a;
+  color: #d2b48c;
+}
+
+.signup-button:hover {
+  background: #1b263b;
+}
