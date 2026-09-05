@@ -1,239 +1,339 @@
 import { Link } from "react-router-dom";
+import "../App.css";
 
-function Home() {
+export default function Home() {
   return (
-    <div className="home-page">
+    <div className="trueque-home">
 
-      {/* HERO SECTION */}
-      <section className="hero-section">
-        <div className="hero-content">
+      {/* ================= HEADER ================= */}
+      <header className="main-header">
+        <div className="header-inner">
 
-          <span className="hero-label">
-            SKILL EXCHANGE PLATFORM
-          </span>
-
-          <h1>
-            Exchange Skills.
-            <br />
-            <span>Grow Together.</span>
-          </h1>
-
-          <p className="hero-description">
-            TRUEQUE is a modern skill-sharing platform where people
-            exchange knowledge, discover new talents, and learn from
-            one another.
-          </p>
-
-          <div className="hero-buttons">
-            <Link to="/register" className="primary-button">
-              Get Started
-            </Link>
-
-            <Link to="/matching" className="secondary-button">
-              Explore Skills
-            </Link>
-          </div>
-
-          <div className="hero-trust">
-            <div>
-              <strong>01</strong>
-              <span>Discover Skills</span>
-            </div>
-
-            <div>
-              <strong>02</strong>
-              <span>Find Your Match</span>
-            </div>
-
-            <div>
-              <strong>03</strong>
-              <span>Start Learning</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="hero-visual">
-          <div className="hero-card main-card">
-
-            <div className="card-top">
-              <span>YOUR SKILL</span>
-              <span className="card-dot">●</span>
-            </div>
-
-            <h3>UI / UX Design</h3>
-
-            <p>
-              Share your creativity and help others design better
-              digital experiences.
-            </p>
-
-            <div className="skill-tag-row">
-              <span>Design</span>
-              <span>Creative</span>
-            </div>
-
-          </div>
-
-          <div className="floating-card floating-one">
-            <span>✦</span>
-            <div>
-              <strong>New Match</strong>
-              <small>Photography ↔ Design</small>
-            </div>
-          </div>
-
-          <div className="floating-card floating-two">
-            <strong>92%</strong>
-            <span>Match Score</span>
-          </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section className="how-section">
-
-        <div className="section-heading">
-          <span className="section-label">HOW IT WORKS</span>
-
-          <h2>
-            Learning becomes better
-            <br />
-            when we share.
-          </h2>
-
-          <p>
-            TRUEQUE makes skill exchange simple, personal,
-            and meaningful.
-          </p>
-        </div>
-
-        <div className="steps-container">
-
-          <div className="step-card">
-            <span className="step-number">01</span>
-
-            <div className="step-icon">✦</div>
-
-            <h3>Create Your Profile</h3>
-
-            <p>
-              Tell the community what you know and what you
-              would love to learn.
-            </p>
-          </div>
-
-          <div className="step-card">
-            <span className="step-number">02</span>
-
-            <div className="step-icon">⌕</div>
-
-            <h3>Find Your Match</h3>
-
-            <p>
-              Discover people whose skills and interests
-              complement yours.
-            </p>
-          </div>
-
-          <div className="step-card">
-            <span className="step-number">03</span>
-
-            <div className="step-icon">↗</div>
-
-            <h3>Exchange & Grow</h3>
-
-            <p>
-              Connect, share knowledge, and build valuable
-              skills together.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* SKILLS */}
-      <section className="skills-section">
-
-        <div className="skills-heading">
-          <div>
-            <span className="section-label">POPULAR SKILLS</span>
-
-            <h2>What would you like to learn?</h2>
-          </div>
-
-          <Link to="/matching" className="text-link">
-            View all skills →
+          <Link to="/" className="brand">
+            Trueque
           </Link>
-        </div>
 
-        <div className="skills-grid">
+          <nav className="main-nav">
+            <Link to="/" className="nav-active">
+              Home
+            </Link>
 
-          <div className="skill-card">
-            <div className="skill-icon">◈</div>
-            <h3>Design</h3>
-            <p>UI/UX, Graphic Design & more</p>
-          </div>
+            <Link to="/matching">
+              Search Skills
+            </Link>
 
-          <div className="skill-card">
-            <div className="skill-icon">⌘</div>
-            <h3>Technology</h3>
-            <p>Programming, Web & Software</p>
-          </div>
+            <Link to="/dashboard">
+              Dashboard
+            </Link>
 
-          <div className="skill-card">
-            <div className="skill-icon">◎</div>
-            <h3>Languages</h3>
-            <p>English, Spanish & more</p>
-          </div>
+            <Link to="/profile">
+              About
+            </Link>
+          </nav>
 
-          <div className="skill-card">
-            <div className="skill-icon">◇</div>
-            <h3>Photography</h3>
-            <p>Camera, Editing & Creativity</p>
-          </div>
+          <div className="header-actions">
+            <Link to="/login" className="login-link">
+              Log In
+            </Link>
 
-          <div className="skill-card">
-            <div className="skill-icon">♢</div>
-            <h3>Business</h3>
-            <p>Marketing, Finance & Strategy</p>
-          </div>
-
-          <div className="skill-card">
-            <div className="skill-icon">✧</div>
-            <h3>Music</h3>
-            <p>Instruments, Singing & Production</p>
+            <Link to="/register" className="signup-link">
+              Sign Up
+            </Link>
           </div>
 
         </div>
-      </section>
+      </header>
 
-      {/* CTA */}
-      <section className="cta-section">
 
-        <div>
-          <span className="section-label">START YOUR JOURNEY</span>
+      {/* ================= HERO ================= */}
+      <main>
 
-          <h2>
-            You have something
-            <br />
-            worth sharing.
-          </h2>
+        <section className="hero">
+
+          {/* LEFT CONTENT */}
+          <div className="hero-left">
+
+            <div className="small-heading">
+              EXCHANGE SKILLS. <span>GROW TOGETHER.</span>
+            </div>
+
+            <h1>
+              Learn.
+              <br />
+              Teach.
+              <br />
+              <span>Grow Together.</span>
+            </h1>
+
+            <p className="hero-text">
+              Trueque is a platform to learn, teach, and grow
+              by swapping skills with others. No money.
+              Just connections.
+            </p>
+
+            <div className="hero-actions">
+
+              <Link to="/register" className="get-started">
+                Get Started
+              </Link>
+
+              <Link to="/matching" className="explore-skills">
+                Explore Skills
+              </Link>
+
+            </div>
+
+          </div>
+
+
+          {/* RIGHT ILLUSTRATION */}
+          <div className="hero-right">
+
+            {/* TEACH CIRCLE */}
+            <div className="skill-bubble teach-bubble">
+
+              <div className="bubble-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                >
+                  <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z" />
+                  <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20" />
+                </svg>
+              </div>
+
+              <strong>Teach</strong>
+              <small>What You Know</small>
+
+            </div>
+
+
+            {/* LEFT PERSON */}
+            <div className="person person-one">
+
+              <div className="person-hair hair-one"></div>
+
+              <div className="person-face">
+                <div className="eye eye-left"></div>
+                <div className="eye eye-right"></div>
+              </div>
+
+              <div className="person-body body-one"></div>
+
+              <div className="laptop laptop-one">
+                <div className="laptop-screen"></div>
+                <div className="laptop-base"></div>
+              </div>
+
+            </div>
+
+
+            {/* CENTER */}
+            <div className="center-message">
+              <span>Skills</span>
+              <strong>Connect</strong>
+              <span>People</span>
+            </div>
+
+
+            {/* RIGHT PERSON */}
+            <div className="person person-two">
+
+              <div className="person-hair hair-two"></div>
+
+              <div className="person-face face-two">
+                <div className="eye eye-left"></div>
+                <div className="eye eye-right"></div>
+              </div>
+
+              <div className="person-body body-two"></div>
+
+              <div className="laptop laptop-two">
+                <div className="laptop-screen"></div>
+                <div className="laptop-base"></div>
+              </div>
+
+            </div>
+
+
+            {/* LEARN CIRCLE */}
+            <div className="skill-bubble learn-bubble">
+
+              <div className="bubble-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                >
+                  <path d="M12 3a7 7 0 0 0-4 12.74V19h8v-3.26A7 7 0 0 0 12 3Z" />
+                  <path d="M9 22h6" />
+                  <path d="M9.5 12.5c.8.4 1.7.6 2.5.6s1.7-.2 2.5-.6" />
+                </svg>
+              </div>
+
+              <strong>Learn</strong>
+              <small>What You Need</small>
+
+            </div>
+
+
+            {/* CONNECTION LINES */}
+            <div className="connection connection-left"></div>
+            <div className="connection connection-right"></div>
+
+          </div>
+
+        </section>
+
+
+        {/* ================= FEATURES ================= */}
+        <section className="features">
+
+          <div className="feature">
+
+            <div className="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <circle cx="9" cy="8" r="3" />
+                <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                <path d="M17 11a3 3 0 1 0 0-6" />
+                <path d="M18 14c2 .7 3 2.5 3 5" />
+              </svg>
+            </div>
+
+            <div>
+              <h3>Learn Anything</h3>
+
+              <p>
+                Explore skills you want to
+                learn from real people.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div className="feature">
+
+            <div className="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path d="M5 7h14" />
+                <path d="M5 12h14" />
+                <path d="M5 17h14" />
+                <path d="M8 4v16" />
+                <path d="M16 4v16" />
+              </svg>
+            </div>
+
+            <div>
+              <h3>Teach & Earn</h3>
+
+              <p>
+                Share your skills and
+                help others grow.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div className="feature">
+
+            <div className="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <circle cx="8" cy="8" r="3" />
+                <circle cx="17" cy="8" r="3" />
+                <path d="M2.5 20c0-3 2.5-5.5 5.5-5.5S13.5 17 13.5 20" />
+                <path d="M12.5 15c1-.8 2.2-1.2 3.5-1.2 3 0 5.5 2.5 5.5 5.5" />
+              </svg>
+            </div>
+
+            <div>
+              <h3>Build Connections</h3>
+
+              <p>
+                Make meaningful connections
+                with people.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div className="feature">
+
+            <div className="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path d="M12 3l2.4 5 5.6.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.6-.8L12 3Z" />
+              </svg>
+            </div>
+
+            <div>
+              <h3>Grow Together</h3>
+
+              <p>
+                A community built on
+                trust and knowledge.
+              </p>
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+
+      {/* ================= FOOTER ================= */}
+      <footer className="home-footer">
+
+        <div className="footer-content">
+
+          <div className="footer-brand">
+            Trueque
+          </div>
 
           <p>
-            Join TRUEQUE and turn your knowledge into
-            meaningful connections.
+            Exchange skills. Grow together.
           </p>
+
+          <div className="footer-links">
+            <Link to="/">Home</Link>
+            <Link to="/matching">Search Skills</Link>
+            <Link to="/profile">Profile</Link>
+            <Link to="/login">Login</Link>
+          </div>
+
         </div>
 
-        <Link to="/register" className="cta-button">
-          Join TRUEQUE →
-        </Link>
+        <div className="footer-bottom">
+          © 2026 Trueque. All rights reserved.
+        </div>
 
-      </section>
+      </footer>
 
     </div>
   );
 }
-
-export default Home;
