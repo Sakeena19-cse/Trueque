@@ -1,23 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
 
 :root {
-  --oxford-blue: #0D1B2A;
-  --dark-blue: #1B263B;
-  --blue-light: #243B53;
+  --oxford-blue: #0d1b2a;
+  --dark-blue: #1b263b;
+  --blue-light: #243b53;
 
-  --tan: #D2B48C;
-  --tan-light: #E8D7BD;
-  --tan-soft: #C8A97E;
+  --tan: #d2b48c;
+  --tan-light: #eadcc7;
+  --tan-soft: #c8a97e;
 
-  --gold: #C9A227;
-  --cream: #FFF8EC;
-  --white: #FFFFFF;
+  --gold: #c9a227;
+
+  --cream: #fffaf2;
+  --white: #ffffff;
 
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
 }
-
-/* RESET */
 
 * {
   margin: 0;
@@ -52,13 +51,20 @@ a {
   text-decoration: none;
 }
 
+#root {
+  min-height: 100vh;
+}
+
 .app-shell {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: var(--tan);
 }
 
-main {
-  min-height: 70vh;
+.main-content {
+  flex: 1;
+  width: 100%;
 }
 
 ::selection {
