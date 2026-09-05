@@ -21,7 +21,6 @@
 .site-header {
   width: 100%;
   min-height: 82px;
-
   padding: 0 6%;
 
   background: var(--oxford-blue);
@@ -44,22 +43,12 @@
   font-family: var(--font-heading);
   font-size: 28px;
   font-weight: 700;
-
   letter-spacing: 2px;
-
   color: var(--white);
 
   text-decoration: none;
-
   flex-shrink: 0;
 }
-
-.logo span {
-  color: var(--tan);
-}
-
-
-/* NAVIGATION - RIGHT */
 
 .nav-links {
   display: flex;
@@ -67,13 +56,15 @@
   justify-content: flex-end;
 
   gap: 28px;
-
   margin-left: auto;
 }
 
+
+
+/* NAVIGATION - RIGHT */
+
 .nav-links a {
   color: var(--white);
-
   text-decoration: none;
 
   font-size: 15px;
@@ -84,6 +75,21 @@
 
 .nav-links a:hover {
   color: var(--gold);
+}
+
+.nav-links .nav-button {
+  background: var(--tan);
+  color: var(--oxford-blue);
+
+  padding: 11px 22px;
+  border-radius: 6px;
+
+  font-weight: 700;
+}
+
+.nav-links .nav-button:hover {
+  background: var(--gold);
+  color: var(--oxford-blue);
 }
 
 
@@ -118,6 +124,9 @@
 
   background: var(--tan);
 
+  color: var(--white);
+
+  text-decoration:
   display: flex;
   justify-content: center;
   align-items: flex-start;
