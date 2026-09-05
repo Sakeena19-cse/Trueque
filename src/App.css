@@ -5,61 +5,72 @@
 .site-header {
   width: 100%;
   min-height: 82px;
-  padding: 0 7%;
+  padding: 0 6%;
+
+  background: var(--oxford-blue);
+  color: var(--tan);
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 
-  background: #0D1B2A;
-  color: #FFFFFF;
-
-  border-bottom: 2px solid #C9A227;
+  border-bottom: 2px solid var(--gold);
 
   position: relative;
   z-index: 1000;
 }
 
+/* TRUEQUE logo on left */
 .logo {
-  color: #FFFFFF;
-
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: 28px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  color: var(--tan);
+
+  text-decoration: none;
+
+  flex-shrink: 0;
 }
 
-.logo span {
-  color: #D2B48C;
-}
-
+/* Navigation on LEFT side */
 .nav-links {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 28px;
+
+  margin-left: 55px;
 }
 
 .nav-links a {
-  color: #FFFFFF;
-  font-size: 14px;
+  color: var(--white);
+  text-decoration: none;
+
+  font-size: 15px;
   font-weight: 600;
 
   transition: 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #D2B48C;
+  color: var(--gold);
 }
 
 .nav-links .nav-button {
-  padding: 11px 20px;
+  background: var(--tan);
+  color: var(--oxford-blue);
 
-  background: #D2B48C;
-  color: #0D1B2A;
+  padding: 11px 22px;
+  border-radius: 6px;
 
-  border-radius: 4px;
+  font-weight: 700;
 }
 
+.nav-links .nav-button:hover {
+  background: var(--gold);
+  color: var(--oxford-blue);
+}
 
 /* =========================
    AUTH PAGES
