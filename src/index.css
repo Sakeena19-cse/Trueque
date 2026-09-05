@@ -1,39 +1,17 @@
-:root {
-  font-family: Arial, Helvetica, sans-serif;
-
-  --oxford-blue: #06213d;
-  --oxford-blue-light: #0b2d4d;
-
-  --tan: #e4bb85;
-  --tan-light: #f0c982;
-  --tan-dark: #c99b61;
-
-  --cream: #f7f2ea;
-  --white: #ffffff;
-  --text-dark: #06213d;
-}
-
 * {
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background: var(--cream);
-  color: var(--text-dark);
-}
-
-#root {
-  min-height: 100vh;
-}
-
-::selection {
-  background: var(--tan);
-  color: var(--oxford-blue);
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f8f3eb;
 }
