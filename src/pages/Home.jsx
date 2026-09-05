@@ -6,178 +6,175 @@ function Home() {
   return (
     <div className="home-page">
 
-      {/* HEADER */}
-      <header className="home-header">
-        <div className="logo">Trueque</div>
+      {/* HERO SECTION */}
+      <section className="hero-section">
+        <div className="hero-content">
 
-        <nav className="nav-menu">
-          <Link to="/">Home</Link>
-          <Link to="/matching">Search Skills</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/profile">About</Link>
-        </nav>
+          <p className="hero-label">
+            WELCOME TO TRUEQUE
+          </p>
 
-        <div className="auth-buttons">
-          <Link to="/login" className="login-btn">
-            Log In
-          </Link>
+          <h1>
+            Exchange Skills.
+            <br />
+            <span>Grow Together.</span>
+          </h1>
 
-          <Link to="/register" className="signup-btn">
-            Sign Up
-          </Link>
+          <p className="hero-description">
+            TRUEQUE is a skill exchange platform where
+            people can learn from each other, share their
+            knowledge and grow together.
+          </p>
+
+          <div className="hero-buttons">
+            <Link to="/register" className="primary-button">
+              Get Started
+            </Link>
+
+            <Link to="/login" className="secondary-button">
+              Login
+            </Link>
+          </div>
+
         </div>
-      </header>
+      </section>
 
-      {/* HERO */}
-      <main>
 
-        <section className="hero-section">
+      {/* HOW IT WORKS */}
+      <section className="how-section">
 
-          {/* LEFT SIDE */}
-          <div className="hero-content">
+        <div className="section-heading">
+          <p className="section-label">
+            HOW IT WORKS
+          </p>
 
-            <p className="small-heading">
-              EXCHANGE SKILLS. <span>GROW TOGETHER.</span>
-            </p>
+          <h2>
+            Learn. Teach. Exchange.
+          </h2>
 
-            <h1>
-              Learn. Teach.
-              <br />
-              Grow <span>Together.</span>
-            </h1>
-
-            <p className="hero-description">
-              Trueque is a platform to learn, teach, and grow
-              by swapping skills with others. No money.
-              <br />
-              Just connections.
-            </p>
-
-            <div className="hero-buttons">
-              <Link to="/register" className="primary-btn">
-                Get Started
-              </Link>
-
-              <Link to="/matching" className="secondary-btn">
-                Explore Skills
-              </Link>
-            </div>
-
-          </div>
-
-          {/* RIGHT SIDE ILLUSTRATION */}
-          <div className="skill-illustration">
-
-            <div className="circle-item teach-circle">
-              <div className="circle-icon">▢</div>
-              <strong>Teach</strong>
-              <small>What You Know</small>
-            </div>
-
-            <div className="circle-item learn-circle">
-              <div className="circle-icon">♧</div>
-              <strong>Learn</strong>
-              <small>What You Need</small>
-            </div>
-
-            <div className="people-area">
-
-              <div className="person person-left">
-                <div className="person-head"></div>
-                <div className="person-body"></div>
-                <div className="laptop"></div>
-              </div>
-
-              <div className="center-text">
-                <strong>Skills</strong>
-                <strong>Connect</strong>
-                <strong>People</strong>
-              </div>
-
-              <div className="person person-right">
-                <div className="person-head"></div>
-                <div className="person-body"></div>
-                <div className="laptop"></div>
-              </div>
-
-            </div>
-
-          </div>
-        </section>
-
-        {/* FEATURES */}
-        <section className="features-section">
-
-          <div className="feature">
-            <div className="feature-icon">♙</div>
-            <div>
-              <h3>Learn Anything</h3>
-              <p>
-                Explore skills you want to
-                learn from real people.
-              </p>
-            </div>
-          </div>
-
-          <div className="feature">
-            <div className="feature-icon">♧</div>
-            <div>
-              <h3>Teach & Earn</h3>
-              <p>
-                Share your skills and
-                help others grow.
-              </p>
-            </div>
-          </div>
-
-          <div className="feature">
-            <div className="feature-icon">♧</div>
-            <div>
-              <h3>Build Connections</h3>
-              <p>
-                Make meaningful
-                connections worldwide.
-              </p>
-            </div>
-          </div>
-
-          <div className="feature">
-            <div className="feature-icon">♙</div>
-            <div>
-              <h3>Grow Together</h3>
-              <p>
-                A community built on
-                trust and knowledge.
-              </p>
-            </div>
-          </div>
-
-        </section>
-
-      </main>
-
-      {/* FOOTER */}
-      <footer className="home-footer">
-
-        <h2>Trueque</h2>
-
-        <p>Exchange skills. Grow together.</p>
-
-        <div className="footer-links">
-          <Link to="/">Home</Link>
-          <Link to="/matching">Search Skills</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/profile">About</Link>
-          <Link to="/profile">Contact</Link>
+          <p>
+            TRUEQUE makes skill sharing simple and meaningful.
+          </p>
         </div>
 
-        <div className="footer-line"></div>
+        <div className="steps-container">
 
-        <p className="copyright">
-          © 2026 Trueque. All rights reserved.
-        </p>
+          <div className="step-card">
+            <div className="step-number">01</div>
 
-      </footer>
+            <h3>Choose Your Skills</h3>
+
+            <p>
+              Select the skills you want to learn,
+              teach, or both.
+            </p>
+          </div>
+
+          <div className="step-card">
+            <div className="step-number">02</div>
+
+            <h3>Find Your Match</h3>
+
+            <p>
+              Discover people whose skills match
+              your learning goals.
+            </p>
+          </div>
+
+          <div className="step-card">
+            <div className="step-number">03</div>
+
+            <h3>Learn & Teach</h3>
+
+            <p>
+              Connect with your match and exchange
+              knowledge through sessions.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* POPULAR SKILLS */}
+      <section className="skills-section">
+
+        <div className="section-heading">
+          <p className="section-label">
+            SKILLS
+          </p>
+
+          <h2>
+            Explore Skills
+          </h2>
+
+          <p>
+            Discover different areas of knowledge
+            available through TRUEQUE.
+          </p>
+        </div>
+
+        <div className="skills-grid">
+
+          <div className="skill-card">
+            <h3>Programming</h3>
+            <p>Build your coding skills.</p>
+          </div>
+
+          <div className="skill-card">
+            <h3>Web Development</h3>
+            <p>Create modern websites.</p>
+          </div>
+
+          <div className="skill-card">
+            <h3>UI/UX Design</h3>
+            <p>Design better user experiences.</p>
+          </div>
+
+          <div className="skill-card">
+            <h3>Photography</h3>
+            <p>Learn creative photography.</p>
+          </div>
+
+          <div className="skill-card">
+            <h3>Communication</h3>
+            <p>Improve your communication skills.</p>
+          </div>
+
+          <div className="skill-card">
+            <h3>Digital Marketing</h3>
+            <p>Learn modern marketing skills.</p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* CALL TO ACTION */}
+      <section className="cta-section">
+
+        <div>
+          <p className="section-label">
+            START YOUR JOURNEY
+          </p>
+
+          <h2>
+            Your Skills Have Value.
+          </h2>
+
+          <p>
+            Join TRUEQUE and start exchanging
+            knowledge with others.
+          </p>
+
+          <Link to="/register" className="primary-button">
+            Join TRUEQUE
+          </Link>
+        </div>
+
+      </section>
 
     </div>
   );

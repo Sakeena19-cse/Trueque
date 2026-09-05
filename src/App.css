@@ -1,112 +1,354 @@
-/* ================================
-   FOOTER
-================================ */
+/* =========================
+   HEADER
+========================= */
 
-.site-footer {
+.site-header {
   width: 100%;
-  background: #002147; /* Oxford Blue */
-  color: #f4d7a1;      /* Tan */
-  padding: 55px 30px 25px;
-  box-sizing: border-box;
+  min-height: 82px;
+  padding: 0 7%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #0D1B2A;
+  color: #FFFFFF;
+
+  border-bottom: 2px solid #C9A227;
+
+  position: relative;
+  z-index: 1000;
 }
 
-.footer-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
-}
+.logo {
+  color: #FFFFFF;
 
-/* Brand */
-
-.footer-brand {
-  margin-bottom: 30px;
-}
-
-.footer-logo {
-  display: inline-block;
-  color: #f4d7a1;
-  text-decoration: none;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 38px;
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
   font-weight: 700;
-  margin-bottom: 10px;
+  letter-spacing: 3px;
 }
 
-.footer-logo:hover {
-  color: #ffffff;
+.logo span {
+  color: #D2B48C;
 }
 
-.footer-tagline {
-  margin: 0;
-  color: #f4f4f4;
-  font-size: 16px;
-  letter-spacing: 0.3px;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
 }
 
-/* Navigation */
+.nav-links a {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
 
-.footer-nav {
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #D2B48C;
+}
+
+.nav-links .nav-button {
+  padding: 11px 20px;
+
+  background: #D2B48C;
+  color: #0D1B2A;
+
+  border-radius: 4px;
+}
+
+
+/* =========================
+   AUTH PAGES
+========================= */
+
+.auth-page {
+  width: 100%;
+  min-height: calc(100vh - 82px);
+
+  padding: 80px 7%;
+
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 45px;
-  margin: 30px 0;
-  flex-wrap: wrap;
+  align-items: flex-start;
+
+  background: #D2B48C;
 }
 
-.footer-nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  transition: 0.25s ease;
+.auth-container {
+  width: 100%;
+  max-width: 620px;
+
+  padding: 45px;
+
+  background: #FFF8EC;
+
+  border: 1px solid rgba(13, 27, 42, 0.15);
+  border-top: 5px solid #0D1B2A;
+
+  border-radius: 8px;
+
+  box-shadow: 0 15px 40px rgba(13, 27, 42, 0.15);
 }
 
-.footer-nav a:hover {
-  color: #f4d7a1;
+.auth-container h1 {
+  margin-bottom: 12px;
+
+  color: #0D1B2A;
+
+  font-family: "Playfair Display", serif;
+  font-size: 40px;
 }
 
-/* Divider */
+.auth-description {
+  margin-bottom: 30px;
 
-.footer-divider {
-  width: 75%;
-  height: 1px;
-  background: rgba(244, 215, 161, 0.35);
-  margin: 30px auto 22px;
+  color: #243B53;
+  line-height: 1.7;
 }
 
-/* Copyright */
-
-.footer-bottom {
-  text-align: center;
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.footer-bottom p {
-  margin: 0;
-  color: #ffffff;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #0D1B2A;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  min-height: 48px;
+
+  padding: 12px 14px;
+
+  background: #FFFFFF;
+  color: #0D1B2A;
+
+  border: 1px solid #C8A97E;
+  border-radius: 5px;
+
+  outline: none;
+
   font-size: 14px;
 }
 
-/* ================================
-   MOBILE
-================================ */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #0D1B2A;
+  box-shadow: 0 0 0 2px rgba(13, 27, 42, 0.1);
+}
 
-@media (max-width: 700px) {
+.auth-button {
+  width: 100%;
+  min-height: 50px;
 
-  .site-footer {
-    padding: 45px 20px 25px;
+  margin-top: 8px;
+
+  background: #0D1B2A;
+  color: #FFFFFF;
+
+  border: 2px solid #0D1B2A;
+  border-radius: 5px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition: 0.3s ease;
+}
+
+.auth-button:hover {
+  background: #1B263B;
+  transform: translateY(-2px);
+}
+
+.auth-footer {
+  margin-top: 10px;
+
+  text-align: center;
+
+  color: #243B53;
+  font-size: 14px;
+}
+
+.text-button {
+  background: none;
+  border: none;
+
+  color: #0D1B2A;
+
+  font-weight: 700;
+}
+
+.text-button:hover {
+  color: #C9A227;
+}
+
+.register-page-indicator {
+  padding: 10px;
+
+  background: #E8D7BD;
+  color: #0D1B2A;
+
+  border-radius: 5px;
+
+  text-align: center;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.register-navigation {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 12px;
+}
+
+.register-navigation .secondary-button {
+  width: 100%;
+}
+
+
+/* =========================
+   COMMON
+========================= */
+
+.section-label {
+  color: #0D1B2A;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-page {
+  width: 100%;
+  min-height: 70vh;
+  padding: 70px 7%;
+  background: #D2B48C;
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-page {
+  width: 100%;
+  min-height: 70vh;
+  padding: 70px 7%;
+  background: #D2B48C;
+}
+
+
+/* =========================
+   MATCHING
+========================= */
+
+.matching-page {
+  width: 100%;
+  min-height: 70vh;
+  background: #D2B48C;
+}
+
+.matching-hero {
+  padding: 70px 7%;
+  background: #D2B48C;
+}
+
+.matching-hero h1 {
+  margin: 10px 0;
+
+  color: #0D1B2A;
+  font-family: "Playfair Display", serif;
+  font-size: 48px;
+}
+
+.matching-hero p {
+  color: #243B53;
+  line-height: 1.7;
+}
+
+.matching-content {
+  padding: 60px 7%;
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-page {
+  width: 100%;
+  min-height: 70vh;
+  padding: 70px 7%;
+  background: #D2B48C;
+}
+
+
+/* =========================
+   SESSION
+========================= */
+
+.session-page {
+  width: 100%;
+  min-height: 70vh;
+  padding: 70px 7%;
+  background: #D2B48C;
+}
+
+
+/* =========================
+   RESPONSIVE HEADER
+========================= */
+
+@media (max-width: 900px) {
+  .site-header {
+    padding: 20px 6%;
+    flex-direction: column;
+    gap: 18px;
   }
 
-  .footer-logo {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .auth-page {
+    padding: 45px 5%;
+  }
+
+  .auth-container {
+    padding: 28px 22px;
+  }
+
+  .auth-container h1 {
     font-size: 32px;
   }
 
-  .footer-nav {
-    gap: 20px;
-    flex-direction: column;
-  }
-
-  .footer-divider {
-    width: 90%;
+  .register-navigation {
+    grid-template-columns: 1fr;
   }
 }

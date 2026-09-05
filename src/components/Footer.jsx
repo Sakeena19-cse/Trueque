@@ -1,38 +1,43 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import "./Footer.css";
 
 function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-container">
 
-        {/* Brand */}
         <div className="footer-brand">
-          <Link to="/" className="footer-logo">
-            SkillSwap
-          </Link>
+          <h2>TRUEQUE</h2>
 
-          <p className="footer-tagline">
-            Exchange skills. Grow together.
+          <p>
+            Exchange skills. Share knowledge. Grow together.
           </p>
         </div>
 
-        {/* Navigation */}
-        <nav className="footer-nav">
+        <div className="footer-links">
+          <h3>Quick Links</h3>
+
           <Link to="/">Home</Link>
-          <Link to="/matching">Search Skills</Link>
           <Link to="/dashboard">Dashboard</Link>
-          <Link to="/about">About</Link>
-          <Link to="/profile">Contact</Link>
-        </nav>
-
-        {/* Divider */}
-        <div className="footer-divider"></div>
-
-        {/* Copyright */}
-        <div className="footer-bottom">
-          <p>© 2026 SkillSwap. All rights reserved.</p>
+          <Link to="/matching">Matching</Link>
+          <Link to="/profile">Profile</Link>
         </div>
 
+        <div className="footer-links">
+          <h3>TRUEQUE</h3>
+
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+          <Link to="/quiz">Skill Verification</Link>
+        </div>
+
+      </div>
+
+      <div className="footer-bottom">
+        <p>
+          © 2026 TRUEQUE. All rights reserved.
+        </p>
       </div>
     </footer>
   );
