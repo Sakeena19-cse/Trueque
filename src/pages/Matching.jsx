@@ -51,14 +51,15 @@ export default function Matching() {
         </h1>
 
         <p
-          style={{
-            color: 'var(--tan-soft)',
-            marginBottom: '24px',
-            fontSize: '0.95rem',
-          }}
-        >
-          Find people to swap skills with
-        </p>
+  style={{
+    color: '#ffffff',
+    marginBottom: '24px',
+    fontSize: '0.95rem',
+    fontWeight: 500,
+  }}
+>
+  Find people to swap skills with
+</p>
 
         {/* Search box */}
 
