@@ -1,95 +1,459 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Home.css";
+import heroImage from "../assets/trueque-hero.png";
 
-function Home() {
+export default function Home() {
   return (
-    <div className="home-page">
+    <div>
 
-      {/* HERO SECTION */}
-      <section className="hero-section">
-        <div className="hero-content">
+      {/* ================= HERO SECTION ================= */}
 
-          <p className="hero-label">
-            WELCOME TO TRUEQUE
-          </p>
+      <section
+  style={{
+    background: "var(--tan)",
+    padding: "80px 0",
+  }}
+>
+  <div
+    className="container"
+    style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      alignItems: "center",
+      gap: "50px",
+    }}
+  >
+    {/* Left side - Text */}
+    <div>
+      <p
+        style={{
+          color: "var(--dark-blue)",
+          fontWeight: "600",
+          fontSize: "18px",
+          marginBottom: "15px",
+        }}
+      >
+        Skill Exchange Platform
+      </p>
 
-          <h1>
-            Exchange Skills.
-            <br />
-            <span>Grow Together.</span>
-          </h1>
+      <h1
+        style={{
+          color: "var(--oxford-blue)",
+          fontSize: "52px",
+          lineHeight: "1.1",
+          marginBottom: "20px",
+        }}
+      >
+        Learn. Teach. Exchange.
+      </h1>
 
-          <p className="hero-description">
-            TRUEQUE is a skill exchange platform where
-            people can learn from each other, share their
-            knowledge and grow together.
-          </p>
+      <p
+        style={{
+          color: "var(--oxford-blue)",
+          fontSize: "18px",
+          lineHeight: "1.7",
+          maxWidth: "550px",
+          marginBottom: "30px",
+        }}
+      >
+        Connect with people, exchange skills, share knowledge,
+        and grow together with TRUEQUE.
+      </p>
 
-          <div className="hero-buttons">
-            <Link to="/register" className="primary-button">
-              Get Started
-            </Link>
+      <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+        <Link to="/matching" className="btn btn-primary">
+          Explore Skills
+        </Link>
 
-            <Link to="/login" className="secondary-button">
-              Login
-            </Link>
+        <Link to="/register" className="btn btn-secondary">
+          Join TRUEQUE
+        </Link>
+      </div>
+    </div>
+
+    {/* Right side - TRUEQUE picture */}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <img
+        src={heroImage}
+        alt="TRUEQUE Skill Exchange"
+        style={{
+          width: "100%",
+          maxWidth: "550px",
+          height: "auto",
+          display: "block",
+          borderRadius: "20px",
+        }}
+      />
+    </div>
+  </div>
+</section>
+
+
+      {/* ================= WHY TRUEQUE ================= */}
+
+      <section
+        style={{
+          padding: "50px 24px",
+        }}
+      >
+
+        <div className="container">
+
+          <div
+            style={{
+              textAlign: "center",
+              marginBottom: "30px",
+            }}
+          >
+
+            <h2
+              style={{
+                color: "#ffffff",
+                fontFamily: "var(--font-heading)",
+                marginBottom: "10px",
+              }}
+            >
+              Why TRUEQUE?
+            </h2>
+
+            <p
+              style={{
+                color: "#ffffff",
+                maxWidth: "650px",
+                margin: "0 auto",
+                lineHeight: 1.6,
+              }}
+            >
+              TRUEQUE makes learning more meaningful by helping
+              students exchange knowledge and skills with each other.
+            </p>
+
+          </div>
+
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(3, minmax(0, 1fr))",
+              gap: "18px",
+            }}
+          >
+
+            {/* LEARN */}
+
+            <div
+              style={{
+                padding: "25px",
+                minHeight: "175px",
+                borderRadius: "14px",
+                background:
+                  "linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))",
+                border:
+                  "1px solid rgba(255,255,255,0.30)",
+                boxShadow:
+                  "0 8px 20px rgba(0,0,0,0.12)",
+              }}
+            >
+
+              <div
+                style={{
+                  fontSize: "1.8rem",
+                  marginBottom: "12px",
+                }}
+              >
+                📚
+              </div>
+
+              <h3
+                style={{
+                  color: "var(--gold)",
+                  fontFamily: "var(--font-heading)",
+                  marginBottom: "8px",
+                }}
+              >
+                Learn
+              </h3>
+
+              <p
+                style={{
+                  color: "#ffffff",
+                  fontSize: "0.85rem",
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                Discover new skills and learn directly
+                from people who already know them.
+              </p>
+
+            </div>
+
+
+            {/* TEACH */}
+
+            <div
+              style={{
+                padding: "25px",
+                minHeight: "175px",
+                borderRadius: "14px",
+                background:
+                  "linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))",
+                border:
+                  "1px solid rgba(255,255,255,0.30)",
+                boxShadow:
+                  "0 8px 20px rgba(0,0,0,0.12)",
+              }}
+            >
+
+              <div
+                style={{
+                  fontSize: "1.8rem",
+                  marginBottom: "12px",
+                }}
+              >
+                💡
+              </div>
+
+              <h3
+                style={{
+                  color: "var(--gold)",
+                  fontFamily: "var(--font-heading)",
+                  marginBottom: "8px",
+                }}
+              >
+                Teach
+              </h3>
+
+              <p
+                style={{
+                  color: "#ffffff",
+                  fontSize: "0.85rem",
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                Share what you know and help another
+                student develop their skills.
+              </p>
+
+            </div>
+
+
+            {/* EXCHANGE */}
+
+            <div
+              style={{
+                padding: "25px",
+                minHeight: "175px",
+                borderRadius: "14px",
+                background:
+                  "linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))",
+                border:
+                  "1px solid rgba(255,255,255,0.30)",
+                boxShadow:
+                  "0 8px 20px rgba(0,0,0,0.12)",
+              }}
+            >
+
+              <div
+                style={{
+                  fontSize: "1.8rem",
+                  marginBottom: "12px",
+                }}
+              >
+                🤝
+              </div>
+
+              <h3
+                style={{
+                  color: "var(--gold)",
+                  fontFamily: "var(--font-heading)",
+                  marginBottom: "8px",
+                }}
+              >
+                Exchange
+              </h3>
+
+              <p
+                style={{
+                  color: "#ffffff",
+                  fontSize: "0.85rem",
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                Exchange skills with others and grow
+                together through peer-to-peer learning.
+              </p>
+
+            </div>
+
           </div>
 
         </div>
+
       </section>
 
 
-      {/* HOW IT WORKS */}
-      <section className="how-section">
+      {/* ================= HOW TRUEQUE WORKS ================= */}
 
-        <div className="section-heading">
-          <p className="section-label">
-            HOW IT WORKS
-          </p>
+      <section
+        style={{
+          padding: "20px 24px 50px",
+        }}
+      >
 
-          <h2>
-            Learn. Teach. Exchange.
-          </h2>
+        <div className="container">
 
-          <p>
-            TRUEQUE makes skill sharing simple and meaningful.
-          </p>
-        </div>
+          <div
+            style={{
+              textAlign: "center",
+              marginBottom: "30px",
+            }}
+          >
 
-        <div className="steps-container">
+            <h2
+              style={{
+                color: "#ffffff",
+                fontFamily: "var(--font-heading)",
+                marginBottom: "10px",
+              }}
+            >
+              How TRUEQUE Works
+            </h2>
 
-          <div className="step-card">
-            <div className="step-number">01</div>
-
-            <h3>Choose Your Skills</h3>
-
-            <p>
-              Select the skills you want to learn,
-              teach, or both.
+            <p
+              style={{
+                color: "#ffffff",
+                margin: 0,
+              }}
+            >
+              Exchange skills in three simple steps.
             </p>
+
           </div>
 
-          <div className="step-card">
-            <div className="step-number">02</div>
 
-            <h3>Find Your Match</h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(3, minmax(0, 1fr))",
+              gap: "18px",
+            }}
+          >
 
-            <p>
-              Discover people whose skills match
-              your learning goals.
-            </p>
-          </div>
+            <div
+              style={{
+                padding: "22px",
+                textAlign: "center",
+                borderRadius: "14px",
+                background:
+                  "linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))",
+                border:
+                  "1px solid rgba(255,255,255,0.30)",
+              }}
+            >
+              <h3 style={{ color: "var(--gold)" }}>
+                01
+              </h3>
 
-          <div className="step-card">
-            <div className="step-number">03</div>
+              <p
+                style={{
+                  color: "#ffffff",
+                  fontWeight: 700,
+                }}
+              >
+                Choose a Skill
+              </p>
 
-            <h3>Learn & Teach</h3>
+              <p
+                style={{
+                  color: "#ffffff",
+                  fontSize: "0.82rem",
+                }}
+              >
+                Find something you want to learn.
+              </p>
+            </div>
 
-            <p>
-              Connect with your match and exchange
-              knowledge through sessions.
-            </p>
+
+            <div
+              style={{
+                padding: "22px",
+                textAlign: "center",
+                borderRadius: "14px",
+                background:
+                  "linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))",
+                border:
+                  "1px solid rgba(255,255,255,0.30)",
+              }}
+            >
+              <h3 style={{ color: "var(--gold)" }}>
+                02
+              </h3>
+
+              <p
+                style={{
+                  color: "#ffffff",
+                  fontWeight: 700,
+                }}
+              >
+                Find a Match
+              </p>
+
+              <p
+                style={{
+                  color: "#ffffff",
+                  fontSize: "0.82rem",
+                }}
+              >
+                Connect with someone who matches your needs.
+              </p>
+            </div>
+
+
+            <div
+              style={{
+                padding: "22px",
+                textAlign: "center",
+                borderRadius: "14px",
+                background:
+                  "linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))",
+                border:
+                  "1px solid rgba(255,255,255,0.30)",
+              }}
+            >
+              <h3 style={{ color: "var(--gold)" }}>
+                03
+              </h3>
+
+              <p
+                style={{
+                  color: "#ffffff",
+                  fontWeight: 700,
+                }}
+              >
+                Start Exchanging
+              </p>
+
+              <p
+                style={{
+                  color: "#ffffff",
+                  fontSize: "0.82rem",
+                }}
+              >
+                Learn, teach and grow together.
+              </p>
+            </div>
+
           </div>
 
         </div>
@@ -97,87 +461,94 @@ function Home() {
       </section>
 
 
-      {/* POPULAR SKILLS */}
-      <section className="skills-section">
+      {/* ================= CALL TO ACTION ================= */}
 
-        <div className="section-heading">
-          <p className="section-label">
-            SKILLS
-          </p>
+      <section
+        style={{
+          padding: "20px 24px 60px",
+        }}
+      >
 
-          <h2>
-            Explore Skills
+        <div
+          className="container"
+          style={{
+            textAlign: "center",
+          }}
+        >
+
+          <h2
+            style={{
+              color: "#ffffff",
+              fontFamily: "var(--font-heading)",
+              marginBottom: "10px",
+            }}
+          >
+            Ready to exchange your skills?
           </h2>
 
-          <p>
-            Discover different areas of knowledge
-            available through TRUEQUE.
-          </p>
-        </div>
-
-        <div className="skills-grid">
-
-          <div className="skill-card">
-            <h3>Programming</h3>
-            <p>Build your coding skills.</p>
-          </div>
-
-          <div className="skill-card">
-            <h3>Web Development</h3>
-            <p>Create modern websites.</p>
-          </div>
-
-          <div className="skill-card">
-            <h3>UI/UX Design</h3>
-            <p>Design better user experiences.</p>
-          </div>
-
-          <div className="skill-card">
-            <h3>Photography</h3>
-            <p>Learn creative photography.</p>
-          </div>
-
-          <div className="skill-card">
-            <h3>Communication</h3>
-            <p>Improve your communication skills.</p>
-          </div>
-
-          <div className="skill-card">
-            <h3>Digital Marketing</h3>
-            <p>Learn modern marketing skills.</p>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* CALL TO ACTION */}
-      <section className="cta-section">
-
-        <div>
-          <p className="section-label">
-            START YOUR JOURNEY
+          <p
+            style={{
+              color: "#ffffff",
+              marginBottom: "22px",
+            }}
+          >
+            Find a skill, meet a learner, and start exchanging knowledge.
           </p>
 
-          <h2>
-            Your Skills Have Value.
-          </h2>
-
-          <p>
-            Join TRUEQUE and start exchanging
-            knowledge with others.
-          </p>
-
-          <Link to="/register" className="primary-button">
-            Join TRUEQUE
+          <Link
+            to="/matching"
+            className="btn btn-primary"
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            Start Exploring
           </Link>
+
         </div>
 
       </section>
+
+
+      {/* ================= RESPONSIVE ================= */}
+
+      <style>
+        {`
+          @media (max-width: 850px) {
+
+            .home-hero .container {
+              grid-template-columns: 1fr !important;
+              text-align: center;
+            }
+
+            .home-hero .container > div:first-child {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .home-hero .container > div:last-child {
+              margin-top: 10px;
+            }
+
+            .container > div {
+              grid-template-columns: 1fr !important;
+            }
+          }
+
+          @media (max-width: 600px) {
+
+            .home-hero {
+              padding: 45px 16px !important;
+            }
+
+            .home-hero img {
+              max-width: 100% !important;
+            }
+          }
+        `}
+      </style>
 
     </div>
   );
 }
-
-export default Home;
