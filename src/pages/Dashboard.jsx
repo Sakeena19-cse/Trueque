@@ -8,7 +8,7 @@ const activity = [
     title: 'JavaScript Learning',
     desc: 'Continue your progress and improve your skills.',
     status: 'In Progress',
-    statusColor: '#E0A72E',
+    statusColor: 'var(--oxford-blue)',
     statusIcon: '🕐',
   },
   {
@@ -18,7 +18,7 @@ const activity = [
     title: 'Skill Exchange',
     desc: 'You recently connected with a new learner.',
     status: 'Completed',
-    statusColor: '#3FBE7A',
+    statusColor: 'var(--oxford-blue)',
     statusIcon: '✓',
   },
   {
@@ -28,45 +28,123 @@ const activity = [
     title: 'UI/UX Design Basics',
     desc: 'Session with Karthik S. is coming up soon.',
     status: 'Upcoming',
-    statusColor: '#D2B48C',
+    statusColor: 'var(--oxford-blue)',
     statusIcon: '📅',
   },
 ];
 
 export default function Dashboard() {
   return (
-    <div className="container" style={{ padding: '40px 24px 60px' }}>
-      <p style={{ color: 'var(--tan-soft)', marginBottom: '30px' }}>
+    <div
+      className="container"
+      style={{
+        padding: '40px 24px 60px',
+        color: 'var(--oxford-blue)',
+      }}
+    >
+
+      <p
+        style={{
+          color: 'var(--oxford-blue)',
+          marginBottom: '30px',
+        }}
+      >
         Your completed learning sessions.
       </p>
 
-      <p style={{
-        color: 'var(--gold)', fontWeight: 700, fontSize: '0.8rem',
-        letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px',
-      }}>
+      <p
+        style={{
+          color: 'var(--gold)',
+          fontWeight: 700,
+          fontSize: '0.8rem',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          marginBottom: '10px',
+        }}
+      >
         Quick Actions
       </p>
-      <h1 style={{ fontSize: '2.4rem', marginBottom: '24px' }}>Continue Your Journey</h1>
 
-      <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '50px' }}>
-        <Link to="/matching" className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+      <h1
+        style={{
+          fontSize: '2.4rem',
+          color: 'var(--oxford-blue)',
+          marginBottom: '24px',
+        }}
+      >
+        Continue Your Journey
+      </h1>
+
+      <div
+        style={{
+          display: 'flex',
+          gap: '16px',
+          flexWrap: 'wrap',
+          marginBottom: '50px',
+        }}
+      >
+        <Link
+          to="/matching"
+          className="btn btn-outline"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            color: 'var(--oxford-blue)',
+          }}
+        >
           🔍 Find a Skill
         </Link>
-        <Link to="/matching" className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+
+        <Link
+          to="/matching"
+          className="btn btn-outline"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            color: 'var(--oxford-blue)',
+          }}
+        >
           👥 Find a Match
         </Link>
-        <Link to="/profile" className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+
+        <Link
+          to="/profile"
+          className="btn btn-outline"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            color: 'var(--oxford-blue)',
+          }}
+        >
           👤 View Profile
         </Link>
       </div>
 
-      <p style={{
-        color: 'var(--gold)', fontWeight: 700, fontSize: '0.8rem',
-        letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '10px',
-      }}>
+      <p
+        style={{
+          color: 'var(--gold)',
+          fontWeight: 700,
+          fontSize: '0.8rem',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          marginBottom: '10px',
+        }}
+      >
         Recent Activity
       </p>
-      <h1 style={{ fontSize: '2.4rem', marginBottom: '30px' }}>Your Recent Activity</h1>
+
+      <h1
+        style={{
+          fontSize: '2.4rem',
+          color: 'var(--oxford-blue)',
+          marginBottom: '30px',
+        }}
+      >
+        Your Recent Activity
+      </h1>
 
       <div>
         {activity.map((item, i) => (
@@ -76,27 +154,67 @@ export default function Dashboard() {
               display: 'flex',
               gap: '20px',
               padding: '20px 0',
-              borderBottom: i < activity.length - 1 ? '1px solid rgba(210,180,140,0.15)' : 'none',
+              borderBottom:
+                i < activity.length - 1
+                  ? '1px solid rgba(13, 27, 42, 0.15)'
+                  : 'none',
             }}
           >
-            <div style={{
-              width: '54px', height: '54px', borderRadius: '12px',
-              background: item.iconBg, color: item.iconColor,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 700, fontSize: '1rem', flexShrink: 0,
-            }}>
+
+            <div
+              style={{
+                width: '54px',
+                height: '54px',
+                borderRadius: '12px',
+                background: item.iconBg,
+                color: item.iconColor,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 700,
+                fontSize: '1rem',
+                flexShrink: 0,
+              }}
+            >
               {item.icon}
             </div>
+
             <div>
-              <h3 style={{ fontSize: '1.15rem', color: 'var(--tan)', marginBottom: '4px' }}>{item.title}</h3>
-              <p style={{ color: 'var(--tan-soft)', fontSize: '0.92rem', marginBottom: '8px' }}>{item.desc}</p>
-              <span style={{ color: item.statusColor, fontSize: '0.85rem', fontWeight: 600 }}>
+              <h3
+                style={{
+                  fontSize: '1.15rem',
+                  color: 'var(--oxford-blue)',
+                  marginBottom: '4px',
+                }}
+              >
+                {item.title}
+              </h3>
+
+              <p
+                style={{
+                  color: 'var(--oxford-blue)',
+                  fontSize: '0.92rem',
+                  marginBottom: '8px',
+                }}
+              >
+                {item.desc}
+              </p>
+
+              <span
+                style={{
+                  color: item.statusColor,
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                }}
+              >
                 {item.statusIcon} {item.status}
               </span>
             </div>
+
           </div>
         ))}
       </div>
+
     </div>
   );
 }
