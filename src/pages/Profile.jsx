@@ -1,29 +1,4 @@
-const profile = {
-  firstName: 'Priya',
-  lastName: 'Dharshini',
-  email: 'priya@example.com',
-  phone: '+91 98765 43210',
-  qualification: 'B.E. Computer Science',
-  location: 'Chennai, India',
-};
-
-const skills = [
-  {
-    name: 'Content Writing',
-    type: 'Can Teach',
-    level: 'Intermediate',
-  },
-  {
-    name: 'UI/UX Design',
-    type: 'Want to Learn',
-    level: 'Beginner',
-  },
-  {
-    name: 'Web Development',
-    type: 'Want to Learn',
-    level: 'Beginner',
-  },
-];
+import React from 'react';
 
 export default function Profile() {
   return (
@@ -34,13 +9,9 @@ export default function Profile() {
       }}
     >
 
-      {/* ================= PROFILE HERO ================= */}
+      {/* ================= PAGE TITLE ================= */}
 
-      <div
-        style={{
-          marginBottom: '30px',
-        }}
-      >
+      <div style={{ marginBottom: '30px' }}>
         <h1
           style={{
             marginBottom: '8px',
@@ -70,17 +41,15 @@ export default function Profile() {
           background:
             'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
 
-          border:
-            '1px solid rgba(255,255,255,0.30)',
+          border: '1px solid rgba(255,255,255,0.30)',
 
           borderRadius: '14px',
 
           padding: '28px',
 
-          boxShadow:
-            '0 8px 20px rgba(0,0,0,0.12)',
+          boxShadow: '0 8px 20px rgba(0,0,0,0.12)',
 
-          marginBottom: '24px',
+          marginBottom: '30px',
 
           color: '#ffffff',
         }}
@@ -113,27 +82,24 @@ export default function Profile() {
 
               background: 'var(--oxford-blue)',
 
-              border:
-                '2px solid rgba(255,255,255,0.7)',
+              border: '2px solid rgba(255,255,255,0.7)',
 
               color: 'var(--gold)',
 
               fontFamily: 'var(--font-heading)',
 
-              fontSize: '1.3rem',
+              fontSize: '1.2rem',
 
               fontWeight: 700,
             }}
           >
-            {profile.firstName[0]}
-            {profile.lastName[0]}
+            ST
           </div>
 
 
-          {/* NAME */}
+          {/* STUDENT NAME */}
 
           <div>
-
             <h2
               style={{
                 margin: '0 0 6px',
@@ -141,7 +107,7 @@ export default function Profile() {
                 fontFamily: 'var(--font-heading)',
               }}
             >
-              {profile.firstName} {profile.lastName}
+              Student Name
             </h2>
 
             <p
@@ -151,198 +117,175 @@ export default function Profile() {
                 fontSize: '0.85rem',
               }}
             >
-              📍 {profile.location}
+              📍 Your Location
             </p>
-
           </div>
 
         </div>
 
 
-        {/* PROFILE DETAILS */}
+        {/* ================= PROFILE DETAILS ================= */}
 
         <div
           style={{
             display: 'grid',
-
             gridTemplateColumns:
               'repeat(2, minmax(0, 1fr))',
-
-            gap: '16px',
+            gap: '18px',
           }}
         >
 
           {/* EMAIL */}
 
-          <div
-            style={{
-              padding: '16px',
-
-              borderRadius: '10px',
-
-              background:
-                'rgba(13,27,42,0.28)',
-
-              border:
-                '1px solid rgba(255,255,255,0.18)',
-            }}
-          >
-
-            <p
+          <div>
+            <label
               style={{
-                margin: '0 0 5px',
+                display: 'block',
                 color: 'var(--gold)',
-                fontSize: '0.75rem',
+                fontSize: '0.8rem',
                 fontWeight: 700,
+                marginBottom: '7px',
               }}
             >
               EMAIL
-            </p>
+            </label>
 
-            <p
+            <input
+              type="email"
+              placeholder="Enter your email"
               style={{
-                margin: 0,
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '8px',
+                border:
+                  '1px solid rgba(255,255,255,0.35)',
+                background:
+                  'rgba(13,27,42,0.25)',
                 color: '#ffffff',
+                outline: 'none',
+                boxSizing: 'border-box',
                 fontSize: '0.88rem',
               }}
-            >
-              {profile.email}
-            </p>
-
+            />
           </div>
 
 
           {/* PHONE */}
 
-          <div
-            style={{
-              padding: '16px',
-
-              borderRadius: '10px',
-
-              background:
-                'rgba(13,27,42,0.28)',
-
-              border:
-                '1px solid rgba(255,255,255,0.18)',
-            }}
-          >
-
-            <p
+          <div>
+            <label
               style={{
-                margin: '0 0 5px',
+                display: 'block',
                 color: 'var(--gold)',
-                fontSize: '0.75rem',
+                fontSize: '0.8rem',
                 fontWeight: 700,
+                marginBottom: '7px',
               }}
             >
               PHONE
-            </p>
+            </label>
 
-            <p
+            <input
+              type="tel"
+              placeholder="Enter your phone number"
               style={{
-                margin: 0,
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '8px',
+                border:
+                  '1px solid rgba(255,255,255,0.35)',
+                background:
+                  'rgba(13,27,42,0.25)',
                 color: '#ffffff',
+                outline: 'none',
+                boxSizing: 'border-box',
                 fontSize: '0.88rem',
               }}
-            >
-              {profile.phone}
-            </p>
-
+            />
           </div>
 
 
           {/* QUALIFICATION */}
 
-          <div
-            style={{
-              padding: '16px',
-
-              borderRadius: '10px',
-
-              background:
-                'rgba(13,27,42,0.28)',
-
-              border:
-                '1px solid rgba(255,255,255,0.18)',
-            }}
-          >
-
-            <p
+          <div>
+            <label
               style={{
-                margin: '0 0 5px',
+                display: 'block',
                 color: 'var(--gold)',
-                fontSize: '0.75rem',
+                fontSize: '0.8rem',
                 fontWeight: 700,
+                marginBottom: '7px',
               }}
             >
               QUALIFICATION
-            </p>
+            </label>
 
-            <p
+            <input
+              type="text"
+              placeholder="Enter your qualification"
               style={{
-                margin: 0,
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '8px',
+                border:
+                  '1px solid rgba(255,255,255,0.35)',
+                background:
+                  'rgba(13,27,42,0.25)',
                 color: '#ffffff',
+                outline: 'none',
+                boxSizing: 'border-box',
                 fontSize: '0.88rem',
               }}
-            >
-              {profile.qualification}
-            </p>
-
+            />
           </div>
 
 
           {/* LOCATION */}
 
-          <div
-            style={{
-              padding: '16px',
-
-              borderRadius: '10px',
-
-              background:
-                'rgba(13,27,42,0.28)',
-
-              border:
-                '1px solid rgba(255,255,255,0.18)',
-            }}
-          >
-
-            <p
+          <div>
+            <label
               style={{
-                margin: '0 0 5px',
+                display: 'block',
                 color: 'var(--gold)',
-                fontSize: '0.75rem',
+                fontSize: '0.8rem',
                 fontWeight: 700,
+                marginBottom: '7px',
               }}
             >
               LOCATION
-            </p>
+            </label>
 
-            <p
+            <input
+              type="text"
+              placeholder="Enter your location"
               style={{
-                margin: 0,
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '8px',
+                border:
+                  '1px solid rgba(255,255,255,0.35)',
+                background:
+                  'rgba(13,27,42,0.25)',
                 color: '#ffffff',
+                outline: 'none',
+                boxSizing: 'border-box',
                 fontSize: '0.88rem',
               }}
-            >
-              {profile.location}
-            </p>
-
+            />
           </div>
 
         </div>
 
 
-        {/* EDIT BUTTON */}
+        {/* EDIT / SAVE BUTTON */}
 
         <button
           className="btn btn-primary"
           style={{
-            marginTop: '22px',
+            marginTop: '24px',
           }}
         >
-          Edit Profile
+          Save Profile
         </button>
 
       </div>
@@ -366,91 +309,223 @@ export default function Profile() {
         <div
           style={{
             display: 'grid',
-
             gridTemplateColumns:
               'repeat(3, minmax(0, 1fr))',
-
-            gap: '16px',
+            gap: '18px',
           }}
         >
 
-          {skills.map((skill) => (
+          {/* SKILL 1 */}
 
-            <div
-              key={skill.name}
+          <div
+            style={{
+              minHeight: '150px',
+
+              padding: '20px',
+
+              borderRadius: '12px',
+
+              background:
+                'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
+
+              border:
+                '1px solid rgba(255,255,255,0.30)',
+
+              boxShadow:
+                '0 8px 20px rgba(0,0,0,0.12)',
+
+              color: '#ffffff',
+
+              boxSizing: 'border-box',
+            }}
+          >
+
+            <h4
               style={{
-                minHeight: '150px',
-
-                padding: '20px',
-
-                borderRadius: '12px',
-
-                background:
-                  'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
-
-                border:
-                  '1px solid rgba(255,255,255,0.30)',
-
-                boxShadow:
-                  '0 8px 20px rgba(0,0,0,0.12)',
-
-                color: '#ffffff',
-
-                boxSizing: 'border-box',
+                margin: '0 0 12px',
+                color: 'var(--gold)',
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1rem',
               }}
             >
+              Skill 1
+            </h4>
 
-              <h4
-                style={{
-                  margin: '0 0 8px',
+            <input
+              type="text"
+              placeholder="Enter skill"
+              style={{
+                width: '100%',
+                padding: '10px 12px',
+                borderRadius: '8px',
+                border:
+                  '1px solid rgba(255,255,255,0.35)',
+                background:
+                  'rgba(13,27,42,0.25)',
+                color: '#ffffff',
+                outline: 'none',
+                boxSizing: 'border-box',
+                marginBottom: '12px',
+              }}
+            />
 
-                  color: 'var(--gold)',
+            <span
+              style={{
+                display: 'inline-block',
+                padding: '5px 12px',
+                borderRadius: '20px',
+                background: '#ffffff',
+                color: 'var(--oxford-blue)',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+              }}
+            >
+              Select Level
+            </span>
 
-                  fontFamily: 'var(--font-heading)',
-
-                  fontSize: '1rem',
-                }}
-              >
-                {skill.name}
-              </h4>
-
-
-              <p
-                style={{
-                  margin: '0 0 12px',
-
-                  color: '#ffffff',
-
-                  fontSize: '0.82rem',
-                }}
-              >
-                {skill.type}
-              </p>
+          </div>
 
 
-              <span
-                style={{
-                  display: 'inline-block',
+          {/* SKILL 2 */}
 
-                  padding: '5px 12px',
+          <div
+            style={{
+              minHeight: '150px',
 
-                  borderRadius: '20px',
+              padding: '20px',
 
-                  background: '#ffffff',
+              borderRadius: '12px',
 
-                  color: 'var(--oxford-blue)',
+              background:
+                'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
 
-                  fontSize: '0.72rem',
+              border:
+                '1px solid rgba(255,255,255,0.30)',
 
-                  fontWeight: 700,
-                }}
-              >
-                {skill.level}
-              </span>
+              boxShadow:
+                '0 8px 20px rgba(0,0,0,0.12)',
 
-            </div>
+              color: '#ffffff',
 
-          ))}
+              boxSizing: 'border-box',
+            }}
+          >
+
+            <h4
+              style={{
+                margin: '0 0 12px',
+                color: 'var(--gold)',
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1rem',
+              }}
+            >
+              Skill 2
+            </h4>
+
+            <input
+              type="text"
+              placeholder="Enter skill"
+              style={{
+                width: '100%',
+                padding: '10px 12px',
+                borderRadius: '8px',
+                border:
+                  '1px solid rgba(255,255,255,0.35)',
+                background:
+                  'rgba(13,27,42,0.25)',
+                color: '#ffffff',
+                outline: 'none',
+                boxSizing: 'border-box',
+                marginBottom: '12px',
+              }}
+            />
+
+            <span
+              style={{
+                display: 'inline-block',
+                padding: '5px 12px',
+                borderRadius: '20px',
+                background: '#ffffff',
+                color: 'var(--oxford-blue)',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+              }}
+            >
+              Select Level
+            </span>
+
+          </div>
+
+
+          {/* SKILL 3 */}
+
+          <div
+            style={{
+              minHeight: '150px',
+
+              padding: '20px',
+
+              borderRadius: '12px',
+
+              background:
+                'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
+
+              border:
+                '1px solid rgba(255,255,255,0.30)',
+
+              boxShadow:
+                '0 8px 20px rgba(0,0,0,0.12)',
+
+              color: '#ffffff',
+
+              boxSizing: 'border-box',
+            }}
+          >
+
+            <h4
+              style={{
+                margin: '0 0 12px',
+                color: 'var(--gold)',
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1rem',
+              }}
+            >
+              Skill 3
+            </h4>
+
+            <input
+              type="text"
+              placeholder="Enter skill"
+              style={{
+                width: '100%',
+                padding: '10px 12px',
+                borderRadius: '8px',
+                border:
+                  '1px solid rgba(255,255,255,0.35)',
+                background:
+                  'rgba(13,27,42,0.25)',
+                color: '#ffffff',
+                outline: 'none',
+                boxSizing: 'border-box',
+                marginBottom: '12px',
+              }}
+            />
+
+            <span
+              style={{
+                display: 'inline-block',
+                padding: '5px 12px',
+                borderRadius: '20px',
+                background: '#ffffff',
+                color: 'var(--oxford-blue)',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+              }}
+            >
+              Select Level
+            </span>
+
+          </div>
 
         </div>
 
@@ -463,11 +538,11 @@ export default function Profile() {
         {`
           @media (max-width: 800px) {
 
-            .container > div:nth-child(2) > div {
+            .container > div:nth-child(2) > div:nth-child(2) {
               grid-template-columns: 1fr !important;
             }
 
-            .container > div:last-of-type > div {
+            .container > div:nth-child(3) > div {
               grid-template-columns: 1fr !important;
             }
 
@@ -479,6 +554,15 @@ export default function Profile() {
               padding: 30px 16px !important;
             }
 
+          }
+
+          input::placeholder {
+            color: rgba(255,255,255,0.75);
+          }
+
+          input:focus {
+            border-color: var(--gold) !important;
+            box-shadow: 0 0 0 2px rgba(201,162,39,0.15);
           }
         `}
       </style>
