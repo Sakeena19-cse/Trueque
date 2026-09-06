@@ -1,8 +1,28 @@
 const popularSkills = [
-  { name: 'Photoshop', tag: 'Design', level: 'Beginner', learners: 12 },
-  { name: 'Python Programming', tag: 'Development', level: 'Intermediate', learners: 18 },
-  { name: 'Content Writing', tag: 'Writing', level: 'Beginner', learners: 9 },
-  { name: 'Public Speaking', tag: 'Communication', level: 'All Levels', learners: 7 },
+  {
+    name: 'Photoshop',
+    tag: 'Design',
+    level: 'Beginner',
+    learners: 12,
+  },
+  {
+    name: 'Python Programming',
+    tag: 'Development',
+    level: 'Intermediate',
+    learners: 18,
+  },
+  {
+    name: 'Content Writing',
+    tag: 'Writing',
+    level: 'Beginner',
+    learners: 9,
+  },
+  {
+    name: 'Public Speaking',
+    tag: 'Communication',
+    level: 'All Levels',
+    learners: 7,
+  },
 ];
 
 const matches = [
@@ -41,6 +61,7 @@ export default function Matching() {
       {/* ================= SEARCH SKILLS ================= */}
 
       <div style={{ marginBottom: '38px' }}>
+
         <h1
           style={{
             marginBottom: '8px',
@@ -51,17 +72,17 @@ export default function Matching() {
         </h1>
 
         <p
-  style={{
-    color: '#ffffff',
-    marginBottom: '24px',
-    fontSize: '0.95rem',
-    fontWeight: 500,
-  }}
->
-  Find people to swap skills with
-</p>
+          style={{
+            color: '#ffffff',
+            marginBottom: '24px',
+            fontSize: '0.95rem',
+            fontWeight: 500,
+          }}
+        >
+          Find people to swap skills with
+        </p>
 
-        {/* Search box */}
+        {/* Search */}
 
         <div
           style={{
@@ -71,6 +92,7 @@ export default function Matching() {
             alignItems: 'center',
           }}
         >
+
           <input
             type="text"
             placeholder="Search for skills, e.g. 'Photoshop', 'Python'..."
@@ -79,11 +101,14 @@ export default function Matching() {
               minWidth: 0,
               height: '48px',
               padding: '0 16px',
+
               borderRadius: '10px',
 
-              border: '1px solid rgba(255,255,255,0.35)',
+              border:
+                '1px solid rgba(255,255,255,0.35)',
 
-              background: 'rgba(13, 27, 42, 0.65)',
+              background:
+                'rgba(13,27,42,0.65)',
 
               color: '#ffffff',
 
@@ -105,7 +130,9 @@ export default function Matching() {
           >
             Search
           </button>
+
         </div>
+
       </div>
 
 
@@ -123,24 +150,31 @@ export default function Matching() {
           Popular Skills
         </h3>
 
+
         <div className="grid-4">
 
-          {popularSkills.map((s) => (
+          {popularSkills.map((skill) => (
 
             <div
-              key={s.name}
-              className="card"
+              key={skill.name}
               style={{
-                minHeight: '130px',
+                minHeight: '145px',
                 padding: '20px',
 
+                /* SAME BLUE STYLE AS MATCHING BOXES */
+
                 background:
-                  'linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04))',
+                  'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
 
                 border:
-                  '1px solid rgba(255,255,255,0.20)',
+                  '1px solid rgba(255,255,255,0.30)',
 
                 borderRadius: '12px',
+
+                boxShadow:
+                  '0 8px 20px rgba(0,0,0,0.12)',
+
+                color: '#ffffff',
 
                 boxSizing: 'border-box',
               }}
@@ -154,24 +188,28 @@ export default function Matching() {
                   color: 'var(--gold)',
                 }}
               >
-                {s.name}
+                {skill.name}
               </h4>
+
 
               <span
                 style={{
                   display: 'block',
                   fontSize: '0.8rem',
                   color: '#ffffff',
-                  marginBottom: '7px',
+                  marginBottom: '8px',
                 }}
               >
-                {s.tag}
+                {skill.tag}
               </span>
+
 
               <span
                 style={{
                   display: 'inline-block',
+
                   fontSize: '0.72rem',
+
                   fontWeight: 700,
 
                   color: 'var(--oxford-blue)',
@@ -185,8 +223,9 @@ export default function Matching() {
                   marginBottom: '8px',
                 }}
               >
-                {s.level}
+                {skill.level}
               </span>
+
 
               <p
                 style={{
@@ -195,7 +234,7 @@ export default function Matching() {
                   margin: 0,
                 }}
               >
-                {s.learners} learners
+                {skill.learners} learners
               </p>
 
             </div>
@@ -225,16 +264,18 @@ export default function Matching() {
         <div
           style={{
             display: 'grid',
+
             gridTemplateColumns:
               'repeat(3, minmax(0, 1fr))',
+
             gap: '16px',
           }}
         >
 
-          {matches.map((m) => (
+          {matches.map((match) => (
 
             <div
-              key={m.name}
+              key={match.name}
               style={{
                 minHeight: '215px',
 
@@ -257,7 +298,7 @@ export default function Matching() {
               }}
             >
 
-              {/* Profile */}
+              {/* PROFILE */}
 
               <div
                 style={{
@@ -267,8 +308,6 @@ export default function Matching() {
                   marginBottom: '18px',
                 }}
               >
-
-                {/* PM / KS / AR */}
 
                 <div
                   style={{
@@ -282,7 +321,8 @@ export default function Matching() {
                     alignItems: 'center',
                     justifyContent: 'center',
 
-                    background: 'var(--oxford-blue)',
+                    background:
+                      'var(--oxford-blue)',
 
                     border:
                       '1px solid rgba(255,255,255,0.6)',
@@ -293,11 +333,9 @@ export default function Matching() {
                     fontSize: '0.78rem',
                   }}
                 >
-                  {m.initials}
+                  {match.initials}
                 </div>
 
-
-                {/* Name + Location */}
 
                 <div>
 
@@ -309,7 +347,7 @@ export default function Matching() {
                       fontSize: '0.95rem',
                     }}
                   >
-                    {m.name}
+                    {match.name}
                   </p>
 
                   <p
@@ -319,7 +357,7 @@ export default function Matching() {
                       fontSize: '0.75rem',
                     }}
                   >
-                    📍 {m.loc}
+                    📍 {match.loc}
                   </p>
 
                 </div>
@@ -327,7 +365,7 @@ export default function Matching() {
               </div>
 
 
-              {/* Wants */}
+              {/* WANTS TO LEARN */}
 
               <div
                 style={{
@@ -365,13 +403,13 @@ export default function Matching() {
                     fontSize: '0.72rem',
                   }}
                 >
-                  {m.wants}
+                  {match.wants}
                 </span>
 
               </div>
 
 
-              {/* Offers */}
+              {/* IN EXCHANGE FOR */}
 
               <div
                 style={{
@@ -409,13 +447,13 @@ export default function Matching() {
                     fontSize: '0.72rem',
                   }}
                 >
-                  {m.offers}
+                  {match.offers}
                 </span>
 
               </div>
 
 
-              {/* Buttons */}
+              {/* BUTTONS */}
 
               <div
                 style={{
@@ -472,41 +510,4 @@ export default function Matching() {
 
               </div>
 
-            </div>
-
-          ))}
-
-        </div>
-
-      </section>
-
-
-      {/* Mobile layout */}
-
-      <style>
-        {`
-          @media (max-width: 900px) {
-            .grid-4 {
-              grid-template-columns: repeat(2, 1fr) !important;
-            }
-
-            .container > section:last-child > div {
-              grid-template-columns: 1fr !important;
-            }
-          }
-
-          @media (max-width: 600px) {
-            .grid-4 {
-              grid-template-columns: 1fr !important;
-            }
-          }
-
-          input::placeholder {
-            color: rgba(255,255,255,0.72);
-          }
-        `}
-      </style>
-
-    </div>
-  );
-}
+            </
