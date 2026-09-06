@@ -6,148 +6,155 @@ function Home() {
   return (
     <div className="home-page">
 
-      {/* =========================
-          HERO SECTION
-      ========================== */}
-      <section
+ {/* =========================
+    HERO SECTION
+========================= */}
+<section
+  style={{
+    background: "var(--tan)",
+    padding: "35px 20px 75px",
+    textAlign: "center",
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "0 auto",
+    }}
+  >
+
+    {/* HERO IMAGE - LONG AND WIDE */}
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        marginBottom: "35px",
+      }}
+    >
+      <img
+        src={heroImage}
+        alt="TRUEQUE Skill Exchange"
         style={{
-          background: "var(--tan)",
-          padding: "45px 20px 75px",
-          textAlign: "center",
+          width: "100%",
+          maxWidth: "1000px",
+          height: "420px",
+          objectFit: "cover",
+          objectPosition: "center",
+          display: "block",
+          borderRadius: "24px",
+        }}
+      />
+    </div>
+
+    {/* CONTENT BELOW IMAGE */}
+    <div
+      style={{
+        maxWidth: "850px",
+        margin: "0 auto",
+      }}
+    >
+
+      {/* Small Label */}
+      <div
+        style={{
+          display: "inline-block",
+          padding: "9px 22px",
+          borderRadius: "30px",
+          background: "rgba(13, 27, 42, 0.10)",
+          color: "var(--oxford-blue)",
+          fontSize: "14px",
+          fontWeight: "700",
+          letterSpacing: "1.5px",
+          marginBottom: "18px",
         }}
       >
-        <div
-          style={{
-            maxWidth: "1150px",
-            margin: "0 auto",
-          }}
+        SKILL EXCHANGE PLATFORM
+      </div>
+
+      {/* Main Heading */}
+      <h1
+        style={{
+          color: "var(--oxford-blue)",
+          fontSize: "58px",
+          lineHeight: "1.1",
+          fontWeight: "700",
+          margin: "0 0 20px",
+        }}
+      >
+        Learn. Teach. Exchange.
+      </h1>
+
+      {/* Description */}
+      <p
+        style={{
+          color: "var(--oxford-blue)",
+          fontSize: "19px",
+          lineHeight: "1.7",
+          maxWidth: "700px",
+          margin: "0 auto 30px",
+        }}
+      >
+        Connect with people, exchange your skills, share
+        knowledge, and grow together with TRUEQUE.
+      </p>
+
+      {/* Buttons */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "16px",
+          flexWrap: "wrap",
+        }}
+      >
+        <Link
+          to="/matching"
+          className="btn btn-primary"
         >
+          Explore Skills
+        </Link>
 
-          {/* HERO IMAGE */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginBottom: "30px",
-            }}
-          >
-            <img
-              src={heroImage}
-              alt="TRUEQUE Skill Exchange"
-              style={{
-                width: "100%",
-                maxWidth: "650px",
-                height: "auto",
-                display: "block",
-                borderRadius: "20px",
-              }}
-            />
-          </div>
+        <Link
+          to="/register"
+          className="btn btn-secondary"
+        >
+          Join TRUEQUE
+        </Link>
+      </div>
 
-          {/* HERO CONTENT */}
-          <div
-            style={{
-              maxWidth: "800px",
-              margin: "0 auto",
-            }}
-          >
+    </div>
+  </div>
 
-            {/* Small Label */}
-            <div
-              style={{
-                display: "inline-block",
-                padding: "8px 20px",
-                borderRadius: "30px",
-                background: "rgba(13, 27, 42, 0.10)",
-                color: "var(--oxford-blue)",
-                fontSize: "14px",
-                fontWeight: "700",
-                letterSpacing: "1.5px",
-                marginBottom: "18px",
-              }}
-            >
-              SKILL EXCHANGE PLATFORM
-            </div>
+  {/* Responsive */}
+  <style>{`
+    @media (max-width: 768px) {
+      .home-page img {
+        height: 300px !important;
+      }
 
-            {/* Heading */}
-            <h1
-              style={{
-                color: "var(--oxford-blue)",
-                fontSize: "58px",
-                lineHeight: "1.1",
-                fontWeight: "700",
-                margin: "0 0 20px",
-              }}
-            >
-              Learn. Teach. Exchange.
-            </h1>
+      .home-page h1 {
+        font-size: 40px !important;
+      }
 
-            {/* Description */}
-            <p
-              style={{
-                color: "var(--oxford-blue)",
-                fontSize: "19px",
-                lineHeight: "1.7",
-                maxWidth: "680px",
-                margin: "0 auto 30px",
-              }}
-            >
-              Connect with people, exchange your skills, share
-              knowledge, and grow together with TRUEQUE.
-            </p>
+      .home-page p {
+        font-size: 17px !important;
+      }
+    }
 
-            {/* Buttons */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "16px",
-                flexWrap: "wrap",
-              }}
-            >
-              <Link
-                to="/matching"
-                className="btn btn-primary"
-              >
-                Explore Skills
-              </Link>
+    @media (max-width: 480px) {
+      .home-page img {
+        height: 230px !important;
+      }
 
-              <Link
-                to="/register"
-                className="btn btn-secondary"
-              >
-                Join TRUEQUE
-              </Link>
-            </div>
-
-          </div>
-        </div>
-
-        {/* HERO RESPONSIVE STYLE */}
-        <style>{`
-          @media (max-width: 768px) {
-            .home-page h1 {
-              font-size: 40px !important;
-            }
-
-            .home-page p {
-              font-size: 17px !important;
-            }
-          }
-
-          @media (max-width: 480px) {
-            .home-page h1 {
-              font-size: 34px !important;
-            }
-
-            .home-page p {
-              font-size: 16px !important;
-            }
-          }
-        `}</style>
-      </section>
+      .home-page h1 {
+        font-size: 34px !important;
+      }
+    }
+  `}</style>
+</section>
+      
 
 
       {/* =========================
