@@ -14,6 +14,12 @@ const activity = [
     desc: "You recently connected with a new learner.",
     status: "Completed",
   },
+  {
+    icon: "KS",
+    title: "Knowledge Sharing",
+    desc: "Share your knowledge and learn from others.",
+    status: "In Progress",
+  },
 ];
 
 function Dashboard() {

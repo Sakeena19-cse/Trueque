@@ -333,3 +333,409 @@ a {
     line-height: 1.5;
   }
 }
+/* =========================================
+   MATCHING / SKILLS PAGE
+   ========================================= */
+
+.matching-page {
+  padding: 40px 24px;
+}
+
+
+/* =========================================
+   HERO / SEARCH
+   ========================================= */
+
+/*
+   The existing hero colour is preserved.
+   These styles only control spacing and layout.
+*/
+
+.matching-hero {
+  margin-bottom: 34px;
+}
+
+.matching-hero h1 {
+  margin-bottom: 6px;
+}
+
+.matching-subtitle {
+  color: var(--tan-soft);
+  margin-bottom: 28px;
+}
+
+
+/* Search bar */
+
+.skill-search {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.skill-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 16px;
+
+  border-radius: 10px;
+  border: 1.5px solid rgba(210, 180, 140, 0.35);
+
+  background: var(--surface);
+  color: var(--tan);
+
+  outline: none;
+  font-family: var(--font-body);
+}
+
+.skill-search input::placeholder {
+  color: rgba(210, 180, 140, 0.65);
+}
+
+.skill-search input:focus {
+  border-color: var(--tan);
+}
+
+
+/* =========================================
+   SECTION TITLES
+   ========================================= */
+
+.section-title {
+  font-family: var(--font-heading);
+  color: #ffffff;
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+}
+
+
+/* =========================================
+   POPULAR SKILLS
+   ========================================= */
+
+.skills-section {
+  margin-bottom: 40px;
+}
+
+.popular-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+
+/* Skill card */
+
+.skill-card {
+  min-height: 132px;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.04)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(210, 180, 140, 0.55);
+}
+
+.skill-card h4 {
+  font-family: var(--font-heading);
+  color: var(--gold);
+
+  font-size: 1rem;
+  margin-bottom: 7px;
+}
+
+.skill-category {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.78rem;
+
+  margin-bottom: 8px;
+}
+
+
+/* Level */
+
+.level-badge {
+  display: inline-block;
+
+  padding: 4px 11px;
+
+  border-radius: 20px;
+
+  background: #ffffff;
+  color: var(--oxford-blue);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  margin-bottom: 8px;
+}
+
+
+/* Learners */
+
+.learner-count {
+  color: rgba(255, 255, 255, 0.75);
+
+  font-size: 0.78rem;
+
+  margin: 0;
+}
+
+
+/* =========================================
+   SUGGESTED MATCHES
+   ========================================= */
+
+.matches-section {
+  margin-bottom: 20px;
+}
+
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+
+/* Match card */
+
+.match-card {
+  padding: 20px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.035)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.match-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(210, 180, 140, 0.55);
+}
+
+
+/* =========================================
+   PROFILE
+   ========================================= */
+
+.match-profile {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+}
+
+.match-card .avatar {
+  width: 42px;
+  height: 42px;
+
+  min-width: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--dark-blue);
+
+  border: 1px solid rgba(210, 180, 140, 0.45);
+
+  color: var(--gold);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.profile-info h4 {
+  color: #ffffff;
+
+  font-size: 0.95rem;
+
+  margin-bottom: 3px;
+}
+
+.profile-info p {
+  color: var(--tan-soft);
+
+  font-size: 0.75rem;
+
+  margin: 0;
+}
+
+
+/* =========================================
+   MATCH ROWS
+   ========================================= */
+
+.match-row {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 11px;
+}
+
+.match-label {
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 0.78rem;
+}
+
+
+/* Skill chip */
+
+.skill-chip {
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(210, 180, 140, 0.45);
+
+  background: rgba(255, 255, 255, 0.05);
+
+  color: #ffffff;
+
+  font-size: 0.72rem;
+}
+
+
+/* =========================================
+   ACCEPT / DECLINE
+   ========================================= */
+
+.match-actions {
+  display: flex;
+
+  gap: 9px;
+
+  margin-top: 17px;
+}
+
+.accept-btn,
+.decline-btn {
+  padding: 7px 15px;
+
+  border-radius: 8px;
+
+  font-size: 0.75rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+
+/* Accept */
+
+.accept-btn {
+  border: 1px solid var(--tan);
+
+  background: #ffffff;
+
+  color: var(--oxford-blue);
+}
+
+.accept-btn:hover {
+  background: var(--tan);
+}
+
+
+/* Decline */
+
+.decline-btn {
+  border: 1px solid rgba(210, 180, 140, 0.65);
+
+  background: transparent;
+
+  color: #ffffff;
+}
+
+.decline-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .popular-skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .matches-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .matching-page {
+    padding: 30px 18px;
+  }
+
+  .skill-search {
+    flex-direction: column;
+  }
+
+  .skill-search button {
+    width: 100%;
+  }
+
+  .popular-skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-card,
+  .match-card {
+    padding: 18px;
+  }
+
+}
