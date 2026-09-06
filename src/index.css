@@ -12,8 +12,8 @@
   /* Quick Actions style gold */
   --gold: #f0c609;
 
-  --cream: #FFF8EC;
-  --white: #FFFFFF;
+  --cream: #fffaf2;
+  --white: hsl(0, 60%, 98%);
 
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
@@ -79,4 +79,257 @@ a {
 ::selection {
   background: var(--oxford-blue);
   color: var(--tan);
+}
+/* =========================================
+   TRUEQUE DASHBOARD
+   ========================================= */
+
+.dashboard-page {
+  min-height: 650px;
+  padding: 45px 9% 70px;
+  background: linear-gradient(
+    115deg,
+    #263d58 0%,
+    #17365d 45%,
+    #0d2d54 100%
+  );
+  color: #ffffff;
+}
+
+/* Intro text */
+
+.dashboard-intro {
+  margin: 0 0 34px;
+  font-size: 15px;
+  color: #e4e8ed;
+  letter-spacing: 0.2px;
+}
+
+/* Sections */
+
+.dashboard-section {
+  margin-bottom: 55px;
+}
+
+/* Small gold heading */
+
+.dashboard-label {
+  margin: 0 0 12px;
+  color: #d2b48c;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Main dashboard headings */
+
+.dashboard-title {
+  margin: 0 0 28px;
+  color: #ffffff;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* =========================================
+   QUICK ACTION BUTTONS
+   ========================================= */
+
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.quick-action-btn {
+  min-width: 205px;
+  height: 58px;
+  padding: 0 22px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+
+  border: 1.5px solid #dce8f5;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.02);
+  color: #ffffff;
+
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+
+  transition: all 0.25s ease;
+}
+
+.quick-action-btn:hover {
+  background: rgba(255, 255, 255, 0.10);
+  transform: translateY(-3px);
+  border-color: #b9d9f4;
+}
+
+.action-icon {
+  color: #8bdcff;
+  font-size: 25px;
+  line-height: 1;
+}
+
+/* =========================================
+   RECENT ACTIVITY
+   ========================================= */
+
+.recent-section {
+  max-width: 880px;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Activity card */
+
+.activity-card {
+  width: 100%;
+  min-height: 125px;
+  padding: 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  background: rgba(105, 145, 190, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+
+  box-sizing: border-box;
+
+  transition: all 0.25s ease;
+}
+
+.activity-card:hover {
+  background: rgba(105, 145, 190, 0.42);
+  transform: translateY(-2px);
+}
+
+/* Activity icon */
+
+.activity-icon {
+  width: 68px;
+  height: 68px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #2869ad;
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Activity text */
+
+.activity-content h3 {
+  margin: 0 0 7px;
+
+  color: #ffffff;
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 23px;
+}
+
+.activity-content p {
+  margin: 0 0 12px;
+
+  color: #e1e8ef;
+  font-size: 14px;
+}
+
+/* Status */
+
+.activity-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #f1f4f7;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+  background: #8bdcff;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  .dashboard-page {
+    padding: 35px 6% 55px;
+  }
+
+  .dashboard-title {
+    font-size: 38px;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+  }
+
+  .quick-action-btn {
+    width: 100%;
+  }
+
+  .activity-card {
+    padding: 20px;
+    gap: 18px;
+  }
+
+  .activity-icon {
+    width: 58px;
+    height: 58px;
+  }
+
+  .activity-content h3 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .dashboard-page {
+    padding: 30px 5% 45px;
+  }
+
+  .dashboard-title {
+    font-size: 32px;
+  }
+
+  .activity-card {
+    align-items: flex-start;
+  }
+
+  .activity-content p {
+    line-height: 1.5;
+  }
 }
