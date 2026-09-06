@@ -585,3 +585,78 @@
   }
 
 }
+/* =================================
+   CLEAR TEXT FOR ALL PAGES
+================================= */
+
+.dashboard-page,
+.profile-page,
+.matching-page,
+.quiz-page,
+.session-page,
+.auth-page {
+  color: var(--oxford-blue);
+}
+
+/* Main headings */
+.dashboard-page h1,
+.dashboard-page h2,
+.dashboard-page h3,
+.profile-page h1,
+.profile-page h2,
+.profile-page h3,
+.matching-page h1,
+.matching-page h2,
+.matching-page h3,
+.quiz-page h1,
+.quiz-page h2,
+.quiz-page h3,
+.session-page h1,
+.session-page h2,
+.session-page h3,
+.auth-page h1,
+.auth-page h2,
+.auth-page h3 {
+  color: var(--oxford-blue);
+}
+
+/* Normal text */
+.dashboard-page p,
+.profile-page p,
+.matching-page p,
+.quiz-page p,
+.session-page p,
+.auth-page p {
+  color: var(--oxford-blue);
+}
+
+/* Labels */
+.form-group label {
+  color: var(--oxford-blue);
+}
+
+/* Skill and activity text */
+.dashboard-card,
+.profile-card,
+.match-card,
+.quiz-card,
+.session-card {
+  color: var(--oxford-blue);
+}
+
+.dashboard-card p,
+.profile-card p,
+.match-card p,
+.quiz-card p,
+.session-card p {
+  color: var(--oxford-blue);
+}
+
+/* Links inside pages */
+.dashboard-page a,
+.profile-page a,
+.matching-page a,
+.quiz-page a,
+.session-page a {
+  color: var(--oxford-blue);
+}
