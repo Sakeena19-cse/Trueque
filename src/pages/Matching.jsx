@@ -510,4 +510,45 @@ export default function Matching() {
 
               </div>
 
-            </
+            </div>
+
+          ))}
+
+        </div>
+
+      </section>
+
+
+      {/* ================= RESPONSIVE ================= */}
+
+      <style>
+        {`
+          @media (max-width: 900px) {
+
+            .grid-4 {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .container > section:last-child > div {
+              grid-template-columns: 1fr !important;
+            }
+
+          }
+
+          @media (max-width: 600px) {
+
+            .grid-4 {
+              grid-template-columns: 1fr !important;
+            }
+
+          }
+
+          input::placeholder {
+            color: rgba(255,255,255,0.72);
+          }
+        `}
+      </style>
+
+    </div>
+  );
+}
