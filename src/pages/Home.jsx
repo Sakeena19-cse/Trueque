@@ -7,44 +7,61 @@ export default function Home() {
     <div>
 
       {/* ================= HERO SECTION ================= */}
-
-      <section
+<section
   style={{
     background: "var(--tan)",
-    padding: "80px 0",
+    padding: "70px 0",
   }}
 >
   <div
     className="container"
     style={{
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
+      gridTemplateColumns: "0.9fr 1.1fr",
       alignItems: "center",
-      gap: "50px",
+      gap: "60px",
+      minHeight: "520px",
     }}
   >
-    {/* Left side - Text */}
-    <div>
-      <p
+    {/* LEFT - CONTENT */}
+    <div
+      style={{
+        maxWidth: "560px",
+        textAlign: "left",
+      }}
+    >
+      <div
         style={{
-          color: "var(--dark-blue)",
+          display: "inline-block",
+          padding: "8px 18px",
+          borderRadius: "30px",
+          background: "rgba(13, 27, 42, 0.1)",
+          color: "var(--oxford-blue)",
           fontWeight: "600",
-          fontSize: "18px",
-          marginBottom: "15px",
+          fontSize: "14px",
+          letterSpacing: "1px",
+          marginBottom: "22px",
         }}
       >
-        Skill Exchange Platform
-      </p>
+        SKILL EXCHANGE PLATFORM
+      </div>
 
       <h1
         style={{
           color: "var(--oxford-blue)",
-          fontSize: "52px",
-          lineHeight: "1.1",
-          marginBottom: "20px",
+          fontSize: "58px",
+          lineHeight: "1.08",
+          margin: "0 0 22px",
+          fontWeight: "700",
         }}
       >
-        Learn. Teach. Exchange.
+        Learn.
+        <br />
+        Teach.
+        <br />
+        <span style={{ color: "var(--dark-blue)" }}>
+          Exchange.
+        </span>
       </h1>
 
       <p
@@ -52,15 +69,22 @@ export default function Home() {
           color: "var(--oxford-blue)",
           fontSize: "18px",
           lineHeight: "1.7",
-          maxWidth: "550px",
-          marginBottom: "30px",
+          maxWidth: "500px",
+          margin: "0 0 32px",
         }}
       >
-        Connect with people, exchange skills, share knowledge,
-        and grow together with TRUEQUE.
+        Connect with people, exchange your skills, share
+        knowledge, and grow together with TRUEQUE.
       </p>
 
-      <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "16px",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
         <Link to="/matching" className="btn btn-primary">
           Explore Skills
         </Link>
@@ -71,7 +95,7 @@ export default function Home() {
       </div>
     </div>
 
-    {/* Right side - TRUEQUE picture */}
+    {/* RIGHT - PICTURE */}
     <div
       style={{
         display: "flex",
@@ -84,14 +108,42 @@ export default function Home() {
         alt="TRUEQUE Skill Exchange"
         style={{
           width: "100%",
-          maxWidth: "550px",
+          maxWidth: "600px",
           height: "auto",
           display: "block",
-          borderRadius: "20px",
         }}
       />
     </div>
   </div>
+
+  {/* MOBILE RESPONSIVE */}
+  <style>{`
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr !important;
+        gap: 35px !important;
+        text-align: center !important;
+      }
+
+      .container > div:first-child {
+        text-align: center !important;
+        margin: auto;
+      }
+
+      .container h1 {
+        font-size: 44px !important;
+      }
+
+      .container p {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .container > div:last-child {
+        order: -1;
+      }
+    }
+  `}</style>
 </section>
 
 
