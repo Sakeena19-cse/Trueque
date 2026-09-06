@@ -27,18 +27,21 @@ const popularSkills = [
 
 const matches = [
   {
+    initials: 'PM',
     name: 'Priya M.',
     loc: 'Chennai, India',
     wants: 'UI/UX Design',
     offers: 'Content Writing',
   },
   {
+    initials: 'KS',
     name: 'Karthik S.',
     loc: 'Bangalore, India',
     wants: 'Web Development',
     offers: 'Python Programming',
   },
   {
+    initials: 'AR',
     name: 'Ananya R.',
     loc: 'Chennai, India',
     wants: 'Basic Spanish',
@@ -50,8 +53,7 @@ export default function Matching() {
   return (
     <div className="container matching-page">
 
-      {/* HERO / SEARCH SECTION
-          Existing colour and overall design are kept */}
+      {/* SEARCH SKILLS */}
       <section className="matching-hero">
 
         <h1>Search Skills</h1>
@@ -86,9 +88,7 @@ export default function Matching() {
           {popularSkills.map((skill) => (
             <div className="skill-card" key={skill.name}>
 
-              <h4>
-                {skill.name}
-              </h4>
+              <h4>{skill.name}</h4>
 
               <p className="skill-category">
                 {skill.tag}
@@ -120,26 +120,20 @@ export default function Matching() {
         <div className="matches-grid">
 
           {matches.map((match) => (
-
             <div className="match-card" key={match.name}>
 
-              {/* Profile */}
+              {/* PROFILE */}
               <div className="match-profile">
 
-                <div className="avatar">
-                  {match.name
-                    .split(' ')
-                    .map((n) => n[0])
-                    .join('')}
+                <div className="match-avatar">
+                  {match.initials}
                 </div>
 
                 <div className="profile-info">
 
-                  <h4>
-                    {match.name}
-                  </h4>
+                  <h4>{match.name}</h4>
 
-                  <p>
+                  <p className="location">
                     📍 {match.loc}
                   </p>
 
@@ -148,49 +142,48 @@ export default function Matching() {
               </div>
 
 
-              {/* Wants */}
-              <div className="match-row">
+              {/* WANTS */}
+              <div className="match-line">
 
                 <span className="match-label">
                   Wants to learn
                 </span>
 
-                <span className="skill-chip">
+                <span className="match-chip">
                   {match.wants}
                 </span>
 
               </div>
 
 
-              {/* Offers */}
-              <div className="match-row">
+              {/* OFFERS */}
+              <div className="match-line">
 
                 <span className="match-label">
                   In exchange for
                 </span>
 
-                <span className="skill-chip">
+                <span className="match-chip">
                   {match.offers}
                 </span>
 
               </div>
 
 
-              {/* Buttons */}
+              {/* ACTION BUTTONS */}
               <div className="match-actions">
 
-                <button className="accept-btn">
+                <button className="match-accept">
                   Accept
                 </button>
 
-                <button className="decline-btn">
+                <button className="match-decline">
                   Decline
                 </button>
 
               </div>
 
             </div>
-
           ))}
 
         </div>

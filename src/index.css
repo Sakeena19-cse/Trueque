@@ -739,3 +739,441 @@ a {
   }
 
 }
+/* =====================================================
+   TRUEQUE MATCHING PAGE
+   ===================================================== */
+
+.matching-page {
+  padding: 40px 24px;
+}
+
+
+/* =====================================================
+   SEARCH SECTION
+   Keeps your existing hero background colour
+   ===================================================== */
+
+.matching-hero {
+  margin-bottom: 34px;
+}
+
+.matching-hero h1 {
+  margin-bottom: 6px;
+}
+
+.matching-subtitle {
+  color: var(--tan-soft);
+  margin-bottom: 28px;
+}
+
+
+/* SEARCH BAR */
+
+.skill-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.skill-search input {
+  flex: 1;
+  height: 48px;
+
+  padding: 0 16px;
+
+  border-radius: 10px;
+
+  border: 1.5px solid rgba(210, 180, 140, 0.55);
+
+  background: rgba(22, 39, 59, 0.75);
+
+  color: #ffffff !important;
+
+  font-size: 0.9rem;
+
+  outline: none;
+}
+
+.skill-search input::placeholder {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.skill-search input:focus {
+  border-color: var(--tan);
+}
+
+
+/* SEARCH BUTTON */
+
+.skill-search .btn {
+  height: 48px;
+  padding: 0 22px;
+}
+
+
+/* =====================================================
+   SECTION TITLE
+   ===================================================== */
+
+.section-title {
+  margin-bottom: 16px;
+
+  font-family: var(--font-heading);
+
+  font-size: 1.05rem;
+
+  color: #ffffff !important;
+}
+
+
+/* =====================================================
+   POPULAR SKILLS
+   ===================================================== */
+
+.skills-section {
+  margin-bottom: 40px;
+}
+
+.popular-skills-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 16px;
+}
+
+.skill-card {
+  min-height: 132px;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.10),
+      rgba(255, 255, 255, 0.04)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.20);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.skill-card h4 {
+  margin-bottom: 7px;
+
+  font-family: var(--font-heading);
+
+  font-size: 1rem;
+
+  color: var(--gold) !important;
+}
+
+.skill-category {
+  margin-bottom: 8px;
+
+  color: rgba(255, 255, 255, 0.80) !important;
+
+  font-size: 0.78rem;
+}
+
+.level-badge {
+  display: inline-block;
+
+  padding: 4px 11px;
+
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  color: var(--oxford-blue) !important;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  margin-bottom: 8px;
+}
+
+.learner-count {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.80) !important;
+
+  font-size: 0.78rem;
+}
+
+
+/* =====================================================
+   SUGGESTED MATCHES
+   ===================================================== */
+
+.matches-section {
+  margin-bottom: 30px;
+}
+
+.matches-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 16px;
+}
+
+
+/* =====================================================
+   MATCH CARD
+   ===================================================== */
+
+.match-card {
+  min-height: 180px;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  /*
+     Blue glass appearance like your reference picture
+  */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(61, 132, 205, 0.55),
+      rgba(35, 91, 155, 0.42)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.10);
+
+  color: #ffffff !important;
+}
+
+
+/* =====================================================
+   PROFILE
+   ===================================================== */
+
+.match-profile {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+}
+
+
+/* ROUND INITIAL */
+
+.match-avatar {
+  width: 42px;
+  height: 42px;
+
+  min-width: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--oxford-blue) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  color: #ffffff !important;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+}
+
+
+/* NAME */
+
+.profile-info h4 {
+  margin: 0 0 3px 0;
+
+  color: #ffffff !important;
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+}
+
+
+/* LOCATION */
+
+.profile-info .location {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.82) !important;
+
+  font-size: 0.75rem;
+}
+
+
+/* =====================================================
+   WANTS / OFFERS
+   ===================================================== */
+
+.match-line {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-bottom: 11px;
+}
+
+
+/* LABEL */
+
+.match-label {
+  color: #ffffff !important;
+
+  font-size: 0.78rem;
+
+  white-space: nowrap;
+}
+
+
+/* SKILL PILL */
+
+.match-chip {
+  display: inline-block;
+
+  padding: 5px 11px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.50);
+
+  color: #ffffff !important;
+
+  font-size: 0.72rem;
+
+  line-height: 1.2;
+}
+
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.match-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 17px;
+}
+
+
+/* ACCEPT */
+
+.match-accept {
+  padding: 7px 16px;
+
+  border-radius: 8px;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  background: #ffffff;
+
+  color: var(--oxford-blue) !important;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.match-accept:hover {
+  background: var(--tan);
+}
+
+
+/* DECLINE */
+
+.match-decline {
+  padding: 7px 16px;
+
+  border-radius: 8px;
+
+  border: 1px solid rgba(255, 255, 255, 0.65);
+
+  background: transparent;
+
+  color: #ffffff !important;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.match-decline:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+  .popular-skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .matches-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .matching-page {
+    padding: 30px 18px;
+  }
+
+  .skill-search {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .skill-search input {
+    width: 100%;
+  }
+
+  .skill-search .btn {
+    width: 100%;
+  }
+
+  .popular-skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .match-card {
+    padding: 18px;
+  }
+}
