@@ -82,7 +82,7 @@ function Home() {
                 margin: "0 0 20px",
               }}
             >
-              Learn. Teach. Exchange.
+              "Ctrl+Z your confusion. Ctrl+Shift+skills."
             </h1>
 
             {/* Description */}
