@@ -1,178 +1,244 @@
-/* =========================
-   HOME PAGE
-========================= */
+/* =========================================================
+   TRUEQUE HOME PAGE
+   ========================================================= */
 
 .home-page {
   width: 100%;
-  background: var(--tan);
-  color: var(--oxford-blue);
+  background: #f5ead8;
+  color: #002147;
 }
 
-/* =========================
-   HERO
-========================= */
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
 
 .hero-section {
   width: 100%;
-  min-height: 620px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  padding: 80px 6%;
-  background: var(--tan);
+  padding: 55px 20px 80px;
+  background: #f5ead8;
 }
 
-.hero-content {
+.hero-container {
   width: 100%;
-  max-width: 900px;
-
+  max-width: 1200px;
   margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   text-align: center;
+}
+
+
+/* IMAGE */
+
+.hero-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 35px;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+
+  display: block;
+  object-fit: contain;
+}
+
+
+/* HERO CONTENT */
+
+.hero-content {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .hero-label {
-  color: var(--oxford-blue);
-  font-size: 16px;
+  margin-bottom: 18px;
+
+  font-size: 14px;
   font-weight: 700;
+  letter-spacing: 4px;
 
-  letter-spacing: 3px;
-  text-transform: uppercase;
-
-  margin-bottom: 20px;
+  color: #6b5a43;
 }
 
-.hero-section h1 {
-  color: var(--oxford-blue);
+.hero-content h1 {
+  margin: 0 0 22px;
 
-  font-family: var(--font-heading);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 64px;
+  line-height: 1.05;
+  font-weight: 700;
 
-  font-size: clamp(45px, 7vw, 78px);
-  line-height: 1.1;
-
-  margin: 0 0 25px;
-
-  text-align: center;
+  color: #002147;
 }
 
 .hero-description {
-  max-width: 700px;
-
-  margin: 0 auto 35px;
-
-  color: var(--dark-blue);
+  max-width: 760px;
+  margin: 0 auto 30px;
 
   font-size: 18px;
-  line-height: 1.8;
+  line-height: 1.7;
 
-  text-align: center;
+  color: #4f5965;
 }
+
+
+/* HERO BUTTONS */
 
 .hero-buttons {
-  width: 100%;
-
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
-  gap: 18px;
+  gap: 16px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
+.hero-btn {
+  min-width: 160px;
 
-.primary-button,
-.secondary-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  padding: 14px 25px;
 
-  padding: 14px 30px;
+  border-radius: 7px;
 
-  border-radius: 6px;
-
+  font-size: 15px;
   font-weight: 700;
+
   text-decoration: none;
 
-  transition: 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.primary-button {
-  background: var(--oxford-blue);
-  color: var(--white);
+
+/* PRIMARY BUTTON */
+
+.hero-btn.primary {
+  background: #002147;
+  color: #ffffff;
 }
 
-.primary-button:hover {
-  background: var(--dark-blue);
+.hero-btn.primary:hover {
+  background: #00172f;
   transform: translateY(-2px);
 }
 
-.secondary-button {
-  background: transparent;
-  color: var(--oxford-blue);
 
-  border: 2px solid var(--oxford-blue);
+/* SECONDARY BUTTON */
+
+.hero-btn.secondary {
+  background: #e8c28f;
+  color: #002147;
+
+  border: 1px solid #d4ad76;
 }
 
-.secondary-button:hover {
-  background: var(--oxford-blue);
-  color: var(--white);
+.hero-btn.secondary:hover {
+  background: #dcb276;
+  transform: translateY(-2px);
 }
 
-/* =========================
-   HOW IT WORKS
-========================= */
 
-.how-section {
+/* =========================================================
+   FEATURES SECTION
+   ========================================================= */
+
+.features-section {
   width: 100%;
-  padding: 80px 6%;
-  background: var(--tan-light);
-  text-align: center;
+  padding: 90px 20px;
+
+  background: #fffaf2;
 }
+
+.features-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* SECTION HEADING */
 
 .section-heading {
-  color: var(--oxford-blue);
-  font-family: var(--font-heading);
-  font-size: 40px;
-  margin-bottom: 45px;
+  max-width: 700px;
+  margin-bottom: 50px;
 }
 
-.steps-container {
-  max-width: 1100px;
-  margin: 0 auto;
+.section-label {
+  margin-bottom: 12px;
 
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+
+  color: #8a704c;
+}
+
+.section-heading h2 {
+  margin: 0 0 18px;
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 46px;
+  line-height: 1.15;
+
+  color: #002147;
+}
+
+.section-heading > p:last-child {
+  font-size: 17px;
+  line-height: 1.6;
+
+  color: #667085;
+}
+
+
+/* FEATURES GRID */
+
+.features-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 22px;
 }
 
-.step-card {
-  background: var(--cream);
 
-  padding: 35px 25px;
+/* FEATURE CARD */
 
-  border-radius: 10px;
+.feature-card {
+  padding: 30px 25px;
 
-  border: 1px solid var(--tan-soft);
+  background: #f5ead8;
 
-  text-align: center;
+  border: 1px solid rgba(0, 33, 71, 0.08);
+
+  border-radius: 14px;
+
+  transition: all 0.25s ease;
 }
 
-.step-number {
-  width: 50px;
-  height: 50px;
+.feature-card:hover {
+  transform: translateY(-5px);
 
-  margin: 0 auto 20px;
+  box-shadow: 0 12px 30px rgba(0, 33, 71, 0.1);
+}
+
+
+/* ICON */
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+
+  margin-bottom: 22px;
 
   display: flex;
   align-items: center;
@@ -180,85 +246,141 @@
 
   border-radius: 50%;
 
-  background: var(--oxford-blue);
-  color: var(--tan);
+  background: #002147;
+  color: #e8c28f;
 
+  font-size: 22px;
   font-weight: 700;
 }
 
-/* =========================
-   SKILLS
-========================= */
 
-.skills-section {
-  width: 100%;
-  padding: 80px 6%;
-  background: var(--tan);
-  text-align: center;
+/* CARD TEXT */
+
+.feature-card h3 {
+  margin-bottom: 12px;
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 23px;
+
+  color: #002147;
 }
 
-.skills-grid {
-  max-width: 1100px;
-  margin: 0 auto;
+.feature-card p {
+  font-size: 15px;
+  line-height: 1.6;
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  color: #667085;
 }
 
-.skill-card {
-  background: var(--cream);
 
-  padding: 30px;
-
-  border-radius: 10px;
-
-  border: 1px solid var(--tan-soft);
-
-  font-weight: 600;
-}
-
-/* =========================
-   CTA
-========================= */
+/* =========================================================
+   CTA SECTION
+   ========================================================= */
 
 .cta-section {
   width: 100%;
-  padding: 80px 6%;
+  padding: 100px 20px;
 
-  background: var(--oxford-blue);
+  background: #002147;
+}
 
-  color: var(--white);
+.cta-container {
+  max-width: 800px;
+  margin: 0 auto;
 
   text-align: center;
 }
 
-.cta-section h2 {
-  font-family: var(--font-heading);
-  font-size: 40px;
-  margin-bottom: 20px;
+.cta-container .section-label {
+  color: #e8c28f;
 }
 
-.cta-section p {
+.cta-container h2 {
+  margin-bottom: 20px;
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 52px;
+  line-height: 1.1;
+
+  color: #ffffff;
+}
+
+.cta-container > p:not(.section-label) {
   max-width: 650px;
   margin: 0 auto 30px;
 
+  font-size: 17px;
   line-height: 1.7;
+
+  color: #e5e7eb;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+
+/* CTA BUTTON */
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 30px;
+
+  border-radius: 7px;
+
+  background: #e8c28f;
+  color: #002147;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition: all 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #f0d0a5;
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-content h1 {
+    font-size: 54px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 768px) {
 
   .hero-section {
-    min-height: 550px;
-    padding: 60px 5%;
+    padding: 40px 18px 60px;
   }
 
-  .hero-section h1 {
-    font-size: 45px;
+  .hero-image {
+    margin-bottom: 25px;
+  }
+
+  .hero-image img {
+    max-width: 500px;
+  }
+
+  .hero-content h1 {
+    font-size: 42px;
   }
 
   .hero-description {
@@ -267,39 +389,64 @@
 
   .hero-buttons {
     flex-direction: column;
-  }
-
-  .primary-button,
-  .secondary-button {
     width: 100%;
-    max-width: 280px;
   }
 
-  .steps-container,
-  .skills-grid {
+  .hero-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+
+
+  .features-section {
+    padding: 65px 18px;
+  }
+
+  .features-container {
+    width: 100%;
+  }
+
+  .section-heading h2 {
+    font-size: 36px;
+  }
+
+  .features-grid {
     grid-template-columns: 1fr;
   }
 
-  .section-heading,
-  .cta-section h2 {
+
+  .cta-section {
+    padding: 70px 18px;
+  }
+
+  .cta-container h2 {
+    font-size: 40px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .section-heading h2 {
     font-size: 32px;
   }
-}
-/* ================= HERO IMAGE ================= */
 
-.hero-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-}
+  .cta-container h2 {
+    font-size: 34px;
+  }
 
-.hero-image img {
-  width: 100%;
-  max-width: 650px;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  background: transparent;
 }

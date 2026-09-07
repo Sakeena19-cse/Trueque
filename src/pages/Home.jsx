@@ -1,324 +1,160 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-
-import skillsImage from "../assets/trueque-skills.png";
+import skillsImage from "../assets/Trueque-skill.png";
 
 function Home() {
   return (
     <div className="home-page">
 
-      {/* ================= HEADER ================= */}
-      <header className="home-header">
-        <div className="header-container">
+      {/* ================= HERO SECTION ================= */}
+      <section className="hero-section">
+        <div className="hero-container">
 
-          <Link to="/" className="logo">
-            TRUEQUE
-          </Link>
+          {/* IMAGE ON TOP */}
+          <div className="hero-image">
+            <img
+              src={skillsImage}
+              alt="Trueque skill exchange community"
+            />
+          </div>
 
-          <nav className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/dashboard">Dashboard</Link>
-            <Link to="/matching">Skills</Link>
-            <Link to="/profile">Profile</Link>
-            <Link to="/login">Login</Link>
+          {/* CONTENT BELOW IMAGE */}
+          <div className="hero-content">
 
-            <Link to="/register" className="signup-button">
-              Sign Up
-            </Link>
-          </nav>
+            <p className="hero-label">
+              SKILL EXCHANGE PLATFORM
+            </p>
 
-        </div>
-      </header>
+            <h1>
+              Learn. Teach.
+              <br />
+              Grow Together.
+            </h1>
 
+            <p className="hero-description">
+              Trueque is a platform to learn, teach, and grow by exchanging
+              skills with others. No money. Just connections.
+            </p>
 
-      {/* ================= HOME / HERO ================= */}
-      <main>
+            <div className="hero-buttons">
+              <Link to="/register" className="hero-btn primary">
+                Get Started
+              </Link>
 
-        <section className="hero-section">
-
-          <div className="hero-container">
-
-            {/* LEFT SIDE - EXISTING HOME CONTENT */}
-            <div className="hero-content">
-
-              <div className="hero-label">
-                SKILL EXCHANGE PLATFORM
-              </div>
-
-              <h1>
-                Learn. Teach.
-                <br />
-                Grow <span>Together.</span>
-              </h1>
-
-              <p>
-                Trueque is a platform to learn, teach, and grow
-                by exchanging skills with others.
-                No money. Just connections.
-              </p>
-
-              <div className="hero-buttons">
-
-                <Link to="/register" className="primary-button">
-                  Get Started
-                </Link>
-
-                <Link to="/matching" className="secondary-button">
-                  Explore Skills
-                </Link>
-
-              </div>
-
-            </div>
-
-
-            {/* RIGHT SIDE - YOUR NEW IMAGE */}
-            <div className="hero-image">
-              <img
-                src={skillsImage}
-                alt="Trueque skill exchange community"
-              />
+              <Link to="/matching" className="hero-btn secondary">
+                Explore Skills
+              </Link>
             </div>
 
           </div>
+        </div>
+      </section>
 
-        </section>
+
+      {/* ================= FEATURES SECTION ================= */}
+      <section className="features-section">
+        <div className="features-container">
+
+          <div className="section-heading">
+            <p className="section-label">WHY TRUEQUE?</p>
+
+            <h2>
+              Learn, Share & Grow
+              <br />
+              Together
+            </h2>
+
+            <p>
+              Connect with people who have the skills you want
+              and share what you know with others.
+            </p>
+          </div>
 
 
-        {/* ================= FEATURES ================= */}
-        <section className="features-section">
+          <div className="features-grid">
 
-          <div className="feature">
+            {/* CARD 1 */}
+            <div className="feature-card">
+              <div className="feature-icon">✦</div>
 
-            <div className="feature-icon">
-              ♙
-            </div>
-
-            <div>
               <h3>Learn Anything</h3>
 
               <p>
-                Explore skills you want to learn
-                from real people.
+                Explore skills you want to learn from real people
+                in the Trueque community.
               </p>
             </div>
 
-          </div>
 
+            {/* CARD 2 */}
+            <div className="feature-card">
+              <div className="feature-icon">↗</div>
 
-          <div className="feature">
-
-            <div className="feature-icon">
-              ♧
-            </div>
-
-            <div>
               <h3>Teach & Earn</h3>
 
               <p>
-                Share your skills and help
-                others grow.
+                Share your knowledge and help others grow
+                by teaching skills you already know.
               </p>
             </div>
 
-          </div>
 
+            {/* CARD 3 */}
+            <div className="feature-card">
+              <div className="feature-icon">♡</div>
 
-          <div className="feature">
-
-            <div className="feature-icon">
-              ♡
-            </div>
-
-            <div>
               <h3>Build Connections</h3>
 
               <p>
-                Make meaningful connections
-                with others.
+                Meet people with similar interests and make
+                meaningful skill-based connections.
               </p>
             </div>
 
-          </div>
 
+            {/* CARD 4 */}
+            <div className="feature-card">
+              <div className="feature-icon">✧</div>
 
-          <div className="feature">
-
-            <div className="feature-icon">
-              ✦
-            </div>
-
-            <div>
               <h3>Grow Together</h3>
 
               <p>
-                A community built on trust
-                and knowledge.
+                Be part of a community built around trust,
+                knowledge, and continuous learning.
               </p>
             </div>
 
           </div>
-
-        </section>
-
-      </main>
-
-
-      {/* ================= FOOTER ================= */}
-      <footer className="site-footer">
-
-        <div className="footer-container">
-
-          {/* FOOTER BRAND */}
-          <div className="footer-brand">
-
-            <Link to="/" className="footer-logo">
-              TRUEQUE
-            </Link>
-
-            <p>
-              Exchange skills. Grow together.
-            </p>
-
-            <p className="footer-description">
-              Trueque is a community-driven platform
-              where people teach, learn, and grow
-              together through the power of skills.
-            </p>
-
-          </div>
-
-
-          {/* FOOTER LINKS */}
-          <div className="footer-links">
-
-            <div className="footer-column">
-
-              <h4>EXPLORE</h4>
-
-              <Link to="/matching">
-                Search Skills
-              </Link>
-
-              <Link to="/matching">
-                Browse Skills
-              </Link>
-
-              <Link to="/">
-                How It Works
-              </Link>
-
-              <Link to="/profile">
-                Become a Mentor
-              </Link>
-
-            </div>
-
-
-            <div className="footer-column">
-
-              <h4>COMMUNITY</h4>
-
-              <Link to="/dashboard">
-                All Members
-              </Link>
-
-              <Link to="/dashboard">
-                Success Stories
-              </Link>
-
-              <Link to="/">
-                Community Guidelines
-              </Link>
-
-              <Link to="/">
-                Events
-              </Link>
-
-            </div>
-
-
-            <div className="footer-column">
-
-              <h4>SUPPORT</h4>
-
-              <Link to="/">
-                Help Center
-              </Link>
-
-              <Link to="/">
-                FAQs
-              </Link>
-
-              <Link to="/">
-                Contact Us
-              </Link>
-
-              <Link to="/">
-                Report an Issue
-              </Link>
-
-            </div>
-
-
-            <div className="footer-column">
-
-              <h4>COMPANY</h4>
-
-              <Link to="/">
-                About Us
-              </Link>
-
-              <Link to="/">
-                Our Mission
-              </Link>
-
-              <Link to="/">
-                Careers
-              </Link>
-
-              <Link to="/">
-                Privacy Policy
-              </Link>
-
-            </div>
-
-          </div>
-
         </div>
+      </section>
 
 
-        {/* FOOTER BOTTOM */}
-        <div className="footer-bottom">
+      {/* ================= CALL TO ACTION ================= */}
+      <section className="cta-section">
+        <div className="cta-container">
 
-          <p>
-            © 2026 Trueque. All rights reserved.
+          <p className="section-label">
+            START YOUR JOURNEY
           </p>
 
-          <div className="footer-bottom-links">
+          <h2>
+            Your Skills Have
+            <br />
+            Value.
+          </h2>
 
-            <Link to="/">
-              Privacy Policy
-            </Link>
+          <p>
+            Whether you want to learn something new or share
+            what you know, Trueque is the place to start.
+          </p>
 
-            <span>|</span>
-
-            <Link to="/">
-              Terms of Service
-            </Link>
-
-            <span>|</span>
-
-            <Link to="/">
-              Cookie Policy
-            </Link>
-
-          </div>
+          <Link to="/register" className="cta-button">
+            Join Trueque
+          </Link>
 
         </div>
-
-      </footer>
+      </section>
 
     </div>
   );
