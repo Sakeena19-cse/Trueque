@@ -5,9 +5,10 @@ export default function Header() {
     <header className="site-header">
 
       {/* TRUEQUE - LEFT */}
-      <Link to="/" className="logo">
-        TRUEQUE
-      </Link>
+      <Link to="/" className="flex items-center gap-2">
+  <img src={logo} alt="Trueque logo" className="h-9 w-9 object-contain" />
+  <span className="text-xl font-bold">TRUEQUE</span>
+</Link>
 
       {/* NAVIGATION - RIGHT */}
       <nav className="nav-links">
