@@ -1,582 +1,324 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import heroImage from "../assets/trueque-hero.png";
+import "./Home.css";
+
+import skillsImage from "../assets/trueque-skills.png";
 
 function Home() {
   return (
     <div className="home-page">
 
- {/* =========================
-    HERO SECTION
-========================= */}
-<section
-  style={{
-    background: "var(--tan)",
-    padding: "35px 20px 75px",
-    textAlign: "center",
-  }}
->
-  <div
-    style={{
-      maxWidth: "1200px",
-      margin: "0 auto",
-    }}
-  >
+      {/* ================= HEADER ================= */}
+      <header className="home-header">
+        <div className="header-container">
 
-    {/* HERO IMAGE - LONG AND WIDE */}
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        marginBottom: "35px",
-      }}
-    >
-      <img
-        src={heroImage}
-        alt="TRUEQUE Skill Exchange"
-        style={{
-          width: "100%",
-          maxWidth: "1000px",
-          height: "420px",
-          objectFit: "cover",
-          objectPosition: "center",
-          display: "block",
-          borderRadius: "24px",
-        }}
-      />
-    </div>
+          <Link to="/" className="logo">
+            TRUEQUE
+          </Link>
 
-    {/* CONTENT BELOW IMAGE */}
-    <div
-      style={{
-        maxWidth: "850px",
-        margin: "0 auto",
-      }}
-    >
+          <nav className="nav-links">
+            <Link to="/">Home</Link>
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/matching">Skills</Link>
+            <Link to="/profile">Profile</Link>
+            <Link to="/login">Login</Link>
 
-      {/* Small Label */}
-      <div
-        style={{
-          display: "inline-block",
-          padding: "9px 22px",
-          borderRadius: "30px",
-          background: "rgba(13, 27, 42, 0.10)",
-          color: "var(--oxford-blue)",
-          fontSize: "14px",
-          fontWeight: "700",
-          letterSpacing: "1.5px",
-          marginBottom: "18px",
-        }}
-      >
-        SKILL EXCHANGE PLATFORM
-      </div>
+            <Link to="/register" className="signup-button">
+              Sign Up
+            </Link>
+          </nav>
 
-      {/* Main Heading */}
-      <h1
-        style={{
-          color: "var(--oxford-blue)",
-          fontSize: "58px",
-          lineHeight: "1.1",
-          fontWeight: "700",
-          margin: "0 0 20px",
-        }}
-      >
-        "Ctrl+Z your confusion. Ctrl+Shift+skills."
-      </h1>
-
-      {/* Description */}
-      <p
-        style={{
-          color: "var(--oxford-blue)",
-          fontSize: "19px",
-          lineHeight: "1.7",
-          maxWidth: "700px",
-          margin: "0 auto 30px",
-        }}
-      >
-        Connect with people, exchange your skills, share
-        knowledge, and grow together with TRUEQUE.
-      </p>
-
-      {/* Buttons */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "16px",
-          flexWrap: "wrap",
-        }}
-      >
-        <Link
-          to="/matching"
-          className="btn btn-primary"
-        >
-          Explore Skills
-        </Link>
-
-        <Link
-          to="/register"
-          className="btn btn-secondary"
-        >
-          Join TRUEQUE
-        </Link>
-      </div>
-
-    </div>
-  </div>
-
-  {/* Responsive */}
-  <style>{`
-    @media (max-width: 768px) {
-      .home-page img {
-        height: 300px !important;
-      }
-
-      .home-page h1 {
-        font-size: 40px !important;
-      }
-
-      .home-page p {
-        font-size: 17px !important;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .home-page img {
-        height: 230px !important;
-      }
-
-      .home-page h1 {
-        font-size: 34px !important;
-      }
-    }
-  `}</style>
-</section>
-      
-
-
-      {/* =========================
-          WHY TRUEQUE SECTION
-      ========================== */}
-      <section
-        style={{
-          background: "var(--oxford-blue)",
-          padding: "70px 20px",
-        }}
-      >
-        <div
-          className="container"
-          style={{
-            maxWidth: "1100px",
-            margin: "0 auto",
-          }}
-        >
-
-          <div style={{ textAlign: "center", marginBottom: "45px" }}>
-            <h2
-              style={{
-                color: "var(--gold)",
-                fontSize: "38px",
-                marginBottom: "12px",
-              }}
-            >
-              Why TRUEQUE?
-            </h2>
-
-            <p
-              style={{
-                color: "#ffffff",
-                fontSize: "17px",
-              }}
-            >
-              A simple way to learn, teach, and exchange skills.
-            </p>
-          </div>
-
-
-          {/* Feature Cards */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "25px",
-            }}
-          >
-
-            {/* Learn */}
-            <div
-              className="card"
-              style={{
-                background:
-                  "linear-gradient(135deg, var(--dark-blue), var(--surface))",
-                padding: "30px",
-                textAlign: "center",
-                borderRadius: "18px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "42px",
-                  marginBottom: "15px",
-                }}
-              >
-                📚
-              </div>
-
-              <h3
-                style={{
-                  color: "var(--gold)",
-                  marginBottom: "12px",
-                }}
-              >
-                Learn
-              </h3>
-
-              <p
-                style={{
-                  color: "#ffffff",
-                  lineHeight: "1.6",
-                }}
-              >
-                Discover new skills and learn from people
-                who have experience in what you want to know.
-              </p>
-            </div>
-
-
-            {/* Teach */}
-            <div
-              className="card"
-              style={{
-                background:
-                  "linear-gradient(135deg, var(--dark-blue), var(--surface))",
-                padding: "30px",
-                textAlign: "center",
-                borderRadius: "18px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "42px",
-                  marginBottom: "15px",
-                }}
-              >
-                🎓
-              </div>
-
-              <h3
-                style={{
-                  color: "var(--gold)",
-                  marginBottom: "12px",
-                }}
-              >
-                Teach
-              </h3>
-
-              <p
-                style={{
-                  color: "#ffffff",
-                  lineHeight: "1.6",
-                }}
-              >
-                Share your knowledge and help others improve
-                their skills through meaningful exchanges.
-              </p>
-            </div>
-
-
-            {/* Exchange */}
-            <div
-              className="card"
-              style={{
-                background:
-                  "linear-gradient(135deg, var(--dark-blue), var(--surface))",
-                padding: "30px",
-                textAlign: "center",
-                borderRadius: "18px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "42px",
-                  marginBottom: "15px",
-                }}
-              >
-                🔄
-              </div>
-
-              <h3
-                style={{
-                  color: "var(--gold)",
-                  marginBottom: "12px",
-                }}
-              >
-                Exchange
-              </h3>
-
-              <p
-                style={{
-                  color: "#ffffff",
-                  lineHeight: "1.6",
-                }}
-              >
-                Connect with the right people and exchange
-                skills without traditional barriers.
-              </p>
-            </div>
-
-          </div>
         </div>
-      </section>
+      </header>
 
 
-      {/* =========================
-          HOW TRUEQUE WORKS
-      ========================== */}
-      <section
-        style={{
-          background: "var(--tan)",
-          padding: "70px 20px",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1100px",
-            margin: "0 auto",
-          }}
-        >
+      {/* ================= HOME / HERO ================= */}
+      <main>
 
-          <div
-            style={{
-              textAlign: "center",
-              marginBottom: "45px",
-            }}
-          >
-            <h2
-              style={{
-                color: "var(--oxford-blue)",
-                fontSize: "38px",
-                marginBottom: "12px",
-              }}
-            >
-              How TRUEQUE Works
-            </h2>
+        <section className="hero-section">
 
-            <p
-              style={{
-                color: "var(--oxford-blue)",
-                fontSize: "17px",
-              }}
-            >
-              Start your skill exchange in three simple steps.
+          <div className="hero-container">
+
+            {/* LEFT SIDE - EXISTING HOME CONTENT */}
+            <div className="hero-content">
+
+              <div className="hero-label">
+                SKILL EXCHANGE PLATFORM
+              </div>
+
+              <h1>
+                Learn. Teach.
+                <br />
+                Grow <span>Together.</span>
+              </h1>
+
+              <p>
+                Trueque is a platform to learn, teach, and grow
+                by exchanging skills with others.
+                No money. Just connections.
+              </p>
+
+              <div className="hero-buttons">
+
+                <Link to="/register" className="primary-button">
+                  Get Started
+                </Link>
+
+                <Link to="/matching" className="secondary-button">
+                  Explore Skills
+                </Link>
+
+              </div>
+
+            </div>
+
+
+            {/* RIGHT SIDE - YOUR NEW IMAGE */}
+            <div className="hero-image">
+              <img
+                src={skillsImage}
+                alt="Trueque skill exchange community"
+              />
+            </div>
+
+          </div>
+
+        </section>
+
+
+        {/* ================= FEATURES ================= */}
+        <section className="features-section">
+
+          <div className="feature">
+
+            <div className="feature-icon">
+              ♙
+            </div>
+
+            <div>
+              <h3>Learn Anything</h3>
+
+              <p>
+                Explore skills you want to learn
+                from real people.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div className="feature">
+
+            <div className="feature-icon">
+              ♧
+            </div>
+
+            <div>
+              <h3>Teach & Earn</h3>
+
+              <p>
+                Share your skills and help
+                others grow.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div className="feature">
+
+            <div className="feature-icon">
+              ♡
+            </div>
+
+            <div>
+              <h3>Build Connections</h3>
+
+              <p>
+                Make meaningful connections
+                with others.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div className="feature">
+
+            <div className="feature-icon">
+              ✦
+            </div>
+
+            <div>
+              <h3>Grow Together</h3>
+
+              <p>
+                A community built on trust
+                and knowledge.
+              </p>
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+
+      {/* ================= FOOTER ================= */}
+      <footer className="site-footer">
+
+        <div className="footer-container">
+
+          {/* FOOTER BRAND */}
+          <div className="footer-brand">
+
+            <Link to="/" className="footer-logo">
+              TRUEQUE
+            </Link>
+
+            <p>
+              Exchange skills. Grow together.
             </p>
+
+            <p className="footer-description">
+              Trueque is a community-driven platform
+              where people teach, learn, and grow
+              together through the power of skills.
+            </p>
+
           </div>
 
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "25px",
-            }}
-          >
+          {/* FOOTER LINKS */}
+          <div className="footer-links">
 
-            {/* Step 1 */}
-            <div
-              style={{
-                background: "var(--oxford-blue)",
-                padding: "30px",
-                borderRadius: "18px",
-                textAlign: "center",
-              }}
-            >
-              <div
-                style={{
-                  width: "55px",
-                  height: "55px",
-                  borderRadius: "50%",
-                  background: "var(--gold)",
-                  color: "var(--oxford-blue)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: "0 auto 18px",
-                  fontWeight: "700",
-                  fontSize: "22px",
-                }}
-              >
-                1
-              </div>
+            <div className="footer-column">
 
-              <h3
-                style={{
-                  color: "#ffffff",
-                  marginBottom: "12px",
-                }}
-              >
-                Create Your Profile
-              </h3>
+              <h4>EXPLORE</h4>
 
-              <p
-                style={{
-                  color: "#ffffff",
-                  lineHeight: "1.6",
-                }}
-              >
-                Add your skills and tell the community
-                what you can teach and what you want to learn.
-              </p>
+              <Link to="/matching">
+                Search Skills
+              </Link>
+
+              <Link to="/matching">
+                Browse Skills
+              </Link>
+
+              <Link to="/">
+                How It Works
+              </Link>
+
+              <Link to="/profile">
+                Become a Mentor
+              </Link>
+
             </div>
 
 
-            {/* Step 2 */}
-            <div
-              style={{
-                background: "var(--oxford-blue)",
-                padding: "30px",
-                borderRadius: "18px",
-                textAlign: "center",
-              }}
-            >
-              <div
-                style={{
-                  width: "55px",
-                  height: "55px",
-                  borderRadius: "50%",
-                  background: "var(--gold)",
-                  color: "var(--oxford-blue)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: "0 auto 18px",
-                  fontWeight: "700",
-                  fontSize: "22px",
-                }}
-              >
-                2
-              </div>
+            <div className="footer-column">
 
-              <h3
-                style={{
-                  color: "#ffffff",
-                  marginBottom: "12px",
-                }}
-              >
-                Find a Match
-              </h3>
+              <h4>COMMUNITY</h4>
 
-              <p
-                style={{
-                  color: "#ffffff",
-                  lineHeight: "1.6",
-                }}
-              >
-                Find people whose skills match your
-                learning goals.
-              </p>
+              <Link to="/dashboard">
+                All Members
+              </Link>
+
+              <Link to="/dashboard">
+                Success Stories
+              </Link>
+
+              <Link to="/">
+                Community Guidelines
+              </Link>
+
+              <Link to="/">
+                Events
+              </Link>
+
             </div>
 
 
-            {/* Step 3 */}
-            <div
-              style={{
-                background: "var(--oxford-blue)",
-                padding: "30px",
-                borderRadius: "18px",
-                textAlign: "center",
-              }}
-            >
-              <div
-                style={{
-                  width: "55px",
-                  height: "55px",
-                  borderRadius: "50%",
-                  background: "var(--gold)",
-                  color: "var(--oxford-blue)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: "0 auto 18px",
-                  fontWeight: "700",
-                  fontSize: "22px",
-                }}
-              >
-                3
-              </div>
+            <div className="footer-column">
 
-              <h3
-                style={{
-                  color: "#ffffff",
-                  marginBottom: "12px",
-                }}
-              >
-                Start Exchanging
-              </h3>
+              <h4>SUPPORT</h4>
 
-              <p
-                style={{
-                  color: "#ffffff",
-                  lineHeight: "1.6",
-                }}
-              >
-                Connect, learn, teach, and grow together
-                through skill exchange.
-              </p>
+              <Link to="/">
+                Help Center
+              </Link>
+
+              <Link to="/">
+                FAQs
+              </Link>
+
+              <Link to="/">
+                Contact Us
+              </Link>
+
+              <Link to="/">
+                Report an Issue
+              </Link>
+
+            </div>
+
+
+            <div className="footer-column">
+
+              <h4>COMPANY</h4>
+
+              <Link to="/">
+                About Us
+              </Link>
+
+              <Link to="/">
+                Our Mission
+              </Link>
+
+              <Link to="/">
+                Careers
+              </Link>
+
+              <Link to="/">
+                Privacy Policy
+              </Link>
+
             </div>
 
           </div>
+
         </div>
-      </section>
 
 
-      {/* =========================
-          FINAL CTA
-      ========================== */}
-      <section
-        style={{
-          background: "var(--oxford-blue)",
-          padding: "70px 20px",
-          textAlign: "center",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "750px",
-            margin: "0 auto",
-          }}
-        >
-          <h2
-            style={{
-              color: "var(--gold)",
-              fontSize: "40px",
-              marginBottom: "18px",
-            }}
-          >
-            Ready to Exchange Your Skills?
-          </h2>
+        {/* FOOTER BOTTOM */}
+        <div className="footer-bottom">
 
-          <p
-            style={{
-              color: "#ffffff",
-              fontSize: "18px",
-              lineHeight: "1.7",
-              marginBottom: "30px",
-            }}
-          >
-            Join TRUEQUE and discover a community where
-            everyone can learn and everyone can teach.
+          <p>
+            © 2026 Trueque. All rights reserved.
           </p>
 
-          <Link
-            to="/matching"
-            className="btn btn-primary"
-          >
-            Start Exploring
-          </Link>
+          <div className="footer-bottom-links">
+
+            <Link to="/">
+              Privacy Policy
+            </Link>
+
+            <span>|</span>
+
+            <Link to="/">
+              Terms of Service
+            </Link>
+
+            <span>|</span>
+
+            <Link to="/">
+              Cookie Policy
+            </Link>
+
+          </div>
+
         </div>
-      </section>
+
+      </footer>
 
     </div>
   );

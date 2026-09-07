@@ -285,3 +285,21 @@
     font-size: 32px;
   }
 }
+/* ================= HERO IMAGE ================= */
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: transparent;
+}
