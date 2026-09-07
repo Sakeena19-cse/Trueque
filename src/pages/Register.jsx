@@ -47,9 +47,6 @@ function Register() {
   };
 
   return (
-    
-        <div className="auth-page">
-          return (
     <div
       className="auth-page"
       style={{
@@ -58,8 +55,8 @@ function Register() {
         alignItems: "flex-start",
         width: "100%",
       }}
-    ></div>
-        <div className="auth-container">
+    >
+      <div className="auth-container">
 
         <img
           src={logoTQ}
@@ -72,11 +69,6 @@ function Register() {
             margin: "0 auto 16px",
           }}
         />
-
-        <p className="section-label">
-          TRUEQUE REGISTRATION
-        </p>
-
 
         <p className="section-label">
           TRUEQUE REGISTRATION
@@ -277,7 +269,6 @@ function Register() {
         )}
 
       </div>
-
     </div>
   );
 }

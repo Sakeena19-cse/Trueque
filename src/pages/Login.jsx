@@ -34,8 +34,6 @@ function Login() {
   };
 
   return (
-    <div className="auth-page">
-      return (
     <div
       className="auth-page"
       style={{
@@ -44,8 +42,8 @@ function Login() {
         alignItems: "flex-start",
         width: "100%",
       }}
-    ></div>
-    <div className="auth-container">
+    >
+      <div className="auth-container">
 
         <img
           src={logoTQ}
@@ -58,10 +56,6 @@ function Login() {
             margin: "0 auto 16px",
           }}
         />
-
-        <p className="section-label">
-          TRUEQUE LOGIN
-        </p>
 
         <p className="section-label">
           TRUEQUE LOGIN
