@@ -1,13 +1,39 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 export default function Header() {
   return (
     <header className="site-header">
 
       {/* TRUEQUE - LEFT */}
-      <Link to="/" className="flex items-center gap-2">
-  <img src={logo} alt="Trueque logo" className="h-9 w-9 object-contain" />
-  <span className="text-xl font-bold">TRUEQUE</span>
+      <Link
+  to="/"
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    textDecoration: "none",
+  }}
+>
+  <img
+    src={logo}
+    alt="Trueque logo"
+    style={{
+      height: "42px",
+      width: "42px",
+      objectFit: "contain",
+      borderRadius: "50%",
+    }}
+  />
+  <span
+    style={{
+      fontSize: "22px",
+      fontWeight: "700",
+      color: "inherit",
+    }}
+  >
+    TRUEQUE
+  </span>
 </Link>
 
       {/* NAVIGATION - RIGHT */}

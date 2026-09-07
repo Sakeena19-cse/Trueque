@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import heroImage from "../assets/trueque-hero.png";
-import logo from "../assets/logo.png";
+
 
 function Home() {
   return (
