@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logoTQ from "../assets/logo-tq.png";
 
 function Login() {
   const navigate = useNavigate();
@@ -34,7 +35,23 @@ function Login() {
 
   return (
     <div className="auth-page">
-      <div className="auth-container">
+    <div className="auth-container">
+
+        <img
+          src={logoTQ}
+          alt="Trueque logo"
+          style={{
+            height: "60px",
+            width: "60px",
+            objectFit: "contain",
+            display: "block",
+            margin: "0 auto 16px",
+          }}
+        />
+
+        <p className="section-label">
+          TRUEQUE LOGIN
+        </p>
 
         <p className="section-label">
           TRUEQUE LOGIN

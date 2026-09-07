@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logoTQ from "../assets/logo-tq.png";
 
 function Register() {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -47,9 +47,26 @@ function Register() {
   };
 
   return (
-    <div className="auth-page">
+    
+        <div className="auth-container">
+        <div className="auth-container">
 
-      <div className="auth-container">
+        <img
+          src={logoTQ}
+          alt="Trueque logo"
+          style={{
+            height: "60px",
+            width: "60px",
+            objectFit: "contain",
+            display: "block",
+            margin: "0 auto 16px",
+          }}
+        />
+
+        <p className="section-label">
+          TRUEQUE REGISTRATION
+        </p>
+
 
         <p className="section-label">
           TRUEQUE REGISTRATION
