@@ -1,21 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import skillsImage from "../assets/trueque-skills.png";
 
 function Home() {
   return (
     <div className="home-page">
 
-      {/* ================= HERO SECTION ================= */}
+      {/* ================= HERO ================= */}
       <section className="hero-section">
         <div className="hero-container">
 
           {/* IMAGE ON TOP */}
           <div className="hero-image">
             <img
-              src={skillsImage}
-              alt="Trueque skill exchange community"
+              src="/Trueque-skill.png"
+              alt="Trueque skill exchange"
             />
           </div>
 
@@ -33,104 +32,140 @@ function Home() {
             </h1>
 
             <p className="hero-description">
-              Trueque is a platform to learn, teach, and grow by exchanging
-              skills with others. No money. Just connections.
+              Trueque is a platform to learn, teach, and grow by
+              exchanging skills with others. No money. Just connections.
             </p>
 
             <div className="hero-buttons">
-              <Link to="/register" className="hero-btn primary">
+
+              <Link
+                to="/register"
+                className="hero-button primary"
+              >
                 Get Started
               </Link>
 
-              <Link to="/matching" className="hero-btn secondary">
+              <Link
+                to="/matching"
+                className="hero-button secondary"
+              >
                 Explore Skills
               </Link>
+
             </div>
 
           </div>
+
         </div>
       </section>
 
 
-      {/* ================= FEATURES SECTION ================= */}
+      {/* ================= FEATURES ================= */}
       <section className="features-section">
         <div className="features-container">
 
-          <div className="section-heading">
-            <p className="section-label">WHY TRUEQUE?</p>
+          <div className="features-heading">
+
+            <p className="section-label">
+              WHY TRUEQUE?
+            </p>
 
             <h2>
-              Learn, Share & Grow
-              <br />
-              Together
+              Learn. Share. Connect.
             </h2>
 
             <p>
-              Connect with people who have the skills you want
-              and share what you know with others.
+              Trueque makes it easy to exchange knowledge,
+              discover new skills, and connect with people.
             </p>
+
           </div>
 
 
           <div className="features-grid">
 
-            {/* CARD 1 */}
+            {/* FEATURE 1 */}
             <div className="feature-card">
-              <div className="feature-icon">✦</div>
 
-              <h3>Learn Anything</h3>
+              <div className="feature-icon">
+                ✦
+              </div>
+
+              <h3>
+                Learn Anything
+              </h3>
 
               <p>
-                Explore skills you want to learn from real people
-                in the Trueque community.
+                Explore skills you want to learn from
+                real people in the Trueque community.
               </p>
+
             </div>
 
 
-            {/* CARD 2 */}
+            {/* FEATURE 2 */}
             <div className="feature-card">
-              <div className="feature-icon">↗</div>
 
-              <h3>Teach & Earn</h3>
+              <div className="feature-icon">
+                ↗
+              </div>
+
+              <h3>
+                Teach & Share
+              </h3>
 
               <p>
-                Share your knowledge and help others grow
-                by teaching skills you already know.
+                Share your knowledge and help others
+                learn skills you already know.
               </p>
+
             </div>
 
 
-            {/* CARD 3 */}
+            {/* FEATURE 3 */}
             <div className="feature-card">
-              <div className="feature-icon">♡</div>
 
-              <h3>Build Connections</h3>
+              <div className="feature-icon">
+                ♡
+              </div>
+
+              <h3>
+                Build Connections
+              </h3>
 
               <p>
-                Meet people with similar interests and make
-                meaningful skill-based connections.
+                Connect with people who have similar
+                interests and learning goals.
               </p>
+
             </div>
 
 
-            {/* CARD 4 */}
+            {/* FEATURE 4 */}
             <div className="feature-card">
-              <div className="feature-icon">✧</div>
 
-              <h3>Grow Together</h3>
+              <div className="feature-icon">
+                ✧
+              </div>
+
+              <h3>
+                Grow Together
+              </h3>
 
               <p>
-                Be part of a community built around trust,
-                knowledge, and continuous learning.
+                Build meaningful connections through
+                learning and sharing skills.
               </p>
+
             </div>
 
           </div>
+
         </div>
       </section>
 
 
-      {/* ================= CALL TO ACTION ================= */}
+      {/* ================= CTA ================= */}
       <section className="cta-section">
         <div className="cta-container">
 
@@ -139,17 +174,20 @@ function Home() {
           </p>
 
           <h2>
-            Your Skills Have
+            Exchange Skills.
             <br />
-            Value.
+            Grow Together.
           </h2>
 
           <p>
-            Whether you want to learn something new or share
-            what you know, Trueque is the place to start.
+            Join Trueque and discover a community where
+            everyone has something to learn and something to teach.
           </p>
 
-          <Link to="/register" className="cta-button">
+          <Link
+            to="/register"
+            className="cta-button"
+          >
             Join Trueque
           </Link>
 
