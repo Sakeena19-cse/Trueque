@@ -48,7 +48,17 @@ function Register() {
 
   return (
     
-        <div className="auth-container">
+        <div className="auth-page">
+          return (
+    <div
+      className="auth-page"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        width: "100%",
+      }}
+    ></div>
         <div className="auth-container">
 
         <img
