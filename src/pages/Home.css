@@ -1,478 +1,62 @@
-/* =====================================================
-   TRUEQUE HOME PAGE
-   ===================================================== */
+/* =========================
+   HOME PAGE
+========================= */
 
 .home-page {
   width: 100%;
-  background: #f5ead8;
-  color: #002147;
+  overflow-x: hidden;
 }
 
-
-/* =====================================================
+/* =========================
    HERO SECTION
-   ===================================================== */
+========================= */
 
-.hero-section {
-  width: 100%;
-  background: #f5ead8;
-  padding: 50px 20px 80px;
-}
-
-.hero-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+.home-hero {
+  background: var(--tan);
+  padding: 35px 20px 75px;
   text-align: center;
 }
 
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-/* =====================================================
-   HERO IMAGE
-   ===================================================== */
+/* Hero Image */
 
-.hero-image {
+.hero-image-wrapper {
   width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin-bottom: 35px;
 }
 
-.hero-image img {
-  display: block;
-
+.hero-image {
   width: 100%;
-  max-width: 650px;
-  height: auto;
-
-  object-fit: contain;
+  max-width: 1000px;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 24px;
 }
 
-
-/* =====================================================
-   HERO CONTENT
-   ===================================================== */
+/* Hero Content */
 
 .hero-content {
-  width: 100%;
-  max-width: 900px;
+  max-width: 850px;
   margin: 0 auto;
 }
 
 .hero-label {
-  margin: 0 0 18px;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  letter-spacing: 4px;
-
-  color: #6b5a43;
-}
-
-.hero-content h1 {
-  margin: 0 0 22px;
-
-  font-family: "Playfair Display", Georgia, serif;
-
-  font-size: 64px;
-  line-height: 1.05;
-  font-weight: 700;
-
-  color: #002147;
-}
-
-.hero-description {
-  max-width: 760px;
-
-  margin: 0 auto 30px;
-
-  font-size: 18px;
-  line-height: 1.7;
-
-  color: #4f5965;
-}
-
-
-/* =====================================================
-   HERO BUTTONS
-   ===================================================== */
-
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  gap: 16px;
-}
-
-.hero-button {
-  min-width: 160px;
-
-  padding: 14px 25px;
-
-  border-radius: 7px;
-
-  font-size: 15px;
-  font-weight: 700;
-
-  text-decoration: none;
-
-  transition: 0.2s ease;
-}
-
-
-/* PRIMARY */
-
-.hero-button.primary {
-  background: #002147;
-  color: white;
-}
-
-.hero-button.primary:hover {
-  background: #00172f;
-  transform: translateY(-2px);
-}
-
-
-/* SECONDARY */
-
-.hero-button.secondary {
-  background: #e8c28f;
-  color: #002147;
-
-  border: 1px solid #d5ae76;
-}
-
-.hero-button.secondary:hover {
-  background: #dcb276;
-  transform: translateY(-2px);
-}
-
-
-/* =====================================================
-   FEATURES SECTION
-   ===================================================== */
-
-.features-section {
-  width: 100%;
-
-  padding: 90px 20px;
-
-  background: #fffaf2;
-}
-
-.features-container {
-  width: 90%;
-  max-width: 1200px;
-
-  margin: 0 auto;
-}
-
-
-/* HEADING */
-
-.features-heading {
-  max-width: 700px;
-
-  margin-bottom: 50px;
-}
-
-.section-label {
-  margin-bottom: 12px;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  letter-spacing: 3px;
-
-  color: #8a704c;
-}
-
-.features-heading h2 {
-  margin: 0 0 18px;
-
-  font-family: "Playfair Display", Georgia, serif;
-
-  font-size: 46px;
-  line-height: 1.15;
-
-  color: #002147;
-}
-
-.features-heading > p:last-child {
-  font-size: 17px;
-  line-height: 1.6;
-
-  color: #667085;
-}
-
-
-/* =====================================================
-   FEATURE GRID
-   ===================================================== */
-
-.features-grid {
-  display: grid;
-
-  grid-template-columns: repeat(4, 1fr);
-
-  gap: 22px;
-}
-
-
-/* FEATURE CARD */
-
-.feature-card {
-  padding: 30px 25px;
-
-  background: #f5ead8;
-
-  border: 1px solid rgba(0, 33, 71, 0.08);
-
-  border-radius: 14px;
-
-  transition: 0.25s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-
-  box-shadow: 0 12px 30px rgba(0, 33, 71, 0.1);
-}
-
-
-/* ICON */
-
-.feature-icon {
-  width: 48px;
-  height: 48px;
-
-  margin-bottom: 22px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: #002147;
-  color: #e8c28f;
-
-  font-size: 22px;
-  font-weight: 700;
-}
-
-
-/* CARD TITLE */
-
-.feature-card h3 {
-  margin: 0 0 12px;
-
-  font-family: "Playfair Display", Georgia, serif;
-
-  font-size: 23px;
-
-  color: #002147;
-}
-
-
-/* CARD TEXT */
-
-.feature-card p {
-  margin: 0;
-
-  font-size: 15px;
-  line-height: 1.6;
-
-  color: #667085;
-}
-
-
-/* =====================================================
-   CTA SECTION
-   ===================================================== */
-
-.cta-section {
-  width: 100%;
-
-  padding: 100px 20px;
-
-  background: #002147;
-}
-
-.cta-container {
-  max-width: 800px;
-
-  margin: 0 auto;
-
-  text-align: center;
-}
-
-.cta-container .section-label {
-  color: #e8c28f;
-}
-
-.cta-container h2 {
-  margin: 0 0 20px;
-
-  font-family: "Playfair Display", Georgia, serif;
-
-  font-size: 52px;
-  line-height: 1.1;
-
-  color: white;
-}
-
-.cta-container > p:not(.section-label) {
-  max-width: 650px;
-
-  margin: 0 auto 30px;
-
-  font-size: 17px;
-  line-height: 1.7;
-
-  color: #e5e7eb;
-}
-
-
-/* CTA BUTTON */
-
-.cta-button {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 14px 30px;
-
-  border-radius: 7px;
-
-  background: #e8c28f;
-  color: #002147;
-
-  font-size: 15px;
-  font-weight: 700;
-
-  text-decoration: none;
-
-  transition: 0.2s ease;
-}
-
-.cta-button:hover {
-  background: #f0d0a5;
-
-  transform: translateY(-2px);
-}
-
-
-/* =====================================================
-   TABLET
-   ===================================================== */
-
-@media (max-width: 1000px) {
-
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hero-content h1 {
-    font-size: 54px;
-  }
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-  .hero-section {
-    padding: 35px 18px 60px;
-  }
-
-  .hero-image {
-    margin-bottom: 25px;
-  }
-
-  .hero-image img {
-    max-width: 500px;
-  }
-
-  .hero-content h1 {
-    font-size: 42px;
-  }
-
-  .hero-description {
-    font-size: 16px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-  }
-
-  .hero-button {
-    width: 100%;
-    max-width: 250px;
-  }
-
-
-  .features-section {
-    padding: 65px 18px;
-  }
-
-  .features-container {
-    width: 100%;
-  }
-
-  .features-heading h2 {
-    font-size: 36px;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .cta-section {
-    padding: 70px 18px;
-  }
-
-  .cta-container h2 {
-    font-size: 40px;
-  }
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-   ===================================================== */
-
-@media (max-width: 480px) {
-
-  .hero-content h1 {
-    font-size: 36px;
-  }
-
-  .hero-label {
-    font-size: 11px;
-    letter-spacing: 2px;
-  }
-
-  .features-heading h2 {
-    font-size: 32px;
-  }
-
-  .cta-container h2 {
-    font-size: 34px;
-  }
+  display: inline-block;
+  padding: 9px 22px;
+  border-radius: 30px;
+  background: rgba(13, 27, 42, 0.1);
+  color: var(--oxford-blue);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
 }
