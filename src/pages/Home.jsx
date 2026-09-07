@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import skillsImage from "../assets/Trueque-skill.png";
+import skillsImage from "../assets/trueque-skills.png";
 
 function Home() {
   return (
