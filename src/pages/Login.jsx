@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/trueque-logo.png";
+import logo from "../assets/logo.png";
 
 function Login() {
   const navigate = useNavigate();
