@@ -660,3 +660,19 @@
 .session-page a {
   color: var(--oxford-blue);
 }
+/* ================================
+   AUTH PAGE LOGO
+================================ */
+
+.auth-logo {
+  display: block;
+
+  width: 95px;
+  height: 95px;
+
+  object-fit: contain;
+
+  margin: 0 auto 18px;
+
+  border-radius: 12px;
+}

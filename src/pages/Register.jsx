@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/trueque-logo.png";
 
 function Register() {
   const navigate = useNavigate();
-
   const [page, setPage] = useState(1);
 
   const [formData, setFormData] = useState({
     firstName: "",
-    secondName: "",
+    lastName: "",
     email: "",
     mobile: "",
     qualification: "",
@@ -26,13 +26,11 @@ function Register() {
     });
   };
 
-  // Page 1 → Page 2
-  const handleNext = (e) => {
+  const handlePageOne = (e) => {
     e.preventDefault();
     setPage(2);
   };
 
-  // Page 2 → Skill Verification page
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -42,11 +40,10 @@ function Register() {
     }
 
     if (!formData.purpose) {
-      alert("Please select why you use TRUEQUE.");
+      alert("Please select your purpose.");
       return;
     }
 
-    // Move to existing Skills / Matching page
     navigate("/matching");
   };
 
@@ -54,7 +51,13 @@ function Register() {
     <div className="auth-page">
       <div className="auth-container">
 
-        {/* Heading */}
+        {/* TRUEQUE LOGO */}
+        <img
+          src={logo}
+          alt="TRUEQUE Logo"
+          className="auth-logo"
+        />
+
         <p className="section-label">
           TRUEQUE REGISTRATION
         </p>
@@ -65,18 +68,15 @@ function Register() {
           Join TRUEQUE and start your skill exchange journey.
         </p>
 
-        {/* ================= PAGE 1 ================= */}
         {page === 1 && (
-          <form className="auth-form" onSubmit={handleNext}>
+          <form className="auth-form" onSubmit={handlePageOne}>
 
             <div className="register-page-indicator">
               Page 1 of 2
             </div>
 
-            {/* First Name */}
             <div className="form-group">
               <label>First Name</label>
-
               <input
                 type="text"
                 name="firstName"
@@ -87,24 +87,20 @@ function Register() {
               />
             </div>
 
-            {/* Second Name */}
             <div className="form-group">
               <label>Second Name</label>
-
               <input
                 type="text"
-                name="secondName"
+                name="lastName"
                 placeholder="Enter your second name"
-                value={formData.secondName}
+                value={formData.lastName}
                 onChange={handleChange}
                 required
               />
             </div>
 
-            {/* Email */}
             <div className="form-group">
               <label>Email ID</label>
-
               <input
                 type="email"
                 name="email"
@@ -115,10 +111,8 @@ function Register() {
               />
             </div>
 
-            {/* Mobile */}
             <div className="form-group">
               <label>Mobile No</label>
-
               <input
                 type="tel"
                 name="mobile"
@@ -129,10 +123,8 @@ function Register() {
               />
             </div>
 
-            {/* Qualification */}
             <div className="form-group">
               <label>Qualification</label>
-
               <input
                 type="text"
                 name="qualification"
@@ -143,10 +135,8 @@ function Register() {
               />
             </div>
 
-            {/* Location */}
             <div className="form-group">
               <label>Location</label>
-
               <input
                 type="text"
                 name="location"
@@ -157,18 +147,12 @@ function Register() {
               />
             </div>
 
-            {/* Next Button */}
-            <button
-              type="submit"
-              className="auth-button"
-            >
+            <button type="submit" className="auth-button">
               Next
             </button>
 
-            {/* Login */}
             <p className="auth-footer">
               Already have an account?{" "}
-
               <button
                 type="button"
                 className="text-button"
@@ -181,7 +165,6 @@ function Register() {
           </form>
         )}
 
-        {/* ================= PAGE 2 ================= */}
         {page === 2 && (
           <form className="auth-form" onSubmit={handleRegister}>
 
@@ -189,38 +172,32 @@ function Register() {
               Page 2 of 2
             </div>
 
-            {/* Username */}
             <div className="form-group">
               <label>Username</label>
-
               <input
                 type="text"
                 name="username"
-                placeholder="Create your username"
+                placeholder="Create a username"
                 value={formData.username}
                 onChange={handleChange}
                 required
               />
             </div>
 
-            {/* Generate Password */}
             <div className="form-group">
               <label>Generate Password</label>
-
               <input
                 type="password"
                 name="password"
-                placeholder="Create your password"
+                placeholder="Create a password"
                 value={formData.password}
                 onChange={handleChange}
                 required
               />
             </div>
 
-            {/* Confirm Password */}
             <div className="form-group">
               <label>Confirm Password</label>
-
               <input
                 type="password"
                 name="confirmPassword"
@@ -231,7 +208,6 @@ function Register() {
               />
             </div>
 
-            {/* Purpose Dropdown */}
             <div className="form-group">
               <label>
                 Why do you use this website or app?
@@ -261,7 +237,6 @@ function Register() {
               </select>
             </div>
 
-            {/* Buttons */}
             <div className="register-navigation">
 
               <button

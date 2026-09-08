@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/trueque-logo.png";
 
 function Login() {
   const navigate = useNavigate();
@@ -29,7 +30,6 @@ function Login() {
       return;
     }
 
-    // Move to Dashboard
     navigate("/dashboard");
   };
 
@@ -37,7 +37,13 @@ function Login() {
     <div className="auth-page">
       <div className="auth-container">
 
-        {/* Heading */}
+        {/* TRUEQUE LOGO */}
+        <img
+          src={logo}
+          alt="TRUEQUE Logo"
+          className="auth-logo"
+        />
+
         <p className="section-label">
           TRUEQUE LOGIN
         </p>
@@ -48,15 +54,10 @@ function Login() {
           Login to continue your TRUEQUE journey.
         </p>
 
-        <form
-          className="auth-form"
-          onSubmit={handleSubmit}
-        >
+        <form className="auth-form" onSubmit={handleSubmit}>
 
-          {/* First Name */}
           <div className="form-group">
             <label>First Name</label>
-
             <input
               type="text"
               name="firstName"
@@ -67,10 +68,8 @@ function Login() {
             />
           </div>
 
-          {/* Last Name */}
           <div className="form-group">
             <label>Last Name</label>
-
             <input
               type="text"
               name="lastName"
@@ -81,10 +80,8 @@ function Login() {
             />
           </div>
 
-          {/* Qualification */}
           <div className="form-group">
             <label>Qualification</label>
-
             <input
               type="text"
               name="qualification"
@@ -95,10 +92,8 @@ function Login() {
             />
           </div>
 
-          {/* Location */}
           <div className="form-group">
             <label>Location</label>
-
             <input
               type="text"
               name="location"
@@ -109,10 +104,8 @@ function Login() {
             />
           </div>
 
-          {/* Username */}
           <div className="form-group">
             <label>Username</label>
-
             <input
               type="text"
               name="username"
@@ -123,10 +116,8 @@ function Login() {
             />
           </div>
 
-          {/* Password */}
           <div className="form-group">
             <label>Password</label>
-
             <input
               type="password"
               name="password"
@@ -137,10 +128,8 @@ function Login() {
             />
           </div>
 
-          {/* Confirm Password */}
           <div className="form-group">
             <label>Confirm Password</label>
-
             <input
               type="password"
               name="confirmPassword"
@@ -151,18 +140,12 @@ function Login() {
             />
           </div>
 
-          {/* Login Button */}
-          <button
-            type="submit"
-            className="auth-button"
-          >
+          <button type="submit" className="auth-button">
             Login
           </button>
 
-          {/* Register */}
           <p className="auth-footer">
             Don't have an account?{" "}
-
             <button
               type="button"
               className="text-button"
@@ -173,7 +156,6 @@ function Login() {
           </p>
 
         </form>
-
       </div>
     </div>
   );
