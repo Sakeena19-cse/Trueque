@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
-import homeImage from "../assets/trueque-home.png";
+import homeImage from "../assets/trueque-hero.png";
 
 function Home() {
   return (
