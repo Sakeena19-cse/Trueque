@@ -1,12 +1,12 @@
 /* =========================================
    TRUEQUE HOME PAGE
-   BURGUNDY + CREAM THEME
+   CREAM + BURGUNDY + DARK BROWN
 ========================================= */
 
 .home-page {
   width: 100%;
-  background: #fff5e1;
-  color: #800020;
+  background: #FFF5E1;
+  color: #3B0A0A;
 }
 
 
@@ -26,10 +26,8 @@
 
   padding: 80px 6%;
 
-  /* Light cream instead of bright golden */
-  background: #fff5e1;
-
-  color: #800020;
+  background: #FFF5E1;
+  color: #3B0A0A;
 }
 
 .hero-content {
@@ -47,7 +45,7 @@
 }
 
 .hero-label {
-  color: #800020;
+  color: #3B0A0A;
 
   font-size: 15px;
   font-weight: 700;
@@ -59,7 +57,7 @@
 }
 
 .hero-section h1 {
-  color: #800020;
+  color: #3B0A0A;
 
   font-family: "Playfair Display", serif;
 
@@ -80,7 +78,7 @@
 
   margin: 0 auto 35px;
 
-  color: #4a2c2c;
+  color: #5A3A32;
 
   font-size: 18px;
   line-height: 1.8;
@@ -106,6 +104,7 @@
 .primary-button,
 .secondary-button {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
@@ -122,28 +121,30 @@
 
 .primary-button {
   background: #800020;
-  color: #fff5e1;
+  color: #FFF5E1;
 
   border: 2px solid #800020;
 }
 
 .primary-button:hover {
-  background: #5f0018;
-  border-color: #5f0018;
+  background: #650018;
+  border-color: #650018;
 
   transform: translateY(-2px);
 }
 
 .secondary-button {
   background: transparent;
-  color: #800020;
+
+  color: #3B0A0A;
 
   border: 2px solid #800020;
 }
 
 .secondary-button:hover {
   background: #800020;
-  color: #fff5e1;
+
+  color: #FFF5E1;
 }
 
 
@@ -153,24 +154,27 @@
 
 .section-heading {
   text-align: center;
+
   margin-bottom: 55px;
 }
 
 .section-heading h2 {
-  color: #800020;
+  color: #3B0A0A;
 
   font-family: "Playfair Display", serif;
 
   font-size: 42px;
+
   font-weight: 700;
 
   margin-bottom: 12px;
 }
 
 .section-heading p {
-  color: #4a2c2c;
+  color: #5A3A32;
 
   font-size: 17px;
+
   line-height: 1.6;
 }
 
@@ -178,6 +182,7 @@
   color: #800020;
 
   font-size: 14px;
+
   font-weight: 700;
 
   letter-spacing: 3px;
@@ -187,7 +192,7 @@
 
 
 /* =========================================
-   HOW TRUEQUE WORKS SECTION
+   HOW TRUEQUE WORKS
 ========================================= */
 
 .how-section {
@@ -195,9 +200,9 @@
 
   padding: 80px 6%;
 
-  background: #fff5e1;
+  background: #FFF5E1;
 
-  color: #800020;
+  color: #3B0A0A;
 
   text-align: center;
 }
@@ -220,17 +225,17 @@
 ========================================= */
 
 .step-card {
-  background: #ffffff;
+  background: #FFFFFF;
 
   padding: 35px 25px;
 
   border-radius: 12px;
 
-  border: 1px solid #e0c9aa;
+  border: 1px solid #D8BFA3;
 
   text-align: center;
 
-  color: #800020;
+  color: #3B0A0A;
 
   transition: 0.3s ease;
 }
@@ -263,7 +268,7 @@
 
   background: #800020;
 
-  color: #fff5e1;
+  color: #FFF5E1;
 
   font-size: 18px;
 
@@ -271,7 +276,7 @@
 }
 
 .step-card h3 {
-  color: #800020;
+  color: #3B0A0A;
 
   font-size: 22px;
 
@@ -279,7 +284,7 @@
 }
 
 .step-card p {
-  color: #4a2c2c;
+  color: #5A3A32;
 
   font-size: 15px;
 
@@ -288,7 +293,7 @@
 
 
 /* =========================================
-   WHY TRUEQUE / SKILLS SECTION
+   SKILLS SECTION
 ========================================= */
 
 .skills-section {
@@ -296,9 +301,9 @@
 
   padding: 80px 6%;
 
-  background: #fff5e1;
+  background: #FFF5E1;
 
-  color: #800020;
+  color: #3B0A0A;
 
   text-align: center;
 }
@@ -321,17 +326,17 @@
 ========================================= */
 
 .skill-card {
-  background: #ffffff;
+  background: #FFFFFF;
 
   padding: 30px;
 
   border-radius: 12px;
 
-  border: 1px solid #e0c9aa;
+  border: 1px solid #D8BFA3;
 
   text-align: center;
 
-  color: #800020;
+  color: #3B0A0A;
 
   transition: 0.3s ease;
 }
@@ -345,7 +350,7 @@
 }
 
 .skill-card h3 {
-  color: #800020;
+  color: #3B0A0A;
 
   font-size: 21px;
 
@@ -353,7 +358,7 @@
 }
 
 .skill-card p {
-  color: #4a2c2c;
+  color: #5A3A32;
 
   font-size: 15px;
 
@@ -372,17 +377,17 @@
 
   background: #800020;
 
-  color: #fff5e1;
+  color: #FFF5E1;
 
   text-align: center;
 }
 
 .cta-section .section-label {
-  color: #fff5e1;
+  color: #FFF5E1;
 }
 
 .cta-section h2 {
-  color: #fff5e1;
+  color: #FFF5E1;
 
   font-family: "Playfair Display", serif;
 
@@ -396,25 +401,25 @@
 
   margin: 0 auto 30px;
 
-  color: #fff5e1;
+  color: #FFF5E1;
 
   line-height: 1.7;
 }
 
 .cta-section .primary-button {
-  background: #fff5e1;
+  background: #FFF5E1;
 
-  color: #800020;
+  color: #3B0A0A;
 
-  border: 2px solid #fff5e1;
+  border: 2px solid #FFF5E1;
 }
 
 .cta-section .primary-button:hover {
-  background: #e8d7bd;
+  background: #E8D7BD;
 
-  color: #800020;
+  color: #3B0A0A;
 
-  border-color: #e8d7bd;
+  border-color: #E8D7BD;
 }
 
 

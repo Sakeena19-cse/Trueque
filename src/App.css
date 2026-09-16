@@ -485,3 +485,544 @@
     flex-direction: column;
   }
 }
+/* =========================================
+   TRUEQUE INTERNAL PAGES
+   CREAM + BURGUNDY + DARK BROWN
+========================================= */
+
+/* Main page background */
+main {
+  background: #FFF5E1;
+  color: #3B0A0A;
+}
+
+.auth-page,
+.dashboard-page,
+.profile-page,
+.matching-page,
+.session-page,
+.quiz-page {
+  width: 100%;
+  min-height: 100vh;
+
+  background: #FFF5E1;
+  color: #3B0A0A;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.site-header {
+  background: #800020 !important;
+  color: #FFF5E1 !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: 82px;
+
+  padding: 0 6%;
+
+  border-bottom: 2px solid #FFF5E1;
+}
+
+.logo {
+  color: #FFF5E1 !important;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 28px;
+
+  margin-left: auto;
+}
+
+.nav-links a {
+  color: #FFF5E1 !important;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: #F1D5B0 !important;
+}
+
+.nav-links .nav-button {
+  background: #FFF5E1 !important;
+  color: #800020 !important;
+
+  padding: 11px 22px;
+
+  border-radius: 6px;
+}
+
+
+/* =========================================
+   LOGIN / REGISTER
+========================================= */
+
+.auth-page {
+  padding: 70px 6%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 700px;
+
+  background: #FFFFFF;
+
+  padding: 45px;
+
+  border-radius: 14px;
+
+  border: 1px solid #D8BFA3;
+
+  color: #3B0A0A;
+
+  box-shadow: 0 8px 30px rgba(59, 10, 10, 0.08);
+}
+
+
+/* Login/Register small heading */
+.auth-container .section-label {
+  color: #800020 !important;
+
+  text-align: center;
+
+  font-weight: 700;
+}
+
+
+/* Login/Register main heading */
+.auth-container h1 {
+  color: #3B0A0A !important;
+
+  text-align: center;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 42px;
+
+  margin: 15px 0;
+}
+
+
+/* Description */
+.auth-description {
+  color: #5A3A32 !important;
+
+  text-align: center;
+
+  font-size: 16px;
+
+  margin-bottom: 30px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.auth-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+
+  color: #3B0A0A !important;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  background: #FFFDF8 !important;
+
+  color: #3B0A0A !important;
+
+  border: 1px solid #C9AD8D;
+
+  border-radius: 6px;
+
+  font-size: 15px;
+
+  outline: none;
+}
+
+.form-group input::placeholder {
+  color: #8A7168 !important;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #800020;
+
+  box-shadow: 0 0 0 2px rgba(128, 0, 32, 0.08);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.auth-button {
+  width: 100%;
+
+  padding: 14px 20px;
+
+  background: #800020 !important;
+
+  color: #FFF5E1 !important;
+
+  border: none;
+
+  border-radius: 6px;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  margin-top: 10px;
+}
+
+.auth-button:hover {
+  background: #650018 !important;
+}
+
+
+/* =========================================
+   REGISTER PAGE INDICATOR
+========================================= */
+
+.register-page-indicator {
+  text-align: center;
+
+  color: #800020 !important;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  margin-bottom: 25px;
+}
+
+
+/* =========================================
+   BACK / SECONDARY BUTTON
+========================================= */
+
+.secondary-button {
+  color: #3B0A0A !important;
+
+  background: transparent;
+
+  border: 2px solid #800020;
+}
+
+.secondary-button:hover {
+  background: #800020;
+
+  color: #FFF5E1 !important;
+}
+
+
+/* =========================================
+   REGISTER NAVIGATION
+========================================= */
+
+.register-navigation {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 20px;
+}
+
+.register-navigation .secondary-button,
+.register-navigation .auth-button {
+  width: auto;
+  min-width: 140px;
+}
+
+
+/* =========================================
+   LOGIN / REGISTER FOOTER TEXT
+========================================= */
+
+.auth-footer {
+  color: #5A3A32 !important;
+
+  text-align: center;
+
+  margin-top: 25px;
+
+  font-size: 14px;
+}
+
+.text-button {
+  background: none;
+
+  border: none;
+
+  color: #800020 !important;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+.dashboard-page {
+  padding: 60px 6%;
+}
+
+.dashboard-page h1,
+.dashboard-page h2,
+.dashboard-page h3 {
+  color: #3B0A0A !important;
+}
+
+.dashboard-page p {
+  color: #5A3A32 !important;
+}
+
+
+/* =========================================
+   PROFILE
+========================================= */
+
+.profile-page {
+  padding: 60px 6%;
+}
+
+.profile-page h1,
+.profile-page h2,
+.profile-page h3 {
+  color: #3B0A0A !important;
+}
+
+.profile-page p,
+.profile-page label {
+  color: #5A3A32 !important;
+}
+
+
+/* =========================================
+   MATCHING / SKILLS
+========================================= */
+
+.matching-page {
+  padding: 60px 6%;
+}
+
+.matching-page h1,
+.matching-page h2,
+.matching-page h3 {
+  color: #3B0A0A !important;
+}
+
+.matching-page p,
+.matching-page label {
+  color: #5A3A32 !important;
+}
+
+
+/* =========================================
+   SESSION
+========================================= */
+
+.session-page {
+  padding: 60px 6%;
+}
+
+.session-page h1,
+.session-page h2,
+.session-page h3 {
+  color: #3B0A0A !important;
+}
+
+.session-page p,
+.session-page label {
+  color: #5A3A32 !important;
+}
+
+
+/* =========================================
+   QUIZ
+========================================= */
+
+.quiz-page {
+  padding: 60px 6%;
+}
+
+.quiz-page h1,
+.quiz-page h2,
+.quiz-page h3 {
+  color: #3B0A0A !important;
+}
+
+.quiz-page p,
+.quiz-page label {
+  color: #5A3A32 !important;
+}
+
+
+/* =========================================
+   COMMON CARDS
+========================================= */
+
+.card,
+.dashboard-card,
+.profile-card,
+.match-card,
+.session-card,
+.quiz-card {
+  background: #FFFFFF;
+
+  color: #3B0A0A;
+
+  border: 1px solid #D8BFA3;
+
+  border-radius: 12px;
+
+  padding: 25px;
+}
+
+.card h2,
+.card h3,
+.dashboard-card h2,
+.dashboard-card h3,
+.profile-card h2,
+.profile-card h3,
+.match-card h2,
+.match-card h3,
+.session-card h2,
+.session-card h3,
+.quiz-card h2,
+.quiz-card h3 {
+  color: #3B0A0A !important;
+}
+
+.card p,
+.dashboard-card p,
+.profile-card p,
+.match-card p,
+.session-card p,
+.quiz-card p {
+  color: #5A3A32 !important;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+  background: #800020 !important;
+
+  color: #FFF5E1 !important;
+}
+
+.site-footer h2,
+.site-footer h3 {
+  color: #FFF5E1 !important;
+}
+
+.site-footer p,
+.site-footer a {
+  color: #FFF5E1 !important;
+}
+
+.site-footer a:hover {
+  color: #F1D5B0 !important;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .site-header {
+    flex-direction: column;
+
+    padding: 20px 5%;
+
+    gap: 18px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 15px;
+  }
+
+  .auth-page {
+    padding: 40px 5%;
+  }
+
+  .auth-container {
+    padding: 30px 20px;
+  }
+
+  .auth-container h1 {
+    font-size: 32px;
+  }
+
+  .register-navigation {
+    flex-direction: column;
+  }
+
+  .register-navigation .secondary-button,
+  .register-navigation .auth-button {
+    width: 100%;
+  }
+}
