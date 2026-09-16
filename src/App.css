@@ -1,7 +1,10 @@
 /* =====================================================
-   TRUEQUE - MAIN APPLICATION CSS
-   BURGUNDY + CREAM THEME
+   TRUEQUE - BURGUNDY & CREAM THEME
 ===================================================== */
+
+* {
+  box-sizing: border-box;
+}
 
 
 /* =====================================================
@@ -10,8 +13,7 @@
 
 .site-header {
   width: 100%;
-  min-height: 82px;
-
+  min-height: 80px;
   padding: 0 6%;
 
   background: #800020;
@@ -21,24 +23,23 @@
   align-items: center;
   justify-content: space-between;
 
-  border-bottom: 3px solid #5c0017;
+  border-bottom: 3px solid #c9a227;
 
   position: relative;
   z-index: 1000;
 }
 
 
-/* TRUEQUE LOGO / NAME */
+/* TRUEQUE NAME */
 
 .logo {
+  color: #ffffff;
   font-family: "Playfair Display", serif;
 
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
 
   letter-spacing: 3px;
-
-  color: #ffffff;
 
   text-decoration: none;
 
@@ -46,11 +47,11 @@
 }
 
 .logo:hover {
-  color: #fff5e1;
+  color: #c9a227;
 }
 
 
-/* NAVIGATION */
+/* HEADER NAVIGATION */
 
 .nav-links {
   display: flex;
@@ -74,15 +75,14 @@
 }
 
 .nav-links a:hover {
-  color: #fff5e1;
+  color: #c9a227;
 }
 
 
-/* SIGN UP BUTTON */
+/* SIGN UP */
 
 .nav-links .nav-button {
-  background: #fff5e1;
-
+  background: #c9a227;
   color: #800020;
 
   padding: 11px 22px;
@@ -93,56 +93,88 @@
 }
 
 .nav-links .nav-button:hover {
-  background: #ffffff;
+  background: #fff5e1;
   color: #800020;
 }
 
 
 /* =====================================================
-   COMMON PAGE
+   ALL PAGES
 ===================================================== */
 
-.auth-page {
-  min-height: calc(100vh - 82px);
-
+.auth-page,
+.dashboard-page,
+.profile-page,
+.matching-page,
+.quiz-page,
+.session-page {
   width: 100%;
-
-  padding: 70px 6%;
+  min-height: calc(100vh - 80px);
 
   background: #fff5e1;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  color: #3b1118;
 }
 
 
 /* =====================================================
-   LOGIN / REGISTER CONTAINER
+   LOGIN / REGISTER PAGE
 ===================================================== */
+
+.auth-page {
+  padding: 60px 20px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+/* FORM BOX */
 
 .auth-container {
   width: 100%;
-  max-width: 700px;
+  max-width: 650px;
 
-  background: #ffffff;
+  background: #fff5e1;
 
-  padding: 45px 50px;
+  padding: 40px;
 
-  border-radius: 15px;
+  border: 2px solid #c9a227;
+  border-radius: 14px;
 
-  border: 2px solid #e7c9b0;
-
-  box-shadow: 0 10px 30px rgba(128, 0, 32, 0.12);
+  box-shadow: 0 10px 30px rgba(128, 0, 32, 0.15);
 
   text-align: center;
 }
 
 
-/* SMALL TITLE */
+/* =====================================================
+   LOGIN / REGISTER LOGO
+===================================================== */
+
+.auth-logo {
+  display: block;
+
+  width: 80px !important;
+  height: 80px !important;
+
+  max-width: 80px !important;
+  max-height: 80px !important;
+
+  object-fit: contain;
+
+  margin: 0 auto 18px;
+
+  border-radius: 10px;
+}
+
+
+/* =====================================================
+   AUTH TITLES
+===================================================== */
 
 .section-label {
-  color: #800020;
+  color: #c9a227;
 
   font-size: 14px;
   font-weight: 700;
@@ -151,24 +183,20 @@
 
   text-transform: uppercase;
 
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 
-/* MAIN TITLE */
-
 .auth-container h1 {
-  color: #800020;
+  color: #c9a227;
 
   font-family: "Playfair Display", serif;
 
   font-size: 42px;
 
-  margin-bottom: 15px;
+  margin: 0 0 12px;
 }
 
-
-/* DESCRIPTION */
 
 .auth-description {
   color: #3b1118;
@@ -191,13 +219,11 @@
   display: flex;
   flex-direction: column;
 
-  gap: 18px;
+  gap: 17px;
 
   text-align: left;
 }
 
-
-/* FORM GROUP */
 
 .form-group {
   width: 100%;
@@ -205,11 +231,9 @@
   display: flex;
   flex-direction: column;
 
-  gap: 8px;
+  gap: 7px;
 }
 
-
-/* LABEL */
 
 .form-group label {
   color: #800020;
@@ -220,38 +244,30 @@
 }
 
 
-/* INPUT */
-
 .form-group input,
 .form-group select {
   width: 100%;
 
-  padding: 14px 16px;
+  padding: 14px 15px;
 
-  background: #fff5e1;
+  background: #ffffff;
 
   color: #3b1118;
 
-  border: 1px solid #d8bca0;
+  border: 1px solid #c9a227;
 
   border-radius: 7px;
 
   font-size: 15px;
 
   outline: none;
-
-  transition: 0.3s ease;
 }
 
-
-/* PLACEHOLDER */
 
 .form-group input::placeholder {
-  color: #8a6a6f;
+  color: #8b7373;
 }
 
-
-/* INPUT FOCUS */
 
 .form-group input:focus,
 .form-group select:focus {
@@ -261,15 +277,8 @@
 }
 
 
-/* SELECT */
-
-.form-group select {
-  cursor: pointer;
-}
-
-
 /* =====================================================
-   BUTTONS
+   BUTTON
 ===================================================== */
 
 .auth-button {
@@ -281,7 +290,7 @@
 
   color: #ffffff;
 
-  border: none;
+  border: 2px solid #800020;
 
   border-radius: 7px;
 
@@ -289,45 +298,21 @@
 
   font-weight: 700;
 
+  cursor: pointer;
+
   transition: 0.3s ease;
 }
 
 .auth-button:hover {
-  background: #5c0017;
+  background: #c9a227;
 
-  transform: translateY(-2px);
+  color: #800020;
+
+  border-color: #c9a227;
 }
 
 
-.primary-button {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 14px 30px;
-
-  background: #800020;
-
-  color: #ffffff;
-
-  border-radius: 7px;
-
-  font-weight: 700;
-
-  text-decoration: none;
-
-  transition: 0.3s ease;
-}
-
-.primary-button:hover {
-  background: #5c0017;
-
-  color: #ffffff;
-
-  transform: translateY(-2px);
-}
-
+/* SECONDARY BUTTON */
 
 .secondary-button {
   display: inline-flex;
@@ -335,7 +320,7 @@
   align-items: center;
   justify-content: center;
 
-  padding: 14px 30px;
+  padding: 14px 25px;
 
   background: transparent;
 
@@ -349,7 +334,7 @@
 
   text-decoration: none;
 
-  transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .secondary-button:hover {
@@ -360,19 +345,17 @@
 
 
 /* =====================================================
-   AUTH FOOTER
+   AUTH FOOTER TEXT
 ===================================================== */
 
 .auth-footer {
-  width: 100%;
-
   text-align: center;
 
   color: #3b1118;
 
   font-size: 14px;
 
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 
@@ -383,28 +366,28 @@
 
   color: #800020;
 
-  font-weight: 700;
-
   font-size: 14px;
+
+  font-weight: 700;
 
   cursor: pointer;
 }
 
 .text-button:hover {
+  color: #c9a227;
+
   text-decoration: underline;
 }
 
 
 /* =====================================================
-   REGISTER PAGE
+   REGISTER PAGE INDICATOR
 ===================================================== */
 
 .register-page-indicator {
-  width: 100%;
-
   text-align: center;
 
-  color: #800020;
+  color: #c9a227;
 
   font-weight: 700;
 
@@ -413,8 +396,6 @@
 
 
 .register-navigation {
-  width: 100%;
-
   display: flex;
 
   align-items: center;
@@ -432,143 +413,51 @@
 
 
 /* =====================================================
-   DASHBOARD
+   OTHER PAGE TEXT
 ===================================================== */
-
-.dashboard-page {
-  min-height: 100vh;
-
-  padding: 70px 6%;
-
-  background: #fff5e1;
-
-  color: #3b1118;
-}
 
 .dashboard-page h1,
 .dashboard-page h2,
-.dashboard-page h3 {
-  color: #800020;
-
-  font-family: "Playfair Display", serif;
-}
-
-.dashboard-card {
-  background: #ffffff;
-
-  border: 1px solid #e7c9b0;
-
-  border-radius: 12px;
-
-  padding: 30px;
-
-  color: #3b1118;
-
-  box-shadow: 0 8px 20px rgba(128, 0, 32, 0.08);
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.profile-page {
-  min-height: 100vh;
-
-  padding: 70px 6%;
-
-  background: #fff5e1;
-
-  color: #3b1118;
-}
+.dashboard-page h3,
 
 .profile-page h1,
 .profile-page h2,
-.profile-page h3 {
-  color: #800020;
+.profile-page h3,
+
+.matching-page h1,
+.matching-page h2,
+.matching-page h3,
+
+.quiz-page h1,
+.quiz-page h2,
+.quiz-page h3,
+
+.session-page h1,
+.session-page h2,
+.session-page h3 {
+  color: #c9a227;
 
   font-family: "Playfair Display", serif;
 }
 
 
 /* =====================================================
-   MATCHING / SKILLS
+   CARDS
 ===================================================== */
 
-.matching-page {
-  min-height: 100vh;
-
-  padding: 70px 6%;
-
-  background: #fff5e1;
-
-  color: #3b1118;
-}
-
-.matching-page h1,
-.matching-page h2,
-.matching-page h3 {
-  color: #800020;
-
-  font-family: "Playfair Display", serif;
-}
-
+.dashboard-card,
 .skill-card {
   background: #ffffff;
 
   color: #3b1118;
 
-  border: 1px solid #e7c9b0;
+  border: 1px solid #c9a227;
 
   border-radius: 12px;
 
   padding: 25px;
-}
 
-
-/* =====================================================
-   QUIZ
-===================================================== */
-
-.quiz-page {
-  min-height: 100vh;
-
-  padding: 70px 6%;
-
-  background: #fff5e1;
-
-  color: #3b1118;
-}
-
-.quiz-page h1,
-.quiz-page h2,
-.quiz-page h3 {
-  color: #800020;
-
-  font-family: "Playfair Display", serif;
-}
-
-
-/* =====================================================
-   SESSION
-===================================================== */
-
-.session-page {
-  min-height: 100vh;
-
-  padding: 70px 6%;
-
-  background: #fff5e1;
-
-  color: #3b1118;
-}
-
-.session-page h1,
-.session-page h2,
-.session-page h3 {
-  color: #800020;
-
-  font-family: "Playfair Display", serif;
+  box-shadow: 0 6px 18px rgba(128, 0, 32, 0.08);
 }
 
 
@@ -576,7 +465,8 @@
    RESPONSIVE
 ===================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
+
   .site-header {
     padding: 18px 5%;
 
@@ -592,34 +482,28 @@
 
     flex-wrap: wrap;
 
-    gap: 16px;
+    gap: 14px;
   }
 
   .auth-container {
-    padding: 35px 25px;
+    padding: 30px 22px;
   }
 }
 
 
 @media (max-width: 600px) {
-  .auth-page {
-    padding: 40px 5%;
-  }
 
-  .auth-container {
-    padding: 30px 20px;
+  .auth-page {
+    padding: 35px 15px;
   }
 
   .auth-container h1 {
     font-size: 32px;
   }
 
-  .nav-links {
-    gap: 12px;
-  }
-
-  .nav-links a {
-    font-size: 13px;
+  .auth-logo {
+    width: 70px !important;
+    height: 70px !important;
   }
 
   .register-navigation {

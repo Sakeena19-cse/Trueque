@@ -36,9 +36,8 @@ function Login() {
   return (
     <div className="auth-page">
       <div className="auth-container">
-
-        {/* TRUEQUE LOGO */}
-        <img
+      
+      <img
           src={logo}
           alt="TRUEQUE Logo"
           className="auth-logo"

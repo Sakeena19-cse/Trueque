@@ -51,7 +51,6 @@ function Register() {
     <div className="auth-page">
       <div className="auth-container">
 
-        {/* TRUEQUE LOGO */}
         <img
           src={logo}
           alt="TRUEQUE Logo"
