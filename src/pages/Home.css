@@ -1,105 +1,112 @@
-/* =========================================
+/* =====================================================
    TRUEQUE HOME PAGE
-   CREAM + BURGUNDY + DARK BROWN
-========================================= */
+   BURGUNDY + CREAM + GOLD
+===================================================== */
 
 .home-page {
   width: 100%;
   background: #FFF5E1;
-  color: #3B0A0A;
+  color: #3B1118;
 }
 
 
-/* =========================================
+/* =====================================================
    HERO SECTION
-========================================= */
+===================================================== */
 
 .hero-section {
   width: 100%;
-  min-height: 620px;
+  min-height: 650px;
+
+  background: #FFF5E1;
 
   display: flex;
   align-items: center;
-  justify-content: center;
 
-  text-align: center;
-
-  padding: 80px 6%;
-
-  background: #FFF5E1;
-  color: #3B0A0A;
+  padding: 70px 6%;
 }
 
-.hero-content {
+
+.hero-container {
   width: 100%;
-  max-width: 900px;
+  max-width: 1250px;
 
   margin: 0 auto;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
 
-  text-align: center;
+  align-items: center;
+
+  gap: 45px;
 }
+
+
+/* LEFT CONTENT */
+
+.hero-content {
+  text-align: left;
+}
+
 
 .hero-label {
-  color: #3B0A0A;
+  color: #C9A227;
 
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 800;
 
   letter-spacing: 3px;
-  text-transform: uppercase;
 
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
+
 .hero-section h1 {
-  color: #3B0A0A;
+  color: #800020;
 
   font-family: "Playfair Display", serif;
 
-  font-size: clamp(45px, 7vw, 78px);
-  line-height: 1.1;
+  font-size: clamp(45px, 5vw, 70px);
+
+  line-height: 1.08;
 
   margin: 0 0 25px;
-
-  text-align: center;
 }
 
+
 .hero-section h1 span {
+  color: #C9A227;
+}
+
+
+.hero-section h1 strong {
   color: #800020;
 }
 
+
 .hero-description {
-  max-width: 700px;
+  max-width: 570px;
 
-  margin: 0 auto 35px;
-
-  color: #5A3A32;
+  color: #3B1118;
 
   font-size: 18px;
+
   line-height: 1.8;
 
-  text-align: center;
+  margin-bottom: 32px;
 }
 
 
-/* =========================================
-   HERO BUTTONS
-========================================= */
+/* BUTTONS */
 
 .hero-buttons {
-  width: 100%;
-
   display: flex;
-  align-items: center;
-  justify-content: center;
 
-  gap: 18px;
+  align-items: center;
+
+  gap: 16px;
 }
+
 
 .primary-button,
 .secondary-button {
@@ -108,9 +115,13 @@
   align-items: center;
   justify-content: center;
 
-  padding: 14px 30px;
+  min-width: 145px;
 
-  border-radius: 6px;
+  padding: 14px 28px;
+
+  border-radius: 7px;
+
+  font-size: 15px;
 
   font-weight: 700;
 
@@ -119,27 +130,35 @@
   transition: 0.3s ease;
 }
 
+
 .primary-button {
   background: #800020;
+
   color: #FFF5E1;
 
   border: 2px solid #800020;
 }
 
+
 .primary-button:hover {
-  background: #650018;
-  border-color: #650018;
+  background: #C9A227;
+
+  border-color: #C9A227;
+
+  color: #3B1118;
 
   transform: translateY(-2px);
 }
 
+
 .secondary-button {
   background: transparent;
 
-  color: #3B0A0A;
+  color: #800020;
 
   border: 2px solid #800020;
 }
+
 
 .secondary-button:hover {
   background: #800020;
@@ -148,42 +167,68 @@
 }
 
 
-/* =========================================
-   COMMON SECTION HEADING
-========================================= */
+/* =====================================================
+   HERO IMAGE
+===================================================== */
 
-.section-heading {
+.hero-image-container {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+
+.hero-image {
+  width: 100%;
+
+  max-width: 650px;
+
+  height: auto;
+
+  object-fit: contain;
+
+  display: block;
+
+  border-radius: 20px;
+}
+
+
+/* =====================================================
+   WHY TRUEQUE
+===================================================== */
+
+.why-section {
+  width: 100%;
+
+  padding: 90px 6%;
+
+  background: #FFF5E1;
+
   text-align: center;
 
-  margin-bottom: 55px;
+  border-top: 1px solid rgba(128, 0, 32, 0.15);
 }
 
-.section-heading h2 {
-  color: #3B0A0A;
 
-  font-family: "Playfair Display", serif;
+.section-heading {
+  max-width: 750px;
 
-  font-size: 42px;
+  margin: 0 auto 50px;
 
-  font-weight: 700;
-
-  margin-bottom: 12px;
+  text-align: center;
 }
 
-.section-heading p {
-  color: #5A3A32;
-
-  font-size: 17px;
-
-  line-height: 1.6;
-}
 
 .section-label {
-  color: #800020;
+  color: #C9A227;
 
   font-size: 14px;
 
-  font-weight: 700;
+  font-weight: 800;
 
   letter-spacing: 3px;
 
@@ -191,23 +236,31 @@
 }
 
 
-/* =========================================
-   HOW TRUEQUE WORKS
-========================================= */
+.section-heading h2 {
+  color: #800020;
 
-.how-section {
-  width: 100%;
+  font-family: "Playfair Display", serif;
 
-  padding: 80px 6%;
+  font-size: clamp(32px, 4vw, 48px);
 
-  background: #FFF5E1;
-
-  color: #3B0A0A;
-
-  text-align: center;
+  margin-bottom: 15px;
 }
 
-.steps-container {
+
+.section-heading > p:last-child {
+  color: #3B1118;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+
+/* WHY CARDS */
+
+.why-container {
+  width: 100%;
+
   max-width: 1100px;
 
   margin: 0 auto;
@@ -216,45 +269,133 @@
 
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 30px;
+  gap: 25px;
 }
 
 
-/* =========================================
-   STEP CARD
-========================================= */
+.why-card {
+  background: #FFF5E1;
 
-.step-card {
-  background: #FFFFFF;
+  padding: 40px 28px;
 
-  padding: 35px 25px;
+  border: 1px solid #D8C4A4;
 
   border-radius: 12px;
 
-  border: 1px solid #D8BFA3;
-
-  text-align: center;
-
-  color: #3B0A0A;
+  box-shadow: 0 8px 25px rgba(59, 17, 24, 0.08);
 
   transition: 0.3s ease;
 }
 
-.step-card:hover {
-  transform: translateY(-5px);
 
-  border-color: #800020;
+.why-card:hover {
+  transform: translateY(-6px);
 
-  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.12);
+  border-color: #C9A227;
+
+  box-shadow: 0 12px 30px rgba(59, 17, 24, 0.14);
 }
 
 
-/* =========================================
-   STEP NUMBER
-========================================= */
+.why-icon {
+  font-size: 42px;
+
+  margin-bottom: 18px;
+}
+
+
+.why-card h3 {
+  color: #800020;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 25px;
+
+  margin-bottom: 12px;
+}
+
+
+.why-card p {
+  color: #3B1118;
+
+  line-height: 1.7;
+
+  font-size: 15px;
+}
+
+
+/* =====================================================
+   HOW TRUEQUE WORKS
+===================================================== */
+
+.how-section {
+  width: 100%;
+
+  padding: 90px 6%;
+
+  background: #800020;
+
+  color: #FFF5E1;
+
+  text-align: center;
+}
+
+
+.how-section .section-label {
+  color: #C9A227;
+}
+
+
+.how-section .section-heading h2 {
+  color: #FFF5E1;
+}
+
+
+.how-section .section-heading > p:last-child {
+  color: #FFF5E1;
+}
+
+
+.steps-container {
+  width: 100%;
+
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+
+.step-card {
+  background: #FFF5E1;
+
+  color: #3B1118;
+
+  padding: 38px 28px;
+
+  border-radius: 12px;
+
+  border: 2px solid transparent;
+
+  transition: 0.3s ease;
+}
+
+
+.step-card:hover {
+  border-color: #C9A227;
+
+  transform: translateY(-5px);
+}
+
 
 .step-number {
   width: 55px;
+
   height: 55px;
 
   margin: 0 auto 20px;
@@ -262,29 +403,34 @@
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   border-radius: 50%;
 
-  background: #800020;
+  background: #C9A227;
 
-  color: #FFF5E1;
+  color: #800020;
 
-  font-size: 18px;
+  font-weight: 800;
 
-  font-weight: 700;
+  font-size: 17px;
 }
 
-.step-card h3 {
-  color: #3B0A0A;
 
-  font-size: 22px;
+.step-card h3 {
+  color: #800020;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 23px;
 
   margin-bottom: 12px;
 }
 
+
 .step-card p {
-  color: #5A3A32;
+  color: #3B1118;
 
   font-size: 15px;
 
@@ -292,23 +438,24 @@
 }
 
 
-/* =========================================
-   SKILLS SECTION
-========================================= */
+/* =====================================================
+   SKILLS
+===================================================== */
 
 .skills-section {
   width: 100%;
 
-  padding: 80px 6%;
+  padding: 90px 6%;
 
   background: #FFF5E1;
-
-  color: #3B0A0A;
 
   text-align: center;
 }
 
+
 .skills-grid {
+  width: 100%;
+
   max-width: 1100px;
 
   margin: 0 auto;
@@ -317,148 +464,198 @@
 
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 30px;
+  gap: 22px;
 }
 
 
-/* =========================================
-   SKILL CARD
-========================================= */
-
 .skill-card {
-  background: #FFFFFF;
+  background: #FFF5E1;
 
   padding: 30px;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
-  border: 1px solid #D8BFA3;
+  border: 1px solid #D8C4A4;
 
-  text-align: center;
-
-  color: #3B0A0A;
+  text-align: left;
 
   transition: 0.3s ease;
 }
 
+
 .skill-card:hover {
-  transform: translateY(-5px);
+  border-color: #C9A227;
 
-  border-color: #800020;
+  transform: translateY(-4px);
 
-  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.12);
+  box-shadow: 0 8px 20px rgba(59, 17, 24, 0.1);
 }
 
+
 .skill-card h3 {
-  color: #3B0A0A;
+  color: #800020;
+
+  font-family: "Playfair Display", serif;
 
   font-size: 21px;
 
   margin-bottom: 10px;
 }
 
-.skill-card p {
-  color: #5A3A32;
 
-  font-size: 15px;
+.skill-card p {
+  color: #3B1118;
+
+  font-size: 14px;
 
   line-height: 1.6;
 }
 
 
-/* =========================================
-   CTA SECTION
-========================================= */
+/* =====================================================
+   CALL TO ACTION
+===================================================== */
 
 .cta-section {
   width: 100%;
 
-  padding: 80px 6%;
+  padding: 90px 6%;
+
+  background: #C9A227;
+
+  color: #800020;
+
+  text-align: center;
+}
+
+
+.cta-content {
+  max-width: 750px;
+
+  margin: 0 auto;
+}
+
+
+.cta-section .section-label {
+  color: #800020;
+}
+
+
+.cta-section h2 {
+  color: #800020;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(35px, 5vw, 52px);
+
+  margin-bottom: 18px;
+}
+
+
+.cta-section p {
+  color: #3B1118;
+
+  line-height: 1.7;
+
+  margin-bottom: 28px;
+}
+
+
+.cta-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 14px 32px;
 
   background: #800020;
 
   color: #FFF5E1;
 
-  text-align: center;
-}
+  border-radius: 7px;
 
-.cta-section .section-label {
-  color: #FFF5E1;
-}
+  font-weight: 700;
 
-.cta-section h2 {
-  color: #FFF5E1;
+  text-decoration: none;
 
-  font-family: "Playfair Display", serif;
-
-  font-size: 42px;
-
-  margin-bottom: 20px;
-}
-
-.cta-section p {
-  max-width: 650px;
-
-  margin: 0 auto 30px;
-
-  color: #FFF5E1;
-
-  line-height: 1.7;
-}
-
-.cta-section .primary-button {
-  background: #FFF5E1;
-
-  color: #3B0A0A;
-
-  border: 2px solid #FFF5E1;
-}
-
-.cta-section .primary-button:hover {
-  background: #E8D7BD;
-
-  color: #3B0A0A;
-
-  border-color: #E8D7BD;
+  transition: 0.3s ease;
 }
 
 
-/* =========================================
-   RESPONSIVE DESIGN
-========================================= */
+.cta-button:hover {
+  background: #3B1118;
+
+  transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 900px) {
 
-  .steps-container,
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-container {
+    grid-template-columns: 1fr;
+
+    text-align: center;
   }
 
-  .hero-section h1 {
-    font-size: 55px;
+
+  .hero-content {
+    text-align: center;
   }
+
+
+  .hero-description {
+    margin-left: auto;
+
+    margin-right: auto;
+  }
+
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+
+  .hero-image {
+    max-width: 550px;
+  }
+
+
+  .why-container,
+  .steps-container,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 
   .hero-section {
-    min-height: 550px;
-
-    padding: 60px 5%;
+    padding: 55px 5%;
   }
+
 
   .hero-section h1 {
-    font-size: 45px;
+    font-size: 43px;
   }
+
 
   .hero-description {
     font-size: 16px;
   }
 
+
   .hero-buttons {
     flex-direction: column;
   }
+
 
   .primary-button,
   .secondary-button {
@@ -467,13 +664,12 @@
     max-width: 280px;
   }
 
-  .steps-container,
-  .skills-grid {
-    grid-template-columns: 1fr;
+
+  .why-section,
+  .how-section,
+  .skills-section,
+  .cta-section {
+    padding: 65px 5%;
   }
 
-  .section-heading h2,
-  .cta-section h2 {
-    font-size: 32px;
-  }
 }
