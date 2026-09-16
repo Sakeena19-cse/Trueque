@@ -2,14 +2,14 @@
 
 :root {
   --burgundy: #800020;
-  --burgundy-dark: #5E0018;
-  --burgundy-light: #A52A46;
+  --burgundy-dark: #5c0017;
+  --burgundy-light: #a52a45;
 
-  --cream: #FFF5E1;
-  --cream-dark: #F5E6C8;
+  --cream: #fff5e1;
+  --cream-dark: #f3e2c3;
 
-  --white: #FFFFFF;
-  --black: #241414;
+  --text-dark: #3b1118;
+  --white: #ffffff;
 
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
@@ -35,7 +35,7 @@ body,
 body {
   margin: 0;
   background: var(--cream);
-  color: var(--burgundy);
+  color: var(--text-dark);
   font-family: var(--font-body);
 }
 
