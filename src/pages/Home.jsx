@@ -1,30 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-
 import homeImage from "../assets/trueque-hero.png";
 
 function Home() {
   return (
     <div className="home-page">
 
-      {/* ================= HERO SECTION ================= */}
+      {/* HERO SECTION */}
       <section className="hero-section">
 
-        <div className="hero-container">
+        <div className="hero-content">
 
-          {/* LEFT SIDE */}
-          <div className="hero-content">
+          <p className="hero-label">
+            WELCOME TO TRUEQUE
+          </p>
 
-            <p className="hero-label">
-              WELCOME TO TRUEQUE
-            </p>
+          {/* IMAGE IN MIDDLE */}
+          <div className="hero-image-container">
+            <img
+              src={homeImage}
+              alt="TRUEQUE Skill Exchange"
+              className="hero-image"
+            />
+          </div>
+
+          {/* CONTENT BELOW IMAGE */}
+          <div className="hero-text">
 
             <h1>
-              Learn.
-              <span> Teach.</span>
+              "Ctrl+Z your confusion"
               <br />
-              <strong>Grow Together.</strong>
+              <span>"Ctrl+Shift+skills"</span>
             </h1>
 
             <p className="hero-description">
@@ -53,23 +60,12 @@ function Home() {
 
           </div>
 
-          {/* RIGHT SIDE IMAGE */}
-          <div className="hero-image-container">
-
-            <img
-              src={homeImage}
-              alt="TRUEQUE skill exchange"
-              className="hero-image"
-            />
-
-          </div>
-
         </div>
 
       </section>
 
 
-      {/* ================= WHY TRUEQUE ================= */}
+      {/* WHY TRUEQUE */}
       <section className="why-section">
 
         <div className="section-heading">
@@ -83,66 +79,39 @@ function Home() {
           </h2>
 
           <p>
-            TRUEQUE makes skill sharing simple,
-            meaningful and accessible.
+            One platform to share knowledge and develop
+            valuable skills together.
           </p>
 
         </div>
 
-
-        <div className="why-container">
+        <div className="why-grid">
 
           <div className="why-card">
-
-            <div className="why-icon">
-              📚
-            </div>
-
-            <h3>
-              Learn
-            </h3>
-
+            <div className="why-icon">📚</div>
+            <h3>Learn</h3>
             <p>
-              Discover new skills and learn
-              from people with real knowledge.
+              Learn new skills from people who have
+              experience and knowledge.
             </p>
-
           </div>
 
-
           <div className="why-card">
-
-            <div className="why-icon">
-              🎓
-            </div>
-
-            <h3>
-              Teach
-            </h3>
-
+            <div className="why-icon">🎓</div>
+            <h3>Teach</h3>
             <p>
-              Share your knowledge and help
-              others develop their skills.
+              Share your knowledge and help others
+              improve their skills.
             </p>
-
           </div>
 
-
           <div className="why-card">
-
-            <div className="why-icon">
-              🔄
-            </div>
-
-            <h3>
-              Exchange
-            </h3>
-
+            <div className="why-icon">🔄</div>
+            <h3>Exchange</h3>
             <p>
-              Connect with compatible people
-              and exchange valuable skills.
+              Exchange skills and create meaningful
+              learning connections.
             </p>
-
           </div>
 
         </div>
@@ -150,7 +119,7 @@ function Home() {
       </section>
 
 
-      {/* ================= HOW TRUEQUE WORKS ================= */}
+      {/* HOW TRUEQUE WORKS */}
       <section className="how-section">
 
         <div className="section-heading">
@@ -164,12 +133,10 @@ function Home() {
           </h2>
 
           <p>
-            Start your skill exchange in three
-            simple steps.
+            Start your skill exchange in three simple steps.
           </p>
 
         </div>
-
 
         <div className="steps-container">
 
@@ -180,12 +147,12 @@ function Home() {
             </div>
 
             <h3>
-              Choose Skills
+              Choose Your Skills
             </h3>
 
             <p>
-              Select the skills you want to
-              learn or teach.
+              Select the skills you want to learn
+              or teach.
             </p>
 
           </div>
@@ -202,8 +169,8 @@ function Home() {
             </h3>
 
             <p>
-              Discover people whose skills
-              match your interests.
+              Find people whose skills match
+              your learning goals.
             </p>
 
           </div>
@@ -220,8 +187,8 @@ function Home() {
             </h3>
 
             <p>
-              Connect, exchange knowledge
-              and grow together.
+              Connect, exchange knowledge and
+              grow together.
             </p>
 
           </div>
@@ -231,7 +198,7 @@ function Home() {
       </section>
 
 
-      {/* ================= EXPLORE SKILLS ================= */}
+      {/* SKILLS */}
       <section className="skills-section">
 
         <div className="section-heading">
@@ -241,16 +208,10 @@ function Home() {
           </p>
 
           <h2>
-            Discover New Skills
+            Skills You Can Exchange
           </h2>
 
-          <p>
-            Explore different areas of knowledge
-            available through TRUEQUE.
-          </p>
-
         </div>
-
 
         <div className="skills-grid">
 
@@ -271,7 +232,7 @@ function Home() {
 
           <div className="skill-card">
             <h3>Photography</h3>
-            <p>Learn creative photography.</p>
+            <p>Improve your photography skills.</p>
           </div>
 
           <div className="skill-card">
@@ -289,32 +250,28 @@ function Home() {
       </section>
 
 
-      {/* ================= CTA ================= */}
+      {/* CTA */}
       <section className="cta-section">
 
-        <div className="cta-content">
+        <p className="section-label">
+          START YOUR JOURNEY
+        </p>
 
-          <p className="section-label">
-            START YOUR JOURNEY
-          </p>
+        <h2>
+          Your Skills Have Value.
+        </h2>
 
-          <h2>
-            Your Skills Have Value.
-          </h2>
+        <p>
+          Join TRUEQUE and start exchanging
+          knowledge with others.
+        </p>
 
-          <p>
-            Join TRUEQUE and start exchanging
-            knowledge with others.
-          </p>
-
-          <Link
-            to="/register"
-            className="cta-button"
-          >
-            Join TRUEQUE
-          </Link>
-
-        </div>
+        <Link
+          to="/register"
+          className="primary-button"
+        >
+          Join TRUEQUE
+        </Link>
 
       </section>
 
