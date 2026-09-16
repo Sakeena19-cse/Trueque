@@ -1,28 +1,24 @@
-/* ========================================
+/* =========================================
    TRUEQUE HOME PAGE
-   BURGUNDY + CREAM
-======================================== */
+   BURGUNDY + CREAM THEME
+========================================= */
 
 .home-page {
   width: 100%;
-
-  background: var(--cream);
-
-  color: var(--burgundy);
+  background: #fff5e1;
+  color: #800020;
 }
 
 
-/* ========================================
+/* =========================================
    HERO SECTION
-======================================== */
+========================================= */
 
 .hero-section {
   width: 100%;
-
   min-height: 620px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -30,48 +26,44 @@
 
   padding: 80px 6%;
 
-  background: var(--cream);
+  /* Light cream instead of bright golden */
+  background: #fff5e1;
+
+  color: #800020;
 }
 
 .hero-content {
   width: 100%;
-
   max-width: 900px;
 
   margin: 0 auto;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
 
   text-align: center;
 }
 
 .hero-label {
-  color: var(--burgundy);
+  color: #800020;
 
   font-size: 15px;
-
   font-weight: 700;
 
   letter-spacing: 3px;
-
   text-transform: uppercase;
 
   margin-bottom: 20px;
 }
 
 .hero-section h1 {
-  color: var(--burgundy);
+  color: #800020;
 
-  font-family: var(--font-heading);
+  font-family: "Playfair Display", serif;
 
   font-size: clamp(45px, 7vw, 78px);
-
   line-height: 1.1;
 
   margin: 0 0 25px;
@@ -80,7 +72,7 @@
 }
 
 .hero-section h1 span {
-  color: var(--burgundy-dark);
+  color: #800020;
 }
 
 .hero-description {
@@ -88,25 +80,23 @@
 
   margin: 0 auto 35px;
 
-  color: #6B4A4A;
+  color: #4a2c2c;
 
   font-size: 18px;
-
   line-height: 1.8;
 
   text-align: center;
 }
 
 
-/* ========================================
+/* =========================================
    HERO BUTTONS
-======================================== */
+========================================= */
 
 .hero-buttons {
   width: 100%;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -116,13 +106,12 @@
 .primary-button,
 .secondary-button {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
   padding: 14px 30px;
 
-  border-radius: 7px;
+  border-radius: 6px;
 
   font-weight: 700;
 
@@ -132,72 +121,86 @@
 }
 
 .primary-button {
-  background: var(--burgundy);
+  background: #800020;
+  color: #fff5e1;
 
-  color: var(--white);
+  border: 2px solid #800020;
 }
 
 .primary-button:hover {
-  background: var(--burgundy-dark);
+  background: #5f0018;
+  border-color: #5f0018;
 
   transform: translateY(-2px);
 }
 
 .secondary-button {
   background: transparent;
+  color: #800020;
 
-  color: var(--burgundy);
-
-  border: 2px solid var(--burgundy);
+  border: 2px solid #800020;
 }
 
 .secondary-button:hover {
-  background: var(--burgundy);
-
-  color: var(--white);
+  background: #800020;
+  color: #fff5e1;
 }
 
 
-/* ========================================
-   HOW IT WORKS
-======================================== */
+/* =========================================
+   COMMON SECTION HEADING
+========================================= */
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.section-heading h2 {
+  color: #800020;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 42px;
+  font-weight: 700;
+
+  margin-bottom: 12px;
+}
+
+.section-heading p {
+  color: #4a2c2c;
+
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.section-label {
+  color: #800020;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 12px;
+}
+
+
+/* =========================================
+   HOW TRUEQUE WORKS SECTION
+========================================= */
 
 .how-section {
   width: 100%;
 
   padding: 80px 6%;
 
-  background: var(--cream-dark);
+  background: #fff5e1;
+
+  color: #800020;
 
   text-align: center;
 }
-
-.section-heading {
-  color: var(--burgundy);
-
-  margin-bottom: 45px;
-}
-
-.section-heading h2 {
-  font-family: var(--font-heading);
-
-  font-size: 40px;
-
-  color: var(--burgundy);
-
-  margin-bottom: 12px;
-}
-
-.section-heading p {
-  color: #6B4A4A;
-
-  line-height: 1.7;
-}
-
-
-/* ========================================
-   STEPS
-======================================== */
 
 .steps-container {
   max-width: 1100px;
@@ -208,26 +211,46 @@
 
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 25px;
+  gap: 30px;
 }
 
+
+/* =========================================
+   STEP CARD
+========================================= */
+
 .step-card {
-  background: var(--white);
+  background: #ffffff;
 
   padding: 35px 25px;
 
   border-radius: 12px;
 
-  border: 1px solid rgba(128, 0, 32, 0.15);
+  border: 1px solid #e0c9aa;
 
   text-align: center;
 
-  box-shadow: 0 8px 20px rgba(128, 0, 32, 0.06);
+  color: #800020;
+
+  transition: 0.3s ease;
 }
 
+.step-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #800020;
+
+  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.12);
+}
+
+
+/* =========================================
+   STEP NUMBER
+========================================= */
+
 .step-number {
-  width: 52px;
-  height: 52px;
+  width: 55px;
+  height: 55px;
 
   margin: 0 auto 20px;
 
@@ -238,36 +261,44 @@
 
   border-radius: 50%;
 
-  background: var(--burgundy);
+  background: #800020;
 
-  color: var(--white);
+  color: #fff5e1;
+
+  font-size: 18px;
 
   font-weight: 700;
 }
 
 .step-card h3 {
-  color: var(--burgundy);
+  color: #800020;
 
-  margin-bottom: 10px;
+  font-size: 22px;
+
+  margin-bottom: 12px;
 }
 
 .step-card p {
-  color: #6B4A4A;
+  color: #4a2c2c;
 
-  line-height: 1.6;
+  font-size: 15px;
+
+  line-height: 1.7;
 }
 
 
-/* ========================================
-   SKILLS
-======================================== */
+/* =========================================
+   WHY TRUEQUE / SKILLS SECTION
+========================================= */
 
 .skills-section {
   width: 100%;
 
   padding: 80px 6%;
 
-  background: var(--cream);
+  background: #fff5e1;
+
+  color: #800020;
 
   text-align: center;
 }
@@ -281,64 +312,83 @@
 
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 25px;
+  gap: 30px;
 }
 
+
+/* =========================================
+   SKILL CARD
+========================================= */
+
 .skill-card {
-  background: var(--white);
+  background: #ffffff;
 
   padding: 30px;
 
   border-radius: 12px;
 
-  border: 1px solid rgba(128, 0, 32, 0.15);
-
-  box-shadow: 0 8px 20px rgba(128, 0, 32, 0.06);
+  border: 1px solid #e0c9aa;
 
   text-align: center;
+
+  color: #800020;
+
+  transition: 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #800020;
+
+  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.12);
 }
 
 .skill-card h3 {
-  color: var(--burgundy);
+  color: #800020;
+
+  font-size: 21px;
 
   margin-bottom: 10px;
 }
 
 .skill-card p {
-  color: #6B4A4A;
+  color: #4a2c2c;
+
+  font-size: 15px;
 
   line-height: 1.6;
 }
 
 
-/* ========================================
-   CTA
-======================================== */
+/* =========================================
+   CTA SECTION
+========================================= */
 
 .cta-section {
   width: 100%;
 
   padding: 80px 6%;
 
-  background: var(--burgundy);
+  background: #800020;
 
-  color: var(--white);
+  color: #fff5e1;
 
   text-align: center;
 }
 
 .cta-section .section-label {
-  color: var(--cream);
+  color: #fff5e1;
 }
 
 .cta-section h2 {
-  font-family: var(--font-heading);
+  color: #fff5e1;
 
-  font-size: 40px;
+  font-family: "Playfair Display", serif;
+
+  font-size: 42px;
 
   margin-bottom: 20px;
-
-  color: var(--white);
 }
 
 .cta-section p {
@@ -346,29 +396,47 @@
 
   margin: 0 auto 30px;
 
-  line-height: 1.7;
+  color: #fff5e1;
 
-  color: var(--cream);
+  line-height: 1.7;
 }
 
 .cta-section .primary-button {
-  background: var(--cream);
+  background: #fff5e1;
 
-  color: var(--burgundy);
+  color: #800020;
+
+  border: 2px solid #fff5e1;
 }
 
 .cta-section .primary-button:hover {
-  background: var(--white);
+  background: #e8d7bd;
 
-  color: var(--burgundy-dark);
+  color: #800020;
+
+  border-color: #e8d7bd;
 }
 
 
-/* ========================================
-   MOBILE
-======================================== */
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+
+  .steps-container,
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-section h1 {
+    font-size: 55px;
+  }
+}
+
 
 @media (max-width: 768px) {
+
   .hero-section {
     min-height: 550px;
 
