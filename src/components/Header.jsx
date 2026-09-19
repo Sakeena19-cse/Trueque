@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import truequeAiLogo from "../assets/trueque-ai-icon.jpg";
+import logo from "../assets/logo.png";
 
 export default function Header() {
   return (
@@ -8,9 +8,9 @@ export default function Header() {
       <Link to="/" className="logo-area">
 
         <img
-          src={truequeAiLogo}
-          alt="TRUEQUE AI"
-          className="header-ai-logo"
+          src={logo}
+          alt="TRUEQUE"
+          className="header-logo"
         />
 
         <span className="logo-text">
