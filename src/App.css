@@ -3899,3 +3899,39 @@ p {
   }
 
 }
+/* =========================================
+   TRUEQUE HEADER LOGO
+========================================= */
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.header-ai-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  border: 1px solid #fff5e1;
+}
+
+.logo-text {
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.logo-area:hover .logo-text {
+  color: #d4a72c;
+}
+
+.logo-area:hover .header-ai-logo {
+  border-color: #d4a72c;
+}

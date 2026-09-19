@@ -1,11 +1,22 @@
 import { Link } from "react-router-dom";
+import truequeAiLogo from "../assets/trueque-ai-icon.jpg";
 
 export default function Header() {
   return (
     <header className="site-header">
 
-      <Link to="/" className="logo">
-        TRUEQUE
+      <Link to="/" className="logo-area">
+
+        <img
+          src={truequeAiLogo}
+          alt="TRUEQUE AI"
+          className="header-ai-logo"
+        />
+
+        <span className="logo-text">
+          TRUEQUE
+        </span>
+
       </Link>
 
       <nav className="nav-links">
