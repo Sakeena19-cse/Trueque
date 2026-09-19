@@ -135,8 +135,13 @@ function Session() {
                   Session is Active
                 </div>
               )}
-
-              <button
+              <Link
+                 to="/whiteboard"
+                 className="session-whiteboard-button"
+>
+                 Open Whiteboard →
+         </Link>
+          <button
                 type="button"
                 className="session-outline-button"
               >
