@@ -18,9 +18,9 @@ function Home() {
     </p>
 
     <h1>
-      "Ctrl+Z yourconfusion"
+      "Ctrl+Z yourconfusion
       <br />
-      <span>"Ctrl+Shift+skills"</span>
+      <span>Ctrl+Shift+skills"</span>
     </h1>
 
     <p className="hero-description">
