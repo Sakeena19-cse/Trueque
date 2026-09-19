@@ -1,35 +1,57 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import Matching from "./pages/Matching";
-import Profile from "./pages/Profile";
-
-function App() {
+function Header() {
   return (
-    <BrowserRouter>
-      <Header />
+    <header className="site-header">
 
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/matching" element={<Matching />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </main>
+      {/* TRUEQUE Logo */}
+      <Link to="/" className="logo">
+        TRUEQUE
+      </Link>
 
-      <Footer />
-    </BrowserRouter>
+      {/* Navigation */}
+      <nav className="nav-links">
+
+        <Link to="/">
+          Home
+        </Link>
+
+        <Link to="/dashboard">
+          Dashboard
+        </Link>
+
+        <Link to="/matching">
+          Skills
+        </Link>
+
+        <Link to="/profile">
+          Profile
+        </Link>
+
+        <Link to="/quiz">
+          Quiz
+        </Link>
+
+        <Link to="/session">
+          Session
+        </Link>
+
+        <Link to="/login">
+          Login
+        </Link>
+
+        <Link
+          to="/register"
+          className="nav-button"
+        >
+          Sign Up
+        </Link>
+
+      </nav>
+
+    </header>
   );
 }
 
-export default App;
+export default Header;
