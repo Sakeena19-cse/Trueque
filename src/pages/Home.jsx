@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
-import homeImage from "../assets/trueque-hero.png";
-
+import homeImage from "../assets/trueque-home.png";
 
 function Home() {
   return (
@@ -12,45 +11,56 @@ function Home() {
       {/* ================= HERO ================= */}
       <section className="hero-section">
 
-        <div className="hero-content">
+  <div className="hero-content">
 
-          <p className="hero-label">
-            SKILL EXCHANGE PLATFORM
-          </p>
+    <p className="hero-label">
+      SKILL EXCHANGE PLATFORM
+    </p>
 
-          <h1>
-            "Ctrl+Z your confusion"
-            <br />
-            <span>"Ctrl+Shift+skills"</span>
-          </h1>
+    <h1>
+      "Ctrl+Z yourconfusion"
+      <br />
+      <span>"Ctrl+Shift+skills"</span>
+    </h1>
 
-          <p className="hero-description">
-            Exchange your skills, share your knowledge,
-            and connect with people who want to learn
-            and grow together.
-          </p>
+    <p className="hero-description">
+      Exchange your skills, share your knowledge,
+      and connect with people who want to learn
+      and grow together.
+    </p>
 
-          <div className="hero-buttons">
-            <Link to="/register" className="primary-button">
-              Get Started →
-            </Link>
+    <div className="hero-buttons">
 
-            <Link to="/login" className="secondary-button">
-              Login
-            </Link>
-          </div>
+      <Link
+        to="/register"
+        className="primary-button"
+      >
+        Get Started →
+      </Link>
 
-        </div>
+      <Link
+        to="/login"
+        className="secondary-button"
+      >
+        Login
+      </Link>
 
-        <div className="hero-image-container">
-          <img
-            src={homeImage}
-            alt="TRUEQUE skill exchange"
-            className="hero-image"
-          />
-        </div>
+    </div>
 
-      </section>
+  </div>
+
+
+  <div className="hero-image-container">
+
+    <img
+      src={homeImage}
+      alt="Students exchanging skills"
+      className="hero-image"
+    />
+
+  </div>
+
+</section>
 
 
       {/* ================= WHY TRUEQUE ================= */}
