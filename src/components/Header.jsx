@@ -1,21 +1,16 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
-function Header() {
+export default function Header() {
   return (
     <header className="site-header">
 
-      {/* TRUEQUE Logo */}
       <Link to="/" className="logo">
         TRUEQUE
       </Link>
 
-      {/* Navigation */}
       <nav className="nav-links">
 
-        <Link to="/">
-          Home
-        </Link>
+        <Link to="/">Home</Link>
 
         <Link to="/dashboard">
           Dashboard
@@ -53,5 +48,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

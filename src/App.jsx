@@ -1,57 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function Header() {
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import Matching from "./pages/Matching";
+import Quiz from "./pages/Quiz";
+import Session from "./pages/Session";
+
+function App() {
   return (
-    <header className="site-header">
+    <BrowserRouter>
+      <div className="app-shell">
 
-      {/* TRUEQUE Logo */}
-      <Link to="/" className="logo">
-        TRUEQUE
-      </Link>
+        <Header />
 
-      {/* Navigation */}
-      <nav className="nav-links">
+        <main>
+          <Routes>
 
-        <Link to="/">
-          Home
-        </Link>
+            <Route path="/" element={<Home />} />
 
-        <Link to="/dashboard">
-          Dashboard
-        </Link>
+            <Route path="/login" element={<Login />} />
 
-        <Link to="/matching">
-          Skills
-        </Link>
+            <Route path="/register" element={<Register />} />
 
-        <Link to="/profile">
-          Profile
-        </Link>
+            <Route path="/dashboard" element={<Dashboard />} />
 
-        <Link to="/quiz">
-          Quiz
-        </Link>
+            <Route path="/matching" element={<Matching />} />
 
-        <Link to="/session">
-          Session
-        </Link>
+            <Route path="/profile" element={<Profile />} />
 
-        <Link to="/login">
-          Login
-        </Link>
+            <Route path="/quiz" element={<Quiz />} />
 
-        <Link
-          to="/register"
-          className="nav-button"
-        >
-          Sign Up
-        </Link>
+            <Route path="/session" element={<Session />} />
 
-      </nav>
+          </Routes>
+        </main>
 
-    </header>
+        <Footer />
+
+      </div>
+    </BrowserRouter>
   );
 }
 
-export default Header;
+export default App;
