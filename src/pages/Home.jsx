@@ -2,12 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
-import homeImage from "../assets/trueque-home.png";
-<img
-  src={homeImage}
-  alt="TRUEQUE skill exchange"
-  className="hero-image"
-/>
+import homeImage from "../assets/trueque-hero.png";
+
 
 function Home() {
   return (
