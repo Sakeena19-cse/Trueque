@@ -1,91 +1,238 @@
-import { useState } from 'react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function Session() {
-  const [messages, setMessages] = useState([
-    { from: 'them', who: 'Karthik', text: 'Hi Priya! Looking forward to our session.' },
-    { from: 'me', who: 'You', text: 'Hi Karthik! Same here. See you soon 🙂' },
-  ]);
-  const [draft, setDraft] = useState('');
-
-  function sendMessage(e) {
-    e.preventDefault();
-    if (!draft.trim()) return;
-    setMessages([...messages, { from: 'me', who: 'You', text: draft }]);
-    setDraft('');
-  }
+function Session() {
+  const [sessionStarted, setSessionStarted] = useState(false);
 
   return (
-    <div className="container" style={{ padding: '40px 24px' }}>
-      <p style={{ color: 'var(--tan-soft)', fontSize: '0.85rem', marginBottom: '20px' }}>
-        Dashboard / Sessions / Session Details
-      </p>
+    <div className="session-page">
 
-      <div className="grid-2">
-        <div className="card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-            <h2 style={{ fontSize: '1.3rem' }}>UI/UX Design Basics</h2>
-            <span style={{
-              background: 'var(--gold)', color: 'var(--oxford-blue)',
-              fontSize: '0.78rem', fontWeight: 700, padding: '3px 12px', borderRadius: '20px',
-            }}>
-              Upcoming
-            </span>
-          </div>
-          <p style={{ color: 'var(--tan-soft)', fontSize: '0.9rem', marginBottom: '14px' }}>with Karthik S.</p>
-          <p style={{ fontSize: '0.88rem', marginBottom: '20px' }}>📅 June 5, 2026 · 4:00 PM</p>
+      <section className="session-hero">
+        <div className="session-hero-content">
 
-          <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-            <button className="btn btn-primary">Join Session</button>
-            <button className="btn btn-outline">Reschedule</button>
-          </div>
-
-          <p style={{ fontWeight: 700, color: 'var(--gold)', fontSize: '0.9rem', marginBottom: '6px' }}>
-            About the Session
+          <p className="section-label">
+            TRUEQUE LEARNING SESSION
           </p>
-          <p style={{ color: 'var(--tan-soft)', fontSize: '0.9rem' }}>
-            Learn the fundamentals of UI/UX design, including wireframing, user research, and prototyping.
+
+          <h1>
+            Learn Together.
+            <br />
+            <span>Grow Together.</span>
+          </h1>
+
+          <p>
+            Connect with your skill partner and
+            exchange knowledge through a structured
+            TRUEQUE learning session.
           </p>
+
         </div>
+      </section>
 
-        <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '440px' }}>
-          <h3 style={{ marginBottom: '14px' }}>Chat</h3>
-          <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '14px' }}>
-            {messages.map((m, i) => (
-              <div
-                key={i}
-                style={{
-                  alignSelf: m.from === 'me' ? 'flex-end' : 'flex-start',
-                  maxWidth: '80%',
-                  background: m.from === 'me' ? 'var(--oxford-blue)' : 'var(--dark-blue)',
-                  color: 'var(--tan)',
-                  border: m.from === 'me' ? '1px solid var(--gold)' : 'none',
-                  padding: '10px 14px',
-                  borderRadius: '12px',
-                  fontSize: '0.88rem',
-                }}
-              >
-                <div style={{ fontWeight: 700, fontSize: '0.78rem', marginBottom: '2px', color: 'var(--gold)' }}>
-                  {m.who}
-                </div>
-                {m.text}
+      <section className="session-section">
+
+        <div className="session-layout">
+
+          {/* MAIN SESSION CARD */}
+
+          <div className="session-main-card">
+
+            <div className="session-header">
+
+              <div>
+                <p className="section-label">
+                  UPCOMING SESSION
+                </p>
+
+                <h2>
+                  Web Development
+                </h2>
               </div>
-            ))}
+
+              <span className="session-status">
+                Scheduled
+              </span>
+
+            </div>
+
+            <div className="session-partner">
+
+              <div className="session-avatar">
+                A
+              </div>
+
+              <div>
+                <p className="partner-label">
+                  YOUR SKILL PARTNER
+                </p>
+
+                <h3>
+                  Alex Kumar
+                </h3>
+
+                <p>
+                  Web Development Mentor
+                </p>
+              </div>
+
+            </div>
+
+            <div className="session-details">
+
+              <div className="session-detail">
+                <span>DATE</span>
+                <strong>20 September 2026</strong>
+              </div>
+
+              <div className="session-detail">
+                <span>TIME</span>
+                <strong>10:00 AM – 11:00 AM</strong>
+              </div>
+
+              <div className="session-detail">
+                <span>SESSION TYPE</span>
+                <strong>Skill Exchange</strong>
+              </div>
+
+              <div className="session-detail">
+                <span>DURATION</span>
+                <strong>60 Minutes</strong>
+              </div>
+
+            </div>
+
+            <div className="session-topic">
+
+              <p className="section-label">
+                SESSION TOPIC
+              </p>
+
+              <h3>
+                Introduction to Frontend Development
+              </h3>
+
+              <p>
+                Learn the fundamentals of building
+                modern websites and discuss practical
+                frontend development concepts.
+              </p>
+
+            </div>
+
+            <div className="session-actions">
+
+              {!sessionStarted ? (
+                <button
+                  type="button"
+                  className="session-start-button"
+                  onClick={() => setSessionStarted(true)}
+                >
+                  Start Session →
+                </button>
+              ) : (
+                <div className="session-active">
+                  <span className="live-dot"></span>
+                  Session is Active
+                </div>
+              )}
+
+              <button
+                type="button"
+                className="session-outline-button"
+              >
+                View Session Details
+              </button>
+
+            </div>
+
           </div>
-          <form onSubmit={sendMessage} style={{ display: 'flex', gap: '10px' }}>
-            <input
-              type="text"
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-              placeholder="Type a message..."
-              style={{
-                flex: 1, padding: '10px 14px', borderRadius: '10px',
-                border: '1.5px solid rgba(210,180,140,0.3)', background: 'var(--dark-blue)', color: 'var(--tan)',
-              }}
-            />
-            <button type="submit" className="btn btn-primary btn-sm">Send</button>
-          </form>
+
+          {/* SIDEBAR */}
+
+          <aside className="session-sidebar">
+
+            <div className="session-side-card">
+
+              <p className="section-label">
+                SESSION GUIDE
+              </p>
+
+              <h2>
+                How It Works
+              </h2>
+
+              <div className="session-step">
+
+                <span>01</span>
+
+                <div>
+                  <h3>Connect</h3>
+                  <p>
+                    Meet your skill exchange partner.
+                  </p>
+                </div>
+
+              </div>
+
+              <div className="session-step">
+
+                <span>02</span>
+
+                <div>
+                  <h3>Learn & Teach</h3>
+                  <p>
+                    Share knowledge and practice
+                    together.
+                  </p>
+                </div>
+
+              </div>
+
+              <div className="session-step">
+
+                <span>03</span>
+
+                <div>
+                  <h3>Review</h3>
+                  <p>
+                    Give feedback after completing
+                    the session.
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div className="session-side-card session-review-card">
+
+              <div className="review-icon">
+                ★
+              </div>
+
+              <h3>
+                After Your Session
+              </h3>
+
+              <p>
+                Complete a quick review and share
+                your experience with your partner.
+              </p>
+
+              <Link to="/profile">
+                View Profile →
+              </Link>
+
+            </div>
+
+          </aside>
+
         </div>
-      </div>
+
+      </section>
+
     </div>
   );
 }
+
+export default Session;

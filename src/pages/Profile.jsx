@@ -1,572 +1,316 @@
-import React from 'react';
+import React, { useState } from "react";
 
-export default function Profile() {
+function Profile() {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [profile, setProfile] = useState({
+    firstName: "Priya",
+    lastName: "Dharshini",
+    email: "priya@example.com",
+    mobile: "9876543210",
+    qualification: "Computer Science Engineering",
+    location: "Tamil Nadu",
+    username: "priya",
+  });
+
+  const handleChange = (e) => {
+    setProfile({
+      ...profile,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
-    <div
-      className="container"
-      style={{
-        padding: '40px 24px',
-      }}
-    >
+    <div className="profile-page">
 
-      {/* ================= PAGE TITLE ================= */}
+      {/* ================= PROFILE HERO ================= */}
 
-      <div style={{ marginBottom: '30px' }}>
-        <h1
-          style={{
-            marginBottom: '8px',
-            color: '#ffffff',
-          }}
-        >
-          My Profile
-        </h1>
+      <section className="profile-hero">
 
-        <p
-          style={{
-            color: '#ffffff',
-            fontSize: '0.95rem',
-            fontWeight: 500,
-            margin: 0,
-          }}
-        >
-          Manage your profile and skills
-        </p>
-      </div>
+        <div className="profile-hero-content">
+
+          <p className="section-label">
+            TRUEQUE PROFILE
+          </p>
+
+          <h1>
+            My Profile
+          </h1>
+
+          <p>
+            Manage your personal information and
+            showcase the skills you can share with
+            the TRUEQUE community.
+          </p>
+
+        </div>
+
+      </section>
 
 
-      {/* ================= PROFILE CARD ================= */}
+      {/* ================= PROFILE CONTENT ================= */}
 
-      <div
-        style={{
-          background:
-            'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
+      <section className="profile-content">
 
-          border: '1px solid rgba(255,255,255,0.30)',
+        {/* Profile Card */}
 
-          borderRadius: '14px',
+        <div className="profile-main-card">
 
-          padding: '28px',
+          <div className="profile-card-header">
 
-          boxShadow: '0 8px 20px rgba(0,0,0,0.12)',
+            <div className="profile-avatar">
+              {profile.firstName.charAt(0)}
+            </div>
 
-          marginBottom: '30px',
+            <div>
 
-          color: '#ffffff',
-        }}
-      >
+              <h2>
+                {profile.firstName} {profile.lastName}
+              </h2>
 
-        {/* PROFILE TOP */}
+              <p>
+                @{profile.username}
+              </p>
 
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '20px',
-            marginBottom: '28px',
-          }}
-        >
+            </div>
 
-          {/* AVATAR */}
+            <div className="profile-status">
+              Verified
+            </div>
 
-          <div
-            style={{
-              width: '76px',
-              height: '76px',
-              minWidth: '76px',
-
-              borderRadius: '50%',
-
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-
-              background: 'var(--oxford-blue)',
-
-              border: '2px solid rgba(255,255,255,0.7)',
-
-              color: 'var(--gold)',
-
-              fontFamily: 'var(--font-heading)',
-
-              fontSize: '1.2rem',
-
-              fontWeight: 700,
-            }}
-          >
-            ST
           </div>
 
 
-          {/* STUDENT NAME */}
+          {/* Personal Information */}
 
-          <div>
-            <h2
-              style={{
-                margin: '0 0 6px',
-                color: '#ffffff',
-                fontFamily: 'var(--font-heading)',
-              }}
-            >
-              Student Name
+          <div className="profile-section">
+
+            <div className="profile-section-title">
+
+              <div>
+                <p className="section-label">
+                  PERSONAL INFORMATION
+                </p>
+
+                <h2>
+                  Your Details
+                </h2>
+              </div>
+
+              <button
+                type="button"
+                className="profile-edit-button"
+                onClick={() => setIsEditing(!isEditing)}
+              >
+                {isEditing ? "Cancel" : "Edit Profile"}
+              </button>
+
+            </div>
+
+
+            <div className="profile-form-grid">
+
+              <div className="profile-field">
+                <label>First Name</label>
+
+                <input
+                  type="text"
+                  name="firstName"
+                  value={profile.firstName}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+
+              <div className="profile-field">
+                <label>Last Name</label>
+
+                <input
+                  type="text"
+                  name="lastName"
+                  value={profile.lastName}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+
+              <div className="profile-field">
+                <label>Email ID</label>
+
+                <input
+                  type="email"
+                  name="email"
+                  value={profile.email}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+
+              <div className="profile-field">
+                <label>Mobile No</label>
+
+                <input
+                  type="tel"
+                  name="mobile"
+                  value={profile.mobile}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+
+              <div className="profile-field">
+                <label>Qualification</label>
+
+                <input
+                  type="text"
+                  name="qualification"
+                  value={profile.qualification}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+
+              <div className="profile-field">
+                <label>Location</label>
+
+                <input
+                  type="text"
+                  name="location"
+                  value={profile.location}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+
+              <div className="profile-field">
+                <label>Username</label>
+
+                <input
+                  type="text"
+                  name="username"
+                  value={profile.username}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+              </div>
+
+            </div>
+
+
+            {isEditing && (
+              <button
+                type="button"
+                className="profile-save-button"
+                onClick={() => setIsEditing(false)}
+              >
+                Save Changes
+              </button>
+            )}
+
+          </div>
+
+        </div>
+
+
+        {/* ================= SKILLS SIDEBAR ================= */}
+
+        <aside className="profile-sidebar">
+
+          <div className="profile-side-card">
+
+            <p className="section-label">
+              MY SKILLS
+            </p>
+
+            <h2>
+              Skills & Verification
             </h2>
 
-            <p
-              style={{
-                margin: 0,
-                color: '#ffffff',
-                fontSize: '0.85rem',
-              }}
-            >
-              📍 Your Location
+            <p>
+              Manage the skills you want to learn
+              and teach through TRUEQUE.
             </p>
-          </div>
-
-        </div>
 
 
-        {/* ================= PROFILE DETAILS ================= */}
+            <div className="profile-skill-item">
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns:
-              'repeat(2, minmax(0, 1fr))',
-            gap: '18px',
-          }}
-        >
+              <span className="profile-skill-icon">
+                &lt;/&gt;
+              </span>
 
-          {/* EMAIL */}
+              <div>
+                <h3>Programming</h3>
+                <span>Verified Skill</span>
+              </div>
 
-          <div>
-            <label
-              style={{
-                display: 'block',
-                color: 'var(--gold)',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                marginBottom: '7px',
-              }}
-            >
-              EMAIL
-            </label>
-
-            <input
-              type="email"
-              placeholder="Enter your email"
-              style={{
-                width: '100%',
-                padding: '12px 14px',
-                borderRadius: '8px',
-                border:
-                  '1px solid rgba(255,255,255,0.35)',
-                background:
-                  'rgba(13,27,42,0.25)',
-                color: '#ffffff',
-                outline: 'none',
-                boxSizing: 'border-box',
-                fontSize: '0.88rem',
-              }}
-            />
-          </div>
+            </div>
 
 
-          {/* PHONE */}
+            <div className="profile-skill-item">
 
-          <div>
-            <label
-              style={{
-                display: 'block',
-                color: 'var(--gold)',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                marginBottom: '7px',
-              }}
-            >
-              PHONE
-            </label>
+              <span className="profile-skill-icon">
+                📷
+              </span>
 
-            <input
-              type="tel"
-              placeholder="Enter your phone number"
-              style={{
-                width: '100%',
-                padding: '12px 14px',
-                borderRadius: '8px',
-                border:
-                  '1px solid rgba(255,255,255,0.35)',
-                background:
-                  'rgba(13,27,42,0.25)',
-                color: '#ffffff',
-                outline: 'none',
-                boxSizing: 'border-box',
-                fontSize: '0.88rem',
-              }}
-            />
-          </div>
+              <div>
+                <h3>Photography</h3>
+                <span>Verified Skill</span>
+              </div>
+
+            </div>
 
 
-          {/* QUALIFICATION */}
+            <div className="profile-skill-item">
 
-          <div>
-            <label
-              style={{
-                display: 'block',
-                color: 'var(--gold)',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                marginBottom: '7px',
-              }}
-            >
-              QUALIFICATION
-            </label>
+              <span className="profile-skill-icon">
+                ✎
+              </span>
 
-            <input
-              type="text"
-              placeholder="Enter your qualification"
-              style={{
-                width: '100%',
-                padding: '12px 14px',
-                borderRadius: '8px',
-                border:
-                  '1px solid rgba(255,255,255,0.35)',
-                background:
-                  'rgba(13,27,42,0.25)',
-                color: '#ffffff',
-                outline: 'none',
-                boxSizing: 'border-box',
-                fontSize: '0.88rem',
-              }}
-            />
-          </div>
+              <div>
+                <h3>UI/UX Design</h3>
+                <span>Learning</span>
+              </div>
 
-
-          {/* LOCATION */}
-
-          <div>
-            <label
-              style={{
-                display: 'block',
-                color: 'var(--gold)',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                marginBottom: '7px',
-              }}
-            >
-              LOCATION
-            </label>
-
-            <input
-              type="text"
-              placeholder="Enter your location"
-              style={{
-                width: '100%',
-                padding: '12px 14px',
-                borderRadius: '8px',
-                border:
-                  '1px solid rgba(255,255,255,0.35)',
-                background:
-                  'rgba(13,27,42,0.25)',
-                color: '#ffffff',
-                outline: 'none',
-                boxSizing: 'border-box',
-                fontSize: '0.88rem',
-              }}
-            />
-          </div>
-
-        </div>
-
-
-        {/* EDIT / SAVE BUTTON */}
-
-        <button
-          className="btn btn-primary"
-          style={{
-            marginTop: '24px',
-          }}
-        >
-          Save Profile
-        </button>
-
-      </div>
-
-
-      {/* ================= MY SKILLS ================= */}
-
-      <div>
-
-        <h3
-          style={{
-            marginBottom: '16px',
-            color: '#ffffff',
-            fontFamily: 'var(--font-heading)',
-          }}
-        >
-          My Skills
-        </h3>
-
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns:
-              'repeat(3, minmax(0, 1fr))',
-            gap: '18px',
-          }}
-        >
-
-          {/* SKILL 1 */}
-
-          <div
-            style={{
-              minHeight: '150px',
-
-              padding: '20px',
-
-              borderRadius: '12px',
-
-              background:
-                'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
-
-              border:
-                '1px solid rgba(255,255,255,0.30)',
-
-              boxShadow:
-                '0 8px 20px rgba(0,0,0,0.12)',
-
-              color: '#ffffff',
-
-              boxSizing: 'border-box',
-            }}
-          >
-
-            <h4
-              style={{
-                margin: '0 0 12px',
-                color: 'var(--gold)',
-                fontFamily: 'var(--font-heading)',
-                fontSize: '1rem',
-              }}
-            >
-              Skill 1
-            </h4>
-
-            <input
-              type="text"
-              placeholder="Enter skill"
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                borderRadius: '8px',
-                border:
-                  '1px solid rgba(255,255,255,0.35)',
-                background:
-                  'rgba(13,27,42,0.25)',
-                color: '#ffffff',
-                outline: 'none',
-                boxSizing: 'border-box',
-                marginBottom: '12px',
-              }}
-            />
-
-            <span
-              style={{
-                display: 'inline-block',
-                padding: '5px 12px',
-                borderRadius: '20px',
-                background: '#ffffff',
-                color: 'var(--oxford-blue)',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-              }}
-            >
-              Select Level
-            </span>
+            </div>
 
           </div>
 
 
-          {/* SKILL 2 */}
+          {/* Verification */}
 
-          <div
-            style={{
-              minHeight: '150px',
+          <div className="profile-verification-card">
 
-              padding: '20px',
+            <div className="verification-icon">
+              ✓
+            </div>
 
-              borderRadius: '12px',
+            <h3>
+              Skill Verification
+            </h3>
 
-              background:
-                'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
+            <p>
+              Complete quizzes to verify your
+              skills and earn verification badges.
+            </p>
 
-              border:
-                '1px solid rgba(255,255,255,0.30)',
-
-              boxShadow:
-                '0 8px 20px rgba(0,0,0,0.12)',
-
-              color: '#ffffff',
-
-              boxSizing: 'border-box',
-            }}
-          >
-
-            <h4
-              style={{
-                margin: '0 0 12px',
-                color: 'var(--gold)',
-                fontFamily: 'var(--font-heading)',
-                fontSize: '1rem',
-              }}
-            >
-              Skill 2
-            </h4>
-
-            <input
-              type="text"
-              placeholder="Enter skill"
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                borderRadius: '8px',
-                border:
-                  '1px solid rgba(255,255,255,0.35)',
-                background:
-                  'rgba(13,27,42,0.25)',
-                color: '#ffffff',
-                outline: 'none',
-                boxSizing: 'border-box',
-                marginBottom: '12px',
-              }}
-            />
-
-            <span
-              style={{
-                display: 'inline-block',
-                padding: '5px 12px',
-                borderRadius: '20px',
-                background: '#ffffff',
-                color: 'var(--oxford-blue)',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-              }}
-            >
-              Select Level
-            </span>
+            <a href="/quiz">
+              Take a Quiz →
+            </a>
 
           </div>
 
+        </aside>
 
-          {/* SKILL 3 */}
-
-          <div
-            style={{
-              minHeight: '150px',
-
-              padding: '20px',
-
-              borderRadius: '12px',
-
-              background:
-                'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
-
-              border:
-                '1px solid rgba(255,255,255,0.30)',
-
-              boxShadow:
-                '0 8px 20px rgba(0,0,0,0.12)',
-
-              color: '#ffffff',
-
-              boxSizing: 'border-box',
-            }}
-          >
-
-            <h4
-              style={{
-                margin: '0 0 12px',
-                color: 'var(--gold)',
-                fontFamily: 'var(--font-heading)',
-                fontSize: '1rem',
-              }}
-            >
-              Skill 3
-            </h4>
-
-            <input
-              type="text"
-              placeholder="Enter skill"
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                borderRadius: '8px',
-                border:
-                  '1px solid rgba(255,255,255,0.35)',
-                background:
-                  'rgba(13,27,42,0.25)',
-                color: '#ffffff',
-                outline: 'none',
-                boxSizing: 'border-box',
-                marginBottom: '12px',
-              }}
-            />
-
-            <span
-              style={{
-                display: 'inline-block',
-                padding: '5px 12px',
-                borderRadius: '20px',
-                background: '#ffffff',
-                color: 'var(--oxford-blue)',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-              }}
-            >
-              Select Level
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* ================= RESPONSIVE ================= */}
-
-      <style>
-        {`
-          @media (max-width: 800px) {
-
-            .container > div:nth-child(2) > div:nth-child(2) {
-              grid-template-columns: 1fr !important;
-            }
-
-            .container > div:nth-child(3) > div {
-              grid-template-columns: 1fr !important;
-            }
-
-          }
-
-          @media (max-width: 600px) {
-
-            .container {
-              padding: 30px 16px !important;
-            }
-
-          }
-
-          input::placeholder {
-            color: rgba(255,255,255,0.75);
-          }
-
-          input:focus {
-            border-color: var(--gold) !important;
-            box-shadow: 0 0 0 2px rgba(201,162,39,0.15);
-          }
-        `}
-      </style>
+      </section>
 
     </div>
   );
 }
+
+export default Profile;

@@ -1,554 +1,213 @@
-const popularSkills = [
-  {
-    name: 'Photoshop',
-    tag: 'Design',
-    level: 'Beginner',
-    learners: 12,
-  },
-  {
-    name: 'Python Programming',
-    tag: 'Development',
-    level: 'Intermediate',
-    learners: 18,
-  },
-  {
-    name: 'Content Writing',
-    tag: 'Writing',
-    level: 'Beginner',
-    learners: 9,
-  },
-  {
-    name: 'Public Speaking',
-    tag: 'Communication',
-    level: 'All Levels',
-    learners: 7,
-  },
-];
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const matches = [
-  {
-    initials: 'PM',
-    name: 'Priya M.',
-    loc: 'Chennai, India',
-    wants: 'UI/UX Design',
-    offers: 'Content Writing',
-  },
-  {
-    initials: 'KS',
-    name: 'Karthik S.',
-    loc: 'Bangalore, India',
-    wants: 'Web Development',
-    offers: 'Python Programming',
-  },
-  {
-    initials: 'AR',
-    name: 'Ananya R.',
-    loc: 'Chennai, India',
-    wants: 'Basic Spanish',
-    offers: 'Graphic Design',
-  },
-];
+function Matching() {
+  const [search, setSearch] = useState("");
 
-export default function Matching() {
+  const skills = [
+    {
+      name: "Programming",
+      icon: "</>",
+      description: "Learn coding, programming languages and software development.",
+    },
+    {
+      name: "Web Development",
+      icon: "◎",
+      description: "Build websites and learn modern web technologies.",
+    },
+    {
+      name: "UI/UX Design",
+      icon: "✎",
+      description: "Learn user interface and user experience design.",
+    },
+    {
+      name: "Photography",
+      icon: "📷",
+      description: "Improve photography and creative visual skills.",
+    },
+    {
+      name: "Communication",
+      icon: "💬",
+      description: "Develop communication and presentation skills.",
+    },
+    {
+      name: "Digital Marketing",
+      icon: "📈",
+      description: "Learn social media, branding and digital marketing.",
+    },
+  ];
+
+  const filteredSkills = skills.filter((skill) =>
+    skill.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div
-      className="container"
-      style={{
-        padding: '40px 24px',
-      }}
-    >
+    <div className="skills-page">
 
-      {/* ================= SEARCH SKILLS ================= */}
+      {/* ================= HERO ================= */}
 
-      <div style={{ marginBottom: '38px' }}>
+      <section className="skills-hero">
 
-        <h1
-          style={{
-            marginBottom: '8px',
-            color: '#ffffff',
-          }}
-        >
-          Search Skills
-        </h1>
+        <div className="skills-hero-content">
 
-        <p
-          style={{
-            color: '#ffffff',
-            marginBottom: '24px',
-            fontSize: '0.95rem',
-            fontWeight: 500,
-          }}
-        >
-          Find people to swap skills with
-        </p>
+          <p className="section-label">
+            TRUEQUE SKILLS
+          </p>
 
-        {/* Search */}
+          <h1>
+            Explore Skills.
+            <br />
+            <span>Find Your Match.</span>
+          </h1>
 
-        <div
-          style={{
-            display: 'flex',
-            gap: '12px',
-            width: '100%',
-            alignItems: 'center',
-          }}
-        >
-
-          <input
-            type="text"
-            placeholder="Search for skills, e.g. 'Photoshop', 'Python'..."
-            style={{
-              flex: 1,
-              minWidth: 0,
-              height: '48px',
-              padding: '0 16px',
-
-              borderRadius: '10px',
-
-              border:
-                '1px solid rgba(255,255,255,0.35)',
-
-              background:
-                'rgba(13,27,42,0.65)',
-
-              color: '#ffffff',
-
-              fontSize: '0.9rem',
-
-              outline: 'none',
-
-              boxSizing: 'border-box',
-            }}
-          />
-
-          <button
-            className="btn btn-primary"
-            style={{
-              height: '48px',
-              padding: '0 24px',
-              flexShrink: 0,
-            }}
-          >
-            Search
-          </button>
+          <p>
+            Discover skills you want to learn, find people
+            who can teach them, and share the knowledge
+            you already have.
+          </p>
 
         </div>
 
-      </div>
+      </section>
 
 
-      {/* ================= POPULAR SKILLS ================= */}
+      {/* ================= SEARCH ================= */}
 
-      <section style={{ marginBottom: '40px' }}>
+      <section className="skills-search-section">
 
-        <h3
-          style={{
-            marginBottom: '16px',
-            color: '#ffffff',
-            fontFamily: 'var(--font-heading)',
-          }}
-        >
-          Popular Skills
-        </h3>
+        <div className="skills-search-container">
+
+          <p className="section-label">
+            FIND A SKILL
+          </p>
+
+          <h2>
+            What would you like to learn?
+          </h2>
+
+          <div className="skill-search-box">
+
+            <input
+              type="text"
+              placeholder="Search for a skill..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            <button type="button">
+              Search
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
 
 
-        <div className="grid-4">
+      {/* ================= SKILLS ================= */}
 
-          {popularSkills.map((skill) => (
+      <section className="explore-skills-section">
 
-            <div
-              key={skill.name}
-              style={{
-                minHeight: '145px',
-                padding: '20px',
+        <div className="explore-heading">
 
-                /* SAME BLUE STYLE AS MATCHING BOXES */
+          <div>
+            <p className="section-label">
+              POPULAR SKILLS
+            </p>
 
-                background:
-                  'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
+            <h2>
+              Explore Skills
+            </h2>
+          </div>
 
-                border:
-                  '1px solid rgba(255,255,255,0.30)',
+          <p>
+            Choose a skill and start your learning journey.
+          </p>
 
-                borderRadius: '12px',
+        </div>
 
-                boxShadow:
-                  '0 8px 20px rgba(0,0,0,0.12)',
 
-                color: '#ffffff',
+        <div className="professional-skills-grid">
 
-                boxSizing: 'border-box',
-              }}
-            >
-
-              <h4
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1rem',
-                  marginBottom: '7px',
-                  color: 'var(--gold)',
-                }}
+          {filteredSkills.length > 0 ? (
+            filteredSkills.map((skill) => (
+              <div
+                className="professional-skill-card"
+                key={skill.name}
               >
-                {skill.name}
-              </h4>
 
+                <div className="professional-skill-icon">
+                  {skill.icon}
+                </div>
 
-              <span
-                style={{
-                  display: 'block',
-                  fontSize: '0.8rem',
-                  color: '#ffffff',
-                  marginBottom: '8px',
-                }}
-              >
-                {skill.tag}
-              </span>
+                <div className="professional-skill-content">
 
+                  <h3>
+                    {skill.name}
+                  </h3>
 
-              <span
-                style={{
-                  display: 'inline-block',
+                  <p>
+                    {skill.description}
+                  </p>
 
-                  fontSize: '0.72rem',
+                  <Link
+                    to="/quiz"
+                    className="skill-card-button"
+                  >
+                    Verify & Learn →
+                  </Link>
 
-                  fontWeight: 700,
+                </div>
 
-                  color: 'var(--oxford-blue)',
-
-                  background: '#ffffff',
-
-                  padding: '4px 11px',
-
-                  borderRadius: '20px',
-
-                  marginBottom: '8px',
-                }}
-              >
-                {skill.level}
-              </span>
-
-
-              <p
-                style={{
-                  fontSize: '0.78rem',
-                  color: '#ffffff',
-                  margin: 0,
-                }}
-              >
-                {skill.learners} learners
+              </div>
+            ))
+          ) : (
+            <div className="no-skills">
+              <h3>No skills found</h3>
+              <p>
+                Try searching for another skill.
               </p>
-
             </div>
-
-          ))}
+          )}
 
         </div>
 
       </section>
 
 
-      {/* ================= SUGGESTED MATCHES ================= */}
+      {/* ================= MATCH CTA ================= */}
 
-      <section>
+      <section className="matching-cta">
 
-        <h3
-          style={{
-            marginBottom: '16px',
-            color: '#ffffff',
-            fontFamily: 'var(--font-heading)',
-          }}
-        >
-          Suggested Matches
-        </h3>
+        <div>
 
+          <p className="section-label">
+            SKILL MATCHING
+          </p>
 
-        <div
-          style={{
-            display: 'grid',
+          <h2>
+            Ready to find your skill match?
+          </h2>
 
-            gridTemplateColumns:
-              'repeat(3, minmax(0, 1fr))',
-
-            gap: '16px',
-          }}
-        >
-
-          {matches.map((match) => (
-
-            <div
-              key={match.name}
-              style={{
-                minHeight: '215px',
-
-                padding: '20px',
-
-                borderRadius: '12px',
-
-                background:
-                  'linear-gradient(135deg, rgba(45,112,184,0.78), rgba(24,73,132,0.78))',
-
-                border:
-                  '1px solid rgba(255,255,255,0.30)',
-
-                boxShadow:
-                  '0 8px 20px rgba(0,0,0,0.12)',
-
-                color: '#ffffff',
-
-                boxSizing: 'border-box',
-              }}
-            >
-
-              {/* PROFILE */}
-
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  marginBottom: '18px',
-                }}
-              >
-
-                <div
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    minWidth: '44px',
-
-                    borderRadius: '50%',
-
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-
-                    background:
-                      'var(--oxford-blue)',
-
-                    border:
-                      '1px solid rgba(255,255,255,0.6)',
-
-                    color: 'var(--gold)',
-
-                    fontWeight: 700,
-                    fontSize: '0.78rem',
-                  }}
-                >
-                  {match.initials}
-                </div>
-
-
-                <div>
-
-                  <p
-                    style={{
-                      margin: '0 0 4px',
-                      color: '#ffffff',
-                      fontWeight: 700,
-                      fontSize: '0.95rem',
-                    }}
-                  >
-                    {match.name}
-                  </p>
-
-                  <p
-                    style={{
-                      margin: 0,
-                      color: '#ffffff',
-                      fontSize: '0.75rem',
-                    }}
-                  >
-                    📍 {match.loc}
-                  </p>
-
-                </div>
-
-              </div>
-
-
-              {/* WANTS TO LEARN */}
-
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: '7px',
-                  marginBottom: '12px',
-                }}
-              >
-
-                <span
-                  style={{
-                    color: '#ffffff',
-                    fontSize: '0.78rem',
-                  }}
-                >
-                  Wants to learn
-                </span>
-
-                <span
-                  style={{
-                    padding: '5px 10px',
-
-                    borderRadius: '20px',
-
-                    border:
-                      '1px solid rgba(255,255,255,0.65)',
-
-                    background:
-                      'rgba(13,27,42,0.18)',
-
-                    color: '#ffffff',
-
-                    fontSize: '0.72rem',
-                  }}
-                >
-                  {match.wants}
-                </span>
-
-              </div>
-
-
-              {/* IN EXCHANGE FOR */}
-
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: '7px',
-                  marginBottom: '17px',
-                }}
-              >
-
-                <span
-                  style={{
-                    color: '#ffffff',
-                    fontSize: '0.78rem',
-                  }}
-                >
-                  In exchange for
-                </span>
-
-                <span
-                  style={{
-                    padding: '5px 10px',
-
-                    borderRadius: '20px',
-
-                    border:
-                      '1px solid rgba(255,255,255,0.65)',
-
-                    background:
-                      'rgba(13,27,42,0.18)',
-
-                    color: '#ffffff',
-
-                    fontSize: '0.72rem',
-                  }}
-                >
-                  {match.offers}
-                </span>
-
-              </div>
-
-
-              {/* BUTTONS */}
-
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '9px',
-                }}
-              >
-
-                <button
-                  style={{
-                    padding: '8px 17px',
-
-                    borderRadius: '8px',
-
-                    border: '1px solid #ffffff',
-
-                    background: '#ffffff',
-
-                    color: 'var(--oxford-blue)',
-
-                    fontWeight: 700,
-
-                    fontSize: '0.75rem',
-
-                    cursor: 'pointer',
-                  }}
-                >
-                  Accept
-                </button>
-
-
-                <button
-                  style={{
-                    padding: '8px 17px',
-
-                    borderRadius: '8px',
-
-                    border:
-                      '1px solid rgba(255,255,255,0.8)',
-
-                    background: 'transparent',
-
-                    color: '#ffffff',
-
-                    fontWeight: 700,
-
-                    fontSize: '0.75rem',
-
-                    cursor: 'pointer',
-                  }}
-                >
-                  Decline
-                </button>
-
-              </div>
-
-            </div>
-
-          ))}
+          <p>
+            Connect with people who can teach what
+            you want to learn and share what you know.
+          </p>
 
         </div>
 
+        <Link
+          to="/profile"
+          className="matching-cta-button"
+        >
+          View My Profile →
+        </Link>
+
       </section>
-
-
-      {/* ================= RESPONSIVE ================= */}
-
-      <style>
-        {`
-          @media (max-width: 900px) {
-
-            .grid-4 {
-              grid-template-columns: repeat(2, 1fr) !important;
-            }
-
-            .container > section:last-child > div {
-              grid-template-columns: 1fr !important;
-            }
-
-          }
-
-          @media (max-width: 600px) {
-
-            .grid-4 {
-              grid-template-columns: 1fr !important;
-            }
-
-          }
-
-          input::placeholder {
-            color: rgba(255,255,255,0.72);
-          }
-        `}
-      </style>
 
     </div>
   );
 }
+
+export default Matching;
