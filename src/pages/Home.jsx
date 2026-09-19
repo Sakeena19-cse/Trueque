@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 
 import homeImage from "../assets/trueque-home.png";
+<img
+  src={homeImage}
+  alt="TRUEQUE skill exchange"
+  className="hero-image"
+/>
 
 function Home() {
   return (
