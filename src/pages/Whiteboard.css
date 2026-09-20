@@ -1,0 +1,1182 @@
+/* =========================================================
+   TRUEQUE LIVE TEACHING WHITEBOARD
+========================================================= */
+
+.live-whiteboard-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff5e1;
+  color: #4a2028;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.live-board-header {
+  width: 100%;
+  min-height: 84px;
+  padding: 0 28px;
+  background: #800020;
+  color: #fff5e1;
+
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  border-bottom: 2px solid #d4a72c;
+}
+
+.live-board-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #fff5e1;
+  text-decoration: none;
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  white-space: nowrap;
+}
+
+.live-logo-icon {
+  font-size: 30px;
+}
+
+.live-board-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #fff5e1;
+  font-size: 15px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.live-session-title {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 9px 15px;
+
+  border: 1px solid #d4a72c;
+  border-radius: 20px;
+
+  color: #fff5e1;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.live-badge span {
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+  background: #ef4444;
+
+  display: block;
+}
+
+.live-session-title > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.live-session-title strong {
+  color: #fff5e1;
+  font-size: 15px;
+}
+
+.live-session-title small {
+  color: #eadfc8;
+  font-size: 12px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+
+  color: #fff5e1;
+  font-size: 16px;
+}
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.live-board-main {
+  width: 100%;
+  max-width: 1800px;
+
+  margin: 0 auto;
+  padding: 22px;
+
+  display: grid;
+
+  grid-template-columns:
+    270px
+    minmax(500px, 1fr)
+    315px;
+
+  gap: 14px;
+
+  align-items: start;
+}
+
+/* =========================================================
+   LEFT SIDEBAR
+========================================================= */
+
+.board-left-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  min-width: 0;
+}
+
+.teacher-video {
+  position: relative;
+
+  width: 100%;
+  height: 210px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6e2034,
+      #b46c5b
+    );
+
+  box-shadow:
+    0 4px 15px rgba(74, 32, 40, 0.12);
+}
+
+.teacher-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 100px;
+}
+
+.teacher-label {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+
+  padding: 7px 12px;
+
+  border-radius: 16px;
+
+  background: #800020;
+  color: #fff5e1;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.teacher-mic {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.lesson-card,
+.agenda-card,
+.quick-tip-card,
+.participants-card,
+.chat-card {
+  background: #ffffff;
+
+  border: 1px solid #eadfc8;
+  border-radius: 10px;
+
+  box-shadow:
+    0 3px 12px rgba(74, 32, 40, 0.07);
+}
+
+.lesson-card {
+  padding: 18px;
+}
+
+.lesson-card h2 {
+  margin: 0 0 8px;
+
+  color: #800020;
+
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.lesson-card p {
+  margin: 0;
+
+  color: #6b4a4a;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.agenda-card {
+  padding: 18px;
+}
+
+.agenda-card h3,
+.quick-tip-card h3 {
+  margin: 0 0 15px;
+
+  color: #800020;
+  font-size: 15px;
+}
+
+.agenda-item {
+  padding: 11px 8px;
+
+  color: #5e4646;
+
+  font-size: 13px;
+
+  border-radius: 5px;
+}
+
+.agenda-item span {
+  margin-right: 8px;
+}
+
+.agenda-item.completed {
+  color: #6b4a4a;
+}
+
+.agenda-item.active {
+  background: #fff4d6;
+
+  color: #800020;
+  font-weight: 700;
+
+  border-left: 3px solid #d4a72c;
+}
+
+.quick-tip-card {
+  position: relative;
+  padding: 18px;
+}
+
+.quick-tip-card p {
+  margin: 0;
+
+  color: #6b4a4a;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.tip-smile {
+  display: block;
+
+  margin-top: 12px;
+
+  text-align: right;
+
+  color: #d4a72c;
+  font-size: 25px;
+}
+
+/* =========================================================
+   CENTER WHITEBOARD
+========================================================= */
+
+.board-center {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.canvas-container {
+  position: relative;
+
+  width: 100%;
+  height: 650px;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #ded3bd;
+  border-radius: 10px;
+
+  box-shadow:
+    0 4px 18px rgba(74, 32, 40, 0.08);
+}
+
+.canvas-container canvas {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  cursor: crosshair;
+
+  touch-action: none;
+}
+
+/* =========================================================
+   WHITEBOARD TEACHING CONTENT
+========================================================= */
+
+.whiteboard-content {
+  position: absolute;
+
+  inset: 0;
+
+  padding: 35px 40px;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+.whiteboard-content h1 {
+  margin: 0;
+
+  color: #800020;
+
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+  font-size: clamp(34px, 3vw, 50px);
+
+  font-weight: 700;
+}
+
+.yellow-line {
+  width: 300px;
+  height: 5px;
+
+  margin-top: 4px;
+
+  background: #d4a72c;
+
+  border-radius: 20px;
+
+  transform: rotate(-1deg);
+}
+
+.build-flow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  margin-top: 12px;
+
+  color: #800020;
+
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+  font-size: 18px;
+}
+
+.build-flow strong {
+  color: #d4a72c;
+  font-size: 23px;
+}
+
+.concept-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  margin-top: 20px;
+}
+
+.concept-box {
+  width: 170px;
+  min-height: 72px;
+
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+}
+
+.concept-box strong {
+  font-size: 25px;
+}
+
+.concept-box span {
+  font-size: 13px;
+}
+
+.html-box {
+  border: 2px solid #5578e8;
+  color: #315bc9;
+}
+
+.css-box {
+  border: 2px solid #36a269;
+  color: #218453;
+}
+
+.js-box {
+  border: 2px solid #eca000;
+  color: #b87600;
+}
+
+.concept-arrow {
+  color: #800020;
+  font-size: 28px;
+}
+
+.website-box {
+  width: 220px;
+  height: 135px;
+
+  border: 3px solid #800020;
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  background: #fffdf8;
+}
+
+.browser-dots {
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  padding-left: 9px;
+
+  background: #800020;
+}
+
+.browser-dots span {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #d4a72c;
+}
+
+.website-image {
+  float: left;
+
+  width: 60px;
+  height: 60px;
+
+  margin: 18px 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff0cf;
+
+  border-radius: 7px;
+
+  font-size: 25px;
+}
+
+.website-lines {
+  padding-top: 20px;
+}
+
+.website-lines i {
+  display: block;
+
+  width: 95px;
+  height: 7px;
+
+  margin-bottom: 8px;
+
+  background: #b99e9e;
+
+  border-radius: 10px;
+}
+
+/* =========================================================
+   EXAMPLES
+========================================================= */
+
+.board-example-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 22px;
+
+  margin-top: 25px;
+}
+
+.board-example-row h3 {
+  margin: 0 0 8px;
+
+  color: #800020;
+
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+  font-size: 18px;
+}
+
+.code-box,
+.css-code-box {
+  padding: 15px;
+
+  border-radius: 8px;
+
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.code-box {
+  background: #321b29;
+  color: #fff5e1;
+}
+
+.code-box span,
+.css-code-box span {
+  display: block;
+}
+
+.css-code-box {
+  border: 2px solid #6990e8;
+  background: #f8fbff;
+  color: #173c82;
+}
+
+.board-note {
+  position: absolute;
+
+  top: 50px;
+  right: 35px;
+
+  width: 190px;
+
+  color: #800020;
+
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+  font-size: 17px;
+
+  transform: rotate(-5deg);
+}
+
+.sticky-note {
+  position: absolute;
+
+  right: 30px;
+  top: 255px;
+
+  width: 145px;
+  min-height: 145px;
+
+  padding: 20px;
+
+  background: #ffe28a;
+
+  color: #4a2028;
+
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+  font-size: 18px;
+  line-height: 1.3;
+
+  transform: rotate(5deg);
+
+  box-shadow:
+    0 5px 12px rgba(74, 32, 40, 0.15);
+}
+
+.sticky-note span {
+  display: block;
+  margin-top: 8px;
+  text-align: right;
+}
+
+.practice-text {
+  position: absolute;
+
+  bottom: 25px;
+  right: 60px;
+
+  color: #800020;
+
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+  font-size: 17px;
+}
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.whiteboard-toolbar {
+  min-height: 78px;
+
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: #ffffff;
+
+  border: 1px solid #eadfc8;
+  border-radius: 10px;
+
+  box-shadow:
+    0 3px 12px rgba(74, 32, 40, 0.06);
+}
+
+.tool-button {
+  min-width: 58px;
+  height: 58px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #4a2028;
+
+  font-size: 22px;
+}
+
+.tool-button small {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.tool-button:hover,
+.tool-button.active {
+  background: #800020;
+  color: #fff5e1;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 45px;
+
+  margin: 0 8px;
+
+  background: #e3d6c0;
+}
+
+.color-options {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.color-dot {
+  width: 19px;
+  height: 19px;
+
+  padding: 0;
+
+  border: 2px solid transparent;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.color-dot.selected {
+  outline: 2px solid #d4a72c;
+  outline-offset: 2px;
+}
+
+.brush-control {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #6b4a4a;
+
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.brush-control input {
+  width: 90px;
+}
+
+.download-button {
+  padding: 10px 13px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #d4a72c;
+  color: #650018;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.download-button:hover {
+  background: #c69214;
+}
+
+/* =========================================================
+   RIGHT SIDEBAR
+========================================================= */
+
+.board-right-sidebar {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.participants-card {
+  padding: 17px;
+}
+
+.participants-card h3,
+.chat-card h3 {
+  margin: 0 0 15px;
+
+  color: #800020;
+
+  font-size: 15px;
+}
+
+.participant {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 9px 0;
+
+  border-bottom: 1px solid #f0e7d8;
+}
+
+.participant:last-child {
+  border-bottom: none;
+}
+
+.participant-avatar {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #fff1d0;
+
+  font-size: 22px;
+}
+
+.participant-info {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.participant-info strong {
+  color: #4a2028;
+  font-size: 13px;
+}
+
+.participant-info span {
+  color: #8a6c6c;
+  font-size: 11px;
+}
+
+.crown {
+  font-size: 14px;
+}
+
+.mute {
+  color: #777;
+  font-size: 12px;
+}
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+.chat-card {
+  min-height: 500px;
+
+  padding: 17px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages {
+  flex: 1;
+
+  min-height: 300px;
+
+  overflow-y: auto;
+
+  padding-right: 3px;
+}
+
+.chat-message {
+  display: flex;
+  gap: 8px;
+
+  margin-bottom: 15px;
+}
+
+.chat-avatar {
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f4eadb;
+
+  font-size: 15px;
+}
+
+.chat-message strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #800020;
+  font-size: 12px;
+}
+
+.message-bubble {
+  max-width: 190px;
+
+  padding: 8px 10px;
+
+  background: #f3f5f7;
+
+  border-radius: 7px;
+
+  color: #4a2028;
+
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.chat-message small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #9a8585;
+
+  font-size: 9px;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 7px;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #eadfc8;
+}
+
+.chat-input-area input {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 11px;
+
+  border: 1px solid #ded3bd;
+  border-radius: 20px;
+
+  outline: none;
+
+  color: #4a2028;
+}
+
+.chat-input-area input:focus {
+  border-color: #800020;
+}
+
+.chat-input-area button {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #800020;
+  color: #fff5e1;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.live-board-footer {
+  min-height: 65px;
+
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #fff5e1;
+
+  border-top: 1px solid #eadfc8;
+
+  color: #800020;
+
+  font-size: 13px;
+}
+
+.live-board-footer > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.live-board-footer b {
+  color: #d4a72c;
+}
+
+.end-session-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 20px;
+
+  border-radius: 20px;
+
+  background: #800020;
+  color: #fff5e1;
+
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.end-session-button:hover {
+  background: #650018;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1250px) {
+  .live-board-main {
+    grid-template-columns:
+      220px
+      minmax(450px, 1fr)
+      270px;
+  }
+
+  .live-board-nav {
+    display: none;
+  }
+
+  .board-note,
+  .sticky-note {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .live-board-main {
+    grid-template-columns: 1fr 300px;
+  }
+
+  .board-left-sidebar {
+    display: none;
+  }
+
+  .board-center {
+    grid-column: 1;
+  }
+
+  .board-right-sidebar {
+    grid-column: 2;
+  }
+
+  .canvas-container {
+    height: 600px;
+  }
+
+  .whiteboard-content {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 750px) {
+  .live-board-header {
+    padding: 12px 15px;
+    flex-wrap: wrap;
+  }
+
+  .live-session-title {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .live-board-main {
+    grid-template-columns: 1fr;
+
+    padding: 12px;
+  }
+
+  .board-center,
+  .board-right-sidebar {
+    grid-column: auto;
+  }
+
+  .board-right-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .canvas-container {
+    height: 520px;
+  }
+
+  .concept-box {
+    width: 120px;
+  }
+
+  .website-box {
+    display: none;
+  }
+
+  .board-example-row {
+    grid-template-columns: 1fr;
+  }
+
+  .whiteboard-toolbar {
+    overflow-x: auto;
+  }
+
+  .live-board-footer {
+    padding: 15px;
+    gap: 15px;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .live-board-logo {
+    font-size: 22px;
+  }
+
+  .live-badge {
+    padding: 7px 10px;
+  }
+
+  .live-session-title strong {
+    font-size: 13px;
+  }
+
+  .canvas-container {
+    height: 500px;
+  }
+
+  .whiteboard-content h1 {
+    font-size: 30px;
+  }
+
+  .concept-row {
+    gap: 7px;
+  }
+
+  .concept-box {
+    width: 100px;
+    min-height: 60px;
+  }
+
+  .concept-box strong {
+    font-size: 18px;
+  }
+
+  .build-flow {
+    font-size: 14px;
+  }
+
+  .board-right-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
