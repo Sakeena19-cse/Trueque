@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
 function Profile() {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
 
   const [profile, setProfile] = useState({
-    firstName: "priya",
-    lastName: "dharshini",
-    email: "priyasangeetha123gmail.com",
-    mobile: "1234567890",
-    qualification: "B.Tech",
-    location: "Chennai",
-    username: "priya_dharshini",
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobile: "",
+    qualification: "",
+    location: "",
+    username: "",
   });
 
   const handleChange = (e) => {
@@ -20,13 +20,16 @@ function Profile() {
     });
   };
 
+  const handleSave = () => {
+    setIsEditing(false);
+  };
+
   return (
     <div className="profile-page">
 
-      {/* ================= PROFILE HERO ================= */}
+      {/* PROFILE HERO */}
 
       <section className="profile-hero">
-
         <div className="profile-hero-content">
 
           <p className="section-label">
@@ -38,50 +41,56 @@ function Profile() {
           </h1>
 
           <p>
-            Manage your personal information and
-            showcase the skills you can share with
-            the TRUEQUE community.
+            Add your personal information and
+            showcase the skills you want to learn
+            and teach through TRUEQUE.
           </p>
 
         </div>
-
       </section>
 
 
-      {/* ================= PROFILE CONTENT ================= */}
+      {/* PROFILE CONTENT */}
 
       <section className="profile-content">
 
-        {/* Profile Card */}
+        {/* MAIN PROFILE CARD */}
 
         <div className="profile-main-card">
+
+          {/* PROFILE HEADER */}
 
           <div className="profile-card-header">
 
             <div className="profile-avatar">
-              {profile.firstName.charAt(0)}
+              {profile.firstName
+                ? profile.firstName.charAt(0).toUpperCase()
+                : "?"}
             </div>
 
             <div>
-
               <h2>
-                {profile.firstName} {profile.lastName}
+                {profile.firstName ||
+                  profile.lastName
+                  ? `${profile.firstName} ${profile.lastName}`
+                  : "Student Name"}
               </h2>
 
               <p>
-                @{profile.username}
+                {profile.username
+                  ? `@${profile.username}`
+                  : "@username"}
               </p>
-
             </div>
 
             <div className="profile-status">
-              Verified
+              Profile
             </div>
 
           </div>
 
 
-          {/* Personal Information */}
+          {/* PERSONAL INFORMATION */}
 
           <div className="profile-section">
 
@@ -97,119 +106,174 @@ function Profile() {
                 </h2>
               </div>
 
-              <button
-                type="button"
-                className="profile-edit-button"
-                onClick={() => setIsEditing(!isEditing)}
-              >
-                {isEditing ? "Cancel" : "Edit Profile"}
-              </button>
+              {!isEditing && (
+                <button
+                  type="button"
+                  className="profile-edit-button"
+                  onClick={() => setIsEditing(true)}
+                >
+                  Edit Profile
+                </button>
+              )}
 
             </div>
 
 
+            {/* FORM */}
+
             <div className="profile-form-grid">
 
+              {/* FIRST NAME */}
+
               <div className="profile-field">
-                <label>First Name</label>
+
+                <label>
+                  First Name
+                </label>
 
                 <input
                   type="text"
                   name="firstName"
+                  placeholder="Enter your first name"
                   value={profile.firstName}
                   onChange={handleChange}
                   disabled={!isEditing}
                 />
+
               </div>
 
 
+              {/* LAST NAME */}
+
               <div className="profile-field">
-                <label>Last Name</label>
+
+                <label>
+                  Last Name
+                </label>
 
                 <input
                   type="text"
                   name="lastName"
+                  placeholder="Enter your last name"
                   value={profile.lastName}
                   onChange={handleChange}
                   disabled={!isEditing}
                 />
+
               </div>
 
 
+              {/* EMAIL */}
+
               <div className="profile-field">
-                <label>Email ID</label>
+
+                <label>
+                  Email ID
+                </label>
 
                 <input
                   type="email"
                   name="email"
+                  placeholder="Enter your email ID"
                   value={profile.email}
                   onChange={handleChange}
                   disabled={!isEditing}
                 />
+
               </div>
 
 
+              {/* MOBILE */}
+
               <div className="profile-field">
-                <label>Mobile No</label>
+
+                <label>
+                  Mobile No
+                </label>
 
                 <input
                   type="tel"
                   name="mobile"
+                  placeholder="Enter your mobile number"
                   value={profile.mobile}
                   onChange={handleChange}
                   disabled={!isEditing}
                 />
+
               </div>
 
 
+              {/* QUALIFICATION */}
+
               <div className="profile-field">
-                <label>Qualification</label>
+
+                <label>
+                  Qualification
+                </label>
 
                 <input
                   type="text"
                   name="qualification"
+                  placeholder="Enter your qualification"
                   value={profile.qualification}
                   onChange={handleChange}
                   disabled={!isEditing}
                 />
+
               </div>
 
 
+              {/* LOCATION */}
+
               <div className="profile-field">
-                <label>Location</label>
+
+                <label>
+                  Location
+                </label>
 
                 <input
                   type="text"
                   name="location"
+                  placeholder="Enter your location"
                   value={profile.location}
                   onChange={handleChange}
                   disabled={!isEditing}
                 />
+
               </div>
 
 
+              {/* USERNAME */}
+
               <div className="profile-field">
-                <label>Username</label>
+
+                <label>
+                  Username
+                </label>
 
                 <input
                   type="text"
                   name="username"
+                  placeholder="Create your username"
                   value={profile.username}
                   onChange={handleChange}
                   disabled={!isEditing}
                 />
+
               </div>
 
             </div>
 
+
+            {/* SAVE BUTTON */}
 
             {isEditing && (
               <button
                 type="button"
                 className="profile-save-button"
-                onClick={() => setIsEditing(false)}
+                onClick={handleSave}
               >
-                Save Changes
+                Save Profile →
               </button>
             )}
 
@@ -218,9 +282,11 @@ function Profile() {
         </div>
 
 
-        {/* ================= SKILLS SIDEBAR ================= */}
+        {/* RIGHT SIDEBAR */}
 
         <aside className="profile-sidebar">
+
+          {/* SKILLS */}
 
           <div className="profile-side-card">
 
@@ -245,8 +311,13 @@ function Profile() {
               </span>
 
               <div>
-                <h3>Programming</h3>
-                <span>Verified Skill</span>
+                <h3>
+                  Programming
+                </h3>
+
+                <span>
+                  Skill to verify
+                </span>
               </div>
 
             </div>
@@ -259,8 +330,13 @@ function Profile() {
               </span>
 
               <div>
-                <h3>Photography</h3>
-                <span>Verified Skill</span>
+                <h3>
+                  Photography
+                </h3>
+
+                <span>
+                  Skill to verify
+                </span>
               </div>
 
             </div>
@@ -273,8 +349,13 @@ function Profile() {
               </span>
 
               <div>
-                <h3>UI/UX Design</h3>
-                <span>Learning</span>
+                <h3>
+                  UI/UX Design
+                </h3>
+
+                <span>
+                  Learning
+                </span>
               </div>
 
             </div>
@@ -282,7 +363,7 @@ function Profile() {
           </div>
 
 
-          {/* Verification */}
+          {/* VERIFICATION CARD */}
 
           <div className="profile-verification-card">
 
