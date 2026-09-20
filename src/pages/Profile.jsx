@@ -4,13 +4,13 @@ function Profile() {
   const [isEditing, setIsEditing] = useState(false);
 
   const [profile, setProfile] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    mobile: "",
-    qualification: "",
-    location: "",
-    username: "",
+    firstName: "priya",
+    lastName: "dharshini",
+    email: "priyasangeetha123gmail.com",
+    mobile: "1234567890",
+    qualification: "B.Tech",
+    location: "Chennai",
+    username: "priya_dharshini",
   });
 
   const handleChange = (e) => {
