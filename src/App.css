@@ -3930,3 +3930,10 @@ p {
 .logo-area:hover .logo-text {
   color: #d4a72c;
 }
+/* =========================================================
+   TRUEQUE LIVE WHITEBOARD
+========================================================= */
+
+.trueque-whiteboard-page {
+  min-height: 100vh;
+  background: #

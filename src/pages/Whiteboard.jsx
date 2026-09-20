@@ -3,31 +3,69 @@ import { Link } from "react-router-dom";
 
 function Whiteboard() {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
 
-  const [tool, setTool] = useState("pen");
+  const [tool, setTool] = useState("draw");
   const [color, setColor] = useState("#800020");
-  const [brushSize, setBrushSize] = useState(5);
+  const [brushSize, setBrushSize] = useState(4);
+  const [isDrawing, setIsDrawing] = useState(false);
+
+  const [messages, setMessages] = useState([
+    {
+      name: "Priya",
+      message: "This is really helpful!",
+      time: "10:24 AM",
+    },
+    {
+      name: "Rahul",
+      message: "Can you explain CSS a bit more?",
+      time: "10:26 AM",
+    },
+    {
+      name: "Alex",
+      message: "Sure! Let me show you an example.",
+      time: "10:27 AM",
+    },
+  ]);
+
+  const [newMessage, setNewMessage] = useState("");
 
   const [history, setHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
 
-  const drawing = useRef(false);
-
-  // --------------------------------------------------
-  // CANVAS SETUP
-  // --------------------------------------------------
-
   useEffect(() => {
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+    };
+  }, []);
+
+  const resizeCanvas = () => {
     const canvas = canvasRef.current;
+    const container = containerRef.current;
 
-    if (!canvas) return;
+    if (!canvas || !container) return;
 
-    canvas.width = 1200;
+    const oldCanvas = document.createElement("canvas");
+    oldCanvas.width = canvas.width;
+    oldCanvas.height = canvas.height;
+
+    if (canvas.width > 0 && canvas.height > 0) {
+      oldCanvas
+        .getContext("2d")
+        .drawImage(canvas, 0, 0);
+    }
+
+    const rect = container.getBoundingClientRect();
+
+    canvas.width = rect.width;
     canvas.height = 650;
 
     const context = canvas.getContext("2d");
 
-    context.fillStyle = "#FFFFFF";
+    context.fillStyle = "#fffdf8";
     context.fillRect(
       0,
       0,
@@ -35,248 +73,96 @@ function Whiteboard() {
       canvas.height
     );
 
+    if (oldCanvas.width > 0) {
+      context.drawImage(
+        oldCanvas,
+        0,
+        0,
+        oldCanvas.width,
+        oldCanvas.height,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+    }
+
     context.lineCap = "round";
     context.lineJoin = "round";
-
-    saveCanvas();
-  }, []);
-
-  // --------------------------------------------------
-  // SAVE CANVAS TO HISTORY
-  // --------------------------------------------------
-
-  const saveCanvas = () => {
-    const canvas = canvasRef.current;
-
-    if (!canvas) return;
-
-    const image = canvas.toDataURL();
-
-    setHistory((previousHistory) => {
-      const newHistory = previousHistory.slice(
-        0,
-        historyIndex + 1
-      );
-
-      newHistory.push(image);
-
-      return newHistory;
-    });
-
-    setHistoryIndex((previousIndex) => previousIndex + 1);
   };
-
-  // --------------------------------------------------
-  // GET MOUSE / TOUCH POSITION
-  // --------------------------------------------------
 
   const getPosition = (event) => {
     const canvas = canvasRef.current;
-
     const rect = canvas.getBoundingClientRect();
 
-    let clientX;
-    let clientY;
-
-    if (event.touches && event.touches.length > 0) {
-      clientX = event.touches[0].clientX;
-      clientY = event.touches[0].clientY;
-    } else {
-      clientX = event.clientX;
-      clientY = event.clientY;
-    }
-
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-
     return {
-      x: (clientX - rect.left) * scaleX,
-      y: (clientY - rect.top) * scaleY,
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
     };
   };
 
-  // --------------------------------------------------
-  // START DRAWING
-  // --------------------------------------------------
-
   const startDrawing = (event) => {
-    event.preventDefault();
+    if (tool !== "draw" && tool !== "eraser") return;
 
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-
-    if (tool === "text") {
-      addText(event);
-      return;
-    }
-
-    const { x, y } = getPosition(event);
-
-    drawing.current = true;
+    const position = getPosition(event);
 
     context.beginPath();
-    context.moveTo(x, y);
+    context.moveTo(position.x, position.y);
+
+    setIsDrawing(true);
   };
 
-  // --------------------------------------------------
-  // DRAW
-  // --------------------------------------------------
-
   const draw = (event) => {
-    event.preventDefault();
-
-    if (!drawing.current) return;
+    if (!isDrawing) return;
 
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-
-    const { x, y } = getPosition(event);
+    const position = getPosition(event);
 
     context.lineWidth = brushSize;
-    context.lineCap = "round";
-    context.lineJoin = "round";
 
     if (tool === "eraser") {
-      context.globalCompositeOperation =
-        "destination-out";
-      context.strokeStyle = "rgba(0,0,0,1)";
-    } else if (tool === "highlighter") {
-      context.globalCompositeOperation = "source-over";
-      context.strokeStyle = color;
-      context.globalAlpha = 0.25;
+      context.strokeStyle = "#fffdf8";
     } else {
-      context.globalCompositeOperation = "source-over";
       context.strokeStyle = color;
-      context.globalAlpha = 1;
     }
 
-    context.lineTo(x, y);
+    context.lineTo(position.x, position.y);
     context.stroke();
   };
 
-  // --------------------------------------------------
-  // STOP DRAWING
-  // --------------------------------------------------
+  const stopDrawing = () => {
+    if (!isDrawing) return;
 
-  const stopDrawing = (event) => {
-    if (event) {
-      event.preventDefault();
-    }
-
-    if (!drawing.current) return;
-
-    drawing.current = false;
-
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-
-    context.closePath();
-    context.globalAlpha = 1;
-    context.globalCompositeOperation =
-      "source-over";
-
-    saveCanvas();
+    setIsDrawing(false);
+    saveHistory();
   };
 
-  // --------------------------------------------------
-  // TEXT TOOL
-  // --------------------------------------------------
+  const saveHistory = () => {
+    const canvas = canvasRef.current;
 
-  const addText = (event) => {
-    const text = window.prompt(
-      "Enter the text you want to add:"
+    const image = canvas.toDataURL();
+
+    const newHistory = history.slice(
+      0,
+      historyIndex + 1
     );
 
-    if (!text) return;
+    newHistory.push(image);
 
+    setHistory(newHistory);
+    setHistoryIndex(newHistory.length - 1);
+  };
+
+  const restoreCanvas = (image) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
 
-    const { x, y } = getPosition(event);
+    const img = new Image();
 
-    context.globalCompositeOperation =
-      "source-over";
-
-    context.globalAlpha = 1;
-
-    context.fillStyle = color;
-    context.font = `${Math.max(
-      18,
-      brushSize * 5
-    )}px Arial`;
-
-    context.fillText(text, x, y);
-
-    saveCanvas();
-  };
-
-  // --------------------------------------------------
-  // CLEAR BOARD
-  // --------------------------------------------------
-
-  const clearBoard = () => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-
-    context.globalCompositeOperation =
-      "source-over";
-
-    context.globalAlpha = 1;
-
-    context.fillStyle = "#FFFFFF";
-
-    context.fillRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-
-    saveCanvas();
-  };
-
-  // --------------------------------------------------
-  // UNDO
-  // --------------------------------------------------
-
-  const undo = () => {
-    if (historyIndex <= 0) return;
-
-    const newIndex = historyIndex - 1;
-
-    setHistoryIndex(newIndex);
-
-    restoreCanvas(history[newIndex]);
-  };
-
-  // --------------------------------------------------
-  // REDO
-  // --------------------------------------------------
-
-  const redo = () => {
-    if (historyIndex >= history.length - 1) {
-      return;
-    }
-
-    const newIndex = historyIndex + 1;
-
-    setHistoryIndex(newIndex);
-
-    restoreCanvas(history[newIndex]);
-  };
-
-  // --------------------------------------------------
-  // RESTORE CANVAS
-  // --------------------------------------------------
-
-  const restoreCanvas = (imageData) => {
-    const canvas = canvasRef.current;
-
-    const image = new Image();
-
-    image.onload = () => {
-      const context = canvas.getContext("2d");
-
+    img.onload = () => {
       context.clearRect(
         0,
         0,
@@ -285,7 +171,7 @@ function Whiteboard() {
       );
 
       context.drawImage(
-        image,
+        img,
         0,
         0,
         canvas.width,
@@ -293,12 +179,69 @@ function Whiteboard() {
       );
     };
 
-    image.src = imageData;
+    img.src = image;
   };
 
-  // --------------------------------------------------
-  // DOWNLOAD WHITEBOARD
-  // --------------------------------------------------
+  const undo = () => {
+    if (historyIndex <= 0) {
+      clearCanvas();
+      return;
+    }
+
+    const previousIndex = historyIndex - 1;
+
+    restoreCanvas(history[previousIndex]);
+
+    setHistoryIndex(previousIndex);
+  };
+
+  const redo = () => {
+    if (historyIndex >= history.length - 1) return;
+
+    const nextIndex = historyIndex + 1;
+
+    restoreCanvas(history[nextIndex]);
+
+    setHistoryIndex(nextIndex);
+  };
+
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+
+    context.fillStyle = "#fffdf8";
+
+    context.fillRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+    saveHistory();
+  };
+
+  const addText = () => {
+    const text = window.prompt(
+      "Enter text for the whiteboard:"
+    );
+
+    if (!text) return;
+
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+
+    context.fillStyle = color;
+    context.font = "28px Arial";
+
+    context.fillText(
+      text,
+      80,
+      100 + Math.random() * 300
+    );
+
+    saveHistory();
+  };
 
   const downloadBoard = () => {
     const canvas = canvasRef.current;
@@ -312,322 +255,457 @@ function Whiteboard() {
     link.click();
   };
 
-  // --------------------------------------------------
-  // COLOR CHANGE
-  // --------------------------------------------------
+  const sendMessage = () => {
+    if (!newMessage.trim()) return;
 
-  const colors = [
-    "#800020",
-    "#D4A72C",
-    "#000000",
-    "#1E3A8A",
-    "#166534",
-    "#B91C1C",
-  ];
+    setMessages([
+      ...messages,
+      {
+        name: "You",
+        message: newMessage,
+        time: "Now",
+      },
+    ]);
+
+    setNewMessage("");
+  };
 
   return (
-    <div className="whiteboard-page">
+    <div className="trueque-whiteboard-page">
 
-      {/* HERO */}
+      {/* HEADER */}
 
-      <section className="whiteboard-hero">
-        <div className="whiteboard-hero-content">
+      <header className="whiteboard-header">
+
+        <Link
+          to="/"
+          className="whiteboard-brand"
+        >
+          TRUEQUE
+        </Link>
+
+        <div className="whiteboard-session-title">
+          <span className="live-dot"></span>
+
+          <strong>LIVE</strong>
 
           <div>
-            <p className="section-label">
-              TRUEQUE LEARNING TOOL
-            </p>
-
-            <h1>
-              Collaborative
-              <br />
-              <span>Whiteboard.</span>
-            </h1>
+            <h3>
+              Web Development Basics
+            </h3>
 
             <p>
-              Draw ideas, explain concepts and
-              share knowledge during your
-              TRUEQUE learning session.
+              with Alex · 45 min left
             </p>
           </div>
-
-          <Link
-            to="/session"
-            className="whiteboard-back-button"
-          >
-            ← Back to Session
-          </Link>
-
         </div>
-      </section>
 
-      {/* WHITEBOARD */}
+        <div className="whiteboard-header-actions">
+          <span>👥 5</span>
+          <span>🔔</span>
+          <span>•••</span>
+        </div>
 
-      <section className="whiteboard-container">
+      </header>
 
-        <div className="whiteboard-layout">
 
-          {/* MAIN WHITEBOARD */}
+      {/* MAIN CONTENT */}
 
-          <div className="whiteboard-main">
+      <div className="whiteboard-layout">
 
-            {/* TOOLBAR */}
+        {/* LEFT PANEL */}
 
-            <div className="whiteboard-toolbar">
+        <aside className="whiteboard-left">
 
-              <button
-                type="button"
-                className={`whiteboard-tool ${
-                  tool === "pen"
-                    ? "active"
-                    : ""
-                }`}
-                onClick={() => setTool("pen")}
-              >
-                ✎ Pen
-              </button>
+          <div className="teacher-card">
 
-              <button
-                type="button"
-                className={`whiteboard-tool ${
-                  tool === "highlighter"
-                    ? "active"
-                    : ""
-                }`}
-                onClick={() =>
-                  setTool("highlighter")
-                }
-              >
-                🖍 Highlighter
-              </button>
+            <div className="teacher-photo">
+              👩🏻‍🏫
+            </div>
 
-              <button
-                type="button"
-                className={`whiteboard-tool ${
-                  tool === "eraser"
-                    ? "active"
-                    : ""
-                }`}
-                onClick={() => setTool("eraser")}
-              >
-                Eraser
-              </button>
+            <div className="teacher-label">
+              Teacher
+            </div>
 
-              <button
-                type="button"
-                className={`whiteboard-tool ${
-                  tool === "text"
-                    ? "active"
-                    : ""
-                }`}
-                onClick={() => setTool("text")}
-              >
-                T Text
-              </button>
+          </div>
 
-              <button
-                type="button"
-                className="whiteboard-tool"
-                onClick={undo}
-                disabled={historyIndex <= 0}
-              >
-                ↶ Undo
-              </button>
 
-              <button
-                type="button"
-                className="whiteboard-tool"
-                onClick={redo}
-                disabled={
-                  historyIndex >=
-                  history.length - 1
-                }
-              >
-                ↷ Redo
-              </button>
+          <div className="info-card">
 
-              <button
-                type="button"
-                className="whiteboard-tool"
-                onClick={clearBoard}
-              >
-                Clear
-              </button>
+            <h2>
+              Web Development Basics
+            </h2>
 
-              <button
-                type="button"
-                className="whiteboard-tool"
-                onClick={downloadBoard}
-              >
-                ↓ Download
-              </button>
+            <p>
+              Learn the fundamentals of building
+              modern websites.
+            </p>
+
+            <hr />
+
+            <h3>
+              📅 Today's Agenda
+            </h3>
+
+            <div className="agenda-item completed">
+              ● HTML Structure
+            </div>
+
+            <div className="agenda-item active">
+              ● CSS Styling
+            </div>
+
+            <div className="agenda-item">
+              ○ JavaScript Basics
+            </div>
+
+            <div className="agenda-item">
+              ○ Q & A
+            </div>
+
+          </div>
+
+
+          <div className="tip-card">
+
+            <h3>💡 Quick Tips</h3>
+
+            <p>
+              Use the whiteboard tools to ask
+              questions and share your ideas!
+            </p>
+
+          </div>
+
+        </aside>
+
+
+        {/* CENTER WHITEBOARD */}
+
+        <main className="whiteboard-center">
+
+          <div
+            className="canvas-wrapper"
+            ref={containerRef}
+          >
+
+            <canvas
+              ref={canvasRef}
+              onPointerDown={startDrawing}
+              onPointerMove={draw}
+              onPointerUp={stopDrawing}
+              onPointerLeave={stopDrawing}
+            />
+
+            <div className="board-title">
+              Web Development
+            </div>
+
+            <div className="board-note">
+              Build → Design → Create
+            </div>
+
+          </div>
+
+
+          {/* TOOLBAR */}
+
+          <div className="whiteboard-toolbar">
+
+            <button
+              className={
+                tool === "draw"
+                  ? "tool-button active"
+                  : "tool-button"
+              }
+              onClick={() => setTool("draw")}
+            >
+              ✎
+              <span>Draw</span>
+            </button>
+
+
+            <button
+              className={
+                tool === "eraser"
+                  ? "tool-button active"
+                  : "tool-button"
+              }
+              onClick={() => setTool("eraser")}
+            >
+              ◇
+              <span>Eraser</span>
+            </button>
+
+
+            <button
+              className="tool-button"
+              onClick={addText}
+            >
+              T
+              <span>Text</span>
+            </button>
+
+
+            <button
+              className="tool-button"
+              onClick={undo}
+            >
+              ↶
+              <span>Undo</span>
+            </button>
+
+
+            <button
+              className="tool-button"
+              onClick={redo}
+            >
+              ↷
+              <span>Redo</span>
+            </button>
+
+
+            <button
+              className="tool-button"
+              onClick={clearCanvas}
+            >
+              🗑
+              <span>Clear</span>
+            </button>
+
+
+            <div className="color-tools">
+
+              {[
+                "#800020",
+                "#ef4444",
+                "#f59e0b",
+                "#22c55e",
+                "#0ea5e9",
+                "#8b5cf6",
+                "#111827",
+              ].map((item) => (
+                <button
+                  key={item}
+                  className="color-button"
+                  style={{
+                    backgroundColor: item,
+                  }}
+                  onClick={() => {
+                    setColor(item);
+                    setTool("draw");
+                  }}
+                />
+              ))}
 
             </div>
 
-            {/* COLORS */}
 
-            <div className="whiteboard-controls">
+            <div className="brush-control">
 
-              <div className="whiteboard-control-group">
+              <label>
+                Brush
+              </label>
 
-                <span>
-                  Color
-                </span>
-
-                <div className="whiteboard-colors">
-
-                  {colors.map((item) => (
-                    <button
-                      key={item}
-                      type="button"
-                      className="whiteboard-color"
-                      style={{
-                        backgroundColor: item,
-                      }}
-                      onClick={() => {
-                        setColor(item);
-                        setTool("pen");
-                      }}
-                      aria-label={`Choose ${item}`}
-                    />
-                  ))}
-
-                </div>
-
-              </div>
-
-              <div className="whiteboard-control-group">
-
-                <label htmlFor="brushSize">
-                  Brush Size
-                </label>
-
-                <select
-                  id="brushSize"
-                  className="whiteboard-size"
-                  value={brushSize}
-                  onChange={(event) =>
-                    setBrushSize(
-                      Number(event.target.value)
-                    )
-                  }
-                >
-                  <option value="2">
-                    Small
-                  </option>
-
-                  <option value="5">
-                    Medium
-                  </option>
-
-                  <option value="10">
-                    Large
-                  </option>
-
-                  <option value="18">
-                    Extra Large
-                  </option>
-                </select>
-
-              </div>
-
-            </div>
-
-            {/* CANVAS */}
-
-            <div className="whiteboard-canvas-wrapper">
-
-              <canvas
-                ref={canvasRef}
-                className="whiteboard-canvas"
-                onMouseDown={startDrawing}
-                onMouseMove={draw}
-                onMouseUp={stopDrawing}
-                onMouseLeave={stopDrawing}
-                onTouchStart={startDrawing}
-                onTouchMove={draw}
-                onTouchEnd={stopDrawing}
+              <input
+                type="range"
+                min="1"
+                max="20"
+                value={brushSize}
+                onChange={(e) =>
+                  setBrushSize(
+                    Number(e.target.value)
+                  )
+                }
               />
 
             </div>
 
           </div>
 
-          {/* SIDEBAR */}
 
-          <aside className="whiteboard-side">
+          <button
+            className="download-button"
+            onClick={downloadBoard}
+          >
+            Download Whiteboard
+          </button>
 
-            <div className="whiteboard-info-card">
+        </main>
 
-              <p className="section-label">
-                CURRENT SESSION
-              </p>
 
-              <h2>
-                Web Development
-              </h2>
+        {/* RIGHT PANEL */}
 
-              <p>
-                Use this whiteboard to explain
-                programming concepts, draw
-                diagrams and share ideas.
-              </p>
+        <aside className="whiteboard-right">
+
+          {/* PARTICIPANTS */}
+
+          <div className="participants-card">
+
+            <h2>
+              👥 Participants (5)
+            </h2>
+
+            <div className="participant">
+              <div className="avatar">👩🏻</div>
+
+              <div>
+                <strong>Alex</strong>
+                <span>Teacher</span>
+              </div>
+
+              <b>♛</b>
+            </div>
+
+
+            <div className="participant">
+              <div className="avatar">👩🏻</div>
+
+              <div>
+                <strong>Priya</strong>
+                <span>Student</span>
+              </div>
+
+              <span>🎤</span>
+            </div>
+
+
+            <div className="participant">
+              <div className="avatar">👨🏻</div>
+
+              <div>
+                <strong>Rahul</strong>
+                <span>Student</span>
+              </div>
+
+              <span>🎤</span>
+            </div>
+
+
+            <div className="participant">
+              <div className="avatar">👩🏽</div>
+
+              <div>
+                <strong>Sneha</strong>
+                <span>Student</span>
+              </div>
+
+              <span>🎤</span>
+            </div>
+
+
+            <div className="participant">
+              <div className="avatar">👨🏻</div>
+
+              <div>
+                <strong>Arjun</strong>
+                <span>Student</span>
+              </div>
+
+              <span>🎤</span>
+            </div>
+
+          </div>
+
+
+          {/* CHAT */}
+
+          <div className="chat-card">
+
+            <h2>
+              💬 Live Chat
+            </h2>
+
+            <div className="chat-messages">
+
+              {messages.map(
+                (item, index) => (
+                  <div
+                    className="chat-message"
+                    key={index}
+                  >
+
+                    <strong>
+                      {item.name}
+                    </strong>
+
+                    <p>
+                      {item.message}
+                    </p>
+
+                    <small>
+                      {item.time}
+                    </small>
+
+                  </div>
+                )
+              )}
 
             </div>
 
-            <div className="whiteboard-info-card">
 
-              <p className="section-label">
-                SESSION PARTNER
-              </p>
+            <div className="chat-input">
 
-              <h3>
-                Alex Kumar
-              </h3>
+              <input
+                type="text"
+                placeholder="Type a message..."
+                value={newMessage}
+                onChange={(e) =>
+                  setNewMessage(e.target.value)
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    sendMessage();
+                  }
+                }}
+              />
 
-              <p>
-                Web Development Mentor
-              </p>
-
-            </div>
-
-            <div className="whiteboard-info-card">
-
-              <p className="section-label">
-                WHITEBOARD TOOLS
-              </p>
-
-              <p>
-                ✎ Draw ideas
-              </p>
-
-              <p>
-                🖍 Highlight important points
-              </p>
-
-              <p>
-                Erase content
-              </p>
-
-              <p>
-                T Add text
-              </p>
-
-              <p>
-                ↶ Undo changes
-              </p>
-
-              <p>
-                ↓ Save your board
-              </p>
+              <button
+                onClick={sendMessage}
+              >
+                ➤
+              </button>
 
             </div>
 
-          </aside>
+          </div>
 
+        </aside>
+
+      </div>
+
+
+      {/* FOOTER */}
+
+      <footer className="whiteboard-footer">
+
+        <div>
+          🎓
+          <span>
+            Better Skills
+          </span>
+
+          <b>·</b>
+
+          <span>
+            Stronger Connections
+          </span>
+
+          <b>·</b>
+
+          <span>
+            A Brighter Future
+          </span>
         </div>
 
-      </section>
+        <Link
+          to="/session"
+          className="end-session-button"
+        >
+          ☎ End Session
+        </Link>
+
+      </footer>
 
     </div>
   );
