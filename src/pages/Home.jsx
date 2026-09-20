@@ -2,339 +2,822 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
-import homeImage from "../assets/trueque-hero.png";
+import heroImage from "../assets/trueque-hero.png";
 
 function Home() {
-  return (
-    <div className="home-page">
+return (
+<div className="trueque-home">
+
+{/* ================= HERO SECTION ================= */}  
+  <section className="home-hero">  
+
+    <img  
+      src={heroImage}  
+      alt="Students learning together"  
+      className="home-hero-image"  
+    />  
+
+    <div className="home-hero-overlay"></div>  
+
+    <div className="home-hero-content">  
+
+      <p className="home-hero-small">  
+        AI-POWERED SKILL EXCHANGE PLATFORM  
+      </p>  
+
+      <h1>  
+        Learn Skills.  
+        <br />  
+        Share Knowledge.  
+        <br />  
+        <span>Grow Together.</span>  
+      </h1>  
+
+      <p className="home-hero-description">  
+        Connect with people, exchange skills,  
+        learn from others and share what you know  
+        through TRUEQUE.  
+      </p>  
+
+      <div className="home-hero-buttons">  
+
+        <Link  
+          to="/register"  
+          className="home-primary-button"  
+        >  
+          Join TRUEQUE →  
+        </Link>  
+
+        <Link  
+          to="/matching"  
+          className="home-secondary-button"  
+        >  
+          Explore Skills  
+        </Link>  
+
+      </div>  
+
+    </div>  
+  </section>  
+
+
+  {/* ================= WELCOME SECTION ================= */}  
+  <section className="welcome-section">  
+
+    <div className="welcome-container">  
+
+      <p className="home-section-label">  
+        WELCOME TO TRUEQUE  
+      </p>  
+
+      <h2>  
+        What would you like  
+        <br />  
+        to do today?  
+      </h2>  
 
-      {/* ================= HERO ================= */}
-      <section className="hero-section">
+      <p className="welcome-description">  
+        TRUEQUE helps learners and skill-sharing  
+        enthusiasts connect with the right people  
+        to learn, teach and exchange knowledge.  
+      </p>  
 
-  <div className="hero-content">
 
-    <p className="hero-label">
-      SKILL EXCHANGE PLATFORM
-    </p>
+      <div className="purpose-grid">  
 
-    <h1>
-      "Ctrl+Z yourconfusion
-      <br />
-  <span>Ctrl+Shift+skills"</span>
-    </h1>
+        <Link  
+          to="/matching"  
+          className="purpose-card"  
+        >  
+          <div className="purpose-number">  
+            01  
+          </div>  
 
-    <p className="hero-description">
-      Exchange your skills, share your knowledge,
-      and connect with people who want to learn
-      and grow together.
-    </p>
+          <div className="purpose-icon">  
+            📚  
+          </div>  
 
-    <div className="hero-buttons">
+          <h3>  
+            I Want to Learn  
+          </h3>  
 
-      <Link
-        to="/register"
-        className="primary-button"
-      >
-        Get Started →
-      </Link>
+          <p>  
+            Discover new skills and learn from  
+            people who have knowledge and experience.  
+          </p>  
 
-      <Link
-        to="/login"
-        className="secondary-button"
-      >
-        Login
-      </Link>
+          <span>  
+            Explore Skills →  
+          </span>  
+        </Link>  
 
-    </div>
 
-  </div>
+        <Link  
+          to="/profile"  
+          className="purpose-card"  
+        >  
+          <div className="purpose-number">  
+            02  
+          </div>  
 
+          <div className="purpose-icon">  
+            🎓  
+          </div>  
 
-  <div className="hero-image-container">
+          <h3>  
+            I Want to Teach  
+          </h3>  
 
-    <img
-      src={homeImage}
-      alt="Students exchanging skills"
-      className="hero-image"
-    />
+          <p>  
+            Share your knowledge and help others  
+            develop valuable skills.  
+          </p>  
 
-  </div>
+          <span>  
+            Share Your Skills →  
+          </span>  
+        </Link>  
 
-</section>
 
+        <Link  
+          to="/matching"  
+          className="purpose-card"  
+        >  
+          <div className="purpose-number">  
+            03  
+          </div>  
 
-      {/* ================= WHY TRUEQUE ================= */}
-      <section className="why-section">
+          <div className="purpose-icon">  
+            ⇄  
+          </div>  
 
-        <div className="why-intro">
+          <h3>  
+            Learn & Teach  
+          </h3>  
 
-          <p className="section-label">
-            WHY TRUEQUE?
-          </p>
+          <p>  
+            Exchange knowledge by learning new  
+            skills while teaching the skills you know.  
+          </p>  
 
-          <h2>
-            Learn. Teach. Exchange.
-          </h2>
+          <span>  
+            Start Skill Exchange →  
+          </span>  
+        </Link>  
 
-          <p>
-            TRUEQUE makes skill sharing simple,
-            meaningful and accessible.
-          </p>
+      </div>  
 
-        </div>
+    </div>  
 
+  </section>  
 
-        <div className="why-cards">
 
-          <div className="why-card">
-            <div className="why-icon">📖</div>
+  {/* ================= SKILLS SECTION ================= */}  
+  <section className="home-skills-section">  
 
-            <h3>Learn</h3>
+    <div className="home-section-heading">  
 
-            <p>
-              Discover new skills and learn
-              from people with real knowledge.
-            </p>
-          </div>
+      <div>  
 
+        <p className="home-section-label">  
+          EXPLORE SKILLS  
+        </p>  
 
-          <div className="why-card">
-            <div className="why-icon">🎓</div>
+        <h2>  
+          Skills for every learner  
+        </h2>  
 
-            <h3>Teach</h3>
+        <p>  
+          Discover skills you can learn,  
+          teach and exchange through TRUEQUE.  
+        </p>  
 
-            <p>
-              Share your knowledge and
-              help others develop their skills.
-            </p>
-          </div>
+      </div>  
 
+      <Link  
+        to="/matching"  
+        className="section-link"  
+      >  
+        View All Skills →  
+      </Link>  
 
-          <div className="why-card">
-            <div className="why-icon">⇄</div>
+    </div>  
 
-            <h3>Exchange</h3>
 
-            <p>
-              Connect with compatible people
-              and exchange valuable skills.
-            </p>
-          </div>
+    <div className="home-skill-grid">  
 
-        </div>
+      <div className="home-skill-card">  
 
-      </section>
+        <div className="skill-image skill-programming">  
+          <span>&lt;/&gt;</span>  
+        </div>  
 
+        <div className="skill-card-content">  
 
-      {/* ================= HOW IT WORKS ================= */}
-      <section className="how-section">
+          <p className="skill-category">  
+            TECHNOLOGY  
+          </p>  
 
-        <div className="how-intro">
+          <h3>  
+            Programming  
+          </h3>  
 
-          <p className="section-label">
-            HOW IT WORKS
-          </p>
+          <p>  
+            Learn programming concepts,  
+            languages and development skills.  
+          </p>  
 
-          <h2>
-            How TRUEQUE Works
-          </h2>
+          <Link to="/matching">  
+            Explore Skill →  
+          </Link>  
 
-          <p>
-            Start your skill exchange in three simple steps.
-          </p>
+        </div>  
 
-        </div>
+      </div>  
 
 
-        <div className="steps">
+      <div className="home-skill-card">  
 
-          <div className="step">
+        <div className="skill-image skill-web">  
+          <span>◎</span>  
+        </div>  
 
-            <div className="step-number">
-              01
-            </div>
+        <div className="skill-card-content">  
 
-            <div>
-              <h3>Choose Skills</h3>
+          <p className="skill-category">  
+            TECHNOLOGY  
+          </p>  
 
-              <p>
-                Select the skills you want
-                to learn or teach.
-              </p>
-            </div>
+          <h3>  
+            Web Development  
+          </h3>  
 
-          </div>
+          <p>  
+            Build modern websites and learn  
+            frontend development.  
+          </p>  
 
+          <Link to="/matching">  
+            Explore Skill →  
+          </Link>  
 
-          <div className="step-arrow">
-            →
-          </div>
+        </div>  
 
+      </div>  
 
-          <div className="step">
 
-            <div className="step-number">
-              02
-            </div>
+      <div className="home-skill-card">  
 
-            <div>
-              <h3>Find Your Match</h3>
+        <div className="skill-image skill-design">  
+          <span>✎</span>  
+        </div>  
 
-              <p>
-                Discover people whose skills
-                match your interests.
-              </p>
-            </div>
+        <div className="skill-card-content">  
 
-          </div>
+          <p className="skill-category">  
+            DESIGN  
+          </p>  
 
+          <h3>  
+            UI/UX Design  
+          </h3>  
 
-          <div className="step-arrow">
-            →
-          </div>
+          <p>  
+            Learn how to create meaningful  
+            digital experiences.  
+          </p>  
 
+          <Link to="/matching">  
+            Explore Skill →  
+          </Link>  
 
-          <div className="step">
+        </div>  
 
-            <div className="step-number">
-              03
-            </div>
+      </div>  
 
-            <div>
-              <h3>Learn & Teach</h3>
 
-              <p>
-                Connect, exchange knowledge
-                and grow together.
-              </p>
-            </div>
+      <div className="home-skill-card">  
 
-          </div>
+        <div className="skill-image skill-photo">  
+          <span>📷</span>  
+        </div>  
 
-        </div>
+        <div className="skill-card-content">  
 
-      </section>
+          <p className="skill-category">  
+            CREATIVE  
+          </p>  
 
+          <h3>  
+            Photography  
+          </h3>  
 
-      {/* ================= EXPLORE SKILLS ================= */}
-      <section className="skills-section">
+          <p>  
+            Improve your photography and  
+            visual storytelling skills.  
+          </p>  
 
-        <div className="skills-intro">
+          <Link to="/matching">  
+            Explore Skill →  
+          </Link>  
 
-          <p className="section-label">
-            EXPLORE SKILLS
-          </p>
+        </div>  
 
-          <h2>
-            Skills You Can Exchange
-          </h2>
+      </div>  
 
-          <p>
-            Explore different areas of knowledge
-            available through TRUEQUE.
-          </p>
+    </div>  
 
-          <Link
-            to="/matching"
-            className="skills-button"
-          >
-            View All Skills →
-          </Link>
+  </section>  
 
-        </div>
 
+  {/* ================= TRUEQUE FEATURES ================= */}  
+  <section className="features-section">  
 
-        <div className="skills-grid">
+    <div className="features-heading">  
 
-          <div className="skill-card">
-            <span> &lt;/&gt; </span>
-            <div>
-              <h3>Programming</h3>
-              <p>Build your coding skills.</p>
-            </div>
-          </div>
+      <p className="home-section-label">  
+        WHAT TRUEQUE OFFERS  
+      </p>  
 
+      <h2>  
+        Everything you need  
+        <br />  
+        to exchange skills  
+      </h2>  
 
-          <div className="skill-card">
-            <span>◎</span>
-            <div>
-              <h3>Web Development</h3>
-              <p>Create modern websites.</p>
-            </div>
-          </div>
+      <p>  
+        From finding the right skill partner  
+        to verifying your knowledge, TRUEQUE  
+        supports your complete learning journey.  
+      </p>  
 
+    </div>  
 
-          <div className="skill-card">
-            <span>✎</span>
-            <div>
-              <h3>UI/UX Design</h3>
-              <p>Design better experiences.</p>
-            </div>
-          </div>
 
+    <div className="features-grid">  
 
-          <div className="skill-card">
-            <span>📷</span>
-            <div>
-              <h3>Photography</h3>
-              <p>Improve your photography skills.</p>
-            </div>
-          </div>
+      <div className="feature-card">  
 
+        <div className="feature-number">  
+          01  
+        </div>  
 
-          <div className="skill-card">
-            <span>💬</span>
-            <div>
-              <h3>Communication</h3>
-              <p>Enhance communication skills.</p>
-            </div>
-          </div>
+        <div className="feature-icon">  
+          🔎  
+        </div>  
 
+        <h3>  
+          Skill Matching  
+        </h3>  
 
-          <div className="skill-card">
-            <span>📈</span>
-            <div>
-              <h3>Digital Marketing</h3>
-              <p>Learn modern marketing skills.</p>
-            </div>
-          </div>
+        <p>  
+          Find people whose skills match  
+          what you want to learn or teach.  
+        </p>  
 
-        </div>
+        <Link to="/matching">  
+          Find Matches →  
+        </Link>  
 
-      </section>
+      </div>  
 
 
-      {/* ================= CTA ================= */}
-      <section className="cta-section">
+      <div className="feature-card">  
 
-        <div className="cta-content">
+        <div className="feature-number">  
+          02  
+        </div>  
 
-          <p className="section-label">
-            START YOUR JOURNEY
-          </p>
+        <div className="feature-icon">  
+          ✓  
+        </div>  
 
-          <h2>
-            Your Skills Have Value.
-          </h2>
+        <h3>  
+          Skill Verification  
+        </h3>  
 
-          <p>
-            Join TRUEQUE and start exchanging
-            knowledge with others.
-          </p>
+        <p>  
+          Take skill quizzes and earn  
+          verification badges.  
+        </p>  
 
-        </div>
+        <Link to="/quiz">  
+          Verify Skills →  
+        </Link>  
 
-        <Link
-          to="/register"
-          className="cta-button"
-        >
-          Join TRUEQUE →
-        </Link>
+      </div>  
 
-      </section>
 
-    </div>
-  );
+      <div className="feature-card">  
+
+        <div className="feature-number">  
+          03  
+        </div>  
+
+        <div className="feature-icon">  
+          💻  
+        </div>  
+
+        <h3>  
+          Learning Sessions  
+        </h3>  
+
+        <p>  
+          Connect with your partner and  
+          learn together through sessions.  
+        </p>  
+
+        <Link to="/session">  
+          Start Session →  
+        </Link>  
+
+      </div>  
+
+
+      <div className="feature-card">  
+
+        <div className="feature-number">  
+          04  
+        </div>  
+
+        <div className="feature-icon">  
+          ✎  
+        </div>  
+
+        <h3>  
+          Interactive Whiteboard  
+        </h3>  
+
+        <p>  
+          Explain concepts visually using  
+          the TRUEQUE learning whiteboard.  
+        </p>  
+
+        <Link to="/whiteboard">  
+          Open Whiteboard →  
+        </Link>  
+
+      </div>  
+
+    </div>  
+
+  </section>  
+
+
+  {/* ================= PROMOTIONAL BANNER ================= */}  
+  <section className="home-promo">  
+
+    <div className="home-promo-overlay"></div>  
+
+    <div className="home-promo-content">  
+
+      <p className="home-section-label">  
+        LEARNING MADE SIMPLE  
+      </p>  
+
+      <h2>  
+        Your knowledge can  
+        <br />  
+        help someone grow.  
+      </h2>  
+
+      <p>  
+        Share what you know.  
+        Learn what you love.  
+        Exchange skills with TRUEQUE.  
+      </p>  
+
+      <Link  
+        to="/register"  
+        className="home-primary-button"  
+      >  
+        Join For Free →  
+      </Link>  
+
+    </div>  
+
+  </section>  
+
+
+  {/* ================= WHY TRUEQUE ================= */}  
+  <section className="why-trueque-section">  
+
+    <div className="why-trueque-content">  
+
+      <p className="home-section-label">  
+        WHY TRUEQUE?  
+      </p>  
+
+      <h2>  
+        Learning becomes  
+        <br />  
+        better together.  
+      </h2>  
+
+      <p>  
+        TRUEQUE brings people together to exchange  
+        knowledge, develop new skills and create  
+        meaningful learning connections.  
+      </p>  
+
+      <p>  
+        Instead of learning alone, connect with  
+        someone who knows what you want to learn  
+        and share the skills you already have.  
+      </p>  
+
+      <Link  
+        to="/matching"  
+        className="home-primary-button"  
+      >  
+        Discover TRUEQUE →  
+      </Link>  
+
+    </div>  
+
+
+    <div className="why-trueque-visual">  
+
+      <div className="why-visual-card">  
+
+        <div className="visual-icon">  
+          🤝  
+        </div>  
+
+        <h3>  
+          Learn Together  
+        </h3>  
+
+        <p>  
+          Knowledge grows when it is shared.  
+        </p>  
+
+      </div>  
+
+      <div className="why-visual-card visual-card-two">  
+
+        <div className="visual-icon">  
+          🌱  
+        </div>  
+
+        <h3>  
+          Grow Together  
+        </h3>  
+
+        <p>  
+          Build skills through meaningful connections.  
+        </p>  
+
+      </div>  
+
+    </div>  
+
+  </section>  
+
+
+  {/* ================= HOW IT WORKS ================= */}  
+  <section className="how-section">  
+
+    <div className="how-heading">  
+
+      <p className="home-section-label">  
+        HOW IT WORKS  
+      </p>  
+
+      <h2>  
+        Start your skill exchange  
+      </h2>  
+
+      <p>  
+        Getting started with TRUEQUE is simple.  
+      </p>  
+
+    </div>  
+
+
+    <div className="how-grid">  
+
+      <div className="how-step">  
+
+        <span>  
+          01  
+        </span>  
+
+        <h3>  
+          Create Your Profile  
+        </h3>  
+
+        <p>  
+          Register and tell us about your  
+          education, location and interests.  
+        </p>  
+
+      </div>  
+
+
+      <div className="how-line"></div>  
+
+
+      <div className="how-step">  
+
+        <span>  
+          02  
+        </span>  
+
+        <h3>  
+          Choose Your Skills  
+        </h3>  
+
+        <p>  
+          Select skills you want to learn  
+          and skills you can teach.  
+        </p>  
+
+      </div>  
+
+
+      <div className="how-line"></div>  
+
+
+      <div className="how-step">  
+
+        <span>  
+          03  
+        </span>  
+
+        <h3>  
+          Find Your Match  
+        </h3>  
+
+        <p>  
+          Connect with people who have  
+          complementary skills.  
+        </p>  
+
+      </div>  
+
+
+      <div className="how-line"></div>  
+
+
+      <div className="how-step">  
+
+        <span>  
+          04  
+        </span>  
+
+        <h3>  
+          Learn & Exchange  
+        </h3>  
+
+        <p>  
+          Start your session, use the  
+          whiteboard and exchange knowledge.  
+        </p>  
+
+      </div>  
+
+    </div>  
+
+  </section>  
+
+
+  {/* ================= EXPLORE TRUEQUE ================= */}  
+  <section className="explore-section">  
+
+    <div className="explore-content">  
+
+      <p className="home-section-label">  
+        EXPLORE TRUEQUE  
+      </p>  
+
+      <h2>  
+        Learn.  
+        <br />  
+        Teach.  
+        <br />  
+        Exchange.  
+      </h2>  
+
+      <p>  
+        Explore the TRUEQUE learning community  
+        and discover opportunities to develop  
+        your skills with others.  
+      </p>  
+
+      <Link  
+        to="/dashboard"  
+        className="explore-button"  
+      >  
+        Explore Dashboard →  
+      </Link>  
+
+    </div>  
+
+
+    <div className="explore-cards">  
+
+      <div className="explore-card">  
+
+        <span>  
+          📚  
+        </span>  
+
+        <h3>  
+          Learn New Skills  
+        </h3>  
+
+        <p>  
+          Discover skills that interest you.  
+        </p>  
+
+      </div>  
+
+
+      <div className="explore-card">  
+
+        <span>  
+          🎓  
+        </span>  
+
+        <h3>  
+          Share Knowledge  
+        </h3>  
+
+        <p>  
+          Teach skills you already know.  
+        </p>  
+
+      </div>  
+
+
+      <div className="explore-card">  
+
+        <span>  
+          🤝  
+        </span>  
+
+        <h3>  
+          Build Connections  
+        </h3>  
+
+        <p>  
+          Meet people and learn together.  
+        </p>  
+
+      </div>  
+
+    </div>  
+
+  </section>  
+
+
+  {/* ================= FINAL CTA ================= */}  
+  <section className="final-cta">  
+
+    <div>  
+
+      <p className="home-section-label">  
+        START YOUR JOURNEY  
+      </p>  
+
+      <h2>  
+        Ready to exchange  
+        <br />  
+        your skills?  
+      </h2>  
+
+      <p>  
+        Join TRUEQUE and become part of  
+        a community where knowledge is shared.  
+      </p>  
+
+    </div>  
+
+
+    <div className="final-cta-buttons">  
+
+      <Link  
+        to="/register"  
+        className="final-primary-button"  
+      >  
+        Create Account →  
+      </Link>  
+
+      <Link  
+        to="/login"  
+        className="final-secondary-button"  
+      >  
+        Login  
+      </Link>  
+
+    </div>  
+
+  </section>  
+
+</div>
+
+);
 }
 
 export default Home;
