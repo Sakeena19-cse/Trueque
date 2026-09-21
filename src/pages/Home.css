@@ -1,0 +1,864 @@
+/* =========================================================
+   TRUEQUE HOME PAGE
+   Burgundy + Cream + Gold
+   ========================================================= */
+
+.trueque-home {
+  width: 100%;
+  background: #fff5e1;
+  color: #4a2028;
+  overflow: hidden;
+}
+
+.trueque-home * {
+  box-sizing: border-box;
+}
+
+.home-section-label {
+  margin: 0 0 14px;
+  color: #9b7020;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.home-hero {
+  position: relative;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #650018;
+}
+
+.home-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(60, 0, 18, 0.92) 0%,
+    rgba(80, 0, 24, 0.72) 48%,
+    rgba(80, 0, 24, 0.20) 100%
+  );
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, 90%);
+  margin: 0 auto;
+  padding: 100px 0;
+  color: #fff5e1;
+}
+
+.home-hero-small {
+  margin-bottom: 20px;
+  color: #e4bd54;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.home-hero h1 {
+  max-width: 750px;
+  margin: 0;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 1.05;
+  font-weight: 600;
+}
+
+.home-hero h1 span {
+  color: #e4bd54;
+}
+
+.home-hero-description {
+  max-width: 620px;
+  margin: 28px 0 32px;
+  color: #fff5e1;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.home-hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.home-primary-button,
+.home-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.home-primary-button {
+  background: #d4a72c;
+  color: #650018;
+}
+
+.home-primary-button:hover {
+  background: #e4bd54;
+  transform: translateY(-2px);
+}
+
+.home-secondary-button {
+  border: 1px solid #fff5e1;
+  color: #fff5e1;
+  background: transparent;
+}
+
+.home-secondary-button:hover {
+  background: #fff5e1;
+  color: #650018;
+}
+/* =========================================================
+   WELCOME / PURPOSE
+   ========================================================= */
+
+.welcome-section {
+  padding: 100px 6%;
+  background: #000;
+  color: #fff5e1;
+}
+
+.welcome-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.welcome-section .home-section-label {
+  color: #d4a72c;
+}
+
+.welcome-section h2 {
+  margin: 0;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.1;
+}
+
+.welcome-description {
+  max-width: 720px;
+  margin: 25px auto 55px;
+  color: #eadfc8;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  text-align: left;
+}
+
+.purpose-card {
+  position: relative;
+  min-height: 340px;
+  padding: 34px;
+  border: 1px solid #3f252b;
+  background: #171717;
+  color: #fff5e1;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.purpose-card:hover {
+  border-color: #d4a72c;
+  transform: translateY(-7px);
+}
+
+.purpose-number {
+  color: #d4a72c;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.purpose-icon {
+  margin: 30px 0 18px;
+  font-size: 42px;
+}
+
+.purpose-card h3 {
+  margin: 0 0 15px;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 27px;
+}
+
+.purpose-card p {
+  margin: 0 0 25px;
+  color: #d8cbbb;
+  line-height: 1.7;
+}
+
+.purpose-card span {
+  color: #d4a72c;
+  font-weight: 700;
+}
+/* =========================================================
+   SKILLS
+   ========================================================= */
+
+.home-skills-section {
+  padding: 100px 6%;
+  background: #fff5e1;
+}
+
+.home-section-heading {
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.home-section-heading h2,
+.features-heading h2,
+.how-heading h2 {
+  margin: 0;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.1;
+}
+
+.home-section-heading p:not(.home-section-label) {
+  margin-top: 18px;
+  color: #5f4448;
+  font-size: 17px;
+}
+
+.section-link {
+  color: #800020;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.home-skill-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.home-skill-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #eadfc8;
+  transition: 0.3s ease;
+}
+
+.home-skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(101, 0, 24, 0.12);
+}
+
+.skill-image {
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff5e1;
+  font-size: 55px;
+}
+
+.skill-programming {
+  background: #650018;
+}
+
+.skill-web {
+  background: #800020;
+}
+
+.skill-design {
+  background: #9a3150;
+}
+
+.skill-photo {
+  background: #4a2028;
+}
+
+.skill-card-content {
+  padding: 25px;
+}
+
+.skill-category {
+  margin: 0 0 8px;
+  color: #a17420;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.skill-card-content h3 {
+  margin: 0 0 12px;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 25px;
+}
+
+.skill-card-content p:not(.skill-category) {
+  min-height: 78px;
+  margin: 0 0 20px;
+  color: #5f4448;
+  line-height: 1.6;
+}
+
+.skill-card-content a {
+  color: #800020;
+  font-weight: 700;
+}
+/* =========================================================
+   TRUEQUE FEATURES
+   ========================================================= */
+
+.features-section {
+  padding: 100px 6%;
+  background: #f5ead4;
+}
+
+.features-heading {
+  max-width: 750px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.features-heading h2 {
+  margin-bottom: 20px;
+}
+
+.features-heading > p:last-child {
+  color: #5f4448;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.features-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  position: relative;
+  padding: 35px 28px;
+  min-height: 330px;
+  background: #ffffff;
+  border-top: 4px solid #800020;
+}
+
+.feature-number {
+  color: #b28a32;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.feature-icon {
+  margin: 28px 0 18px;
+  color: #800020;
+  font-size: 38px;
+}
+
+.feature-card h3 {
+  margin: 0 0 13px;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 25px;
+}
+
+.feature-card p {
+  margin: 0 0 25px;
+  color: #5f4448;
+  line-height: 1.7;
+}
+
+.feature-card a {
+  color: #800020;
+  font-weight: 700;
+}
+/* =========================================================
+   PROMOTIONAL BANNER
+   ========================================================= */
+
+.home-promo {
+  position: relative;
+  min-height: 470px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(75, 0, 20, 0.95),
+      rgba(75, 0, 20, 0.55)
+    ),
+    url("../assets/trueque-hero.png") center / cover;
+}
+
+.home-promo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(60, 0, 18, 0.25);
+}
+
+.home-promo-content {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, 90%);
+  margin: auto;
+}
+
+.home-promo-content .home-section-label {
+  color: #e4bd54;
+}
+
+.home-promo-content h2 {
+  max-width: 700px;
+  margin: 0;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.08;
+}
+
+.home-promo-content > p:not(.home-section-label) {
+  max-width: 620px;
+  margin: 25px 0 30px;
+  color: #fff5e1;
+  font-size: 18px;
+  line-height: 1.7;
+}
+/* =========================================================
+   WHY TRUEQUE
+   ========================================================= */
+
+.why-trueque-section {
+  padding: 110px 6%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  background: #ffffff;
+}
+
+.why-trueque-content {
+  max-width: 620px;
+  margin-left: auto;
+}
+
+.why-trueque-content h2 {
+  margin: 0 0 25px;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.08;
+}
+
+.why-trueque-content p:not(.home-section-label) {
+  margin: 0 0 18px;
+  color: #4a3438;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.why-trueque-content .home-primary-button {
+  margin-top: 15px;
+}
+
+.why-trueque-visual {
+  position: relative;
+  min-height: 430px;
+  max-width: 520px;
+}
+
+.why-visual-card {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 80%;
+  padding: 50px 40px;
+  background: #800020;
+  color: #fff5e1;
+}
+
+.visual-card-two {
+  top: 190px;
+  left: 20%;
+  background: #d4a72c;
+  color: #650018;
+}
+
+.visual-icon {
+  margin-bottom: 20px;
+  font-size: 50px;
+}
+
+.why-visual-card h3 {
+  margin: 0 0 12px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 30px;
+}
+
+.why-visual-card p {
+  margin: 0;
+  line-height: 1.6;
+}
+/* =========================================================
+   HOW IT WORKS
+   ========================================================= */
+
+.how-section {
+  padding: 100px 6%;
+  background: #fff5e1;
+}
+
+.how-heading {
+  max-width: 750px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.how-heading p:last-child {
+  margin-top: 18px;
+  color: #5f4448;
+  font-size: 17px;
+}
+
+.how-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+}
+
+.how-step {
+  text-align: center;
+}
+
+.how-step span {
+  display: inline-flex;
+  width: 58px;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: #800020;
+  color: #fff5e1;
+  font-weight: 700;
+}
+
+.how-step h3 {
+  margin: 0 0 12px;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 21px;
+}
+
+.how-step p {
+  margin: 0;
+  color: #5f4448;
+  line-height: 1.6;
+}
+
+.how-line {
+  width: 45px;
+  height: 2px;
+  background: #d4a72c;
+}
+/* =========================================================
+   EXPLORE TRUEQUE
+   ========================================================= */
+
+.explore-section {
+  padding: 100px 6%;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 70px;
+  align-items: center;
+  background: #000;
+}
+
+.explore-content {
+  max-width: 550px;
+}
+
+.explore-content h2 {
+  margin: 0 0 25px;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 1;
+}
+
+.explore-content > p:not(.home-section-label) {
+  margin-bottom: 30px;
+  color: #d8cbbb;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.explore-button {
+  display: inline-flex;
+  min-height: 52px;
+  padding: 0 25px;
+  align-items: center;
+  justify-content: center;
+  background: #d4a72c;
+  color: #650018;
+  font-weight: 700;
+}
+
+.explore-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.explore-card {
+  min-height: 260px;
+  padding: 30px;
+  border: 1px solid #3b292d;
+  background: #171717;
+}
+
+.explore-card span {
+  display: block;
+  margin-bottom: 35px;
+  font-size: 40px;
+}
+
+.explore-card h3 {
+  margin: 0 0 12px;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 23px;
+}
+
+.explore-card p {
+  margin: 0;
+  color: #c9bbb0;
+  line-height: 1.6;
+}
+/* =========================================================
+   FINAL CTA
+   ========================================================= */
+
+.final-cta {
+  padding: 80px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  background: #800020;
+  color: #fff5e1;
+}
+
+.final-cta .home-section-label {
+  color: #e4bd54;
+}
+
+.final-cta h2 {
+  margin: 0;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.05;
+}
+
+.final-cta p:last-child {
+  max-width: 550px;
+  margin-top: 18px;
+  color: #f0dfd0;
+  line-height: 1.7;
+}
+
+.final-cta-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.final-primary-button,
+.final-secondary-button {
+  min-height: 52px;
+  padding: 0 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.final-primary-button {
+  background: #d4a72c;
+  color: #650018;
+}
+
+.final-secondary-button {
+  border: 1px solid #fff5e1;
+  color: #fff5e1;
+}
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .home-skill-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .purpose-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .how-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .how-line {
+    width: 2px;
+    height: 35px;
+    margin: auto;
+  }
+
+  .why-trueque-section,
+  .explore-section {
+    grid-template-columns: 1fr;
+  }
+
+  .why-trueque-content {
+    margin-left: 0;
+  }
+
+  .why-trueque-visual {
+    margin: auto;
+    width: 100%;
+  }
+
+  .explore-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .final-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .home-hero {
+    min-height: 680px;
+  }
+
+  .home-hero-content {
+    width: 88%;
+    padding: 80px 0;
+  }
+
+  .home-hero h1 {
+    font-size: 45px;
+  }
+
+  .home-hero-description {
+    font-size: 16px;
+  }
+
+  .home-primary-button,
+  .home-secondary-button {
+    width: 100%;
+  }
+
+  .home-section-heading {
+    display: block;
+  }
+
+  .section-link {
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .home-skill-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-skills-section,
+  .features-section,
+  .how-section,
+  .welcome-section,
+  .why-trueque-section,
+  .explore-section {
+    padding: 75px 5%;
+  }
+
+  .home-skill-card {
+    width: 100%;
+  }
+
+  .why-trueque-visual {
+    min-height: 470px;
+  }
+
+  .why-visual-card {
+    width: 90%;
+  }
+
+  .visual-card-two {
+    left: 10%;
+  }
+
+  .explore-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .explore-card {
+    min-height: auto;
+  }
+
+  .final-cta {
+    padding: 70px 5%;
+  }
+
+  .final-cta-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .final-primary-button,
+  .final-secondary-button {
+    width: 100%;
+  }
+}
