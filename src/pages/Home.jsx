@@ -26,9 +26,9 @@ return (
       </p>  
 
       <h1>  
-        Learn Skills.  
+        "Ctrl+Z your confusion  
         <br />  
-        Share Knowledge.  
+        Ctrl+Shift+skills"
         <br />  
         <span>Grow Together.</span>  
       </h1>  
