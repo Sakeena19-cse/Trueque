@@ -1,47 +1,61 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/trueque-logo.png";
+import logo from "../assets/logo.png";
 
-function Header() {
+export default function Header() {
   return (
-    <header className="main-header">
-      <div className="header-container">
+    <header className="site-header">
 
-        {/* TRUEQUE Logo */}
-        <Link to="/" className="brand">
-          <img
-            src={logo}
-            alt="Trueque"
-            className="brand-logo"
-          />
+      <Link to="/" className="logo-area">
 
-          <span className="brand-name">
-            True<span>que</span>
-          </span>
+        <img
+          src={logo}
+          alt="TRUEQUE"
+          className="header-logo"
+        />
+
+        <span className="logo-text">
+          TRUEQUE
+        </span>
+
+      </Link>
+
+      <nav className="nav-links">
+
+        <Link to="/">Home</Link>
+
+        <Link to="/dashboard">
+          Dashboard
         </Link>
 
-        {/* Navigation */}
-        <nav className="navigation">
-          <Link to="/">Home</Link>
-          <Link to="/search">Search Skills</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/profile">Profile</Link>
-        </nav>
+        <Link to="/matching">
+          Skills
+        </Link>
 
-        {/* Login / Sign Up */}
-        <div className="auth-buttons">
-          <Link to="/login" className="login-button">
-            Log In
-          </Link>
+        <Link to="/profile">
+          Profile
+        </Link>
 
-          <Link to="/register" className="signup-button">
-            Sign Up
-          </Link>
-        </div>
+        <Link to="/quiz">
+          Quiz
+        </Link>
 
-      </div>
+        <Link to="/session">
+          Session
+        </Link>
+
+        <Link to="/login">
+          Login
+        </Link>
+
+        <Link
+          to="/register"
+          className="nav-button"
+        >
+          Sign Up
+        </Link>
+
+      </nav>
+
     </header>
   );
 }
-
-export default Header;

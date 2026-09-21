@@ -1,72 +1,397 @@
-export default function Profile() {
+import React, { useState } from "react";
+
+function Profile() {
+  const [isEditing, setIsEditing] = useState(true);
+
+  const [profile, setProfile] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    mobile: "",
+    qualification: "",
+    location: "",
+    username: "",
+  });
+
+  const handleChange = (e) => {
+    setProfile({
+      ...profile,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+  };
+
   return (
-    <div className="container" style={{ padding: '40px 24px' }}>
-      <p style={{ color: 'var(--tan-soft)', fontSize: '0.85rem', marginBottom: '4px' }}>Home / My Profile</p>
-      <h1 style={{ marginBottom: '24px' }}>My Profile</h1>
+    <div className="profile-page">
 
-      <div className="card" style={{ display: 'flex', gap: '20px', marginBottom: '20px', flexWrap: 'wrap' }}>
-        <div style={{
-          width: '78px', height: '78px', borderRadius: '50%',
-          background: 'var(--dark-blue)', color: 'var(--gold)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontFamily: 'var(--font-heading)', fontSize: '1.6rem', flexShrink: 0,
-        }}>
-          PR
-        </div>
-        <div style={{ flex: 1 }}>
-          <h2 style={{ fontSize: '1.4rem' }}>
-            Priya R.{' '}
-            <span style={{
-              background: 'var(--gold)', color: 'var(--oxford-blue)',
-              fontSize: '0.75rem', fontWeight: 700, padding: '2px 10px', borderRadius: '20px',
-            }}>
-              Beginner
-            </span>
-          </h2>
-          <p style={{ color: 'var(--tan-soft)', fontSize: '0.88rem', margin: '6px 0' }}>📍 Chennai, India</p>
-          <p style={{ color: 'var(--tan-soft)', fontSize: '0.88rem', marginBottom: '10px' }}>✉️ priya@example.com</p>
-          <p style={{ fontSize: '0.92rem', maxWidth: '60ch' }}>
-            Final-year engineering student, passionate about full stack web development
-            and eager to learn new skills while sharing what I know.
+      {/* PROFILE HERO */}
+
+      <section className="profile-hero">
+        <div className="profile-hero-content">
+
+          <p className="section-label">
+            TRUEQUE PROFILE
           </p>
-          <div style={{ display: 'flex', gap: '34px', marginTop: '16px' }}>
-            <div>
-              <strong style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: '1.3rem', color: 'var(--gold)' }}>10</strong>
-              <span style={{ fontSize: '0.8rem', color: 'var(--tan-soft)' }}>Skills Learning</span>
+
+          <h1>
+            My Profile
+          </h1>
+
+          <p>
+            Add your personal information and
+            showcase the skills you want to learn
+            and teach through TRUEQUE.
+          </p>
+
+        </div>
+      </section>
+
+
+      {/* PROFILE CONTENT */}
+
+      <section className="profile-content">
+
+        {/* MAIN PROFILE CARD */}
+
+        <div className="profile-main-card">
+
+          {/* PROFILE HEADER */}
+
+          <div className="profile-card-header">
+
+            <div className="profile-avatar">
+              {profile.firstName
+                ? profile.firstName.charAt(0).toUpperCase()
+                : "?"}
             </div>
+
             <div>
-              <strong style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: '1.3rem', color: 'var(--gold)' }}>4</strong>
-              <span style={{ fontSize: '0.8rem', color: 'var(--tan-soft)' }}>Skills Teaching</span>
+              <h2>
+                {profile.firstName ||
+                  profile.lastName
+                  ? `${profile.firstName} ${profile.lastName}`
+                  : "Student Name"}
+              </h2>
+
+              <p>
+                {profile.username
+                  ? `@${profile.username}`
+                  : "@username"}
+              </p>
             </div>
-            <div>
-              <strong style={{ display: 'block', fontFamily: 'var(--font-heading)', fontSize: '1.3rem', color: 'var(--gold)' }}>6</strong>
-              <span style={{ fontSize: '0.8rem', color: 'var(--tan-soft)' }}>Sessions</span>
+
+            <div className="profile-status">
+              Profile
             </div>
+
           </div>
-        </div>
-      </div>
 
-      <div className="grid-2">
-        <div className="card">
-          <h3 style={{ marginBottom: '14px' }}>Skills I Teach</h3>
-          <span className="chip">HTML/CSS</span>
-          <span className="chip">Python</span>
-          <span className="chip">Frontend Basics</span>
-        </div>
-        <div className="card">
-          <h3 style={{ marginBottom: '14px' }}>Skills I Want to Learn</h3>
-          <span className="chip">React</span>
-          <span className="chip">Django REST Framework</span>
-          <span className="chip">UI/UX Design</span>
-        </div>
-      </div>
 
-      <div className="card" style={{ marginTop: '20px' }}>
-        <h3 style={{ marginBottom: '14px' }}>Interests</h3>
-        <span className="chip">Web Development</span>
-        <span className="chip">Design</span>
-        <span className="chip">AI Tools</span>
-      </div>
+          {/* PERSONAL INFORMATION */}
+
+          <div className="profile-section">
+
+            <div className="profile-section-title">
+
+              <div>
+                <p className="section-label">
+                  PERSONAL INFORMATION
+                </p>
+
+                <h2>
+                  Your Details
+                </h2>
+              </div>
+
+              {!isEditing && (
+                <button
+                  type="button"
+                  className="profile-edit-button"
+                  onClick={() => setIsEditing(true)}
+                >
+                  Edit Profile
+                </button>
+              )}
+
+            </div>
+
+
+            {/* FORM */}
+
+            <div className="profile-form-grid">
+
+              {/* FIRST NAME */}
+
+              <div className="profile-field">
+
+                <label>
+                  First Name
+                </label>
+
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="Enter your first name"
+                  value={profile.firstName}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+
+              </div>
+
+
+              {/* LAST NAME */}
+
+              <div className="profile-field">
+
+                <label>
+                  Last Name
+                </label>
+
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Enter your last name"
+                  value={profile.lastName}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+
+              </div>
+
+
+              {/* EMAIL */}
+
+              <div className="profile-field">
+
+                <label>
+                  Email ID
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email ID"
+                  value={profile.email}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+
+              </div>
+
+
+              {/* MOBILE */}
+
+              <div className="profile-field">
+
+                <label>
+                  Mobile No
+                </label>
+
+                <input
+                  type="tel"
+                  name="mobile"
+                  placeholder="Enter your mobile number"
+                  value={profile.mobile}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+
+              </div>
+
+
+              {/* QUALIFICATION */}
+
+              <div className="profile-field">
+
+                <label>
+                  Qualification
+                </label>
+
+                <input
+                  type="text"
+                  name="qualification"
+                  placeholder="Enter your qualification"
+                  value={profile.qualification}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+
+              </div>
+
+
+              {/* LOCATION */}
+
+              <div className="profile-field">
+
+                <label>
+                  Location
+                </label>
+
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Enter your location"
+                  value={profile.location}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+
+              </div>
+
+
+              {/* USERNAME */}
+
+              <div className="profile-field">
+
+                <label>
+                  Username
+                </label>
+
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Create your username"
+                  value={profile.username}
+                  onChange={handleChange}
+                  disabled={!isEditing}
+                />
+
+              </div>
+
+            </div>
+
+
+            {/* SAVE BUTTON */}
+
+            {isEditing && (
+              <button
+                type="button"
+                className="profile-save-button"
+                onClick={handleSave}
+              >
+                Save Profile →
+              </button>
+            )}
+
+          </div>
+
+        </div>
+
+
+        {/* RIGHT SIDEBAR */}
+
+        <aside className="profile-sidebar">
+
+          {/* SKILLS */}
+
+          <div className="profile-side-card">
+
+            <p className="section-label">
+              MY SKILLS
+            </p>
+
+            <h2>
+              Skills & Verification
+            </h2>
+
+            <p>
+              Manage the skills you want to learn
+              and teach through TRUEQUE.
+            </p>
+
+
+            <div className="profile-skill-item">
+
+              <span className="profile-skill-icon">
+                &lt;/&gt;
+              </span>
+
+              <div>
+                <h3>
+                  Programming
+                </h3>
+
+                <span>
+                  Skill to verify
+                </span>
+              </div>
+
+            </div>
+
+
+            <div className="profile-skill-item">
+
+              <span className="profile-skill-icon">
+                📷
+              </span>
+
+              <div>
+                <h3>
+                  Photography
+                </h3>
+
+                <span>
+                  Skill to verify
+                </span>
+              </div>
+
+            </div>
+
+
+            <div className="profile-skill-item">
+
+              <span className="profile-skill-icon">
+                ✎
+              </span>
+
+              <div>
+                <h3>
+                  UI/UX Design
+                </h3>
+
+                <span>
+                  Learning
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* VERIFICATION CARD */}
+
+          <div className="profile-verification-card">
+
+            <div className="verification-icon">
+              ✓
+            </div>
+
+            <h3>
+              Skill Verification
+            </h3>
+
+            <p>
+              Complete quizzes to verify your
+              skills and earn verification badges.
+            </p>
+
+            <a href="/quiz">
+              Take a Quiz →
+            </a>
+
+          </div>
+
+        </aside>
+
+      </section>
+
     </div>
   );
 }
+
+export default Profile;

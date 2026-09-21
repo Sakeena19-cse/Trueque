@@ -1,0 +1,121 @@
+.whiteboard-page {
+  min-height: 100vh;
+  background: #fff5e1;
+  padding-bottom: 50px;
+}
+
+.whiteboard-header {
+  background: #800020;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.whiteboard-header h1 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 32px;
+}
+
+.whiteboard-header p {
+  margin-top: 8px;
+  color: #fff5e1;
+  font-size: 15px;
+}
+
+.whiteboard-container {
+  width: 92%;
+  max-width: 1250px;
+  margin: 35px auto;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: white;
+  padding: 15px;
+  border-radius: 12px 12px 0 0;
+  border: 1px solid #eadfc8;
+}
+
+.toolbar button {
+  border: none;
+  background: #f4ead7;
+  color: #4a2028;
+  padding: 10px 16px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toolbar button:hover {
+  background: #d4a72c;
+  color: white;
+}
+
+.toolbar button.active {
+  background: #800020;
+  color: white;
+}
+
+.toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #4a2028;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.toolbar input[type="color"] {
+  width: 42px;
+  height: 32px;
+  padding: 2px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.toolbar input[type="range"] {
+  width: 100px;
+  cursor: pointer;
+}
+
+.canvas-wrapper {
+  width: 100%;
+  background: white;
+  border: 1px solid #eadfc8;
+  border-top: none;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(74, 32, 40, 0.08);
+}
+
+.canvas-wrapper canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: white;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+@media (max-width: 700px) {
+  .whiteboard-container {
+    width: 96%;
+  }
+
+  .toolbar {
+    gap: 8px;
+  }
+
+  .toolbar button {
+    padding: 8px 11px;
+    font-size: 13px;
+  }
+
+  .whiteboard-header h1 {
+    font-size: 26px;
+  }
+}
