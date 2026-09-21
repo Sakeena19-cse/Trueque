@@ -26,11 +26,12 @@ return (
       </p>  
 
       <h1>  
-        "Ctrl+Z your confusion  
+         
         <br />  
-        Ctrl+Shift+skills"
+        "Ctrl+Z your confusion 
         <br />  
-        <span>Grow Together.</span>  
+        <span>
+        Ctrl+Shift+skills"</span>  
       </h1>  
 
       <p className="home-hero-description">  
