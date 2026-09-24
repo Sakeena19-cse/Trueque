@@ -20,6 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-=m6h@^sgg6r3-+44ix5ck+x#fiw1-u^mp3exuv@a1+g_o1h%%h'
 SECRET_KEY = 'django-insecure-r2!ykr)#%3nr!@6nc-8%1v_2#xrnv((1h@h$!!+-97lg_u10-6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -36,6 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'channels',
+    'quiz',
+    'accounts',
+    'matches',
+    'skills',
+    'mentor',
+]
+
+MIDDLEWARE = [
 
     'rest_framework',
     'corsheaders',
@@ -74,6 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'trueque.wsgi.application'
+ASGI_APPLICATION = 'trueque.asgi.application'
 
 
 # Database
@@ -81,6 +93,12 @@ WSGI_APPLICATION = 'trueque.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'quizbattle_db',
+        'USER': 'postgres',
+        'PASSWORD': 'Simba@2022',   
+        'HOST': 'localhost',
+        'PORT': '5432',
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
@@ -132,4 +150,15 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
-CORS_ALLOW_ALL_ORIGINS = True   # fine for dev, tighten later before deployment
+
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+CORS_ALLOW_ALL_ORIGINS = True   
