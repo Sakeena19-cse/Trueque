@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'matches',
     'skills',
     'mentor',
+    'chat',
 ]
 
 MIDDLEWARE = [
