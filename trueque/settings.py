@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'skills',
     'mentor',
     'chat',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
