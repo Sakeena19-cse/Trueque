@@ -1,80 +1,213 @@
-const popularSkills = [
-  { name: 'Photoshop', tag: 'Design', level: 'Beginner', learners: 12 },
-  { name: 'Python Programming', tag: 'Development', level: 'Intermediate', learners: 18 },
-  { name: 'Content Writing', tag: 'Writing', level: 'Beginner', learners: 9 },
-  { name: 'Public Speaking', tag: 'Communication', level: 'All Levels', learners: 7 },
-];
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const matches = [
-  { name: 'Priya M.', loc: 'Chennai, India', wants: 'UI/UX Design', offers: 'Content Writing' },
-  { name: 'Karthik S.', loc: 'Bangalore, India', wants: 'Web Development', offers: 'Python Programming' },
-  { name: 'Ananya R.', loc: 'Chennai, India', wants: 'Basic Spanish', offers: 'Graphic Design' },
-];
+function Matching() {
+  const [search, setSearch] = useState("");
 
-export default function Matching() {
+  const skills = [
+    {
+      name: "Programming",
+      icon: "</>",
+      description: "Learn coding, programming languages and software development.",
+    },
+    {
+      name: "Web Development",
+      icon: "◎",
+      description: "Build websites and learn modern web technologies.",
+    },
+    {
+      name: "UI/UX Design",
+      icon: "✎",
+      description: "Learn user interface and user experience design.",
+    },
+    {
+      name: "Photography",
+      icon: "📷",
+      description: "Improve photography and creative visual skills.",
+    },
+    {
+      name: "Communication",
+      icon: "💬",
+      description: "Develop communication and presentation skills.",
+    },
+    {
+      name: "Digital Marketing",
+      icon: "📈",
+      description: "Learn social media, branding and digital marketing.",
+    },
+  ];
+
+  const filteredSkills = skills.filter((skill) =>
+    skill.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="container" style={{ padding: '40px 24px' }}>
-      <h1 style={{ marginBottom: '6px' }}>Search Skills</h1>
-      <p style={{ color: 'var(--tan-soft)', marginBottom: '28px' }}>Find people to swap skills with</p>
+    <div className="skills-page">
 
-      <div style={{ display: 'flex', gap: '12px', marginBottom: '36px', flexWrap: 'wrap' }}>
-        <input
-          type="text"
-          placeholder="Search for skills, e.g., 'Photoshop', 'Python'..."
-          style={{
-            flex: 1, minWidth: '200px', padding: '12px 16px', borderRadius: '10px',
-            border: '1.5px solid rgba(210,180,140,0.3)', background: 'var(--surface)', color: 'var(--tan)',
-          }}
-        />
-        <button className="btn btn-primary">Search</button>
-      </div>
+      {/* ================= HERO ================= */}
 
-      <h3 style={{ marginBottom: '16px' }}>Popular Skills</h3>
-      <div className="grid-4" style={{ marginBottom: '40px' }}>
-        {popularSkills.map((s) => (
-          <div key={s.name} className="card">
-            <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', marginBottom: '8px', color: 'var(--gold)' }}>
-              {s.name}
-            </h4>
-            <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--tan-soft)', marginBottom: '6px' }}>
-              {s.tag}
-            </span>
-            <span style={{
-              display: 'inline-block', fontSize: '0.75rem', fontWeight: 700,
-              color: 'var(--oxford-blue)', background: 'var(--tan)',
-              padding: '2px 10px', borderRadius: '20px', marginBottom: '10px',
-            }}>
-              {s.level}
-            </span>
-            <p style={{ fontSize: '0.8rem', color: 'var(--tan-soft)' }}>{s.learners} learners</p>
+      <section className="skills-hero">
+
+        <div className="skills-hero-content">
+
+          <p className="section-label">
+            TRUEQUE SKILLS
+          </p>
+
+          <h1>
+            Explore Skills.
+            <br />
+            <span>Find Your Match.</span>
+          </h1>
+
+          <p>
+            Discover skills you want to learn, find people
+            who can teach them, and share the knowledge
+            you already have.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      {/* ================= SEARCH ================= */}
+
+      <section className="skills-search-section">
+
+        <div className="skills-search-container">
+
+          <p className="section-label">
+            FIND A SKILL
+          </p>
+
+          <h2>
+            What would you like to learn?
+          </h2>
+
+          <div className="skill-search-box">
+
+            <input
+              type="text"
+              placeholder="Search for a skill..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            <button type="button">
+              Search
+            </button>
+
           </div>
-        ))}
-      </div>
 
-      <h3 style={{ marginBottom: '16px' }}>Suggested Matches</h3>
-      <div className="grid-3">
-        {matches.map((m) => (
-          <div key={m.name} className="card">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-              <div className="avatar">{m.name.split(' ').map(n => n[0]).join('')}</div>
-              <div>
-                <p style={{ fontWeight: 600 }}>{m.name}</p>
-                <p style={{ color: 'var(--tan-soft)', fontSize: '0.8rem' }}>📍 {m.loc}</p>
+        </div>
+
+      </section>
+
+
+      {/* ================= SKILLS ================= */}
+
+      <section className="explore-skills-section">
+
+        <div className="explore-heading">
+
+          <div>
+            <p className="section-label">
+              POPULAR SKILLS
+            </p>
+
+            <h2>
+              Explore Skills
+            </h2>
+          </div>
+
+          <p>
+            Choose a skill and start your learning journey.
+          </p>
+
+        </div>
+
+
+        <div className="professional-skills-grid">
+
+          {filteredSkills.length > 0 ? (
+            filteredSkills.map((skill) => (
+              <div
+                className="professional-skill-card"
+                key={skill.name}
+              >
+
+                <div className="professional-skill-icon">
+                  {skill.icon}
+                </div>
+
+                <div className="professional-skill-content">
+
+                  <h3>
+                    {skill.name}
+                  </h3>
+
+                  <p>
+                    {skill.description}
+                  </p>
+
+                  <Link
+                    to="/quiz"
+                    className="skill-card-button"
+                  >
+                    Verify & Learn →
+                  </Link>
+
+                </div>
+
               </div>
+            ))
+          ) : (
+            <div className="no-skills">
+              <h3>No skills found</h3>
+              <p>
+                Try searching for another skill.
+              </p>
             </div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--tan-soft)', marginBottom: '6px' }}>
-              Wants to learn <span className="chip" style={{ margin: 0 }}>{m.wants}</span>
-            </p>
-            <p style={{ fontSize: '0.85rem', color: 'var(--tan-soft)', marginBottom: '14px' }}>
-              In exchange for <span className="chip" style={{ margin: 0 }}>{m.offers}</span>
-            </p>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button className="btn btn-primary btn-sm">Accept</button>
-              <button className="btn btn-outline btn-sm">Decline</button>
-            </div>
-          </div>
-        ))}
-      </div>
+          )}
+
+        </div>
+
+      </section>
+
+
+      {/* ================= MATCH CTA ================= */}
+
+      <section className="matching-cta">
+
+        <div>
+
+          <p className="section-label">
+            SKILL MATCHING
+          </p>
+
+          <h2>
+            Ready to find your skill match?
+          </h2>
+
+          <p>
+            Connect with people who can teach what
+            you want to learn and share what you know.
+          </p>
+
+        </div>
+
+        <Link
+          to="/profile"
+          className="matching-cta-button"
+        >
+          View My Profile →
+        </Link>
+
+      </section>
+
     </div>
   );
 }
+
+export default Matching;

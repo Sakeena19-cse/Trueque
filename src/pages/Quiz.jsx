@@ -1,83 +1,307 @@
-import { useState } from 'react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Quiz.css";
 
-const quizData = [
-  { q: "What does HTML stand for?", options: ["Hyper Trainer Marking Language", "HyperText Markup Language", "Hyper Text Markup Language", "Hyperlinks Text Mark Language"] },
-  { q: "Which CSS property is used to create space between an element's border and its content?", options: ["margin", "padding", "border-spacing", "gap"] },
-  { q: "In Python, which keyword defines a function?", options: ["func", "def", "function", "define"] },
-  { q: "Which HTTP method is typically used to update an existing resource?", options: ["GET", "POST", "PUT", "DELETE"] },
-  { q: "What does 'DOM' stand for in web development?", options: ["Document Object Model", "Data Object Mapping", "Display Output Manager", "Document Order Model"] },
-];
+function Quiz() {
+  const questions = [
+    {
+      question: "Which language is mainly used to structure web pages?",
+      options: ["HTML", "Python", "Java", "SQL"],
+      answer: "HTML",
+    },
+    {
+      question: "Which language is mainly used to style web pages?",
+      options: ["HTML", "CSS", "Java", "SQL"],
+      answer: "CSS",
+    },
+    {
+      question: "Which language is mainly used to add interactivity to web pages?",
+      options: ["HTML", "CSS", "JavaScript", "SQL"],
+      answer: "JavaScript",
+    },
+    {
+      question: "Which HTML tag is used to create a hyperlink?",
+      options: ["<p>", "<a>", "<img>", "<div>"],
+      answer: "<a>",
+    },
+    {
+      question: "Which CSS property is used to change text color?",
+      options: ["font-size", "background", "color", "border"],
+      answer: "color",
+    },
+  ];
 
-export default function Quiz() {
-  const [current, setCurrent] = useState(0);
-  const [selected, setSelected] = useState(null);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [score, setScore] = useState(0);
+  const [finished, setFinished] = useState(false);
 
-  const item = quizData[current];
-  const progress = ((current + 1) / quizData.length) * 100;
+  const question = questions[currentQuestion];
 
-  function next() {
-    if (current < quizData.length - 1) {
-      setCurrent(current + 1);
-      setSelected(null);
+  /* ================================
+     SELECT / DESELECT ANSWER
+     ================================ */
+
+  const handleAnswerClick = (option) => {
+    /*
+      If the user clicks the already-selected answer,
+      remove the tick.
+    */
+
+    if (selectedAnswer === option) {
+      setSelectedAnswer(null);
+      return;
+    }
+
+    /*
+      Otherwise select the new answer.
+    */
+    setSelectedAnswer(option);
+  };
+
+  /* ================================
+     NEXT QUESTION
+     ================================ */
+
+  const handleNext = () => {
+    if (selectedAnswer === null) {
+      return;
+    }
+
+    if (selectedAnswer === question.answer) {
+      setScore((previousScore) => previousScore + 1);
+    }
+
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion((previousQuestion) => previousQuestion + 1);
+      setSelectedAnswer(null);
     } else {
-      alert('Quiz complete! Great job.');
+      setFinished(true);
     }
+  };
+
+  /* ================================
+     RETRY QUIZ
+     ================================ */
+
+  const handleRetry = () => {
+    setCurrentQuestion(0);
+    setSelectedAnswer(null);
+    setScore(0);
+    setFinished(false);
+  };
+
+  /* ================================
+     RESULT PAGE
+     ================================ */
+
+  if (finished) {
+    const finalScore =
+      score +
+      (selectedAnswer === question.answer ? 1 : 0);
+
+    const passed = finalScore >= 3;
+
+    return (
+      <div className="quiz-page">
+
+        <div className="quiz-result-card">
+
+          <div className="result-icon">
+            {passed ? "✓" : "!"}
+          </div>
+
+          <p className="quiz-label">
+            SKILL VERIFICATION
+          </p>
+
+          <h1>
+            {passed
+              ? "Skill Verified!"
+              : "Keep Learning!"}
+          </h1>
+
+          <p className="result-description">
+            {passed
+              ? "Congratulations! You have successfully completed the Web Development skill quiz."
+              : "You have completed the quiz. Keep practicing and try again to improve your score."}
+          </p>
+
+          <div className="score-box">
+
+            <span>Your Score</span>
+
+            <strong>
+              {finalScore} / {questions.length}
+            </strong>
+
+          </div>
+
+          {passed && (
+            <div className="verified-badge">
+              ✓ Web Development Verified
+            </div>
+          )}
+
+          <div className="result-buttons">
+
+            <button
+              className="retry-button"
+              onClick={handleRetry}
+            >
+              Try Again
+            </button>
+
+            <Link
+              to="/profile"
+              className="profile-button"
+            >
+              View Profile
+            </Link>
+
+          </div>
+
+        </div>
+
+      </div>
+    );
   }
 
-  function prev() {
-    if (current > 0) {
-      setCurrent(current - 1);
-      setSelected(null);
-    }
-  }
+  /* ================================
+     QUIZ PAGE
+     ================================ */
 
   return (
-    <div className="container" style={{ padding: '40px 24px' }}>
-      <p style={{ color: 'var(--tan-soft)', fontSize: '0.85rem', marginBottom: '4px' }}>
-        Sessions / UI/UX Design Basics / Quiz
-      </p>
-      <h1 style={{ marginBottom: '24px' }}>Session Completion Quiz</h1>
+    <div className="quiz-page">
 
-      <div className="card" style={{ maxWidth: '640px', margin: '0 auto' }}>
-        <div style={{ height: '8px', background: 'rgba(210,180,140,0.15)', borderRadius: '6px', overflow: 'hidden', marginBottom: '24px' }}>
-          <div style={{ height: '100%', background: 'var(--gold)', width: `${progress}%`, transition: 'width 0.3s' }} />
+      <div className="quiz-card">
+
+        {/* HEADER */}
+
+        <div className="quiz-top">
+
+          <div>
+
+            <p className="quiz-label">
+              SKILL QUIZ
+            </p>
+
+            <h1>
+              Web Development
+            </h1>
+
+          </div>
+
+          <div className="question-count">
+            {currentQuestion + 1} / {questions.length}
+          </div>
+
         </div>
 
-        <p style={{ fontSize: '0.85rem', color: 'var(--tan-soft)', fontWeight: 600, marginBottom: '8px' }}>
-          Question {current + 1} of {quizData.length}
-        </p>
-        <h2 style={{ fontSize: '1.3rem', marginBottom: '24px' }}>{item.q}</h2>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '30px' }}>
-          {item.options.map((opt, i) => (
-            <label
-              key={i}
-              style={{
-                display: 'flex', alignItems: 'center', gap: '12px',
-                border: `1.5px solid ${selected === i ? 'var(--gold)' : 'rgba(210,180,140,0.3)'}`,
-                background: selected === i ? 'var(--dark-blue)' : 'transparent',
-                borderRadius: '10px', padding: '14px 16px', cursor: 'pointer', fontSize: '0.95rem',
-              }}
-            >
-              <input
-                type="radio"
-                name="quiz-option"
-                checked={selected === i}
-                onChange={() => setSelected(i)}
-                style={{ accentColor: 'var(--gold)' }}
-              />
-              {opt}
-            </label>
-          ))}
+        {/* PROGRESS BAR */}
+
+        <div className="progress-container">
+
+          <div
+            className="progress-bar"
+            style={{
+              width: `${
+                ((currentQuestion + 1) /
+                  questions.length) *
+                100
+              }%`,
+            }}
+          ></div>
+
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <button className="btn btn-outline" onClick={prev} disabled={current === 0}>← Previous</button>
-          <button className="btn btn-primary" onClick={next}>
-            {current === quizData.length - 1 ? 'Finish' : 'Next →'}
+
+        {/* QUESTION */}
+
+        <div className="question-section">
+
+          <p className="question-number">
+            QUESTION {currentQuestion + 1}
+          </p>
+
+          <h2>
+            {question.question}
+          </h2>
+
+        </div>
+
+
+        {/* ANSWERS */}
+
+        <div className="answers">
+
+          {question.options.map((option) => {
+
+            const isSelected =
+              selectedAnswer === option;
+
+            return (
+              <button
+                key={option}
+                className={`quiz-option ${
+                  isSelected ? "selected" : ""
+                }`}
+                onClick={() =>
+                  handleAnswerClick(option)
+                }
+              >
+
+                <span
+                  className={`quiz-radio ${
+                    isSelected
+                      ? "radio-selected"
+                      : ""
+                  }`}
+                >
+                  {isSelected ? "✓" : ""}
+                </span>
+
+                <span className="option-text">
+                  {option}
+                </span>
+
+              </button>
+            );
+          })}
+
+        </div>
+
+
+        {/* BOTTOM */}
+
+        <div className="quiz-bottom">
+
+          <p className="quiz-hint">
+            Select one answer and continue.
+          </p>
+
+          <button
+            className={`next-button ${
+              selectedAnswer === null
+                ? "disabled"
+                : ""
+            }`}
+            onClick={handleNext}
+            disabled={selectedAnswer === null}
+          >
+            {currentQuestion ===
+            questions.length - 1
+              ? "Finish Quiz ✓"
+              : "Next Question →"}
           </button>
+
         </div>
+
       </div>
+
     </div>
   );
 }
+
+export default Quiz;

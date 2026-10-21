@@ -1,37 +1,43 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 import Matching from "./pages/Matching";
 import Profile from "./pages/Profile";
 import Quiz from "./pages/Quiz";
 import Session from "./pages/Session";
+import Whiteboard from "./pages/Whiteboard";
 
 function App() {
   return (
-    <div className="app">
-      <Header />
+    <BrowserRouter>
+      <div className="app-shell">
 
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/matching" element={<Matching />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/session" element={<Session />} />
-        </Routes>
-      </main>
+        <Header />
 
-      <Footer />
-    </div>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/matching" element={<Matching />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/session" element={<Session />} />
+            <Route path="/whiteboard" element={<Whiteboard />} />
+          </Routes>
+        </main>
+
+        <Footer />
+
+      </div>
+    </BrowserRouter>
   );
 }
 

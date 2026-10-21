@@ -1,486 +1,864 @@
-/* ================================
+/* =========================================================
    TRUEQUE HOME PAGE
-   ================================ */
+   Burgundy + Cream + Gold
+   ========================================================= */
 
-.home-page {
-  min-height: 100vh;
-  background: #f7f2ea;
-  color: #06213d;
-  font-family: Arial, Helvetica, sans-serif;
+.trueque-home {
+  width: 100%;
+  background: #fff5e1;
+  color: #4a2028;
+  overflow: hidden;
 }
 
-/* ================================
-   HEADER
-   ================================ */
-
-.home-header {
-  height: 90px;
-  background: #06213d;
-  display: flex;
-  align-items: center;
-  padding: 0 42px;
-  color: #f5d49b;
+.trueque-home * {
+  box-sizing: border-box;
 }
 
-.logo {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 34px;
-  color: #fffaf1;
-  white-space: nowrap;
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 38px;
-  margin-left: auto;
-  margin-right: 45px;
-}
-
-.nav-menu a {
-  color: #fffaf1;
-  text-decoration: none;
-  font-size: 15px;
-  transition: 0.2s;
-}
-
-.nav-menu a:hover {
-  color: #f0c982;
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 14px;
-}
-
-.login-btn,
-.signup-btn {
-  text-decoration: none;
-  padding: 13px 24px;
-  border-radius: 5px;
-  font-size: 15px;
-}
-
-.login-btn {
-  color: #fff;
-  border: 1px solid #7890a7;
-  background: transparent;
-}
-
-.signup-btn {
-  color: #06213d;
-  background: #e7b96f;
-  border: 1px solid #e7b96f;
-}
-
-.login-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.signup-btn:hover {
-  background: #f0c982;
-}
-
-/* ================================
-   HERO
-   ================================ */
-
-.hero-section {
-  min-height: 570px;
-  display: flex;
-  align-items: center;
-  padding: 55px 42px 50px;
-  background: #f7f2ea;
-}
-
-.hero-content {
-  width: 48%;
-  padding-right: 30px;
-}
-
-.small-heading {
-  font-size: 14px;
+.home-section-label {
+  margin: 0 0 14px;
+  color: #9b7020;
+  font-size: 13px;
+  font-weight: 700;
   letter-spacing: 2px;
-  color: #987544;
-  margin-bottom: 28px;
-  font-weight: 500;
 }
 
-.small-heading span {
-  color: #06213d;
-}
-
-.hero-content h1 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(55px, 5vw, 78px);
-  line-height: 1.02;
-  font-weight: 500;
-  color: #06213d;
-}
-
-.hero-content h1 span {
-  color: #d1a064;
-}
-
-.hero-description {
-  margin-top: 28px;
-  font-size: 17px;
-  line-height: 1.8;
-  color: #26384b;
-}
-
-.hero-buttons {
+.home-hero {
+  position: relative;
+  min-height: 650px;
   display: flex;
-  gap: 18px;
-  margin-top: 34px;
+  align-items: center;
+  overflow: hidden;
+  background: #650018;
 }
 
-.primary-btn,
-.secondary-btn {
-  text-decoration: none;
-  padding: 16px 28px;
-  border-radius: 5px;
-  font-size: 16px;
+.home-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(60, 0, 18, 0.92) 0%,
+    rgba(80, 0, 24, 0.72) 48%,
+    rgba(80, 0, 24, 0.20) 100%
+  );
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, 90%);
+  margin: 0 auto;
+  padding: 100px 0;
+  color: #fff5e1;
+}
+
+.home-hero-small {
+  margin-bottom: 20px;
+  color: #e4bd54;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.home-hero h1 {
+  max-width: 750px;
+  margin: 0;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 1.05;
   font-weight: 600;
 }
 
-.primary-btn {
-  background: #06213d;
-  color: #fff;
+.home-hero h1 span {
+  color: #e4bd54;
 }
 
-.secondary-btn {
-  background: #e4bb85;
-  color: #06213d;
-}
-
-.primary-btn:hover {
-  background: #0d3457;
-}
-
-.secondary-btn:hover {
-  background: #edca99;
-}
-
-/* ================================
-   ILLUSTRATION
-   ================================ */
-
-.skill-illustration {
-  width: 52%;
-  height: 500px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.circle-item {
-  position: absolute;
-  width: 125px;
-  height: 125px;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-}
-
-.teach-circle {
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #06213d;
-  color: #fff;
-}
-
-.learn-circle {
-  bottom: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #d6a976;
-  color: #fff;
-}
-
-.circle-icon {
-  font-size: 34px;
-  color: #f4cf8e;
-  margin-bottom: 3px;
-}
-
-.circle-item strong {
-  font-family: Georgia, "Times New Roman", serif;
+.home-hero-description {
+  max-width: 620px;
+  margin: 28px 0 32px;
+  color: #fff5e1;
   font-size: 18px;
+  line-height: 1.8;
 }
 
-.circle-item small {
-  font-size: 11px;
-}
-
-.people-area {
-  position: absolute;
-  width: 100%;
-  height: 340px;
-  top: 110px;
+.home-hero-buttons {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 25px;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
-.person {
-  position: relative;
-  width: 160px;
-  height: 260px;
-}
-
-.person-head {
-  width: 78px;
-  height: 100px;
-  border-radius: 48% 48% 45% 45%;
-  background: #082949;
-  position: absolute;
-  top: 5px;
-  left: 40px;
-}
-
-.person-body {
-  position: absolute;
-  width: 125px;
-  height: 135px;
-  top: 85px;
-  left: 17px;
-  border-radius: 55px 55px 10px 10px;
-}
-
-.person-left .person-body {
-  background: #d7b6ac;
-}
-
-.person-right .person-body {
-  background: #082949;
-}
-
-.laptop {
-  position: absolute;
-  width: 115px;
-  height: 72px;
-  border: 8px solid #7892b6;
-  background: #d9e0e8;
-  border-radius: 5px;
-  transform: skew(-8deg);
-  bottom: 10px;
-  left: 22px;
-}
-
-.center-text {
-  display: flex;
-  flex-direction: column;
+.home-primary-button,
+.home-secondary-button {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  font-family: Georgia, "Times New Roman", serif;
-  color: #23364b;
-  font-size: 20px;
-  z-index: 2;
+  min-height: 52px;
+  padding: 0 28px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.25s ease;
 }
 
-.center-text strong {
-  font-weight: 500;
+.home-primary-button {
+  background: #d4a72c;
+  color: #650018;
 }
 
-/* ================================
-   FEATURES
-   ================================ */
+.home-primary-button:hover {
+  background: #e4bd54;
+  transform: translateY(-2px);
+}
 
-.features-section {
-  background: #06213d;
-  color: #fff;
+.home-secondary-button {
+  border: 1px solid #fff5e1;
+  color: #fff5e1;
+  background: transparent;
+}
+
+.home-secondary-button:hover {
+  background: #fff5e1;
+  color: #650018;
+}
+/* =========================================================
+   WELCOME / PURPOSE
+   ========================================================= */
+
+.welcome-section {
+  padding: 100px 6%;
+  background: #000;
+  color: #fff5e1;
+}
+
+.welcome-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.welcome-section .home-section-label {
+  color: #d4a72c;
+}
+
+.welcome-section h2 {
+  margin: 0;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.1;
+}
+
+.welcome-description {
+  max-width: 720px;
+  margin: 25px auto 55px;
+  color: #eadfc8;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  text-align: left;
+}
+
+.purpose-card {
+  position: relative;
+  min-height: 340px;
+  padding: 34px;
+  border: 1px solid #3f252b;
+  background: #171717;
+  color: #fff5e1;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.purpose-card:hover {
+  border-color: #d4a72c;
+  transform: translateY(-7px);
+}
+
+.purpose-number {
+  color: #d4a72c;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.purpose-icon {
+  margin: 30px 0 18px;
+  font-size: 42px;
+}
+
+.purpose-card h3 {
+  margin: 0 0 15px;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 27px;
+}
+
+.purpose-card p {
+  margin: 0 0 25px;
+  color: #d8cbbb;
+  line-height: 1.7;
+}
+
+.purpose-card span {
+  color: #d4a72c;
+  font-weight: 700;
+}
+/* =========================================================
+   SKILLS
+   ========================================================= */
+
+.home-skills-section {
+  padding: 100px 6%;
+  background: #fff5e1;
+}
+
+.home-section-heading {
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.home-section-heading h2,
+.features-heading h2,
+.how-heading h2 {
+  margin: 0;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.1;
+}
+
+.home-section-heading p:not(.home-section-label) {
+  margin-top: 18px;
+  color: #5f4448;
+  font-size: 17px;
+}
+
+.section-link {
+  color: #800020;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.home-skill-grid {
+  max-width: 1200px;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  padding: 38px 42px;
+  gap: 22px;
 }
 
-.feature {
+.home-skill-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #eadfc8;
+  transition: 0.3s ease;
+}
+
+.home-skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(101, 0, 24, 0.12);
+}
+
+.skill-image {
+  height: 210px;
   display: flex;
-  align-items: flex-start;
-  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  color: #fff5e1;
+  font-size: 55px;
 }
 
-.feature-icon {
-  font-size: 34px;
-  color: #f0c982;
-  min-width: 30px;
+.skill-programming {
+  background: #650018;
 }
 
-.feature h3 {
-  margin: 0 0 9px;
-  font-size: 17px;
-  font-weight: 500;
-  color: #fff;
+.skill-web {
+  background: #800020;
 }
 
-.feature p {
-  margin: 0;
-  color: #dce3eb;
-  font-size: 13px;
+.skill-design {
+  background: #9a3150;
+}
+
+.skill-photo {
+  background: #4a2028;
+}
+
+.skill-card-content {
+  padding: 25px;
+}
+
+.skill-category {
+  margin: 0 0 8px;
+  color: #a17420;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.skill-card-content h3 {
+  margin: 0 0 12px;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 25px;
+}
+
+.skill-card-content p:not(.skill-category) {
+  min-height: 78px;
+  margin: 0 0 20px;
+  color: #5f4448;
   line-height: 1.6;
 }
 
-/* ================================
-   FOOTER
-   ================================ */
+.skill-card-content a {
+  color: #800020;
+  font-weight: 700;
+}
+/* =========================================================
+   TRUEQUE FEATURES
+   ========================================================= */
 
-.home-footer {
-  background: #06213d;
-  color: #fff;
+.features-section {
+  padding: 100px 6%;
+  background: #f5ead4;
+}
+
+.features-heading {
+  max-width: 750px;
+  margin: 0 auto 55px;
   text-align: center;
-  padding: 42px 30px 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.home-footer h2 {
-  font-family: Georgia, "Times New Roman", serif;
+.features-heading h2 {
+  margin-bottom: 20px;
+}
+
+.features-heading > p:last-child {
+  color: #5f4448;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.features-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  position: relative;
+  padding: 35px 28px;
+  min-height: 330px;
+  background: #ffffff;
+  border-top: 4px solid #800020;
+}
+
+.feature-number {
+  color: #b28a32;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.feature-icon {
+  margin: 28px 0 18px;
+  color: #800020;
   font-size: 38px;
-  margin: 0 0 8px;
-  color: #fff;
 }
 
-.home-footer > p {
-  color: #e7c58d;
-  margin: 0;
+.feature-card h3 {
+  margin: 0 0 13px;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 25px;
 }
 
-.footer-links {
+.feature-card p {
+  margin: 0 0 25px;
+  color: #5f4448;
+  line-height: 1.7;
+}
+
+.feature-card a {
+  color: #800020;
+  font-weight: 700;
+}
+/* =========================================================
+   PROMOTIONAL BANNER
+   ========================================================= */
+
+.home-promo {
+  position: relative;
+  min-height: 470px;
   display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(75, 0, 20, 0.95),
+      rgba(75, 0, 20, 0.55)
+    ),
+    url("../assets/trueque-hero.png") center / cover;
+}
+
+.home-promo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(60, 0, 18, 0.25);
+}
+
+.home-promo-content {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, 90%);
+  margin: auto;
+}
+
+.home-promo-content .home-section-label {
+  color: #e4bd54;
+}
+
+.home-promo-content h2 {
+  max-width: 700px;
+  margin: 0;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.08;
+}
+
+.home-promo-content > p:not(.home-section-label) {
+  max-width: 620px;
+  margin: 25px 0 30px;
+  color: #fff5e1;
+  font-size: 18px;
+  line-height: 1.7;
+}
+/* =========================================================
+   WHY TRUEQUE
+   ========================================================= */
+
+.why-trueque-section {
+  padding: 110px 6%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  background: #ffffff;
+}
+
+.why-trueque-content {
+  max-width: 620px;
+  margin-left: auto;
+}
+
+.why-trueque-content h2 {
+  margin: 0 0 25px;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.08;
+}
+
+.why-trueque-content p:not(.home-section-label) {
+  margin: 0 0 18px;
+  color: #4a3438;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.why-trueque-content .home-primary-button {
+  margin-top: 15px;
+}
+
+.why-trueque-visual {
+  position: relative;
+  min-height: 430px;
+  max-width: 520px;
+}
+
+.why-visual-card {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 80%;
+  padding: 50px 40px;
+  background: #800020;
+  color: #fff5e1;
+}
+
+.visual-card-two {
+  top: 190px;
+  left: 20%;
+  background: #d4a72c;
+  color: #650018;
+}
+
+.visual-icon {
+  margin-bottom: 20px;
+  font-size: 50px;
+}
+
+.why-visual-card h3 {
+  margin: 0 0 12px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 30px;
+}
+
+.why-visual-card p {
+  margin: 0;
+  line-height: 1.6;
+}
+/* =========================================================
+   HOW IT WORKS
+   ========================================================= */
+
+.how-section {
+  padding: 100px 6%;
+  background: #fff5e1;
+}
+
+.how-heading {
+  max-width: 750px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.how-heading p:last-child {
+  margin-top: 18px;
+  color: #5f4448;
+  font-size: 17px;
+}
+
+.how-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+}
+
+.how-step {
+  text-align: center;
+}
+
+.how-step span {
+  display: inline-flex;
+  width: 58px;
+  height: 58px;
+  align-items: center;
   justify-content: center;
-  gap: 38px;
-  margin-top: 35px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: #800020;
+  color: #fff5e1;
+  font-weight: 700;
 }
 
-.footer-links a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 15px;
+.how-step h3 {
+  margin: 0 0 12px;
+  color: #650018;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 21px;
 }
 
-.footer-links a:hover {
-  color: #f0c982;
+.how-step p {
+  margin: 0;
+  color: #5f4448;
+  line-height: 1.6;
 }
 
-.footer-line {
-  max-width: 640px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.25);
-  margin: 30px auto 22px;
+.how-line {
+  width: 45px;
+  height: 2px;
+  background: #d4a72c;
+}
+/* =========================================================
+   EXPLORE TRUEQUE
+   ========================================================= */
+
+.explore-section {
+  padding: 100px 6%;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 70px;
+  align-items: center;
+  background: #000;
 }
 
-.copyright {
-  color: #e3e8ed !important;
-  font-size: 14px;
+.explore-content {
+  max-width: 550px;
 }
 
-/* ================================
-   RESPONSIVE
-   ================================ */
+.explore-content h2 {
+  margin: 0 0 25px;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 1;
+}
+
+.explore-content > p:not(.home-section-label) {
+  margin-bottom: 30px;
+  color: #d8cbbb;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.explore-button {
+  display: inline-flex;
+  min-height: 52px;
+  padding: 0 25px;
+  align-items: center;
+  justify-content: center;
+  background: #d4a72c;
+  color: #650018;
+  font-weight: 700;
+}
+
+.explore-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.explore-card {
+  min-height: 260px;
+  padding: 30px;
+  border: 1px solid #3b292d;
+  background: #171717;
+}
+
+.explore-card span {
+  display: block;
+  margin-bottom: 35px;
+  font-size: 40px;
+}
+
+.explore-card h3 {
+  margin: 0 0 12px;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 23px;
+}
+
+.explore-card p {
+  margin: 0;
+  color: #c9bbb0;
+  line-height: 1.6;
+}
+/* =========================================================
+   FINAL CTA
+   ========================================================= */
+
+.final-cta {
+  padding: 80px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  background: #800020;
+  color: #fff5e1;
+}
+
+.final-cta .home-section-label {
+  color: #e4bd54;
+}
+
+.final-cta h2 {
+  margin: 0;
+  color: #fff5e1;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.05;
+}
+
+.final-cta p:last-child {
+  max-width: 550px;
+  margin-top: 18px;
+  color: #f0dfd0;
+  line-height: 1.7;
+}
+
+.final-cta-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.final-primary-button,
+.final-secondary-button {
+  min-height: 52px;
+  padding: 0 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.final-primary-button {
+  background: #d4a72c;
+  color: #650018;
+}
+
+.final-secondary-button {
+  border: 1px solid #fff5e1;
+  color: #fff5e1;
+}
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
 
 @media (max-width: 1000px) {
 
-  .home-header {
-    padding: 0 25px;
+  .home-skill-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .nav-menu {
-    gap: 18px;
-    margin-right: 20px;
+  .purpose-grid {
+    grid-template-columns: 1fr;
   }
 
-  .hero-section {
-    flex-direction: column;
+  .how-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
   }
 
-  .hero-content,
-  .skill-illustration {
+  .how-line {
+    width: 2px;
+    height: 35px;
+    margin: auto;
+  }
+
+  .why-trueque-section,
+  .explore-section {
+    grid-template-columns: 1fr;
+  }
+
+  .why-trueque-content {
+    margin-left: 0;
+  }
+
+  .why-trueque-visual {
+    margin: auto;
     width: 100%;
   }
 
-  .hero-content {
-    text-align: center;
-    padding-right: 0;
+  .explore-cards {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .hero-buttons {
-    justify-content: center;
-  }
-
-  .skill-illustration {
-    margin-top: 30px;
-  }
-
-  .features-section {
-    grid-template-columns: repeat(2, 1fr);
+  .final-cta {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
+
 @media (max-width: 700px) {
 
-  .home-header {
-    height: auto;
-    min-height: 75px;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 15px 20px;
+  .home-hero {
+    min-height: 680px;
   }
 
-  .logo {
-    font-size: 28px;
+  .home-hero-content {
+    width: 88%;
+    padding: 80px 0;
   }
 
-  .nav-menu {
-    order: 3;
+  .home-hero h1 {
+    font-size: 45px;
+  }
+
+  .home-hero-description {
+    font-size: 16px;
+  }
+
+  .home-primary-button,
+  .home-secondary-button {
     width: 100%;
-    justify-content: center;
-    margin: 0;
-    gap: 15px;
   }
 
-  .nav-menu a {
-    font-size: 13px;
+  .home-section-heading {
+    display: block;
   }
 
-  .auth-buttons {
-    margin-left: auto;
+  .section-link {
+    display: inline-block;
+    margin-top: 20px;
   }
 
-  .login-btn,
-  .signup-btn {
-    padding: 10px 14px;
-  }
-
-  .hero-section {
-    padding: 45px 20px;
-  }
-
-  .hero-content h1 {
-    font-size: 48px;
-  }
-
-  .skill-illustration {
-    transform: scale(0.85);
-    margin-left: -7%;
-    width: 114%;
-  }
-
-  .features-section {
+  .home-skill-grid,
+  .features-grid {
     grid-template-columns: 1fr;
-    padding: 35px 25px;
   }
 
-  .footer-links {
-    flex-wrap: wrap;
-    gap: 20px;
+  .home-skills-section,
+  .features-section,
+  .how-section,
+  .welcome-section,
+  .why-trueque-section,
+  .explore-section {
+    padding: 75px 5%;
+  }
+
+  .home-skill-card {
+    width: 100%;
+  }
+
+  .why-trueque-visual {
+    min-height: 470px;
+  }
+
+  .why-visual-card {
+    width: 90%;
+  }
+
+  .visual-card-two {
+    left: 10%;
+  }
+
+  .explore-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .explore-card {
+    min-height: auto;
+  }
+
+  .final-cta {
+    padding: 70px 5%;
+  }
+
+  .final-cta-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .final-primary-button,
+  .final-secondary-button {
+    width: 100%;
   }
 }
