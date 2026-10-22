@@ -39,14 +39,23 @@ def start_skill_verification_view(request, user_skill_id):
 def submit_skill_verification_view(request, user_skill_id):
     from quiz.models import Quiz
     user_skill = get_object_or_404(UserSkill, id=user_skill_id, user=request.user)
+
     quiz_id = request.data.get('quiz_id')
     answers = request.data.get('answers')  # {question_id: submitted_answer}
+    if not quiz_id or not isinstance(answers, dict):
+        return Response({"error": "quiz_id and answers are required"}, status=400)
+
+    def _norm(s):
+        s = str(s or '').strip()
+        if len(s) == 1 or s[1:2] in (')', '.'):
+            return s[0].upper()
+        return s.lower()
 
     quiz = get_object_or_404(Quiz, id=quiz_id)
     questions = quiz.questions.all()
     correct = sum(
         1 for q in questions
-        if answers.get(str(q.id), '').strip().lower() == q.correct_answer.strip().lower()
+        if _norm(answers.get(str(q.id), '')) == _norm(q.correct_answer)
     )
     percentage = round((correct / questions.count()) * 100, 1) if questions.count() else 0
     passed = complete_verification(user_skill, quiz, percentage)
@@ -66,7 +75,7 @@ def start_session_quiz_view(request, session_id):
 @permission_classes([IsAuthenticated])
 def submit_session_quiz_view(request, session_id):
     session = get_object_or_404(Session, id=session_id)
-    questions = request.data.get('questions')  
+    questions = request.data.get('questions')
     submitted_answers = request.data.get('answers')
 
     percentage = score_session_quiz(questions, submitted_answers)
