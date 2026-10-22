@@ -1,0 +1,30 @@
+[
+    {
+        "_id": "bfe68476-2ff8-45f8-b5e6-33e6a9afb3f2",
+        "colId": "history",
+        "containerId": "",
+        "name": "POST /api/accounts/register/",
+        "url": "http://127.0.0.1:8000/api/accounts/me/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2026-10-11T07:38:31.368Z",
+        "modified": "2026-10-11T08:04:57.527Z",
+        "headers": [
+            {
+                "name": "Authorization",
+                "value": "Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkxNzA3NTI3LCJpYXQiOjE3OTE3MDU3MjcsImp0aSI6IjlmNzMxNWExOTkzMzQ2OWM4MjYzYTkyYjM0Yjg1ZTZhIiwidXNlcl9pZCI6IjUifQ.5YrqvFxZoccpdzAMA7cr0l6AEEUlKLsEQAelHsdbmzs"
+            }
+        ],
+        "body": {
+            "type": "json",
+            "raw": [
+                "",
+                "{",
+                "  \"username\": \"jay\",",
+                "  \"password\": \"Test@12345\"",
+                "}"
+            ],
+            "form": []
+        }
+    }
+]

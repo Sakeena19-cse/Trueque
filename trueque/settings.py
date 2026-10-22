@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-=m6h@^sgg6r3-+44ix5ck+x#fiw1-u^mp3exuv@a1+g_o1h%%h'
-SECRET_KEY = 'django-insecure-r2!ykr)#%3nr!@6nc-8%1v_2#xrnv((1h@h$!!+-97lg_u10-6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+        'rest_framework_simplejwt.token_blacklist',
+        'corsheaders',
     'channels',
     'quiz',
     'accounts',
@@ -46,17 +49,10 @@ INSTALLED_APPS = [
     'mentor',
     'chat',
     'django_extensions',
+   
 ]
 
-MIDDLEWARE = [
 
-    'rest_framework',
-    'corsheaders',
-
-    'accounts',
-    'skills',
-    'matches',
-]
 
 MIDDLEWARE = [
       'corsheaders.middleware.CorsMiddleware',
@@ -95,12 +91,6 @@ ASGI_APPLICATION = 'trueque.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'quizbattle_db',
-        'USER': 'postgres',
-        'PASSWORD': 'Simba@2022',   
-        'HOST': 'localhost',
-        'PORT': '5432',
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
@@ -162,10 +152,23 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+CORS_ALLOW_ALL_ORIGINS = True   
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES":(
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
     ),
 }
 
-CORS_ALLOW_ALL_ORIGINS = True   
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
