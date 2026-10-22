@@ -30,6 +30,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/session" element={<Session />} />
+            <Route path="/session/:id" element={<Session />} />
             <Route path="/whiteboard" element={<Whiteboard />} />
           </Routes>
         </main>

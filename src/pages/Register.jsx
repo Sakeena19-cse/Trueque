@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL, saveTokens } from "../api";
 
 function Register() {
   const navigate = useNavigate();
 
   const [page, setPage] = useState(1);
+  const [error, setError] = useState("");
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -31,20 +33,59 @@ function Register() {
     setPage(2);
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+    setError("");
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match.");
+      setError("Passwords do not match.");
       return;
     }
 
     if (!formData.purpose) {
-      alert("Please select why you want to use TRUEQUE.");
+      setError("Please select why you want to use TRUEQUE.");
       return;
     }
 
-    navigate("/matching");
+    try {
+      const res = await fetch(`${API_URL}/auth/register/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        const first = Object.values(data)[0];
+        setError(Array.isArray(first) ? first[0] : "Registration failed.");
+        return;
+      }
+
+      // Log in straight away so the new user can continue.
+      const loginRes = await fetch(`${API_URL}/auth/login/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
+      });
+
+      if (loginRes.ok) {
+        saveTokens(await loginRes.json());
+        navigate("/matching");
+      } else {
+        navigate("/login");
+      }
+    } catch {
+      setError("Cannot reach the server. Is the backend running?");
+    }
   };
 
   return (
@@ -354,6 +395,8 @@ function Register() {
 
               </div>
 
+              {error && <p className="auth-error">{error}</p>}
+
               <div className="register-action-row">
 
                 <button
@@ -377,9 +420,7 @@ function Register() {
           )}
 
         </div>
-
       </section>
-
     </div>
   );
 }

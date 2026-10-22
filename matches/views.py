@@ -1,35 +1,13 @@
+from django.db.models import Q
 from rest_framework import viewsets, permissions
+from rest_framework.decorators import action
+from rest_framework.exceptions import PermissionDenied
+from rest_framework.response import Response
+
 from .models import Match, Session, Review
 from .serializers import MatchSerializer, SessionSerializer, ReviewSerializer
-
-
-class MatchViewSet(viewsets.ModelViewSet):
-    queryset = Match.objects.all()
-    serializer_class = MatchSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-    def perform_create(self, serializer):
-        serializer.save(user1=self.request.user)
-
-
-class SessionViewSet(viewsets.ModelViewSet):
-    queryset = Session.objects.all()
-    serializer_class = SessionSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-
-class ReviewViewSet(viewsets.ModelViewSet):
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-    def perform_create(self, serializer):
-        serializer.save(reviewer=self.request.user)
-
-
-from rest_framework.decorators import action
-from rest_framework.response import Response
 from .matching import find_direct_matches, find_chain_matches
+
 
 class MatchViewSet(viewsets.ModelViewSet):
     queryset = Match.objects.all()
@@ -54,3 +32,32 @@ class MatchViewSet(viewsets.ModelViewSet):
             for chain in chains
         ]
         return Response({'direct_matches': direct_data, 'chain_matches': chain_data})
+
+
+class SessionViewSet(viewsets.ModelViewSet):
+    # The class-level queryset is needed for the router; get_queryset narrows it.
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # Only the two people in a match can see its sessions (and its call link).
+        user = self.request.user
+        return Session.objects.filter(
+            Q(match__user1=user) | Q(match__user2=user)
+        )
+
+    def perform_create(self, serializer):
+        match = serializer.validated_data['match']
+        if self.request.user not in (match.user1, match.user2):
+            raise PermissionDenied("You are not part of this match.")
+        serializer.save()
+
+
+class ReviewViewSet(viewsets.ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(reviewer=self.request.user)

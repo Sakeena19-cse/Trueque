@@ -14,11 +14,14 @@ class MatchSerializer(serializers.ModelSerializer):
 
 
 class SessionSerializer(serializers.ModelSerializer):
+    video_call_url = serializers.ReadOnlyField()
+
     class Meta:
         model = Session
-        fields = ['id', 'match', 'scheduled_time', 'status', 'notes', 'created_at']
-        read_only_fields = ['id', 'created_at']
-
+        fields = ['id', 'match', 'scheduled_time', 'status', 'notes',
+                  'created_at', 'room_id', 'video_call_url', 'learning_confirmed']
+        read_only_fields = ['id', 'created_at', 'room_id',
+                            'video_call_url', 'learning_confirmed']
 
 class ReviewSerializer(serializers.ModelSerializer):
     reviewer_username = serializers.CharField(source='reviewer.username', read_only=True)
