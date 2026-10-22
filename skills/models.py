@@ -34,3 +34,9 @@ class UserSkill(models.Model):
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name='user_skills')
     proficiency = models.CharField(max_length=20, choices=PROFICIENCY_CHOICES, default='beginner')
     skill_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    is_verified = models.BooleanField(default=False)
+    verified_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'skill', 'skill_type')
