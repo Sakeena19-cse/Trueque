@@ -1,288 +1,347 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const STORAGE_KEY = "truequeDashboardData";
+// Read saved data from localStorage
+const getSavedData = (key) => {
+  try {
+    return JSON.parse(localStorage.getItem(key)) || [];
+  } catch {
+    return [];
+  }
+};
+
+// Save data to localStorage
+const saveData = (key, data) => {
+  localStorage.setItem(key, JSON.stringify(data));
+};
 
 const defaultSkills = [
-  {
-    name: "Programming",
-    icon: "</>",
-    description: "Learn coding, programming languages and software development.",
-  },
-  {
-    name: "Web Development",
-    icon: "◎",
-    description: "Build websites and learn modern web technologies.",
-  },
-  {
-    name: "UI/UX Design",
-    icon: "✎",
-    description: "Learn user interface and user experience design.",
-  },
-  {
-    name: "Photography",
-    icon: "📷",
-    description: "Improve photography and creative visual skills.",
-  },
-  {
-    name: "Communication",
-    icon: "💬",
-    description: "Develop communication and presentation skills.",
-  },
-  {
-    name: "Digital Marketing",
-    icon: "📈",
-    description: "Learn social media, branding and digital marketing.",
-  },
+  // Programming
+  { name: "Programming", category: "Programming", icon: "💻" },
+  { name: "C Programming", category: "Programming", icon: "💻" },
+  { name: "C++", category: "Programming", icon: "💻" },
+  { name: "Java", category: "Programming", icon: "☕" },
+  { name: "Python", category: "Programming", icon: "🐍" },
+  { name: "JavaScript", category: "Programming", icon: "🟨" },
+  { name: "Data Structures", category: "Programming", icon: "📚" },
+  { name: "Data Structures and Algorithms", category: "Programming", icon: "📊" },
+
+  // Web Development
+  { name: "Web Development", category: "Web Development", icon: "🌐" },
+  { name: "Frontend Development", category: "Web Development", icon: "🎨" },
+  { name: "Backend Development", category: "Web Development", icon: "⚙️" },
+  { name: "Full Stack Development", category: "Web Development", icon: "🚀" },
+  { name: "HTML", category: "Web Development", icon: "🌐" },
+  { name: "CSS", category: "Web Development", icon: "🎨" },
+  { name: "React.js", category: "Web Development", icon: "⚛️" },
+  { name: "Node.js", category: "Web Development", icon: "🟢" },
+  { name: "PHP", category: "Web Development", icon: "🐘" },
+  { name: "Angular", category: "Web Development", icon: "🅰️" },
+
+  // Database
+  { name: "SQL", category: "Database", icon: "🗄️" },
+  { name: "MySQL", category: "Database", icon: "🗄️" },
+  { name: "MongoDB", category: "Database", icon: "🍃" },
+  { name: "Database Management", category: "Database", icon: "📂" },
+
+  // Data and AI
+  { name: "Data Science", category: "Data & AI", icon: "📊" },
+  { name: "Data Analytics", category: "Data & AI", icon: "📈" },
+  { name: "Machine Learning", category: "Data & AI", icon: "🤖" },
+  { name: "Artificial Intelligence", category: "Data & AI", icon: "🧠" },
+
+  // Design
+  { name: "UI/UX Design", category: "Design", icon: "✏️" },
+  { name: "Graphic Design", category: "Design", icon: "🎨" },
+  { name: "Canva", category: "Design", icon: "🖌️" },
+  { name: "Figma", category: "Design", icon: "🖼️" },
+  { name: "Photoshop", category: "Design", icon: "📷" },
+
+  // Professional Skills
+  { name: "Communication", category: "Professional Skills", icon: "💬" },
+  { name: "English Speaking", category: "Professional Skills", icon: "🗣️" },
+  { name: "Public Speaking", category: "Professional Skills", icon: "🎤" },
+  { name: "Leadership", category: "Professional Skills", icon: "⭐" },
+  { name: "Teamwork", category: "Professional Skills", icon: "🤝" },
+  { name: "Problem Solving", category: "Professional Skills", icon: "🧩" },
+  { name: "Interview Preparation", category: "Professional Skills", icon: "💼" },
+  { name: "Resume Writing", category: "Professional Skills", icon: "📄" },
+
+  // Other Skills
+  { name: "Photography", category: "Other Skills", icon: "📸" },
+  { name: "Video Editing", category: "Other Skills", icon: "🎬" },
+  { name: "Digital Marketing", category: "Other Skills", icon: "📱" },
+  { name: "Content Writing", category: "Other Skills", icon: "✍️" },
+  { name: "Excel", category: "Other Skills", icon: "📊" },
+  { name: "PowerPoint", category: "Other Skills", icon: "📽️" },
+  { name: "Cyber Security", category: "Other Skills", icon: "🔐" },
+  { name: "Cloud Computing", category: "Other Skills", icon: "☁️" },
 ];
 
-function getSavedData() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-
-    return {
-      skills: saved?.skills || defaultSkills,
-      learning: saved?.learning || [],
-      teaching: saved?.teaching || [],
-      matches: saved?.matches || [],
-      verified: saved?.verified || [],
-    };
-  } catch {
-    return {
-      skills: defaultSkills,
-      learning: [],
-      teaching: [],
-      matches: [],
-      verified: [],
-    };
-  }
-}
-
 function Matching() {
-  const [data, setData] = useState(getSavedData);
   const [search, setSearch] = useState("");
-  const [newSkill, setNewSkill] = useState("");
-  const [newDescription, setNewDescription] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All Skills");
+
+  const [learningSkills, setLearningSkills] = useState(() =>
+    getSavedData("truequeLearningSkills")
+  );
+
+  const [teachingSkills, setTeachingSkills] = useState(() =>
+    getSavedData("truequeTeachingSkills")
+  );
+
+  const [matches, setMatches] = useState(() =>
+    getSavedData("truequeMatches")
+  );
+
+  const [customSkills, setCustomSkills] = useState(() =>
+    getSavedData("truequeCustomSkills")
+  );
+
   const [message, setMessage] = useState("");
 
-  // Save the student's skills and choices
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }, [data]);
+  const allSkills = [...defaultSkills, ...customSkills];
 
-  // Add a new skill entered by the student
-  const handleAddSkill = (e) => {
-    e.preventDefault();
+  const categories = [
+    "All Skills",
+    "Programming",
+    "Web Development",
+    "Database",
+    "Data & AI",
+    "Design",
+    "Professional Skills",
+    "Other Skills",
+    "My Skills",
+  ];
 
-    const skillName = newSkill.trim();
+  const filteredSkills = allSkills.filter((skill) => {
+    const matchesSearch = skill.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
 
-    if (!skillName) {
-      setMessage("Please enter a skill name.");
+    const matchesCategory =
+      activeCategory === "All Skills" ||
+      skill.category === activeCategory ||
+      (activeCategory === "My Skills" &&
+        (learningSkills.includes(skill.name) ||
+          teachingSkills.includes(skill.name)));
+
+    return matchesSearch && matchesCategory;
+  });
+
+  // Add or remove a learning skill
+  const handleLearn = (skillName) => {
+    let updatedSkills;
+
+    if (learningSkills.includes(skillName)) {
+      updatedSkills = learningSkills.filter(
+        (skill) => skill !== skillName
+      );
+      setMessage(`${skillName} removed from your learning skills.`);
+    } else {
+      updatedSkills = [...learningSkills, skillName];
+      setMessage(`${skillName} added to your learning skills.`);
+    }
+
+    setLearningSkills(updatedSkills);
+    saveData("truequeLearningSkills", updatedSkills);
+  };
+
+  // Add or remove a teaching skill
+  const handleTeach = (skillName) => {
+    let updatedSkills;
+
+    if (teachingSkills.includes(skillName)) {
+      updatedSkills = teachingSkills.filter(
+        (skill) => skill !== skillName
+      );
+      setMessage(`${skillName} removed from your teaching skills.`);
+    } else {
+      updatedSkills = [...teachingSkills, skillName];
+      setMessage(`${skillName} added to your teaching skills.`);
+    }
+
+    setTeachingSkills(updatedSkills);
+    saveData("truequeTeachingSkills", updatedSkills);
+  };
+
+  // Create a match request for a skill
+  const handleMatch = (skillName) => {
+    if (matches.includes(skillName)) {
+      setMessage(`You have already created a match request for ${skillName}.`);
       return;
     }
 
-    const alreadyExists = data.skills.some(
+    const updatedMatches = [...matches, skillName];
+
+    setMatches(updatedMatches);
+    saveData("truequeMatches", updatedMatches);
+
+    setMessage(`Your match request for ${skillName} has been recorded.`);
+  };
+
+  // Add a skill that is not already in the list
+  const handleAddCustomSkill = () => {
+    const skillName = search.trim();
+
+    if (!skillName) {
+      setMessage("Please enter a skill name first.");
+      return;
+    }
+
+    const alreadyExists = allSkills.some(
       (skill) =>
         skill.name.toLowerCase() === skillName.toLowerCase()
     );
 
     if (alreadyExists) {
-      setMessage("This skill is already available.");
+      setMessage("This skill is already available. Select it from the list.");
       return;
     }
 
-    const newSkillItem = {
+    const newSkill = {
       name: skillName,
-      icon: "✦",
-      description:
-        newDescription.trim() ||
-        `Explore and develop your ${skillName} skills.`,
+      category: "Other Skills",
+      icon: "⭐",
     };
 
-    setData((previous) => ({
-      ...previous,
-      skills: [...previous.skills, newSkillItem],
-    }));
+    const updatedCustomSkills = [...customSkills, newSkill];
 
-    setNewSkill("");
-    setNewDescription("");
-    setMessage(`${skillName} has been added successfully!`);
+    setCustomSkills(updatedCustomSkills);
+    saveData("truequeCustomSkills", updatedCustomSkills);
+
+    setSearch(skillName);
+    setActiveCategory("All Skills");
+    setMessage(`${skillName} has been added successfully.`);
   };
-
-  // Add a skill to the student's learning list
-  const handleLearn = (skillName) => {
-    setData((previous) => {
-      if (previous.learning.includes(skillName)) {
-        setMessage("This skill is already in your learning list.");
-        return previous;
-      }
-
-      setMessage(`${skillName} added to Skills Learning.`);
-
-      return {
-        ...previous,
-        learning: [...previous.learning, skillName],
-      };
-    });
-  };
-
-  // Add a skill to the student's teaching list
-  const handleTeach = (skillName) => {
-    setData((previous) => {
-      if (previous.teaching.includes(skillName)) {
-        setMessage("This skill is already in your teaching list.");
-        return previous;
-      }
-
-      setMessage(`${skillName} added to Skills Teaching.`);
-
-      return {
-        ...previous,
-        teaching: [...previous.teaching, skillName],
-      };
-    });
-  };
-
-  // Create a frontend match for the selected skill
-  const handleCreateMatch = (skillName) => {
-    setData((previous) => {
-      if (previous.matches.includes(skillName)) {
-        setMessage("A match for this skill already exists.");
-        return previous;
-      }
-
-      setMessage(`A match for ${skillName} has been created.`);
-
-      return {
-        ...previous,
-        matches: [...previous.matches, skillName],
-      };
-    });
-  };
-
-  const filteredSkills = data.skills.filter((skill) =>
-    skill.name.toLowerCase().includes(search.toLowerCase())
-  );
 
   return (
     <div className="skills-page">
-      {/* HERO */}
+
+      {/* HERO AND SEARCH */}
       <section className="skills-hero">
         <div className="skills-hero-content">
-          <p className="section-label">TRUEQUE SKILLS</p>
+          <p className="section-label">FIND A SKILL</p>
 
           <h1>
-            Explore Skills.
+            What would you like to
             <br />
-            <span>Find Your Match.</span>
+            <span>learn or teach?</span>
           </h1>
 
           <p>
-            Discover skills you want to learn, share what you know,
-            and connect with people through skill exchange.
+            Explore skills, share your knowledge, and connect
+            with learners and teachers through TRUEQUE.
           </p>
-        </div>
-      </section>
-
-      {/* ADD NEW SKILL */}
-      <section className="add-skill-section">
-        <div className="add-skill-container">
-          <p className="section-label">PERSONALIZE YOUR JOURNEY</p>
-
-          <h2>Add a Skill</h2>
-
-          <p>
-            Can't find the skill you need? Add your own skill to TRUEQUE.
-          </p>
-
-          <form className="add-skill-form" onSubmit={handleAddSkill}>
-            <input
-              type="text"
-              placeholder="Enter skill name (e.g. Python, Baking, Excel)"
-              value={newSkill}
-              onChange={(e) => setNewSkill(e.target.value)}
-            />
-
-            <input
-              type="text"
-              placeholder="Short description (optional)"
-              value={newDescription}
-              onChange={(e) => setNewDescription(e.target.value)}
-            />
-
-            <button type="submit">+ Add Skill</button>
-          </form>
-
-          {message && (
-            <p className="skill-action-message">{message}</p>
-          )}
-        </div>
-      </section>
-
-      {/* SEARCH */}
-      <section className="skills-search-section">
-        <div className="skills-search-container">
-          <p className="section-label">FIND A SKILL</p>
-
-          <h2>What would you like to learn or teach?</h2>
 
           <div className="skill-search-box">
             <input
               type="text"
-              placeholder="Search for a skill..."
+              placeholder="Search for a skill... e.g. Full Stack, Python, React"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
 
-            <button type="button" onClick={() => setSearch("")}>
+            <button
+              type="button"
+              onClick={() => setSearch(search.trim())}
+            >
+              Search
+            </button>
+
+            <button
+              type="button"
+              className="clear-search-button"
+              onClick={() => setSearch("")}
+            >
               Clear
             </button>
           </div>
+
+          {search.trim() &&
+            !allSkills.some(
+              (skill) =>
+                skill.name.toLowerCase() === search.trim().toLowerCase()
+            ) && (
+              <button
+                className="add-custom-skill-button"
+                onClick={handleAddCustomSkill}
+              >
+                + Add "{search.trim()}" as a new skill
+              </button>
+            )}
         </div>
       </section>
 
-      {/* SKILL COUNTS */}
-      <section className="my-skill-summary">
-        <div>
-          <strong>{data.learning.length}</strong>
-          <span>Skills Learning</span>
+      {/* LIVE COUNTS */}
+      <section className="dashboard-stats skills-stats">
+
+        <div className="dashboard-stat-card">
+          <div className="stat-icon">📚</div>
+          <h3>Skills Learning</h3>
+          <strong>{learningSkills.length}</strong>
+          <p>Skills you have selected to learn</p>
         </div>
 
-        <div>
-          <strong>{data.teaching.length}</strong>
-          <span>Skills Teaching</span>
+        <div className="dashboard-stat-card">
+          <div className="stat-icon">🎓</div>
+          <h3>Skills Teaching</h3>
+          <strong>{teachingSkills.length}</strong>
+          <p>Skills you have selected to teach</p>
         </div>
 
-        <div>
-          <strong>{data.matches.length}</strong>
-          <span>My Matches</span>
+        <div className="dashboard-stat-card">
+          <div className="stat-icon">🤝</div>
+          <h3>My Matches</h3>
+          <strong>{matches.length}</strong>
+          <p>Match requests you have created</p>
         </div>
 
-        <div>
-          <strong>{data.verified.length}</strong>
-          <span>Verified Skills</span>
+        <div className="dashboard-stat-card">
+          <div className="stat-icon">🏆</div>
+          <h3>Verified Skills</h3>
+          <strong>{getSavedData("truequeVerifiedSkills").length}</strong>
+          <p>Skills successfully verified</p>
         </div>
+
       </section>
 
-      {/* SKILL CARDS */}
+      {/* SKILL CATEGORIES */}
       <section className="explore-skills-section">
+
         <div className="explore-heading">
           <div>
-            <p className="section-label">AVAILABLE SKILLS</p>
+            <p className="section-label">POPULAR SKILLS</p>
             <h2>Explore All Skills</h2>
           </div>
 
           <p>
-            Select how you want to participate in each skill.
+            Choose what you want to learn, teach, or match.
           </p>
         </div>
 
+        <div className="skill-category-filters">
+          {categories.map((category) => (
+            <button
+              key={category}
+              className={
+                activeCategory === category ? "category-active" : ""
+              }
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* SKILL CARDS */}
         <div className="professional-skills-grid">
+
           {filteredSkills.length > 0 ? (
             filteredSkills.map((skill) => {
-              const isLearning = data.learning.includes(skill.name);
-              const isTeaching = data.teaching.includes(skill.name);
-              const isMatched = data.matches.includes(skill.name);
+              const isLearning = learningSkills.includes(skill.name);
+              const isTeaching = teachingSkills.includes(skill.name);
+              const hasMatch = matches.includes(skill.name);
 
               return (
                 <div
@@ -295,48 +354,46 @@ function Matching() {
 
                   <div className="professional-skill-content">
                     <h3>{skill.name}</h3>
-                    <p>{skill.description}</p>
+                    <p>{skill.category}</p>
 
                     <div className="skill-action-buttons">
+
                       <button
-                        type="button"
-                        className={isLearning ? "skill-action active" : "skill-action"}
+                        className={`skill-action-button ${
+                          isLearning ? "skill-action-active" : ""
+                        }`}
                         onClick={() => handleLearn(skill.name)}
                       >
                         {isLearning ? "✓ Learning" : "Learn"}
                       </button>
 
                       <button
-                        type="button"
-                        className={isTeaching ? "skill-action active" : "skill-action"}
+                        className={`skill-action-button ${
+                          isTeaching ? "skill-action-active" : ""
+                        }`}
                         onClick={() => handleTeach(skill.name)}
                       >
                         {isTeaching ? "✓ Teaching" : "Teach"}
                       </button>
 
                       <button
-                        type="button"
-                        className={isMatched ? "skill-action active" : "skill-action"}
-                        onClick={() => handleCreateMatch(skill.name)}
+                        className={`skill-action-button ${
+                          hasMatch ? "skill-action-active" : ""
+                        }`}
+                        onClick={() => handleMatch(skill.name)}
                       >
-                        {isMatched ? "✓ Matched" : "Create Match"}
+                        {hasMatch ? "✓ Requested" : "Create Match"}
                       </button>
+
                     </div>
 
                     <Link
                       to="/quiz"
-                      className="verify-skill-link"
+                      className="skill-card-button"
                     >
                       Verify Skill →
                     </Link>
 
-                    {(isLearning || isTeaching || isMatched) && (
-                      <div className="skill-status">
-                        {isLearning && <span>Learning</span>}
-                        {isTeaching && <span>Teaching</span>}
-                        {isMatched && <span>Match Created</span>}
-                      </div>
-                    )}
                   </div>
                 </div>
               );
@@ -344,22 +401,35 @@ function Matching() {
           ) : (
             <div className="no-skills">
               <h3>No skills found</h3>
-              <p>Try another search or add this skill above.</p>
+              <p>
+                Try another search or add your own skill.
+              </p>
             </div>
           )}
+
         </div>
+
+        {message && (
+          <p className="skill-feedback-message" role="status">
+            {message}
+          </p>
+        )}
+
       </section>
 
-      {/* STUDENT'S SELECTED SKILLS */}
-      <section className="student-selected-skills">
-        <p className="section-label">YOUR ACTIVITY</p>
-        <h2>My Skills and Matches</h2>
+      {/* SELECTED SKILLS SUMMARY */}
+      <section className="selected-skills-section">
 
-        <div className="selected-skill-columns">
+        <p className="section-label">YOUR SELECTIONS</p>
+        <h2>My Skills Summary</h2>
+
+        <div className="selected-skills-grid">
+
           <div className="selected-skill-box">
-            <h3>Skills I'm Learning</h3>
-            {data.learning.length ? (
-              data.learning.map((skill) => (
+            <h3>📚 Skills I'm Learning</h3>
+
+            {learningSkills.length > 0 ? (
+              learningSkills.map((skill) => (
                 <p key={skill}>✓ {skill}</p>
               ))
             ) : (
@@ -368,9 +438,10 @@ function Matching() {
           </div>
 
           <div className="selected-skill-box">
-            <h3>Skills I'm Teaching</h3>
-            {data.teaching.length ? (
-              data.teaching.map((skill) => (
+            <h3>🎓 Skills I Can Teach</h3>
+
+            {teachingSkills.length > 0 ? (
+              teachingSkills.map((skill) => (
                 <p key={skill}>✓ {skill}</p>
               ))
             ) : (
@@ -379,32 +450,37 @@ function Matching() {
           </div>
 
           <div className="selected-skill-box">
-            <h3>My Matches</h3>
-            {data.matches.length ? (
-              data.matches.map((skill) => (
-                <p key={skill}>🤝 {skill}</p>
+            <h3>🤝 My Match Requests</h3>
+
+            {matches.length > 0 ? (
+              matches.map((skill) => (
+                <p key={skill}>✓ {skill}</p>
               ))
             ) : (
-              <p>No matches created yet.</p>
+              <p>No match requests created yet.</p>
             )}
           </div>
+
         </div>
+
       </section>
 
       {/* CTA */}
       <section className="matching-cta">
         <div>
-          <p className="section-label">KEEP GROWING</p>
-          <h2>Ready to continue your journey?</h2>
+          <p className="section-label">YOUR LEARNING JOURNEY</p>
+          <h2>Ready to grow your skills?</h2>
           <p>
-            Check your progress and manage your TRUEQUE profile.
+            Select your skills and continue building your
+            learning and teaching profile.
           </p>
         </div>
 
-        <Link to="/dashboard" className="matching-cta-button">
-          Go to Dashboard →
+        <Link to="/profile" className="matching-cta-button">
+          View My Profile →
         </Link>
       </section>
+
     </div>
   );
 }
