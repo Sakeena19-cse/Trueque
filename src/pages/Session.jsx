@@ -9,6 +9,30 @@ function Session() {
   const [partner, setPartner] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  // SESSION BOOKING CALENDAR
+
+const [currentMonth, setCurrentMonth] = useState(new Date());
+
+const [selectedDate, setSelectedDate] = useState("");
+
+const [selectedTime, setSelectedTime] = useState("");
+
+const [bookings, setBookings] = useState(() => {
+  try {
+    return JSON.parse(
+      localStorage.getItem("truequeSessionBookings")
+    ) || [];
+  } catch {
+    return [];
+  }
+});
+
+useEffect(() => {
+  localStorage.setItem(
+    "truequeSessionBookings",
+    JSON.stringify(bookings)
+  );
+}, [bookings]);
 
   useEffect(() => {
     if (!isLoggedIn()) return;
@@ -85,6 +109,59 @@ function Session() {
   const statusText = session
     ? session.status.charAt(0).toUpperCase() + session.status.slice(1)
     : "";
+    // CALENDAR DATE LOGIC
+
+const year = currentMonth.getFullYear();
+const month = currentMonth.getMonth();
+
+const firstDay = new Date(year, month, 1).getDay();
+
+const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+const calendarDays = [
+  ...Array(firstDay).fill(null),
+  ...Array.from(
+    { length: daysInMonth },
+    (_, index) => index + 1
+  ),
+];
+
+const monthName = currentMonth.toLocaleDateString("en-US", {
+  month: "long",
+  year: "numeric",
+});
+
+const previousMonth = () => {
+  setCurrentMonth(
+    new Date(year, month - 1, 1)
+  );
+};
+
+const nextMonth = () => {
+  setCurrentMonth(
+    new Date(year, month + 1, 1)
+  );
+};
+
+const handleDateSelect = (day) => {
+  if (!day) return;
+
+  const selected = new Date(year, month, day);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (selected < today) return;
+
+  const formattedDate = [
+    year,
+    String(month + 1).padStart(2, "0"),
+    String(day).padStart(2, "0"),
+  ].join("-");
+
+  setSelectedDate(formattedDate);
+  setSelectedTime("");
+};
 
   return (
     <div className="session-page">
@@ -114,6 +191,117 @@ function Session() {
       <section className="session-section">
 
         <div className="session-layout">
+          {/* SESSION BOOKING CALENDAR */}
+
+<div style={{
+  background: "#fff",
+  padding: "25px",
+  borderRadius: "15px",
+  marginBottom: "30px",
+  boxShadow: "0 4px 15px rgba(0,0,0,0.06)"
+}}>
+
+  <p className="section-label">PLAN YOUR LEARNING</p>
+
+  <h2 style={{ color: "#800020" }}>
+    Session Booking Calendar
+  </h2>
+
+  <p>Select a date for your skill exchange session.</p>
+
+  {/* MONTH NAVIGATION */}
+
+  <div style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: "20px 0"
+  }}>
+
+    <button type="button" onClick={previousMonth}>
+      ← Previous
+    </button>
+
+    <h3 style={{ color: "#800020" }}>
+      {monthName}
+    </h3>
+
+    <button type="button" onClick={nextMonth}>
+      Next →
+    </button>
+
+  </div>
+
+  {/* WEEK DAYS */}
+
+  <div style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(7, 1fr)",
+    gap: "6px",
+    textAlign: "center"
+  }}>
+
+    {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(day => (
+      <strong key={day} style={{
+        color: "#800020",
+        padding: "10px 0"
+      }}>
+        {day}
+      </strong>
+    ))}
+
+    {/* CALENDAR DATES */}
+
+    {calendarDays.map((day, index) => {
+
+      const dateString = day
+        ? `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`
+        : "";
+
+      const isPast = day
+        ? new Date(year, month, day) <
+          new Date(new Date().setHours(0, 0, 0, 0))
+        : false;
+
+      const isSelected = selectedDate === dateString;
+
+      return (
+        <button
+          key={index}
+          type="button"
+          disabled={!day || isPast}
+          onClick={() => handleDateSelect(day)}
+          style={{
+            padding: "12px 2px",
+            border: "1px solid #eadfce",
+            borderRadius: "8px",
+            background: isSelected ? "#800020" : "#FFF5E1",
+            color: isSelected ? "#fff" : "#4A2028",
+            cursor: !day || isPast ? "not-allowed" : "pointer",
+            opacity: isPast || !day ? 0.35 : 1,
+            fontWeight: isSelected ? "bold" : "normal"
+          }}
+        >
+          {day || ""}
+        </button>
+      );
+    })}
+
+  </div>
+
+  {/* SELECTED DATE */}
+
+  <p style={{
+    marginTop: "20px",
+    color: "#800020",
+    fontWeight: "bold"
+  }}>
+    {selectedDate
+      ? `Selected Date: ${selectedDate}`
+      : "Please select a session date."}
+  </p>
+
+</div>
 
           {/* MAIN SESSION CARD */}
 
