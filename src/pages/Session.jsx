@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { apiFetch, isLoggedIn } from "../api";
 
 function Session() {
@@ -35,8 +35,11 @@ useEffect(() => {
 }, [bookings]);
 
   useEffect(() => {
-    if (!isLoggedIn()) return;
-    let cancelled = false;
+    if (!isLoggedIn()) {
+      setLoading(false);
+      return;
+    }
+    
 
     async function load() {
       try {
@@ -91,10 +94,7 @@ useEffect(() => {
     };
   }, [id]);
 
-  if (!isLoggedIn()) {
-    return <Navigate to="/login" replace />;
-  }
-
+  
   const when = session ? new Date(session.scheduled_time) : null;
   const dateText = when
     ? when.toLocaleDateString(undefined, {
