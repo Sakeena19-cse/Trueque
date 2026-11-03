@@ -38,7 +38,9 @@ useEffect(() => {
     if (!isLoggedIn()) {
       setLoading(false);
       return;
+      
     }
+    let cancelled = false;
     
 
     async function load() {
