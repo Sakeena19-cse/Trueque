@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,6 +11,8 @@ import Profile from "./pages/Profile";
 import Quiz from "./pages/Quiz";
 import Session from "./pages/Session";
 import Whiteboard from "./pages/Whiteboard";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
             <Route path="/session" element={<Session />} />
             <Route path="/session/:id" element={<Session />} />
             <Route path="/whiteboard" element={<Whiteboard />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </main>
 
