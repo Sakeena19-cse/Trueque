@@ -24,6 +24,75 @@ const getDashboardData = () => {
 
 function Dashboard() {
   const [data, setData] = useState(getDashboardData);
+  const [showNotifications, setShowNotifications] = useState(false);
+
+const [notifications, setNotifications] = useState(() => {
+  try {
+    const saved = localStorage.getItem("truequeNotifications");
+
+    return saved ? JSON.parse(saved) : [
+      {
+        id: 1,
+        title: "Welcome to TRUEQUE!",
+        message: "Start your skill-sharing journey today.",
+        type: "welcome",
+        read: false
+      },
+      {
+        id: 2,
+        title: "Explore New Skills",
+        message: "Discover skills you can learn and teach.",
+        type: "skill",
+        read: false
+      },
+      {
+        id: 3,
+        title: "Complete Your Profile",
+        message: "Add your personal details to your profile.",
+        type: "profile",
+        read: true
+      },
+      {
+        id: 4,
+        title: "Skill Verification",
+        message: "Take a quiz to verify your skills.",
+        type: "quiz",
+        read: false
+      }
+    ];
+  } catch {
+    return [];
+  }
+});
+
+const unreadCount = notifications.filter(
+  (notification) => !notification.read
+).length;
+
+useEffect(() => {
+  localStorage.setItem(
+    "truequeNotifications",
+    JSON.stringify(notifications)
+  );
+}, [notifications]);
+
+const markAsRead = (id) => {
+  setNotifications((previous) =>
+    previous.map((item) =>
+      item.id === id ? { ...item, read: true } : item
+    )
+  );
+};
+
+const markAllAsRead = () => {
+  setNotifications((previous) =>
+    previous.map((item) => ({ ...item, read: true }))
+  );
+};
+
+const clearNotifications = () => {
+  setNotifications([]);
+};
 
   useEffect(() => {
     const updateDashboard = () => {
@@ -59,6 +128,166 @@ function Dashboard() {
           </p>
         </div>
       </section>
+      {/* NOTIFICATION CENTER */}
+
+<section style={{
+  maxWidth: "1200px",
+  margin: "25px auto",
+  padding: "0 20px"
+}}>
+
+  <div style={{
+    display: "flex",
+    justifyContent: "flex-end",
+    position: "relative"
+  }}>
+
+    <button
+      type="button"
+      onClick={() => setShowNotifications(!showNotifications)}
+      style={{
+        background: "#800020",
+        color: "white",
+        border: "none",
+        borderRadius: "10px",
+        padding: "13px 20px",
+        cursor: "pointer",
+        fontSize: "15px",
+        fontWeight: "bold"
+      }}
+    >
+      🔔 Notifications ({unreadCount})
+    </button>
+
+  </div>
+
+  {showNotifications && (
+    <div style={{
+      background: "white",
+      border: "1px solid #eadfce",
+      borderRadius: "14px",
+      padding: "22px",
+      marginTop: "15px",
+      boxShadow: "0 5px 20px rgba(0,0,0,0.08)"
+    }}>
+
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: "12px"
+      }}>
+        <h2 style={{ color: "#800020" }}>
+          Notification Center
+        </h2>
+
+        <div style={{
+          display: "flex",
+          gap: "10px",
+          flexWrap: "wrap"
+        }}>
+          <button
+            type="button"
+            onClick={markAllAsRead}
+            style={{
+              background: "#f1dfb5",
+              color: "#650018",
+              border: "none",
+              padding: "9px 12px",
+              borderRadius: "7px",
+              cursor: "pointer"
+            }}
+          >
+            Mark All Read
+          </button>
+
+          <button
+            type="button"
+            onClick={clearNotifications}
+            style={{
+              background: "#800020",
+              color: "white",
+              border: "none",
+              padding: "9px 12px",
+              borderRadius: "7px",
+              cursor: "pointer"
+            }}
+          >
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      {notifications.length > 0 ? (
+        notifications.map((item) => (
+          <div
+            key={item.id}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "15px",
+              padding: "16px 10px",
+              borderBottom: "1px solid #eee3d8",
+              background: item.read ? "white" : "#fff5e8"
+            }}
+          >
+            <div>
+              <h3 style={{
+                color: "#4a2028",
+                margin: "0 0 7px"
+              }}>
+                {item.title}
+                {!item.read && (
+                  <span style={{
+                    color: "#800020",
+                    fontSize: "12px",
+                    marginLeft: "8px"
+                  }}>
+                    ● New
+                  </span>
+                )}
+              </h3>
+
+              <p style={{
+                color: "#777",
+                margin: 0,
+                fontSize: "14px"
+              }}>
+                {item.message}
+              </p>
+            </div>
+
+            {!item.read && (
+              <button
+                type="button"
+                onClick={() => markAsRead(item.id)}
+                style={{
+                  background: "#800020",
+                  color: "white",
+                  border: "none",
+                  padding: "8px 12px",
+                  borderRadius: "7px",
+                  cursor: "pointer",
+                  flexShrink: 0
+                }}
+              >
+                Read
+              </button>
+            )}
+          </div>
+        ))
+      ) : (
+        <p style={{ color: "#777", padding: "20px 0" }}>
+          No notifications available.
+        </p>
+      )}
+
+    </div>
+  )}
+
+</section>
 
       {/* DYNAMIC STATS */}
       <section className="dashboard-stats">
