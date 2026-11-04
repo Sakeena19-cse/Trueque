@@ -3,16 +3,22 @@ import "./Whiteboard.css";
 
 function Whiteboard() {
   const canvasRef = useRef(null);
+  const videoRef = useRef(null);
+  const streamRef = useRef(null);
+  const drawingRef = useRef(false);
 
   const [tool, setTool] = useState("pen");
   const [color, setColor] = useState("#800020");
   const [brushSize, setBrushSize] = useState(5);
-  const [isDrawing, setIsDrawing] = useState(false);
+  const [zoom, setZoom] = useState(100);
+
+  const [cameraOn, setCameraOn] = useState(false);
+  const [micOn, setMicOn] = useState(false);
+  const [mediaReady, setMediaReady] = useState(false);
+  const [cameraError, setCameraError] = useState("");
 
   const [history, setHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-
-  const [zoom, setZoom] = useState(100);
 
   const colors = [
     "#800020",
@@ -21,273 +27,182 @@ function Whiteboard() {
     "#D4A72C",
     "#18804B",
     "#E53935",
-    "#6A1B9A",
+    "#6A1B9A"
   ];
 
-  /* ---------------- CANVAS SETUP ---------------- */
-
+  // CANVAS INITIALIZATION
   useEffect(() => {
     const canvas = canvasRef.current;
-
     if (!canvas) return;
 
-    const resizeCanvas = () => {
-      const rect = canvas.getBoundingClientRect();
+    canvas.width = 1200;
+    canvas.height = 650;
 
-      const oldCanvas = document.createElement("canvas");
-      oldCanvas.width = canvas.width;
-      oldCanvas.height = canvas.height;
+    const context = canvas.getContext("2d");
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0, 0, canvas.width, canvas.height);
 
-      const oldContext = oldCanvas.getContext("2d");
-      oldContext.drawImage(canvas, 0, 0);
-
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-
-      const context = canvas.getContext("2d");
-
-      context.drawImage(
-        oldCanvas,
-        0,
-        0,
-        oldCanvas.width,
-        oldCanvas.height,
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
-    };
-
-    resizeCanvas();
-
-    window.addEventListener("resize", resizeCanvas);
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-    };
+    setHistory([canvas.toDataURL()]);
+    setHistoryIndex(0);
   }, []);
 
-  /* ---------------- SAVE HISTORY ---------------- */
-
+  // SAVE DRAWING HISTORY
   const saveHistory = () => {
     const canvas = canvasRef.current;
-
     if (!canvas) return;
 
     const image = canvas.toDataURL();
 
-    const newHistory = history.slice(0, historyIndex + 1);
+    setHistory((previous) => {
+      const updated = previous.slice(0, historyIndex + 1);
+      updated.push(image);
+      return updated;
+    });
 
-    newHistory.push(image);
-
-    if (newHistory.length > 30) {
-      newHistory.shift();
-    }
-
-    setHistory(newHistory);
-    setHistoryIndex(newHistory.length - 1);
+    setHistoryIndex((previous) => previous + 1);
   };
 
-  /* ---------------- DRAWING ---------------- */
-
-  const getPosition = (event) => {
+  // DRAWING START
+  const startDrawing = (event) => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const context = canvas.getContext("2d");
     const rect = canvas.getBoundingClientRect();
 
-    return {
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    };
-  };
+    const x = (event.clientX - rect.left) *
+      (canvas.width / rect.width);
 
-  const startDrawing = (event) => {
-    if (tool !== "pen" && tool !== "eraser") return;
+    const y = (event.clientY - rect.top) *
+      (canvas.height / rect.height);
 
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-
-    const { x, y } = getPosition(event);
+    drawingRef.current = true;
 
     context.beginPath();
     context.moveTo(x, y);
-
-    context.lineWidth = brushSize;
     context.lineCap = "round";
     context.lineJoin = "round";
-
-    if (tool === "eraser") {
-      context.strokeStyle = "#ffffff";
-    } else {
-      context.strokeStyle = color;
-    }
-
-    setIsDrawing(true);
-
-    canvas.setPointerCapture(event.pointerId);
+    context.lineWidth = brushSize;
+    context.strokeStyle =
+      tool === "eraser" ? "#FFFFFF" : color;
   };
 
+  // DRAWING MOVE
   const draw = (event) => {
-    if (!isDrawing) return;
+    if (!drawingRef.current) return;
 
     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+    if (!canvas) return;
 
-    const { x, y } = getPosition(event);
+    const context = canvas.getContext("2d");
+    const rect = canvas.getBoundingClientRect();
+
+    const x = (event.clientX - rect.left) *
+      (canvas.width / rect.width);
+
+    const y = (event.clientY - rect.top) *
+      (canvas.height / rect.height);
 
     context.lineTo(x, y);
     context.stroke();
   };
 
-  const stopDrawing = (event) => {
-    if (!isDrawing) return;
+  // DRAWING STOP
+  const stopDrawing = () => {
+    if (!drawingRef.current) return;
+
+    drawingRef.current = false;
 
     const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d");
 
-    try {
-      canvas.releasePointerCapture(event.pointerId);
-    } catch {
-      // Pointer capture may already be released.
+    if (context) {
+      context.closePath();
     }
-
-    setIsDrawing(false);
 
     saveHistory();
   };
 
-  /* ---------------- UNDO ---------------- */
-
+  // UNDO
   const undo = () => {
-    if (historyIndex <= 0) {
-      clearCanvasOnly();
-      setHistoryIndex(-1);
-      return;
-    }
+    if (historyIndex <= 0) return;
 
-    const previousImage = history[historyIndex - 1];
-
-    restoreImage(previousImage);
-
-    setHistoryIndex(historyIndex - 1);
+    const nextIndex = historyIndex - 1;
+    restoreHistory(nextIndex);
   };
 
-  /* ---------------- REDO ---------------- */
-
+  // REDO
   const redo = () => {
     if (historyIndex >= history.length - 1) return;
 
-    const nextImage = history[historyIndex + 1];
-
-    restoreImage(nextImage);
-
-    setHistoryIndex(historyIndex + 1);
+    const nextIndex = historyIndex + 1;
+    restoreHistory(nextIndex);
   };
 
-  /* ---------------- RESTORE IMAGE ---------------- */
-
-  const restoreImage = (image) => {
+  // RESTORE CANVAS
+  const restoreHistory = (index) => {
     const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
+    if (!canvas || !history[index]) return;
 
-    const img = new Image();
+    const image = new Image();
 
-    img.onload = () => {
-      context.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
-
-      context.drawImage(
-        img,
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
+    image.onload = () => {
+      const context = canvas.getContext("2d");
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0);
+      setHistoryIndex(index);
     };
 
-    img.src = image;
+    image.src = history[index];
   };
 
-  /* ---------------- CLEAR ---------------- */
-
-  const clearCanvasOnly = () => {
+  // CLEAR BOARD
+  const clearBoard = () => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+
     const context = canvas.getContext("2d");
 
-    context.clearRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    saveHistory();
   };
 
-  const clearBoard = () => {
-    clearCanvasOnly();
-
-    setHistory([]);
-    setHistoryIndex(-1);
-  };
-
-  /* ---------------- TEXT ---------------- */
-
+  // ADD TEXT
   const addText = () => {
     const text = window.prompt("Enter your text:");
 
     if (!text) return;
 
     const canvas = canvasRef.current;
+    if (!canvas) return;
+
     const context = canvas.getContext("2d");
 
-    context.font = "24px Inter, Arial";
+    context.font = "24px Arial";
     context.fillStyle = color;
 
-    context.fillText(
-      text,
-      canvas.width / 2 - 50,
-      canvas.height / 2
-    );
+    context.fillText(text, 100, 100);
 
     saveHistory();
   };
 
-  /* ---------------- DOWNLOAD ---------------- */
-
+  // DOWNLOAD BOARD
   const downloadBoard = () => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
 
     const link = document.createElement("a");
 
-    link.download = "trueque-whiteboard.png";
-
+    link.download = "TRUEQUE-Whiteboard.png";
     link.href = canvas.toDataURL("image/png");
 
     link.click();
   };
 
-  /* ---------------- ZOOM ---------------- */
-
-  const increaseZoom = () => {
-    setZoom((current) =>
-      Math.min(current + 10, 150)
-    );
-  };
-
-  const decreaseZoom = () => {
-    setZoom((current) =>
-      Math.max(current - 10, 50)
-    );
-  };
-
-  const resetZoom = () => {
-    setZoom(100);
-  };
-
-  /* ---------------- TOOL BUTTON ---------------- */
-
+  // SELECT TOOL
   const selectTool = (selectedTool) => {
     setTool(selectedTool);
 
@@ -296,126 +211,219 @@ function Whiteboard() {
     }
   };
 
+  // ZOOM
+  const zoomIn = () => {
+    setZoom((previous) => Math.min(previous + 10, 150));
+  };
+
+  const zoomOut = () => {
+    setZoom((previous) => Math.max(previous - 10, 50));
+  };
+
+  // START CAMERA
+  const startCamera = async () => {
+    try {
+      setCameraError("");
+
+      if (!navigator.mediaDevices?.getUserMedia) {
+        setCameraError("Camera access is not supported by this browser.");
+        return;
+      }
+
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true
+      });
+
+      streamRef.current = stream;
+
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+
+      setCameraOn(true);
+      setMicOn(true);
+      setMediaReady(true);
+
+    } catch (error) {
+      setCameraError(
+        "Camera or microphone permission denied or unavailable."
+      );
+    }
+  };
+
+  // TOGGLE CAMERA
+  const toggleCamera = () => {
+    const track = streamRef.current?.getVideoTracks()[0];
+
+    if (!track) return;
+
+    track.enabled = !track.enabled;
+    setCameraOn(track.enabled);
+  };
+
+  // TOGGLE MICROPHONE
+  const toggleMic = () => {
+    const track = streamRef.current?.getAudioTracks()[0];
+
+    if (!track) return;
+
+    track.enabled = !track.enabled;
+    setMicOn(track.enabled);
+  };
+
+  // END CALL
+  const endCall = () => {
+    streamRef.current?.getTracks().forEach((track) => {
+      track.stop();
+    });
+
+    streamRef.current = null;
+
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+    }
+
+    setCameraOn(false);
+    setMicOn(false);
+    setMediaReady(false);
+  };
+
+  // CLEANUP CAMERA
+  useEffect(() => {
+    return () => {
+      streamRef.current?.getTracks().forEach((track) => {
+        track.stop();
+      });
+    };
+  }, []);
+
   return (
     <div className="trueque-whiteboard-page">
 
-      {/* ================= HEADER ================= */}
-
+      {/* HEADER */}
       <header className="whiteboard-header">
 
         <div className="whiteboard-brand">
-
-          <div className="whiteboard-logo-box">
-            TQ
-          </div>
-
-          <div className="whiteboard-brand-text">
-            <h2>TRUEQUE</h2>
-            <span>Skill Exchange Platform</span>
-          </div>
-
+          <h2>TQ</h2>
+          <span>TRUEQUE</span>
         </div>
 
-        <div className="whiteboard-title">
-
-          <div className="whiteboard-title-icon">
-            ✎
-          </div>
-
-          <div>
-            <h1>Whiteboard</h1>
-            <p>Write, draw and share your ideas</p>
-          </div>
-
-        </div>
+        <h2>Virtual Classroom</h2>
 
         <div className="whiteboard-online">
-
-          <span className="online-dot"></span>
-
-          <span>Online</span>
-
-          <div className="profile-circle">
-            ●
-          </div>
-
+          <span>●</span> Online
         </div>
 
       </header>
 
+      {/* VIDEO CALL SECTION */}
+      <section className="classroom-video-panel">
 
-      {/* ================= TOOLBAR ================= */}
+        <div className="local-video-card">
 
-      <div className="whiteboard-toolbar">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+          />
 
-        <button
-          className={`main-tool ${
-            tool === "pen" ? "selected-tool" : ""
-          }`}
-          onClick={() => selectTool("pen")}
-        >
-          <span>✎</span>
-          Pen
-        </button>
+          {!cameraOn && (
+            <div className="video-placeholder">
+              <span>📷</span>
+              <p>Your Camera Preview</p>
+            </div>
+          )}
 
-
-        <button
-          className={`main-tool ${
-            tool === "eraser" ? "selected-tool" : ""
-          }`}
-          onClick={() => selectTool("eraser")}
-        >
-          <span>⌫</span>
-          Eraser
-        </button>
-
-
-        <button
-          className={`main-tool ${
-            tool === "text" ? "selected-tool" : ""
-          }`}
-          onClick={() => selectTool("text")}
-        >
-          <span className="text-icon">T</span>
-          Text
-        </button>
-
-
-        <div className="toolbar-divider"></div>
-
-
-        {/* COLORS */}
-
-        <div className="color-picker">
-
-          {colors.map((item) => (
-            <button
-              key={item}
-              className={`color-circle ${
-                color === item ? "active-color" : ""
-              }`}
-              style={{
-                backgroundColor: item,
-              }}
-              onClick={() => {
-                setColor(item);
-                setTool("pen");
-              }}
-            />
-          ))}
+          <span className="video-name">You</span>
 
         </div>
 
+        <div className="partner-video-card">
 
-        <div className="toolbar-divider"></div>
+          <div className="partner-video-placeholder">
+            <span>👤</span>
+            <p>Partner video will appear here</p>
+          </div>
 
+          <span className="video-name">Skill Partner</span>
 
-        {/* BRUSH SIZE */}
+        </div>
 
-        <div className="brush-size">
+        <div className="call-controls">
 
-          <span>Brush Size</span>
+          <button onClick={startCamera}>
+            📷 Start Camera
+          </button>
 
+          <button
+            onClick={toggleCamera}
+            disabled={!mediaReady}
+          >
+            {cameraOn ? "📷 Camera On" : "🚫 Camera Off"}
+          </button>
+
+          <button
+            onClick={toggleMic}
+            disabled={!mediaReady}
+          >
+            {micOn ? "🎤 Mic On" : "🔇 Mic Off"}
+          </button>
+
+          <button
+            className="end-call-button"
+            onClick={endCall}
+          >
+            📞 End Call
+          </button>
+
+        </div>
+
+        {cameraError && (
+          <p className="camera-error">{cameraError}</p>
+        )}
+
+      </section>
+
+      {/* TOOLBAR */}
+      <div className="whiteboard-toolbar">
+
+        <button
+          className={tool === "pen" ? "active" : ""}
+          onClick={() => selectTool("pen")}
+        >
+          ✏️ Pen
+        </button>
+
+        <button
+          className={tool === "eraser" ? "active" : ""}
+          onClick={() => selectTool("eraser")}
+        >
+          🧽 Eraser
+        </button>
+
+        <button
+          className={tool === "text" ? "active" : ""}
+          onClick={() => selectTool("text")}
+        >
+          T Text
+        </button>
+
+        <div className="whiteboard-colors">
+          {colors.map((item) => (
+            <button
+              key={item}
+              onClick={() => setColor(item)}
+              style={{ backgroundColor: item }}
+              className={color === item ? "selected-color" : ""}
+              aria-label={`Select ${item}`}
+            />
+          ))}
+        </div>
+
+        <label>
+          Brush Size
           <input
             type="range"
             min="1"
@@ -425,232 +433,71 @@ function Whiteboard() {
               setBrushSize(Number(event.target.value))
             }
           />
+        </label>
 
-        </div>
-
-
-        {/* UNDO REDO */}
-
-        <div className="undo-redo">
-
-          <button
-            onClick={undo}
-            disabled={historyIndex < 0}
-          >
-            ↶
-            <span>Undo</span>
-          </button>
-
-          <button
-            onClick={redo}
-            disabled={
-              historyIndex >= history.length - 1
-            }
-          >
-            ↷
-            <span>Redo</span>
-          </button>
-
-        </div>
-
-
-        <button
-          className="clear-button"
-          onClick={clearBoard}
-        >
-          🗑
-          <span>Clear</span>
+        <button onClick={undo} disabled={historyIndex <= 0}>
+          ↶ Undo
         </button>
 
-
         <button
-          className="download-button"
-          onClick={downloadBoard}
+          onClick={redo}
+          disabled={historyIndex >= history.length - 1}
         >
-          ↓
-          <span>Download</span>
+          ↷ Redo
+        </button>
+
+        <button onClick={clearBoard}>
+          Clear
+        </button>
+
+        <button onClick={downloadBoard}>
+          ⬇ Download
         </button>
 
       </div>
 
-
-      {/* ================= WHITEBOARD AREA ================= */}
-
+      {/* WHITEBOARD AREA */}
       <main className="whiteboard-area">
 
-        {/* LEFT TOOLBAR */}
-
         <aside className="side-tools">
-
-          <button
-            className={
-              tool === "pen"
-                ? "side-tool active-side-tool"
-                : "side-tool"
-            }
-            onClick={() => setTool("pen")}
-            title="Pen"
-          >
-            ✎
-          </button>
-
-
-          <button
-            className={
-              tool === "eraser"
-                ? "side-tool active-side-tool"
-                : "side-tool"
-            }
-            onClick={() => setTool("eraser")}
-            title="Eraser"
-          >
-            ◇
-          </button>
-
-
-          <button
-            className="side-tool"
-            onClick={addText}
-            title="Text"
-          >
-            T
-          </button>
-
-
-          <button
-            className="side-tool"
-            title="Selection"
-          >
-            ⛶
-          </button>
-
-
-          <button
-            className="side-tool"
-            title="Circle"
-          >
-            ○
-          </button>
-
-
-          <button
-            className="side-tool"
-            title="Line"
-          >
-            ／
-          </button>
-
-
-          <button
-            className="side-tool"
-            title="Triangle"
-          >
-            △
-          </button>
-
-
-          <button
-            className="side-tool"
-            title="Rectangle"
-          >
-            □
-          </button>
-
-
-          <button
-            className="side-tool"
-            title="Select"
-          >
-            ➤
-          </button>
-
+          <button onClick={() => selectTool("pen")}>✏️</button>
+          <button onClick={() => selectTool("eraser")}>🧽</button>
+          <button onClick={() => selectTool("text")}>T</button>
         </aside>
 
-
-        {/* CANVAS */}
-
-        <div
-          className="canvas-area"
-          style={{
-            transform: `scale(${zoom / 100})`,
-            transformOrigin: "center center",
-          }}
-        >
+        <div className="canvas-area">
 
           <canvas
             ref={canvasRef}
-            width={1200}
-            height={650}
             onPointerDown={startDrawing}
             onPointerMove={draw}
             onPointerUp={stopDrawing}
-            onPointerCancel={stopDrawing}
             onPointerLeave={stopDrawing}
+            style={{
+              transform: `scale(${zoom / 100})`,
+              transformOrigin: "top left",
+              touchAction: "none"
+            }}
           />
 
-        </div>
+          <div className="zoom-controls">
 
+            <button onClick={zoomOut}>−</button>
 
-        {/* ZOOM CONTROLS */}
+            <span>{zoom}%</span>
 
-        <div className="zoom-controls">
+            <button onClick={zoomIn}>+</button>
 
-          <button onClick={decreaseZoom}>
-            −
-          </button>
-
-          <button
-            className="zoom-number"
-            onClick={resetZoom}
-          >
-            {zoom}%
-          </button>
-
-          <button onClick={increaseZoom}>
-            +
-          </button>
-
-          <button
-            onClick={resetZoom}
-            title="Reset zoom"
-          >
-            ⛶
-          </button>
+          </div>
 
         </div>
 
       </main>
 
-
-      {/* ================= FOOTER ================= */}
-
+      {/* FOOTER */}
       <footer className="whiteboard-footer">
-
-        <div className="footer-left">
-
-          <div className="footer-logo">
-            TQ
-          </div>
-
-          <strong>TRUEQUE</strong>
-
-          <span className="footer-line"></span>
-
-          <span>
-            Exchange skills. Share knowledge. Grow together.
-          </span>
-
-        </div>
-
-
-        <div className="footer-status">
-
-          <span className="footer-online-dot"></span>
-
-          <span>Whiteboard Active</span>
-
-        </div>
-
+        <p>TRUEQUE © 2026 | Virtual Classroom</p>
+        <p>Learn • Teach • Share</p>
       </footer>
 
     </div>
