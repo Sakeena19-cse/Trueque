@@ -9,6 +9,56 @@ function Session() {
   const [partner, setPartner] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  // RATING & REVIEWS
+  const [rating, setRating] = useState(0);
+  const [reviewText, setReviewText] = useState("");
+
+  const [reviews, setReviews] = useState(() => {
+    try {
+      return JSON.parse(
+        localStorage.getItem("truequeReviews")
+      ) || [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "truequeReviews",
+      JSON.stringify(reviews)
+    );
+  }, [reviews]);
+
+  const submitReview = (e) => {
+    e.preventDefault();
+
+    if (rating === 0) {
+      alert("Please select a star rating.");
+      return;
+    }
+
+    if (!reviewText.trim()) {
+      alert("Please write your feedback.");
+      return;
+    }
+
+    const newReview = {
+      id: Date.now(),
+      partner: partner || "Skill Partner",
+      sessionId: id || session?.id || "general",
+      rating,
+      comment: reviewText.trim(),
+      date: new Date().toLocaleDateString()
+    };
+
+    setReviews((previous) => [newReview, ...previous]);
+
+    setRating(0);
+    setReviewText("");
+
+    alert("Your review has been submitted successfully!");
+  };
   // SESSION BOOKING CALENDAR
 
 const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -414,10 +464,95 @@ const handleDateSelect = (day) => {
                   </Link>
 
                 </div>
+                <div className="trueque-review-section">
+
+  <p className="section-label">SHARE YOUR EXPERIENCE</p>
+  <h2>Rate Your Learning Session</h2>
+
+  <p>
+    Share your experience and help your skill partner improve.
+  </p>
+
+  <form onSubmit={submitReview}>
+
+    <label className="review-form-label">
+      Your Rating
+    </label>
+
+    <div className="review-stars">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <button
+          key={star}
+          type="button"
+          onClick={() => setRating(star)}
+          className={rating >= star ? "active-star" : ""}
+          aria-label={`${star} star rating`}
+        >
+          ★
+        </button>
+      ))}
+    </div>
+
+    <p className="selected-rating">
+      {rating > 0 ? `${rating} out of 5 stars` : "Select your rating"}
+    </p>
+
+    <label className="review-form-label">
+      Write Your Feedback
+    </label>
+
+    <textarea
+      value={reviewText}
+      onChange={(e) => setReviewText(e.target.value)}
+      placeholder="Share your learning experience..."
+      rows="4"
+      required
+    />
+
+    <button type="submit" className="review-submit-button">
+      Submit Review →
+    </button>
+
+  </form>
+</div>
               </>
             )}
 
           </div>
+          {/* SUBMITTED REVIEWS */}
+
+<div className="trueque-reviews-display">
+
+  <p className="section-label">COMMUNITY FEEDBACK</p>
+  <h2>Submitted Reviews</h2>
+
+  {reviews.length > 0 ? (
+    reviews.map((item) => (
+      <div className="trueque-review-card" key={item.id}>
+
+        <div className="review-card-header">
+          <h3>{item.partner}</h3>
+
+          <span className="review-date">
+            {item.date}
+          </span>
+        </div>
+
+        <div className="review-card-stars">
+          {"★".repeat(item.rating)}
+          {"☆".repeat(5 - item.rating)}
+        </div>
+
+        <p>{item.comment}</p>
+
+      </div>
+    ))
+  ) : (
+    <p>No reviews submitted yet. Be the first to share your experience!</p>
+  )}
+
+</div>
+
 
           {/* SIDEBAR */}
 

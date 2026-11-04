@@ -24,6 +24,80 @@ const getDashboardData = () => {
 
 function Dashboard() {
   const [data, setData] = useState(getDashboardData);
+  const [completedLearningSkills, setCompletedLearningSkills] = useState(() => {
+  try {
+    return JSON.parse(
+      localStorage.getItem("truequeCompletedLearningSkills")
+    ) || [];
+  } catch {
+    return [];
+  }
+});
+
+useEffect(() => {
+  localStorage.setItem(
+    "truequeCompletedLearningSkills",
+    JSON.stringify(completedLearningSkills)
+  );
+}, [completedLearningSkills]);
+
+const markSkillCompleted = (skill) => {
+  setCompletedLearningSkills((previous) =>
+    previous.includes(skill)
+      ? previous.filter((item) => item !== skill)
+      : [...previous, skill]
+  );
+};
+
+const totalLearningSkills = data.learningSkills.length;
+
+const completedCount = data.learningSkills.filter(
+  (skill) => completedLearningSkills.includes(skill)
+).length;
+
+const progressPercentage = totalLearningSkills > 0
+  ? Math.round((completedCount / totalLearningSkills) * 100)
+  : 0;
+  const badges = [
+  {
+    id: 1,
+    title: "First Skill",
+    description: "Complete your first learning skill.",
+    icon: "🌱",
+    unlocked: completedCount >= 1,
+  },
+  {
+    id: 2,
+    title: "Learning Champion",
+    description: "Complete 3 learning skills.",
+    icon: "🏆",
+    unlocked: completedCount >= 3,
+  },
+  {
+    id: 3,
+    title: "Skill Verified",
+    description: "Successfully verify a skill.",
+    icon: "🎖️",
+    unlocked: data.verifiedSkills.length >= 1,
+  },
+  {
+    id: 4,
+    title: "Community Helper",
+    description: "Add a skill that you can teach.",
+    icon: "🤝",
+    unlocked:
+      data.teachingSkills.length >= 1 || data.matches.length >= 1,
+  },
+  {
+    id: 5,
+    title: "Learning Explorer",
+    description: "Select your first learning skill.",
+    icon: "🚀",
+    unlocked: data.learningSkills.length >= 1,
+  },
+];
+
+const unlockedBadges = badges.filter((badge) => badge.unlocked).length;
   const [showNotifications, setShowNotifications] = useState(false);
 
 const [notifications, setNotifications] = useState(() => {
@@ -320,7 +394,107 @@ const clearNotifications = () => {
         </div>
       </section>
 
+      {/* LEARNING PROGRESS TRACKER */}
+
+<section className="learning-progress-section">
+  <div className="learning-progress-heading">
+    <p className="section-label">YOUR GROWTH</p>
+    <h2>Learning Progress Tracker</h2>
+    <p>Track your skills and celebrate your learning achievements.</p>
+  </div>
+
+  <div className="learning-overview">
+    <div>
+      <h3>{progressPercentage}%</h3>
+      <p>Overall Progress</p>
+    </div>
+
+    <div>
+      <h3>{completedCount}/{totalLearningSkills}</h3>
+      <p>Skills Completed</p>
+    </div>
+
+    <div>
+      <h3>{totalLearningSkills - completedCount}</h3>
+      <p>Skills In Progress</p>
+    </div>
+  </div>
+
+  <div className="learning-progress-bar">
+    <div
+      className="learning-progress-fill"
+      style={{ width: `${progressPercentage}%` }}
+    />
+  </div>
+
+  <div className="learning-progress-list">
+    {data.learningSkills.length > 0 ? (
+      data.learningSkills.map((skill) => {
+        const completed = completedLearningSkills.includes(skill);
+
+        return (
+          <div className="learning-progress-item" key={skill}>
+            <div>
+              <h3>{skill}</h3>
+              <p>{completed ? "Completed" : "In Progress"}</p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => markSkillCompleted(skill)}
+              className="learning-complete-button"
+            >
+              {completed ? "Undo" : "Mark Completed"}
+            </button>
+          </div>
+        );
+      })
+    ) : (
+      <p>Select a learning skill to start tracking your progress.</p>
+    )}
+  </div>
+</section>
+{/* ACHIEVEMENTS & BADGES */}
+<section className="achievements-section">
+
+  <div className="achievements-heading">
+    <p className="section-label">YOUR ACHIEVEMENTS</p>
+    <h2>Achievements & Badges</h2>
+    <p>Celebrate your milestones and unlock new achievements.</p>
+  </div>
+
+  <div className="badge-summary">
+    <h3>{unlockedBadges}/{badges.length}</h3>
+    <p>Badges Unlocked</p>
+  </div>
+
+  <div className="achievements-grid">
+    {badges.map((badge) => (
+      <div
+        className={`achievement-card ${
+          badge.unlocked ? "badge-unlocked" : "badge-locked"
+        }`}
+        key={badge.id}
+      >
+        <div className="achievement-icon">
+          {badge.unlocked ? badge.icon : "🔒"}
+        </div>
+
+        <h3>{badge.title}</h3>
+
+        <p>{badge.description}</p>
+
+        <span>
+          {badge.unlocked ? "✓ Unlocked" : "Locked"}
+        </span>
+      </div>
+    ))}
+  </div>
+
+</section>
+
       {/* MAIN CONTENT */}
+
       <section className="dashboard-content">
         {/* LEARNING */}
         <div className="dashboard-section">
