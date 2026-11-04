@@ -39,6 +39,7 @@ function Whiteboard() {
     canvas.height = 650;
 
     const context = canvas.getContext("2d");
+
     context.fillStyle = "#FFFFFF";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -62,19 +63,21 @@ function Whiteboard() {
     setHistoryIndex((previous) => previous + 1);
   };
 
-  // DRAWING START
+  // START DRAWING
   const startDrawing = (event) => {
+    if (event.button !== 0) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const context = canvas.getContext("2d");
     const rect = canvas.getBoundingClientRect();
 
-    const x = (event.clientX - rect.left) *
-      (canvas.width / rect.width);
+    const x =
+      (event.clientX - rect.left) * (canvas.width / rect.width);
 
-    const y = (event.clientY - rect.top) *
-      (canvas.height / rect.height);
+    const y =
+      (event.clientY - rect.top) * (canvas.height / rect.height);
 
     drawingRef.current = true;
 
@@ -85,6 +88,8 @@ function Whiteboard() {
     context.lineWidth = brushSize;
     context.strokeStyle =
       tool === "eraser" ? "#FFFFFF" : color;
+
+    canvas.setPointerCapture?.(event.pointerId);
   };
 
   // DRAWING MOVE
@@ -97,17 +102,17 @@ function Whiteboard() {
     const context = canvas.getContext("2d");
     const rect = canvas.getBoundingClientRect();
 
-    const x = (event.clientX - rect.left) *
-      (canvas.width / rect.width);
+    const x =
+      (event.clientX - rect.left) * (canvas.width / rect.width);
 
-    const y = (event.clientY - rect.top) *
-      (canvas.height / rect.height);
+    const y =
+      (event.clientY - rect.top) * (canvas.height / rect.height);
 
     context.lineTo(x, y);
     context.stroke();
   };
 
-  // DRAWING STOP
+  // STOP DRAWING
   const stopDrawing = () => {
     if (!drawingRef.current) return;
 
@@ -123,23 +128,7 @@ function Whiteboard() {
     saveHistory();
   };
 
-  // UNDO
-  const undo = () => {
-    if (historyIndex <= 0) return;
-
-    const nextIndex = historyIndex - 1;
-    restoreHistory(nextIndex);
-  };
-
-  // REDO
-  const redo = () => {
-    if (historyIndex >= history.length - 1) return;
-
-    const nextIndex = historyIndex + 1;
-    restoreHistory(nextIndex);
-  };
-
-  // RESTORE CANVAS
+  // RESTORE HISTORY
   const restoreHistory = (index) => {
     const canvas = canvasRef.current;
     if (!canvas || !history[index]) return;
@@ -148,12 +137,26 @@ function Whiteboard() {
 
     image.onload = () => {
       const context = canvas.getContext("2d");
+
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(image, 0, 0);
+
       setHistoryIndex(index);
     };
 
     image.src = history[index];
+  };
+
+  // UNDO
+  const undo = () => {
+    if (historyIndex <= 0) return;
+    restoreHistory(historyIndex - 1);
+  };
+
+  // REDO
+  const redo = () => {
+    if (historyIndex >= history.length - 1) return;
+    restoreHistory(historyIndex + 1);
   };
 
   // CLEAR BOARD
@@ -174,19 +177,27 @@ function Whiteboard() {
   const addText = () => {
     const text = window.prompt("Enter your text:");
 
-    if (!text) return;
+    if (!text?.trim()) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const context = canvas.getContext("2d");
 
-    context.font = "24px Arial";
+    context.font = `${Math.max(16, brushSize * 5)}px Arial`;
     context.fillStyle = color;
-
     context.fillText(text, 100, 100);
 
     saveHistory();
+  };
+
+  // SELECT TOOL
+  const selectTool = (selectedTool) => {
+    setTool(selectedTool);
+
+    if (selectedTool === "text") {
+      addText();
+    }
   };
 
   // DOWNLOAD BOARD
@@ -200,15 +211,6 @@ function Whiteboard() {
     link.href = canvas.toDataURL("image/png");
 
     link.click();
-  };
-
-  // SELECT TOOL
-  const selectTool = (selectedTool) => {
-    setTool(selectedTool);
-
-    if (selectedTool === "text") {
-      addText();
-    }
   };
 
   // ZOOM
@@ -226,7 +228,9 @@ function Whiteboard() {
       setCameraError("");
 
       if (!navigator.mediaDevices?.getUserMedia) {
-        setCameraError("Camera access is not supported by this browser.");
+        setCameraError(
+          "Camera access is not supported. Use localhost or HTTPS."
+        );
         return;
       }
 
@@ -239,6 +243,7 @@ function Whiteboard() {
 
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
+        await videoRef.current.play();
       }
 
       setCameraOn(true);
@@ -287,9 +292,10 @@ function Whiteboard() {
     setCameraOn(false);
     setMicOn(false);
     setMediaReady(false);
+    setCameraError("");
   };
 
-  // CLEANUP CAMERA
+  // CAMERA CLEANUP
   useEffect(() => {
     return () => {
       streamRef.current?.getTracks().forEach((track) => {
@@ -305,14 +311,26 @@ function Whiteboard() {
       <header className="whiteboard-header">
 
         <div className="whiteboard-brand">
-          <h2>TQ</h2>
-          <span>TRUEQUE</span>
+          <div className="whiteboard-logo-box">TQ</div>
+
+          <div className="whiteboard-brand-text">
+            <h2>TRUEQUE</h2>
+            <span>Learn • Teach • Share</span>
+          </div>
         </div>
 
-        <h2>Virtual Classroom</h2>
+        <div className="whiteboard-title">
+          <span className="whiteboard-title-icon">✎</span>
+          <div>
+            <h1>Virtual Classroom</h1>
+            <p>Learn together. Grow together.</p>
+          </div>
+        </div>
 
         <div className="whiteboard-online">
-          <span>●</span> Online
+          <span className="online-dot"></span>
+          Online
+          <div className="profile-circle">👤</div>
         </div>
 
       </header>
@@ -320,7 +338,7 @@ function Whiteboard() {
       {/* VIDEO CALL SECTION */}
       <section className="classroom-video-panel">
 
-        <div className="local-video-card">
+        <div className="video-card local-video-card">
 
           <video
             ref={videoRef}
@@ -340,7 +358,7 @@ function Whiteboard() {
 
         </div>
 
-        <div className="partner-video-card">
+        <div className="video-card partner-video-card">
 
           <div className="partner-video-placeholder">
             <span>👤</span>
@@ -353,11 +371,16 @@ function Whiteboard() {
 
         <div className="call-controls">
 
-          <button onClick={startCamera}>
+          <button
+            className="call-button"
+            onClick={startCamera}
+            disabled={mediaReady}
+          >
             📷 Start Camera
           </button>
 
           <button
+            className="call-button"
             onClick={toggleCamera}
             disabled={!mediaReady}
           >
@@ -365,6 +388,7 @@ function Whiteboard() {
           </button>
 
           <button
+            className="call-button"
             onClick={toggleMic}
             disabled={!mediaReady}
           >
@@ -390,40 +414,47 @@ function Whiteboard() {
       <div className="whiteboard-toolbar">
 
         <button
-          className={tool === "pen" ? "active" : ""}
+          className={`main-tool ${tool === "pen" ? "selected-tool" : ""}`}
           onClick={() => selectTool("pen")}
         >
-          ✏️ Pen
+          <span>✏️</span> Pen
         </button>
 
         <button
-          className={tool === "eraser" ? "active" : ""}
+          className={`main-tool ${tool === "eraser" ? "selected-tool" : ""}`}
           onClick={() => selectTool("eraser")}
         >
-          🧽 Eraser
+          <span>🧽</span> Eraser
         </button>
 
         <button
-          className={tool === "text" ? "active" : ""}
+          className={`main-tool ${tool === "text" ? "selected-tool" : ""}`}
           onClick={() => selectTool("text")}
         >
-          T Text
+          <span className="text-icon">T</span> Text
         </button>
 
-        <div className="whiteboard-colors">
+        <div className="toolbar-divider"></div>
+
+        <div className="color-picker">
           {colors.map((item) => (
             <button
               key={item}
+              type="button"
+              title={`Select ${item}`}
               onClick={() => setColor(item)}
               style={{ backgroundColor: item }}
-              className={color === item ? "selected-color" : ""}
-              aria-label={`Select ${item}`}
+              className={`color-circle ${
+                color === item ? "active-color" : ""
+              }`}
             />
           ))}
         </div>
 
-        <label>
-          Brush Size
+        <div className="toolbar-divider"></div>
+
+        <label className="brush-size">
+          <span>Brush Size: {brushSize}</span>
           <input
             type="range"
             min="1"
@@ -435,22 +466,35 @@ function Whiteboard() {
           />
         </label>
 
-        <button onClick={undo} disabled={historyIndex <= 0}>
-          ↶ Undo
+        <div className="toolbar-divider"></div>
+
+        <div className="undo-redo">
+
+          <button
+            onClick={undo}
+            disabled={historyIndex <= 0}
+            title="Undo"
+          >
+            ↶
+            <span>Undo</span>
+          </button>
+
+          <button
+            onClick={redo}
+            disabled={historyIndex >= history.length - 1}
+            title="Redo"
+          >
+            ↷
+            <span>Redo</span>
+          </button>
+
+        </div>
+
+        <button className="clear-button" onClick={clearBoard}>
+          🗑 Clear
         </button>
 
-        <button
-          onClick={redo}
-          disabled={historyIndex >= history.length - 1}
-        >
-          ↷ Redo
-        </button>
-
-        <button onClick={clearBoard}>
-          Clear
-        </button>
-
-        <button onClick={downloadBoard}>
+        <button className="download-button" onClick={downloadBoard}>
           ⬇ Download
         </button>
 
@@ -460,33 +504,56 @@ function Whiteboard() {
       <main className="whiteboard-area">
 
         <aside className="side-tools">
-          <button onClick={() => selectTool("pen")}>✏️</button>
-          <button onClick={() => selectTool("eraser")}>🧽</button>
-          <button onClick={() => selectTool("text")}>T</button>
+
+          <button
+            className={`side-tool ${tool === "pen" ? "active-side-tool" : ""}`}
+            onClick={() => selectTool("pen")}
+            title="Pen"
+          >
+            ✏️
+          </button>
+
+          <button
+            className={`side-tool ${tool === "eraser" ? "active-side-tool" : ""}`}
+            onClick={() => selectTool("eraser")}
+            title="Eraser"
+          >
+            🧽
+          </button>
+
+          <button
+            className={`side-tool ${tool === "text" ? "active-side-tool" : ""}`}
+            onClick={() => selectTool("text")}
+            title="Text"
+          >
+            T
+          </button>
+
         </aside>
 
         <div className="canvas-area">
 
           <canvas
-            ref={canvasRef}
-            onPointerDown={startDrawing}
-            onPointerMove={draw}
-            onPointerUp={stopDrawing}
-            onPointerLeave={stopDrawing}
-            style={{
-              transform: `scale(${zoom / 100})`,
-              transformOrigin: "top left",
-              touchAction: "none"
-            }}
-          />
+  ref={canvasRef}
+  onPointerDown={startDrawing}
+  onPointerMove={draw}
+  onPointerUp={stopDrawing}
+  onPointerLeave={stopDrawing}
+  onPointerCancel={stopDrawing}
+  style={{
+    transform: `scale(${zoom / 100})`,
+    transformOrigin: "top left",
+    touchAction: "none"
+  }}
+/>
 
           <div className="zoom-controls">
 
-            <button onClick={zoomOut}>−</button>
+            <button onClick={zoomOut} title="Zoom out">−</button>
 
-            <span>{zoom}%</span>
+            <span className="zoom-number">{zoom}%</span>
 
-            <button onClick={zoomIn}>+</button>
+            <button onClick={zoomIn} title="Zoom in">+</button>
 
           </div>
 
@@ -496,8 +563,19 @@ function Whiteboard() {
 
       {/* FOOTER */}
       <footer className="whiteboard-footer">
-        <p>TRUEQUE © 2026 | Virtual Classroom</p>
-        <p>Learn • Teach • Share</p>
+
+        <div className="footer-left">
+          <div className="footer-logo">TQ</div>
+          <strong>TRUEQUE</strong>
+          <span className="footer-line"></span>
+          <span>Virtual Classroom © 2026</span>
+        </div>
+
+        <div className="footer-status">
+          <span className="footer-online-dot"></span>
+          Learn • Teach • Share
+        </div>
+
       </footer>
 
     </div>

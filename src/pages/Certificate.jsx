@@ -38,7 +38,7 @@ function Certificate() {
 
   return (
     <div className="certificate-page">
-      <Header />
+      
 
       <main className="certificate-main">
         <div className="certificate-heading">
@@ -183,7 +183,7 @@ function Certificate() {
         </div>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }
