@@ -6144,3 +6144,210 @@ a {
     width: 100%;
   }
 }
+/* =========================================
+   TRUEQUE - DEEP TEAL & MINT GREEN THEME
+   FINAL COLOUR OVERRIDES
+========================================= */
+
+/* Main page backgrounds */
+body,
+.app-shell,
+.app-shell main,
+.dashboard-page,
+.skills-page {
+  background: #DCEBE7;
+  color: #123C42;
+}
+
+/* Header */
+.site-header {
+  background: #004D49 !important;
+}
+
+.logo-text,
+.nav-links a {
+  color: #FFFFFF;
+}
+
+.logo-area:hover .logo-text,
+.nav-links a:hover {
+  color: #A8D5C8;
+}
+
+/* Sign Up button */
+.nav-links .nav-button {
+  background: #A8D5C8;
+  color: #003D39;
+}
+
+.nav-links .nav-button:hover {
+  background: #F0F7F4;
+  color: #004D49;
+}
+
+/* Footer */
+.site-footer {
+  background: #004D49;
+  color: #FFFFFF;
+  border-top-color: #A8D5C8;
+}
+
+.footer-brand h2,
+.footer-links a {
+  color: #FFFFFF;
+}
+
+.footer-brand p,
+.footer-bottom p {
+  color: #EAF4F0;
+}
+
+.footer-links h3 {
+  color: #A8D5C8;
+}
+
+.footer-links a:hover {
+  color: #A8D5C8;
+}
+
+.footer-bottom {
+  border-top-color: rgba(168, 213, 200, 0.3);
+}
+
+/* Dashboard and Skills headings */
+.dashboard-hero h1,
+.dashboard-section-heading h2,
+.dashboard-action-intro h2,
+.skills-hero h1,
+.skills-search-container h2,
+.explore-heading h2,
+.add-skill-container h2,
+.student-selected-skills h2,
+.selected-skills-section h2,
+.matching-cta h2 {
+  color: #004D49;
+}
+
+/* Accent text */
+.dashboard-hero h1 span,
+.skills-hero h1 span,
+.progress-text,
+.verify-skill-link {
+  color: #70A99A;
+}
+
+/* Section backgrounds */
+.dashboard-hero,
+.skills-hero,
+.explore-skills-section,
+.my-skill-summary {
+  background: #DCEBE7;
+}
+
+.dashboard-actions,
+.skills-search-section,
+.add-skill-section,
+.student-selected-skills,
+.matching-cta {
+  background: #F0F7F4;
+}
+
+/* Cards */
+.dashboard-stat-card,
+.dashboard-skill-card,
+.professional-skill-card,
+.selected-skill-box,
+.my-skill-summary div,
+.no-skills {
+  background: #F0F7F4;
+  border-color: #B8D2CA;
+}
+
+/* Card headings */
+.dashboard-stat-card h3,
+.dashboard-stat-card strong,
+.dashboard-skill-card h3,
+.professional-skill-content h3,
+.selected-skill-box h3,
+.my-skill-summary strong {
+  color: #004D49;
+}
+
+/* Primary buttons */
+.dashboard-primary-button,
+.matching-cta-button,
+.skill-card-button,
+.skill-search-box button,
+.add-skill-form button,
+.add-custom-skill-button {
+  background: #004D49;
+  color: #FFFFFF;
+}
+
+.dashboard-primary-button:hover,
+.matching-cta-button:hover,
+.skill-card-button:hover,
+.add-skill-form button:hover {
+  background: #003D39;
+}
+
+/* Secondary buttons */
+.dashboard-secondary-button,
+.skill-action,
+.skill-action-button,
+.skill-category-filters button,
+.clear-search-button {
+  background: #F0F7F4;
+  color: #004D49;
+  border-color: #004D49;
+}
+
+/* Active buttons */
+.skill-action:hover,
+.skill-action.active,
+.skill-action-button:hover,
+.skill-action-button.skill-action-active,
+.skill-category-filters button:hover,
+.skill-category-filters button.category-active {
+  background: #004D49;
+  color: #FFFFFF;
+}
+
+/* Inputs */
+.skill-search-box input,
+.add-skill-form input {
+  background: #FFFFFF;
+  color: #123C42;
+  border-color: #B8D2CA;
+}
+
+.skill-search-box input:focus,
+.add-skill-form input:focus {
+  border-color: #004D49;
+}
+
+/* Skill badges */
+.verified-badge,
+.skill-status span,
+.skill-feedback-message {
+  background: #DCEBE7;
+  color: #004D49;
+}
+
+/* Skill text */
+.dashboard-stat-card p,
+.dashboard-skill-card p,
+.professional-skill-content > p,
+.selected-skill-box p,
+.explore-heading > p,
+.dashboard-hero-content > p:last-child,
+.skills-hero-content > p:last-child {
+  color: #456B65;
+}
+
+/* Skill icons */
+.dashboard-card-icon,
+.professional-skill-icon {
+  background: #004D49;
+  color: #A8D5C8;
+}
