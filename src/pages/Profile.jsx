@@ -1,410 +1,216 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Profile() {
-  const [isEditing, setIsEditing] = useState(true);
-  const [message, setMessage] = useState("");
+export default function Profile() {
+  const savedProfile = JSON.parse(
+    localStorage.getItem("truequeProfile") || "{}"
+  );
 
-  const [profile, setProfile] = useState(() => {
-    const savedProfile = localStorage.getItem("truequeProfile");
-
-    return savedProfile
-      ? JSON.parse(savedProfile)
-      : {
-          firstName: "",
-          lastName: "",
-          email: "",
-          mobile: "",
-          qualification: "",
-          location: "",
-          username: "",
-          photo: "",
-        };
+  const [profile, setProfile] = useState({
+    firstName: savedProfile.firstName || "",
+    lastName: savedProfile.lastName || "",
+    email: savedProfile.email || "",
+    phone: savedProfile.phone || "",
+    qualification: savedProfile.qualification || "",
+    location: savedProfile.location || "",
+    username: savedProfile.username || "",
+    bio: savedProfile.bio || "",
   });
 
-  const [formData, setFormData] = useState(profile);
-  const [learningSkills, setLearningSkills] = useState(() => {
-  try {
-    return JSON.parse(
-      localStorage.getItem("truequeLearningSkills") || "[]"
-    );
-  } catch {
-    return [];
-  }
-});
-
-const [teachingSkills, setTeachingSkills] = useState(() => {
-  try {
-    return JSON.parse(
-      localStorage.getItem("truequeTeachingSkills") || "[]"
-    );
-  } catch {
-    return [];
-  }
-});
-
-  useEffect(() => {
-    setFormData(profile);
-  }, [profile]);
+  const [editing, setEditing] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setProfile({
+      ...profile,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handlePhoto = (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        setMessage("Please select a valid image.");
-        return;
-      }
-
-      if (file.size > 2 * 1024 * 1024) {
-        setMessage("Image size should be below 2 MB.");
-        return;
-      }
-
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setFormData({
-          ...formData,
-          photo: reader.result,
-        });
-      };
-
-      reader.readAsDataURL(file);
-    }
   };
 
   const handleSave = (e) => {
     e.preventDefault();
 
-    if (!formData.firstName.trim() ||
-        !formData.lastName.trim() ||
-        !formData.email.trim() ||
-        !formData.mobile.trim()) {
-      setMessage("Please fill all required fields.");
-      return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setMessage("Please enter a valid email address.");
-      return;
-    }
-
-    if (!/^\d{10}$/.test(formData.mobile)) {
-      setMessage("Enter a valid 10-digit mobile number.");
-      return;
-    }
+    const updatedProfile = {
+      ...savedProfile,
+      ...profile,
+    };
 
     localStorage.setItem(
       "truequeProfile",
-      JSON.stringify(formData)
+      JSON.stringify(updatedProfile)
     );
 
-    setProfile(formData);
-    setIsEditing(false);
+    setEditing(false);
     setMessage("Profile updated successfully!");
   };
 
-  const handleCancel = () => {
-    setFormData(profile);
-    setIsEditing(false);
-    setMessage("");
-  };
-
-  const displayName =
-    `${profile.firstName} ${profile.lastName}`.trim();
+  const fullName =
+    `${profile.firstName} ${profile.lastName}`.trim() || "TRUEQUE Member";
 
   return (
     <div className="profile-page">
+      <div className="page-container">
 
-      <section className="profile-hero">
-        <div className="profile-hero-content">
-          <p className="section-label">TRUEQUE PROFILE</p>
-          <h1>My Profile</h1>
-          <p>
-            Manage your personal information and showcase
-            your learning and teaching interests.
-          </p>
-        </div>
-      </section>
-
-      <section className="profile-content">
-
-        <div className="profile-main-card">
-
-          <div className="profile-card-header">
-
-            <div className="profile-avatar">
-              {profile.photo ? (
-                <img
-                  src={profile.photo}
-                  alt="Profile"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "50%"
-                  }}
-                />
-              ) : (
-                displayName
-                  ? displayName.charAt(0).toUpperCase()
-                  : "?"
-              )}
-            </div>
-
-            <div>
-              <h2>{displayName || "Student Name"}</h2>
-              <p>
-                {profile.username
-                  ? `@${profile.username}`
-                  : "@username"}
-              </p>
-            </div>
-
-            <div className="profile-status">
-              Profile
-            </div>
-
+        <div className="profile-heading">
+          <div>
+            <p className="profile-label">YOUR ACCOUNT</p>
+            <h1>My Profile</h1>
+            <p>Manage your personal information and learning identity.</p>
           </div>
 
-          <div className="profile-section">
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setEditing(!editing);
+              setMessage("");
+            }}
+          >
+            {editing ? "Cancel Editing" : "Edit Profile"}
+          </button>
+        </div>
 
-            <div className="profile-section-title">
-              <div>
-                <p className="section-label">
-                  PERSONAL INFORMATION
-                </p>
-                <h2>Your Details</h2>
-              </div>
+        <div className="profile-layout">
 
-              {!isEditing && (
-                <button
-                  type="button"
-                  className="profile-edit-button"
-                  onClick={() => {
-                    setFormData(profile);
-                    setIsEditing(true);
-                    setMessage("");
-                  }}
-                >
-                  Edit Profile
-                </button>
-              )}
+          <div className="profile-sidebar card">
+            <div className="profile-avatar">
+              {fullName.charAt(0).toUpperCase()}
             </div>
 
+            <h2>{fullName}</h2>
+            <p className="profile-username">
+              @{profile.username || "username"}
+            </p>
+
+            <div className="profile-divider"></div>
+
+            <p>{profile.qualification || "Qualification not added"}</p>
+            <p>{profile.location || "Location not added"}</p>
+
+            <Link to="/skills" className="btn btn-outline profile-skill-btn">
+              Manage Skills
+            </Link>
+          </div>
+
+          <div className="profile-details card">
+            <h2>Personal Information</h2>
+
             {message && (
-              <p role="status" style={{ marginBottom: "15px" }}>
-                {message}
-              </p>
+              <p className="profile-success">{message}</p>
             )}
 
             <form onSubmit={handleSave}>
-
-              {isEditing && (
-                <div className="profile-field">
-                  <label>Profile Photo</label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handlePhoto}
-                  />
-                  <small>Maximum image size: 2 MB</small>
-                </div>
-              )}
-
               <div className="profile-form-grid">
 
-                <div className="profile-field">
-                  <label>First Name *</label>
+                <div className="form-group">
+                  <label>First Name</label>
                   <input
                     type="text"
                     name="firstName"
-                    placeholder="Enter first name"
-                    value={formData.firstName}
+                    value={profile.firstName}
                     onChange={handleChange}
-                    disabled={!isEditing}
+                    disabled={!editing}
                   />
                 </div>
 
-                <div className="profile-field">
-                  <label>Last Name *</label>
+                <div className="form-group">
+                  <label>Last Name</label>
                   <input
                     type="text"
                     name="lastName"
-                    placeholder="Enter last name"
-                    value={formData.lastName}
+                    value={profile.lastName}
                     onChange={handleChange}
-                    disabled={!isEditing}
+                    disabled={!editing}
                   />
                 </div>
 
-                <div className="profile-field">
-                  <label>Email ID *</label>
+                <div className="form-group">
+                  <label>Email Address</label>
                   <input
                     type="email"
                     name="email"
-                    placeholder="Enter email"
-                    value={formData.email}
+                    value={profile.email}
                     onChange={handleChange}
-                    disabled={!isEditing}
+                    disabled={!editing}
                   />
                 </div>
 
-                <div className="profile-field">
-                  <label>Mobile Number *</label>
+                <div className="form-group">
+                  <label>Phone Number</label>
                   <input
                     type="tel"
-                    name="mobile"
-                    placeholder="10-digit mobile number"
-                    value={formData.mobile}
+                    name="phone"
+                    value={profile.phone}
                     onChange={handleChange}
-                    disabled={!isEditing}
+                    disabled={!editing}
                   />
                 </div>
 
-                <div className="profile-field">
+                <div className="form-group">
                   <label>Qualification</label>
-                  <input
-                    type="text"
+                  <select
                     name="qualification"
-                    placeholder="Enter qualification"
-                    value={formData.qualification}
+                    value={profile.qualification}
                     onChange={handleChange}
-                    disabled={!isEditing}
-                  />
+                    disabled={!editing}
+                  >
+                    <option value="">Select Qualification</option>
+                    <option value="School Student">School Student</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="Undergraduate">Undergraduate</option>
+                    <option value="Postgraduate">Postgraduate</option>
+                    <option value="Working Professional">
+                      Working Professional
+                    </option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
 
-                <div className="profile-field">
+                <div className="form-group">
                   <label>Location</label>
                   <input
                     type="text"
                     name="location"
-                    placeholder="Enter location"
-                    value={formData.location}
+                    value={profile.location}
                     onChange={handleChange}
-                    disabled={!isEditing}
+                    disabled={!editing}
                   />
                 </div>
 
-                <div className="profile-field">
+                <div className="form-group">
                   <label>Username</label>
                   <input
                     type="text"
                     name="username"
-                    placeholder="Create username"
-                    value={formData.username}
+                    value={profile.username}
                     onChange={handleChange}
-                    disabled={!isEditing}
+                    disabled={!editing}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>About Me</label>
+                  <textarea
+                    name="bio"
+                    value={profile.bio}
+                    onChange={handleChange}
+                    disabled={!editing}
+                    placeholder="Tell others about yourself..."
+                    rows="3"
                   />
                 </div>
 
               </div>
 
-              {isEditing && (
-                <div style={{
-                  display: "flex",
-                  gap: "12px",
-                  marginTop: "25px",
-                  flexWrap: "wrap"
-                }}>
-                  <button
-                    type="submit"
-                    className="profile-save-button"
-                  >
-                    Save Changes →
-                  </button>
-
-                  <button
-                    type="button"
-                    className="profile-edit-button"
-                    onClick={handleCancel}
-                  >
-                    Cancel
-                  </button>
-                </div>
+              {editing && (
+                <button type="submit" className="btn btn-primary">
+                  Save Changes
+                </button>
               )}
-
             </form>
           </div>
-        </div>
 
-        <aside className="profile-sidebar">
-          
-          <div className="profile-side-card">
-
-  <p className="section-label">MY SKILLS</p>
-  <h2>Skills & Verification</h2>
-
-  <p>
-    Your learning and teaching skills in TRUEQUE.
-  </p>
-
-  <h3 style={{ marginTop: "22px" }}>
-    📚 Skills I Want to Learn
-  </h3>
-
-  {learningSkills.length > 0 ? (
-    learningSkills.map((skill, index) => (
-      <div className="profile-skill-item" key={index}>
-        <span className="profile-skill-icon">📖</span>
-        <div>
-          <h3>{skill}</h3>
-          <span>Learning</span>
         </div>
       </div>
-    ))
-  ) : (
-    <p>No learning skills added yet.</p>
-  )}
-
-  <h3 style={{ marginTop: "25px" }}>
-    🎓 Skills I Can Teach
-  </h3>
-
-  {teachingSkills.length > 0 ? (
-    teachingSkills.map((skill, index) => (
-      <div className="profile-skill-item" key={index}>
-        <span className="profile-skill-icon">⭐</span>
-        <div>
-          <h3>{skill}</h3>
-          <span>Teaching</span>
-        </div>
-      </div>
-    ))
-  ) : (
-    <p>No teaching skills added yet.</p>
-  )}
-
-  <Link to="/matching">
-    Manage My Skills →
-  </Link>
-
-</div>
-
-         
-
-          <div className="profile-verification-card">
-            <div className="verification-icon">✓</div>
-            <h3>Skill Verification</h3>
-            <p>
-              Complete quizzes to verify your skills
-              and earn verification badges.
-            </p>
-            <Link to="/quiz">Take a Quiz →</Link>
-          </div>
-
-        </aside>
-      </section>
     </div>
   );
 }
-
-export default Profile;

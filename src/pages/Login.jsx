@@ -1,120 +1,96 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { API_URL, saveTokens, clearTokens } from "../api";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+export default function Login() {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
 
-    // Clear any old tokens first: an expired one would make the login call fail.
-    clearTokens();
-
-    try {
-      const res = await fetch(`${API_URL}/auth/login/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) {
-        setError("Invalid username or password.");
-        return;
-      }
-
-      saveTokens(await res.json());
-      navigate("/dashboard");
-    } catch {
-      setError("Cannot reach the server. Is the backend running?");
-    } finally {
-      setLoading(false);
+    if (!formData.username.trim() || !formData.password.trim()) {
+      setError("Please enter your username and password.");
+      return;
     }
+
+    setError("");
+
+    // Frontend demonstration only
+    localStorage.setItem("truequeUser", formData.username);
+
+    navigate("/dashboard");
   };
 
   return (
-    <div className="auth-page">
-      <section className="auth-hero">
-        <div className="auth-hero-content">
-          <p className="section-label">TRUEQUE ACCOUNT</p>
+    <div className="login-page">
+      <div className="form-container">
+        <h2>Welcome Back!</h2>
 
-          <h1>
-            Welcome
-            <br />
-            <span>Back.</span>
-          </h1>
+        <p>Login to continue your TRUEQUE journey.</p>
 
-          <p>
-            Continue your learning journey, connect with others, and
-            exchange valuable skills through TRUEQUE.
-          </p>
-        </div>
-      </section>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Username</label>
 
-      <section className="login-section">
-        <div className="login-card">
-          <div className="login-card-header">
-            <p className="section-label">LOGIN</p>
-            <h2>Sign in to TRUEQUE</h2>
-            <p>Enter your details to continue.</p>
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              value={formData.username}
+              onChange={handleChange}
+            />
           </div>
 
-          <form className="professional-auth-form" onSubmit={handleSubmit}>
-            <div className="auth-field">
-              <label>Username</label>
-              <input
-                type="text"
-                name="username"
-                placeholder="Enter your username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          <div className="form-group">
+            <label>Password</label>
 
-            <div className="auth-field">
-              <label>Password</label>
+            <div className="password-wrapper">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleChange}
-                required
               />
-            </div>
 
-            {error && <p className="auth-error">{error}</p>}
-
-            <button
-              type="submit"
-              className="login-submit-button"
-              disabled={loading}
-            >
-              {loading ? "Signing in..." : "Login →"}
-            </button>
-
-            <div className="login-register-text">
-              <p>Don't have a TRUEQUE account?</p>
-              <button type="button" onClick={() => navigate("/register")}>
-                Create an account →
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-          </form>
+          </div>
+
+          {error && <p className="form-error">{error}</p>}
+
+          <button type="submit" className="btn btn-primary login-button">
+            Login
+          </button>
+        </form>
+
+        <div className="login-extra">
+          <p>
+            Don't have an account?{" "}
+            <Link to="/register">Create Account</Link>
+          </p>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
-
-export default Login;

@@ -1,245 +1,164 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./Quiz.css";
 
-const STORAGE_KEY = "truequeDashboardData";
-
-const saveVerifiedSkill = (skillName) => {
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-
-    const data = {
-      learningSkills: saved.learningSkills || [],
-      teachingSkills: saved.teachingSkills || [],
-      matches: saved.matches || [],
-      verifiedSkills: saved.verifiedSkills || [],
-    };
-
-    if (!data.verifiedSkills.includes(skillName)) {
-      data.verifiedSkills.push(skillName);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    }
-  } catch (error) {
-    console.error("Could not save verified skill:", error);
-  }
-};
+const quizQuestions = [
+  {
+    question: "What does HTML stand for?",
+    options: [
+      "Hyper Text Markup Language",
+      "High Text Machine Language",
+      "Hyper Transfer Markup Language",
+      "Home Tool Markup Language",
+    ],
+    answer: 0,
+  },
+  {
+    question: "Which language is used to style web pages?",
+    options: ["Python", "HTML", "CSS", "Java"],
+    answer: 2,
+  },
+  {
+    question: "Which keyword is used to declare a variable in JavaScript?",
+    options: ["define", "let", "int", "variable"],
+    answer: 1,
+  },
+  {
+    question: "Which symbol is used for comments in CSS?",
+    options: ["//", "<!-- -->", "/* */", "#"],
+    answer: 2,
+  },
+  {
+    question: "Which library is used to build React applications?",
+    options: ["React", "Django", "Flask", "MySQL"],
+    answer: 0,
+  },
+];
 
 function Quiz() {
-  const questions = [
-    {
-      question: "Which language is mainly used to structure web pages?",
-      options: ["HTML", "Python", "Java", "SQL"],
-      answer: "HTML",
-    },
-    {
-      question: "Which language is mainly used to style web pages?",
-      options: ["HTML", "CSS", "Java", "SQL"],
-      answer: "CSS",
-    },
-    {
-      question: "Which language is mainly used to add interactivity to web pages?",
-      options: ["HTML", "CSS", "JavaScript", "SQL"],
-      answer: "JavaScript",
-    },
-    {
-      question: "Which HTML tag is used to create a hyperlink?",
-      options: ["<p>", "<a>", "<img>", "<div>"],
-      answer: "<a>",
-    },
-    {
-      question: "Which CSS property is used to change text color?",
-      options: ["font-size", "background", "color", "border"],
-      answer: "color",
-    },
-  ];
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
-  const [finished, setFinished] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
-  const question = questions[currentQuestion];
+  const question = quizQuestions[currentQuestion];
 
-  // Select or remove an answer
-  const handleAnswerClick = (option) => {
-    if (selectedAnswer === option) {
-      setSelectedAnswer(null);
-    } else {
-      setSelectedAnswer(option);
-    }
-  };
-
-  // Next question or finish quiz
   const handleNext = () => {
     if (selectedAnswer === null) return;
 
-    const isCorrect = selectedAnswer === question.answer;
-    const updatedScore = score + (isCorrect ? 1 : 0);
+    if (selectedAnswer === question.answer) {
+      setScore((prevScore) => prevScore + 1);
+    }
 
-    setScore(updatedScore);
-
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion((previous) => previous + 1);
-      setSelectedAnswer(null);
+    if (currentQuestion === quizQuestions.length - 1) {
+      setShowResult(true);
     } else {
-      if (updatedScore >= 3) {
-        saveVerifiedSkill("Web Development");
-      }
-
-      setFinished(true);
+      setCurrentQuestion((prev) => prev + 1);
+      setSelectedAnswer(null);
     }
   };
 
-  // Retry quiz
-  const handleRetry = () => {
+  const restartQuiz = () => {
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setScore(0);
-    setFinished(false);
+    setShowResult(false);
   };
 
-  // Result page
-  if (finished) {
-    const passed = score >= 3;
+  return (
+    <div className="quiz-page">
+      <div className="quiz-container">
+        <div className="quiz-heading">
+          <h1>Skill Verification Quiz</h1>
+          <p>Test your knowledge and improve your skills with TRUEQUE.</p>
+        </div>
 
-    return (
-      <div className="quiz-page">
-        <div className="quiz-result-card">
-          <div className="result-icon">
-            {passed ? "✓" : "!"}
-          </div>
+        {!showResult ? (
+          <div className="quiz-card">
+            <div className="quiz-progress">
+              <span>
+                Question {currentQuestion + 1} of {quizQuestions.length}
+              </span>
 
-          <p className="quiz-label">SKILL VERIFICATION</p>
-
-          <h1>
-            {passed ? "Skill Verified!" : "Keep Learning!"}
-          </h1>
-
-          <p className="result-description">
-            {passed
-              ? "Congratulations! You have successfully completed the Web Development skill quiz."
-              : "You have completed the quiz. Keep practicing and try again to improve your score."}
-          </p>
-
-          <div className="score-box">
-            <span>Your Score</span>
-            <strong>
-              {score} / {questions.length}
-            </strong>
-          </div>
-
-          {passed && (
-            <div className="verified-badge">
-              ✓ Web Development Verified
+              <span>
+                {Math.round(
+                  ((currentQuestion + 1) / quizQuestions.length) * 100
+                )}
+                %
+              </span>
             </div>
-          )}
 
-          <div className="result-buttons">
+            <div className="quiz-progress-bar">
+              <div
+                className="quiz-progress-fill"
+                style={{
+                  width: `${
+                    ((currentQuestion + 1) / quizQuestions.length) * 100
+                  }%`,
+                }}
+              ></div>
+            </div>
+
+            <h2>{question.question}</h2>
+
+            <div className="quiz-options">
+              {question.options.map((option, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className={`quiz-option ${
+                    selectedAnswer === index ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedAnswer(index)}
+                >
+                  <span>{String.fromCharCode(65 + index)}.</span>
+                  {option}
+                </button>
+              ))}
+            </div>
+
             <button
-              className="retry-button"
-              onClick={handleRetry}
+              type="button"
+              className="quiz-next-btn"
+              onClick={handleNext}
+              disabled={selectedAnswer === null}
+            >
+              {currentQuestion === quizQuestions.length - 1
+                ? "Submit Quiz"
+                : "Next Question"}
+            </button>
+          </div>
+        ) : (
+          <div className="quiz-result">
+            <div className="quiz-result-icon">🏆</div>
+
+            <h2>Quiz Completed!</h2>
+
+            <p>Your TRUEQUE skill verification result</p>
+
+            <div className="quiz-score">
+              <h1>
+                {score} / {quizQuestions.length}
+              </h1>
+              <span>Correct Answers</span>
+            </div>
+
+            <h3>
+              {score >= 4
+                ? "Excellent Performance!"
+                : score >= 3
+                ? "Good Job! Keep Practising."
+                : "Keep Learning and Try Again!"}
+            </h3>
+
+            <button
+              type="button"
+              className="quiz-restart-btn"
+              onClick={restartQuiz}
             >
               Try Again
             </button>
-
-            <Link
-              to="/dashboard"
-              className="profile-button"
-            >
-              View Dashboard
-            </Link>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Quiz page
-  return (
-    <div className="quiz-page">
-      <div className="quiz-card">
-        {/* HEADER */}
-        <div className="quiz-top">
-          <div>
-            <p className="quiz-label">SKILL QUIZ</p>
-            <h1>Web Development</h1>
-          </div>
-
-          <div className="question-count">
-            {currentQuestion + 1} / {questions.length}
-          </div>
-        </div>
-
-        {/* PROGRESS BAR */}
-        <div className="progress-container">
-          <div
-            className="progress-bar"
-            style={{
-              width: `${
-                ((currentQuestion + 1) / questions.length) * 100
-              }%`,
-            }}
-          />
-        </div>
-
-        {/* QUESTION */}
-        <div className="question-section">
-          <p className="question-number">
-            QUESTION {currentQuestion + 1}
-          </p>
-
-          <h2>{question.question}</h2>
-        </div>
-
-        {/* ANSWERS */}
-        <div className="answers">
-          {question.options.map((option) => {
-            const isSelected = selectedAnswer === option;
-
-            return (
-              <button
-                type="button"
-                key={option}
-                className={`quiz-option ${
-                  isSelected ? "selected" : ""
-                }`}
-                onClick={() => handleAnswerClick(option)}
-                aria-pressed={isSelected}
-              >
-                <span
-                  className={`quiz-radio ${
-                    isSelected ? "radio-selected" : ""
-                  }`}
-                >
-                  {isSelected ? "✓" : ""}
-                </span>
-
-                <span className="option-text">{option}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* BOTTOM */}
-        <div className="quiz-bottom">
-          <p className="quiz-hint">
-            Select one answer and continue.
-            You can click the selected answer again to remove the tick.
-          </p>
-
-          <button
-            type="button"
-            className={`next-button ${
-              selectedAnswer === null ? "disabled" : ""
-            }`}
-            onClick={handleNext}
-            disabled={selectedAnswer === null}
-          >
-            {currentQuestion === questions.length - 1
-              ? "Finish Quiz ✓"
-              : "Next Question →"}
-          </button>
-        </div>
+        )}
       </div>
     </div>
   );

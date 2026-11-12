@@ -7,22 +7,24 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import Matching from "./pages/Matching";
 import Profile from "./pages/Profile";
-import Quiz from "./pages/Quiz";
+import Matching from "./pages/Matching";
 import Session from "./pages/Session";
+import Quiz from "./pages/Quiz";
+import Calendar from "./pages/Calendar";
 import Whiteboard from "./pages/Whiteboard";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import Chat from "./pages/Chat";
-import Help from "./pages/Help";
 import Certificate from "./pages/Certificate";
+import Reviews from "./pages/Reviews";
+import Skills from "./pages/Skills";
+import Chat from "./pages/Chat";
+import Progress from "./pages/Progress";
+import Achievements from "./pages/Achievements";
+import Help from "./pages/Help";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <div className="app-shell">
-
         <Header />
 
         <main>
@@ -31,25 +33,24 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/matching" element={<Matching />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/matching" element={<Matching />} />
             <Route path="/session" element={<Session />} />
-            <Route path="/session/:id" element={<Session />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/calendar" element={<Calendar />} />
             <Route path="/whiteboard" element={<Whiteboard />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/help" element={<Help />} />
             <Route path="/certificate" element={<Certificate />} />
+            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/progress" element={<Progress />} />
+            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/help" element={<Help />} />
           </Routes>
         </main>
 
         <Footer />
-
       </div>
     </BrowserRouter>
   );
 }
-
-export default App;

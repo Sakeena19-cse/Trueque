@@ -1,190 +1,245 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./Certificate.css";
 
 function Certificate() {
-  const [studentName, setStudentName] = useState("");
-  const [skillName, setSkillName] = useState("");
-  const [completionDate, setCompletionDate] = useState("");
-
-  const [certificateId] = useState(
-    () => `TQ-${Date.now().toString().slice(-8)}`
+  const profile = JSON.parse(
+    localStorage.getItem("truequeProfile") || "{}"
   );
 
-  const [generated, setGenerated] = useState(false);
+  const [studentName, setStudentName] = useState(
+    `${profile.firstName || ""} ${profile.lastName || ""}`.trim()
+  );
 
-  const handleGenerate = (e) => {
-    e.preventDefault();
+  const [skill, setSkill] = useState("");
+  const [instructor, setInstructor] = useState("");
+  const [completionDate, setCompletionDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
 
-    if (!studentName.trim() || !skillName.trim() || !completionDate) {
-      alert("Please fill all the required fields.");
+  const handleDownload = () => {
+    if (!studentName.trim() || !skill.trim() || !instructor.trim()) {
+      alert("Please enter your name, skill and instructor name.");
       return;
     }
 
-    setGenerated(true);
-  };
+    const certificate = document.getElementById(
+      "trueque-certificate"
+    );
 
-  const handleDownload = () => {
-    window.print();
-  };
+    const printWindow = window.open("", "_blank");
 
-  const formattedDate = completionDate
-    ? new Date(`${completionDate}T00:00:00`).toLocaleDateString("en-IN", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      })
-    : "";
+    if (!printWindow) {
+      alert("Please allow pop-ups to download your certificate.");
+      return;
+    }
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>TRUEQUE Certificate</title>
+          <style>
+            * {
+              box-sizing: border-box;
+            }
+
+            body {
+              margin: 0;
+              padding: 35px;
+              font-family: Georgia, serif;
+              background: white;
+            }
+
+            .certificate {
+              width: 100%;
+              min-height: 650px;
+              padding: 55px 35px;
+              border: 10px double #142B4A;
+              text-align: center;
+              color: #0B1B30;
+            }
+
+            h1 {
+              font-size: 42px;
+              color: #142B4A;
+              margin: 15px 0;
+            }
+
+            h2 {
+              font-size: 25px;
+              color: #142B4A;
+              margin: 35px 0;
+            }
+
+            .name {
+              font-size: 32px;
+              font-weight: bold;
+              border-bottom: 2px solid #142B4A;
+              display: inline-block;
+              padding: 10px 35px;
+            }
+
+            .skill {
+              font-size: 25px;
+              font-weight: bold;
+              color: #142B4A;
+            }
+
+            .details {
+              margin-top: 65px;
+              display: flex;
+              justify-content: space-around;
+              gap: 20px;
+            }
+
+            .details div {
+              border-top: 1px solid #142B4A;
+              padding-top: 12px;
+              min-width: 180px;
+            }
+
+            @media print {
+              body {
+                padding: 0;
+              }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="certificate">
+            ${certificate.innerHTML}
+          </div>
+          <script>
+            window.onload = function() {
+              window.print();
+            };
+          <\/script>
+        </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+  };
 
   return (
-    <div className="certificate-page">
-      
+    <main className="certificate-page">
+      <section className="certificate-heading">
+        <span className="section-label">YOUR ACHIEVEMENT</span>
+        <h1>Certificate Generator</h1>
+        <p>
+          Create a certificate preview for a completed skill
+          learning activity.
+        </p>
+      </section>
 
-      <main className="certificate-main">
-        <div className="certificate-heading">
-          <p className="certificate-label">TRUEQUE ACHIEVEMENT</p>
-          <h1>Certificate Generator</h1>
-          <p>
-            Celebrate your learning journey and generate your skill
-            completion certificate.
-          </p>
+      <section className="certificate-content">
+        <div className="certificate-form">
+          <h2>Certificate Details</h2>
+
+          <div className="form-group">
+            <label>Student Name</label>
+            <input
+              type="text"
+              value={studentName}
+              onChange={(e) => setStudentName(e.target.value)}
+              placeholder="Enter student name"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Completed Skill</label>
+            <input
+              type="text"
+              value={skill}
+              onChange={(e) => setSkill(e.target.value)}
+              placeholder="Example: React.js"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Instructor Name</label>
+            <input
+              type="text"
+              value={instructor}
+              onChange={(e) => setInstructor(e.target.value)}
+              placeholder="Enter instructor name"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Completion Date</label>
+            <input
+              type="date"
+              value={completionDate}
+              onChange={(e) => setCompletionDate(e.target.value)}
+            />
+          </div>
+
+          <button
+            type="button"
+            className="certificate-download"
+            onClick={handleDownload}
+          >
+            Download / Print Certificate
+          </button>
         </div>
 
-        {!generated && (
-          <form
-            className="certificate-form"
-            onSubmit={handleGenerate}
+        <div className="certificate-preview">
+          <div
+            className="certificate-design"
+            id="trueque-certificate"
           >
-            <h2>Enter Your Details</h2>
+            <p className="certificate-brand">TRUEQUE</p>
 
-            <div className="certificate-form-group">
-              <label>Student Name</label>
-              <input
-                type="text"
-                placeholder="Enter your full name"
-                value={studentName}
-                onChange={(e) => setStudentName(e.target.value)}
-                required
-              />
-            </div>
+            <div className="certificate-divider"></div>
 
-            <div className="certificate-form-group">
-              <label>Completed Skill / Course</label>
-              <input
-                type="text"
-                placeholder="Example: React.js Development"
-                value={skillName}
-                onChange={(e) => setSkillName(e.target.value)}
-                required
-              />
-            </div>
+            <h2>CERTIFICATE</h2>
+            <h3>OF COMPLETION</h3>
 
-            <div className="certificate-form-group">
-              <label>Completion Date</label>
-              <input
-                type="date"
-                value={completionDate}
-                onChange={(e) => setCompletionDate(e.target.value)}
-                max={new Date().toISOString().split("T")[0]}
-                required
-              />
-            </div>
+            <p className="certificate-intro">
+              This certificate is presented to
+            </p>
 
-            <button type="submit" className="generate-certificate-btn">
-              Generate Certificate
-            </button>
-          </form>
-        )}
+            <h1 className="certificate-student">
+              {studentName || "Student Name"}
+            </h1>
 
-        {generated && (
-          <div className="certificate-result">
-            <div className="certificate-paper" id="certificate-paper">
-              <div className="certificate-border">
-                <p className="certificate-brand">TRUEQUE</p>
-                <p className="certificate-subtitle">
-                  SKILL EXCHANGE PLATFORM
-                </p>
+            <p className="certificate-description">
+              for completing the learning activity in
+            </p>
 
-                <div className="certificate-divider"></div>
+            <h2 className="certificate-skill">
+              {skill || "Your Skill"}
+            </h2>
 
-                <h2>CERTIFICATE</h2>
-                <h3>OF COMPLETION</h3>
+            <p className="certificate-description">
+              through the TRUEQUE Skill Exchange Learning Platform.
+            </p>
 
-                <p className="certificate-presented">
-                  This certificate is proudly presented to
-                </p>
+            <div className="certificate-signatures">
+              <div>
+                <strong>{instructor || "Instructor Name"}</strong>
+                <span>Instructor</span>
+              </div>
 
-                <h1 className="certificate-student-name">
-                  {studentName}
-                </h1>
-
-                <p className="certificate-description">
-                  For successfully completing the learning journey in
-                </p>
-
-                <h2 className="certificate-skill-name">
-                  {skillName}
-                </h2>
-
-                <p className="certificate-description">
-                  through the TRUEQUE Skill Exchange Platform.
-                </p>
-
-                <div className="certificate-bottom">
-                  <div>
-                    <div className="certificate-sign-line"></div>
-                    <p>TRUEQUE Team</p>
-                    <small>Authorized Signature</small>
-                  </div>
-
-                  <div className="certificate-seal">
-                    <span>TRUEQUE</span>
-                    <strong>★</strong>
-                    <small>ACHIEVEMENT</small>
-                  </div>
-
-                  <div>
-                    <div className="certificate-sign-line"></div>
-                    <p>{formattedDate}</p>
-                    <small>Completion Date</small>
-                  </div>
-                </div>
-
-                <p className="certificate-id">
-                  Certificate ID: {certificateId}
-                </p>
+              <div>
+                <strong>
+                  {completionDate
+                    ? new Date(
+                        `${completionDate}T00:00:00`
+                      ).toLocaleDateString("en-IN")
+                    : "Completion Date"}
+                </strong>
+                <span>Date of Completion</span>
               </div>
             </div>
 
-            <div className="certificate-actions">
-              <button
-                onClick={handleDownload}
-                className="download-certificate-btn"
-              >
-                Download / Save as PDF
-              </button>
-
-              <button
-                onClick={() => setGenerated(false)}
-                className="edit-certificate-btn"
-              >
-                Edit Details
-              </button>
-            </div>
-
-            <p className="certificate-note">
-              In the print window, choose "Save as PDF" to save your certificate.
+            <p className="certificate-footer">
+              Learn. Teach. Grow Together.
             </p>
           </div>
-        )}
-
-        <div className="certificate-back-link">
-          <Link to="/dashboard">← Back to Dashboard</Link>
         </div>
-      </main>
-
-      
-    </div>
+      </section>
+    </main>
   );
 }
 

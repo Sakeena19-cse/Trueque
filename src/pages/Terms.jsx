@@ -1,80 +1,122 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import "./Terms.css";
 
 function Terms() {
   return (
-    <div className="legal-page">
-      <div className="legal-container">
-
-        <p className="legal-label">TRUEQUE</p>
+    <div className="terms-page">
+      <div className="terms-container">
         <h1>Terms & Conditions</h1>
 
-        <p className="legal-updated">
+        <p className="terms-updated">
           Last Updated: November 2026
         </p>
 
         <p>
-          Welcome to TRUEQUE! By using our platform, you agree
-          to follow these Terms & Conditions.
+          Welcome to TRUEQUE! By accessing or using our website, you agree
+          to follow these Terms and Conditions. Please read them carefully.
         </p>
 
-        <h2>1. About TRUEQUE</h2>
-        <p>
-          TRUEQUE is a skill-sharing platform that helps students
-          connect with other people to learn and teach different
-          skills.
-        </p>
+        <section>
+          <h2>1. About TRUEQUE</h2>
+          <p>
+            TRUEQUE is a skill exchange platform where users can share
+            their knowledge, learn new skills, and connect with other
+            learners and teachers.
+          </p>
+        </section>
 
-        <h2>2. User Registration</h2>
-        <p>
-          Users should provide accurate registration details,
-          maintain their account information and keep their
-          passwords confidential.
-        </p>
+        <section>
+          <h2>2. User Registration</h2>
+          <p>
+            Users must provide accurate information during registration.
+            Each user is responsible for maintaining the confidentiality
+            of their login credentials.
+          </p>
+        </section>
 
-        <h2>3. Learning and Teaching</h2>
-        <p>
-          Users can choose skills they want to learn or teach.
-          They should communicate respectfully and participate
-          responsibly in learning sessions.
-        </p>
+        <section>
+          <h2>3. User Responsibilities</h2>
+          <ul>
+            <li>Provide genuine profile information.</li>
+            <li>Respect other users and their opinions.</li>
+            <li>Attend scheduled learning sessions responsibly.</li>
+            <li>Do not share harmful or inappropriate content.</li>
+            <li>Use the platform only for legitimate learning purposes.</li>
+          </ul>
+        </section>
 
-        <h2>4. Skill Verification</h2>
-        <p>
-          TRUEQUE may provide quizzes or other activities to
-          help users demonstrate their knowledge. A quiz result
-          should not be treated as a professional certification.
-        </p>
+        <section>
+          <h2>4. Skill Exchange</h2>
+          <p>
+            Users can select skills they want to learn and skills they
+            can teach. Matching suggestions are intended to help users
+            find suitable learning partners.
+          </p>
+        </section>
 
-        <h2>5. User Conduct</h2>
-        <p>
-          Users must not harass others, share harmful content,
-          misuse personal information or use the platform for
-          unlawful activities.
-        </p>
+        <section>
+          <h2>5. Sessions and Communication</h2>
+          <p>
+            Users should communicate respectfully and follow their
+            agreed session schedules. Any changes or cancellations
+            should be communicated in advance.
+          </p>
+        </section>
 
-        <h2>6. Account Responsibility</h2>
-        <p>
-          Users are responsible for activities carried out
-          through their accounts.
-        </p>
+        <section>
+          <h2>6. Reviews and Ratings</h2>
+          <p>
+            Users should provide honest and respectful feedback after
+            completing learning sessions. False, abusive, or misleading
+            reviews should be avoided.
+          </p>
+        </section>
 
-        <h2>7. Changes to Terms</h2>
-        <p>
-          TRUEQUE may update these terms when necessary.
-          Updated terms will be displayed on this page.
-        </p>
+        <section>
+          <h2>7. Intellectual Property</h2>
+          <p>
+            The TRUEQUE website design, branding, and original content
+            belong to their respective owners. Users should not copy or
+            misuse website content without permission.
+          </p>
+        </section>
 
-        <h2>8. Contact</h2>
-        <p>
-          For questions about these terms, contact the
-          TRUEQUE project team.
-        </p>
+        <section>
+          <h2>8. Privacy</h2>
+          <p>
+            User information should be handled responsibly. Please read
+            our Privacy Policy to understand how information is handled
+            in this project.
+          </p>
+        </section>
 
-        <Link to="/" className="legal-back-button">
-          Back to Home
-        </Link>
+        <section>
+          <h2>9. Limitation of Responsibility</h2>
+          <p>
+            TRUEQUE is designed to support skill sharing and learning.
+            Users are responsible for their own interactions and
+            agreements with other users.
+          </p>
+        </section>
 
+        <section>
+          <h2>10. Changes to Terms</h2>
+          <p>
+            These Terms and Conditions may be updated when necessary.
+            Users should review this page periodically for changes.
+          </p>
+        </section>
+
+        <section>
+          <h2>11. Contact</h2>
+          <p>
+            For questions about these Terms and Conditions, please
+            contact the TRUEQUE project support team.
+          </p>
+        </section>
+
+        <div className="terms-footer">
+          <p>Thank you for being part of TRUEQUE!</p>
+        </div>
       </div>
     </div>
   );

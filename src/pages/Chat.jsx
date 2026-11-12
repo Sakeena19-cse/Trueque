@@ -1,25 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 function Chat() {
-  const [partner, setPartner] = useState("Skill Partner");
   const [message, setMessage] = useState("");
 
   const [messages, setMessages] = useState(() => {
-    try {
-      return JSON.parse(
-        localStorage.getItem("truequeChatMessages")
-      ) || [];
-    } catch {
-      return [];
-    }
+    const savedMessages = localStorage.getItem("trueque_chat_messages");
+
+    return savedMessages
+      ? JSON.parse(savedMessages)
+      : [
+          {
+            id: 1,
+            text: "Hi! Welcome to TRUEQUE. How can I help you?",
+            sender: "other",
+            time: new Date().toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+          },
+        ];
   });
+
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem(
-      "truequeChatMessages",
+      "trueque_chat_messages",
       JSON.stringify(messages)
     );
+
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
   }, [messages]);
 
   const sendMessage = (e) => {
@@ -27,82 +39,123 @@ function Chat() {
 
     if (!message.trim()) return;
 
-    setMessages((previous) => [
-      ...previous,
-      {
-        id: Date.now(),
-        text: message.trim(),
-        sender: "me",
-        time: new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit"
-        })
-      }
+    const newMessage = {
+      id: Date.now(),
+      text: message.trim(),
+      sender: "me",
+      time: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    };
+
+    setMessages((previousMessages) => [
+      ...previousMessages,
+      newMessage,
     ]);
 
     setMessage("");
   };
 
+  const clearChat = () => {
+    const confirmClear = window.confirm(
+      "Are you sure you want to clear all messages?"
+    );
+
+    if (confirmClear) {
+      setMessages([]);
+      localStorage.removeItem("trueque_chat_messages");
+    }
+  };
+
   return (
     <div className="trueque-chat-page">
 
+      {/* Chat Hero Section */}
       <section className="chat-hero">
-        <p className="section-label">TRUEQUE COMMUNITY</p>
-        <h1>Chat & Connect.</h1>
-        <p>Share ideas, communicate and learn together.</p>
+        <h1>TRUEQUE Chat</h1>
+
+        <p>
+          Connect, communicate and learn together.
+        </p>
       </section>
 
-      <section className="chat-container">
+      {/* Chat Container */}
+      <div className="chat-container">
 
+        {/* Chat Header */}
         <div className="chat-header">
+
           <div className="chat-avatar">
-            {partner.charAt(0).toUpperCase()}
+            A
           </div>
 
           <div>
-            <h2>{partner}</h2>
-            <p>Skill Exchange Partner</p>
+            <h2>Arun Kumar</h2>
+            <p>TRUEQUE Learning Partner</p>
           </div>
+
+          <button
+            type="button"
+            className="chat-clear-button"
+            onClick={clearChat}
+          >
+            Clear Chat
+          </button>
+
         </div>
 
+        {/* Messages */}
         <div className="chat-messages">
 
-          {messages.length > 0 ? (
-            messages.map((item) => (
+          {messages.length === 0 ? (
+            <div className="chat-empty">
+              <h3>No messages yet</h3>
+              <p>Start a conversation with your learning partner.</p>
+            </div>
+          ) : (
+            messages.map((msg) => (
               <div
-                key={item.id}
-                className={`chat-message ${item.sender === "me" ? "my-message" : "partner-message"}`}
+                key={msg.id}
+                className={`chat-message ${
+                  msg.sender === "me"
+                    ? "my-message"
+                    : "other-message"
+                }`}
               >
-                <p>{item.text}</p>
-                <span>{item.time}</span>
+                <p>{msg.text}</p>
+
+                <span>{msg.time}</span>
               </div>
             ))
-          ) : (
-            <div className="chat-empty">
-              <h3>Start a Conversation!</h3>
-              <p>Send your first message to your skill partner.</p>
-            </div>
           )}
+
+          <div ref={messagesEndRef} />
 
         </div>
 
-        <form className="chat-input-area" onSubmit={sendMessage}>
+        {/* Message Input */}
+        <form
+          className="chat-input-area"
+          onSubmit={sendMessage}
+        >
+
           <input
             type="text"
+            placeholder="Type your message..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type your message..."
           />
 
-          <button type="submit">
-            Send →
+          <button
+            type="submit"
+            disabled={!message.trim()}
+          >
+            Send
           </button>
+
         </form>
 
-      </section>
-
-      <div className="chat-back-link">
-        <Link to="/matching">← Back to Matching</Link>
       </div>
 
     </div>
