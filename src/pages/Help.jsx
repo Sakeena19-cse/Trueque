@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Help() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -7,53 +8,43 @@ function Help() {
     {
       question: "What is TRUEQUE?",
       answer:
-        "TRUEQUE is a skill exchange platform where users can teach their skills and learn new skills from other users.",
+        "TRUEQUE is a skill-sharing platform where users can learn new skills and teach skills they already know."
     },
     {
       question: "How do I create an account?",
       answer:
-        "Click the Register button and enter your first name, last name, email, phone number, qualification and location to create your account.",
+        "Go to the Register page, enter your personal details and create your account."
     },
     {
-      question: "How can I select my skills?",
+      question: "How can I find a skill partner?",
       answer:
-        "After logging in, visit the Skills page. Select the skills you want to learn and the skills you can teach.",
+        "Visit the Matching page to explore people interested in learning or teaching your selected skills."
     },
     {
-      question: "How does skill matching work?",
+      question: "How can I verify my skills?",
       answer:
-        "TRUEQUE helps users find learning partners based on their selected teaching and learning skills.",
+        "Go to the Quiz page, select a skill and complete the quiz to verify your knowledge."
     },
     {
-      question: "How can I book a learning session?",
+      question: "How do I track my learning progress?",
       answer:
-        "Visit the Session Booking page, choose an available date and time, and book your learning session.",
+        "Open your Dashboard and use the Learning Progress Tracker to mark your skills as completed."
     },
     {
-      question: "Can I attend quizzes?",
+      question: "How can I contact my skill partner?",
       answer:
-        "Yes. You can attend skill-based quizzes to test your knowledge and verify your skills.",
-    },
-    {
-      question: "How can I give feedback?",
-      answer:
-        "After completing a session, visit the Rating and Review section to share your experience and feedback.",
-    },
-    {
-      question: "Is TRUEQUE free to use?",
-      answer:
-        "TRUEQUE is designed as a skill exchange platform where users can share knowledge and learn from one another.",
-    },
-    {
-      question: "How can I contact support?",
-      answer:
-        "You can use the contact or support options available on the TRUEQUE website for assistance.",
+        "Visit the Chat page to communicate with your skill partner. The current frontend demo stores messages locally."
     },
     {
       question: "Can I update my profile?",
       answer:
-        "Yes. Visit the Edit Profile section to update your personal information.",
+        "Yes. Visit your Profile page and use the Edit Profile option to update your information."
     },
+    {
+      question: "How can I book a learning session?",
+      answer:
+        "Open your Session page and use the booking calendar to select your preferred date and time."
+    }
   ];
 
   const toggleFAQ = (index) => {
@@ -61,47 +52,36 @@ function Help() {
   };
 
   return (
-    <div className="trueque-help-page">
+    <div className="help-page">
 
-      {/* Hero Section */}
       <section className="help-hero">
-        <h1>Help & Support</h1>
-
+        <p className="section-label">TRUEQUE SUPPORT CENTER</p>
+        <h1>How Can We Help You?</h1>
         <p>
-          We're here to help you learn, teach and grow with TRUEQUE.
+          Find answers to common questions and make
+          your skill-sharing journey easier.
         </p>
       </section>
 
-      {/* FAQ Section */}
-      <section className="help-section">
+      <section className="faq-section">
 
-        <div className="help-heading">
+        <div className="faq-heading">
+          <p className="section-label">HELP & SUPPORT</p>
           <h2>Frequently Asked Questions</h2>
-
-          <p>
-            Find answers to commonly asked questions about TRUEQUE.
-          </p>
+          <p>Click on a question to view its answer.</p>
         </div>
 
-        <div className="faq-container">
-
+        <div className="faq-list">
           {faqs.map((faq, index) => (
-            <div
-              className={`faq-item ${
-                openIndex === index ? "active" : ""
-              }`}
-              key={index}
-            >
+            <div className="faq-item" key={index}>
 
               <button
                 type="button"
                 className="faq-question"
                 onClick={() => toggleFAQ(index)}
-                aria-expanded={openIndex === index}
               >
                 <span>{faq.question}</span>
-
-                <span className="faq-icon">
+                <span>
                   {openIndex === index ? "−" : "+"}
                 </span>
               </button>
@@ -114,26 +94,21 @@ function Help() {
 
             </div>
           ))}
+        </div>
 
+        <div className="help-contact">
+          <h2>Still Need Help?</h2>
+          <p>
+            Explore your TRUEQUE dashboard or contact
+            your project support team.
+          </p>
+
+          <Link to="/dashboard">
+            Back to Dashboard →
+          </Link>
         </div>
 
       </section>
-
-      {/* Contact Support Section */}
-      <section className="help-contact">
-
-        <h2>Still Need Help?</h2>
-
-        <p>
-          Have another question? We're happy to help you.
-        </p>
-
-        <a href="mailto:support@trueque.com">
-          Contact Support
-        </a>
-
-      </section>
-
     </div>
   );
 }

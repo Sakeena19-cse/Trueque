@@ -1,197 +1,876 @@
 /* =========================================
    TRUEQUE WHITEBOARD
-   Navy + Sky Blue Theme
 ========================================= */
 
-.whiteboard-page {
+.trueque-whiteboard-page {
   min-height: 100vh;
-  width: 100%;
-  padding: 35px 5%;
-  background: #0B1B30;
-  color: #BAE6FD;
+  background: #fff5e1;
+  color: #38232a;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
   box-sizing: border-box;
 }
 
-.whiteboard-page * {
+.trueque-whiteboard-page * {
   box-sizing: border-box;
 }
 
-.whiteboard-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+
+/* =========================================
+   HEADER
+========================================= */
 
 .whiteboard-header {
-  text-align: center;
-  margin-bottom: 30px;
+  min-height: 108px;
+  background: #800020;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 36px;
+  gap: 20px;
+  box-shadow: 0 3px 10px rgba(74, 32, 40, 0.15);
 }
 
-.whiteboard-header h1 {
-  color: #38BDF8;
-  font-size: 32px;
-  margin-bottom: 10px;
+.whiteboard-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.whiteboard-header p {
-  color: #BAE6FD;
-  font-size: 15px;
-}
-
-.whiteboard-toolbar {
+.whiteboard-logo-box {
+  width: 64px;
+  height: 64px;
+  background: #f4d477;
+  color: #800020;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  padding: 18px;
-  margin-bottom: 20px;
-  background: #142B4A;
-  border: 1px solid #38BDF8;
-  border-radius: 12px;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
 }
 
-.whiteboard-toolbar label {
-  color: #BAE6FD;
+.whiteboard-brand-text h2 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 29px;
+  letter-spacing: 1px;
+}
+
+.whiteboard-brand-text span {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  color: #fff5e1;
+}
+
+.whiteboard-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border-left: 1px solid rgba(255, 255, 255, 0.45);
+  padding-left: 28px;
+}
+
+.whiteboard-title-icon {
+  font-size: 42px;
+  line-height: 1;
+  color: #f4d477;
+}
+
+.whiteboard-title h1 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 28px;
+}
+
+.whiteboard-title p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #fff5e1;
+}
+
+.whiteboard-online {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.online-dot,
+.footer-online-dot {
+  width: 12px;
+  height: 12px;
+  background: #28d76f;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(40, 215, 111, 0.65);
+}
+
+.profile-circle {
+  width: 48px;
+  height: 48px;
+  margin-left: 12px;
+  background: white;
+  color: #800020;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+
+/* =========================================
+   VIDEO CALL SECTION
+========================================= */
+
+.classroom-video-panel {
+  background: #fffaf1;
+  margin: 20px 30px 0;
+  padding: 20px;
+  border: 1px solid #eadfc8;
+  border-radius: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 4px 12px rgba(74, 32, 40, 0.06);
+}
+
+.video-card {
+  position: relative;
+  width: 250px;
+  height: 155px;
+  background: #30262a;
+  border: 2px solid #e3d2bd;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #30262a;
+}
+
+.video-placeholder,
+.partner-video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f1e5d7;
+  color: #800020;
+  text-align: center;
+}
+
+.video-placeholder span,
+.partner-video-placeholder span {
+  font-size: 35px;
+}
+
+.video-placeholder p,
+.partner-video-placeholder p {
+  margin: 8px 5px;
+  font-size: 13px;
   font-weight: 600;
 }
 
-.whiteboard-toolbar input[type="color"] {
-  width: 45px;
-  height: 38px;
-  padding: 3px;
-  background: #0B1B30;
-  border: 1px solid #38BDF8;
+.video-name {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  padding: 5px 12px;
   border-radius: 6px;
-  cursor: pointer;
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+  font-size: 12px;
+  z-index: 2;
 }
 
-.whiteboard-toolbar input[type="range"] {
-  width: 110px;
-  accent-color: #38BDF8;
-  cursor: pointer;
+.call-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
 }
 
-.whiteboard-toolbar button {
-  padding: 10px 18px;
-  background: #0B1B30;
-  color: #BAE6FD;
-  border: 1px solid #38BDF8;
-  border-radius: 7px;
+.call-button,
+.end-call-button {
+  min-height: 42px;
+  padding: 9px 13px;
+  border: 1px solid #e5dacc;
+  border-radius: 8px;
+  background: white;
+  color: #38232a;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.call-button:hover:not(:disabled) {
+  background: #f4e7d7;
+}
+
+.call-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.end-call-button {
+  background: #800020;
+  color: white;
+  border-color: #800020;
+}
+
+.end-call-button:hover {
+  background: #650018;
+}
+
+.camera-error {
+  flex-basis: 100%;
+  color: #c62828;
+  font-size: 13px;
+  margin: 0;
+}
+
+
+/* =========================================
+   TOP TOOLBAR
+========================================= */
+
+.whiteboard-toolbar {
+  min-height: 76px;
+  background: #fffaf1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 30px;
+  margin-top: 18px;
+  border-top: 1px solid #eadfc8;
+  border-bottom: 1px solid #eadfc8;
+  box-shadow: 0 2px 8px rgba(74, 32, 40, 0.08);
+  flex-wrap: wrap;
+}
+
+.main-tool {
+  height: 48px;
+  padding: 0 17px;
+  border: 1px solid #e8ddd0;
+  border-radius: 10px;
+  background: white;
+  color: #38232a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.2s ease;
+  box-shadow: 0 3px 8px rgba(74, 32, 40, 0.06);
 }
 
-.whiteboard-toolbar button:hover {
-  background: #38BDF8;
-  color: #0B1B30;
+.main-tool:hover {
+  transform: translateY(-2px);
+  background: #f7eadf;
 }
 
-.whiteboard-toolbar button.active {
-  background: #38BDF8;
-  color: #0B1B30;
+.main-tool span {
+  font-size: 19px;
 }
 
-.whiteboard-canvas-wrapper {
-  width: 100%;
-  min-height: 450px;
+.main-tool.selected-tool {
+  background: #800020;
+  color: white;
+  border-color: #800020;
+}
+
+.text-icon {
+  font-family: Georgia, serif;
+  font-weight: 700;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 35px;
+  background: #ddd0bd;
+  margin: 0 5px;
+}
+
+
+/* =========================================
+   COLOR PICKER
+========================================= */
+
+.color-picker {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 5px;
+}
+
+.color-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: 0.2s ease;
+  flex-shrink: 0;
+}
+
+.color-circle:hover {
+  transform: scale(1.15);
+}
+
+.color-circle.active-color {
+  outline: 2px solid #800020;
+  outline-offset: 3px;
+}
+
+
+/* =========================================
+   BRUSH SIZE
+========================================= */
+
+.brush-size {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.brush-size span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #38232a;
+}
+
+.brush-size input {
+  width: 110px;
+  accent-color: #800020;
+  cursor: pointer;
+}
+
+
+/* =========================================
+   UNDO AND REDO
+========================================= */
+
+.undo-redo {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5dacc;
+  border-radius: 10px;
   overflow: hidden;
-  background: #ffffff;
-  border: 2px solid #38BDF8;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  background: white;
 }
 
-.whiteboard-canvas {
-  display: block;
+.undo-redo button {
+  height: 48px;
+  min-width: 62px;
+  border: none;
+  background: white;
+  color: #38232a;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.undo-redo button:hover:not(:disabled) {
+  background: #f7eadf;
+}
+
+.undo-redo button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.undo-redo span {
+  font-size: 11px;
+  margin-top: -2px;
+}
+
+
+/* =========================================
+   CLEAR AND DOWNLOAD
+========================================= */
+
+.clear-button,
+.download-button {
+  height: 48px;
+  padding: 0 17px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: 0.2s ease;
+}
+
+.clear-button {
+  border: 1px solid #e5dacc;
+  background: white;
+  color: #38232a;
+}
+
+.clear-button:hover {
+  background: #f7eadf;
+}
+
+.download-button {
+  margin-left: auto;
+  border: none;
+  background: #800020;
+  color: white;
+}
+
+.download-button:hover {
+  background: #650018;
+}
+
+
+/* =========================================
+   WHITEBOARD AREA
+========================================= */
+
+.whiteboard-area {
+  position: relative;
+  flex: 1;
+  min-height: 720px;
+  padding: 0 30px 25px;
+  display: flex;
+  background: #fff5e1;
+}
+
+
+/* =========================================
+   SIDE TOOLS
+========================================= */
+
+.side-tools {
+  width: 70px;
+  flex-shrink: 0;
+  background: #fffaf1;
+  border: 1px solid #eadfc8;
+  border-right: none;
+  border-radius: 13px 0 0 13px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 4px 12px rgba(74, 32, 40, 0.06);
+  z-index: 5;
+}
+
+.side-tool {
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  color: #123b6d;
+  font-size: 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+
+.side-tool:hover {
+  background: #f2e3df;
+}
+
+.side-tool.active-side-tool {
+  background: #f0dfe0;
+  color: #800020;
+}
+
+
+/* =========================================
+   CANVAS
+========================================= */
+
+.canvas-area {
+  position: relative;
+  flex: 1;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  min-height: 650px;
+  background-color: white;
+  background-image: radial-gradient(#e8e8e8 1px, transparent 1px);
+  background-size: 24px 24px;
+  border: 1px solid #ddd5ca;
+  border-radius: 0 13px 13px 0;
+  box-shadow: 0 5px 18px rgba(74, 32, 40, 0.09);
+  overflow: hidden;
+  transform-origin: top left;
+}
+
+.canvas-area canvas {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 500px;
-  background: #ffffff;
+  height: 100%;
+  background: transparent;
   cursor: crosshair;
   touch-action: none;
 }
 
-.whiteboard-actions {
+
+/* =========================================
+   ZOOM
+========================================= */
+
+.zoom-controls {
+  position: absolute;
+  right: 25px;
+  bottom: 22px;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 22px;
+  align-items: center;
+  background: #fffaf1;
+  border: 1px solid #e6dccf;
+  border-radius: 11px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(74, 32, 40, 0.10);
+  z-index: 10;
 }
 
-.whiteboard-actions button {
-  padding: 12px 22px;
-  background: #142B4A;
-  color: #BAE6FD;
-  border: 1px solid #38BDF8;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
+.zoom-controls button {
+  width: 44px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #123b6d;
+  font-size: 21px;
   cursor: pointer;
-  transition: 0.3s ease;
 }
 
-.whiteboard-actions button:hover {
-  background: #38BDF8;
-  color: #0B1B30;
+.zoom-controls button:hover {
+  background: #f2e7dc;
 }
 
-.whiteboard-info {
-  margin-top: 22px;
-  padding: 15px;
-  background: #142B4A;
-  border-left: 4px solid #38BDF8;
-  border-radius: 8px;
-  color: #BAE6FD;
-  font-size: 14px;
-  line-height: 1.7;
+.zoom-controls .zoom-number {
+  width: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-/* Responsive Design */
 
-@media (max-width: 768px) {
-  .whiteboard-page {
-    padding: 25px 4%;
+/* =========================================
+   FOOTER
+========================================= */
+
+.whiteboard-footer {
+  min-height: 88px;
+  background: #800020;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 36px;
+  gap: 15px;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.footer-logo {
+  width: 45px;
+  height: 45px;
+  background: #f4d477;
+  color: #800020;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.footer-left strong {
+  font-family: Georgia, serif;
+  font-size: 20px;
+}
+
+.footer-line {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 4px;
+}
+
+.footer-left > span:last-child {
+  color: #fff5e1;
+}
+
+.footer-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.footer-online-dot {
+  width: 11px;
+  height: 11px;
+}
+
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 1200px) {
+
+  .whiteboard-header {
+    padding: 15px 22px;
   }
 
-  .whiteboard-header h1 {
-    font-size: 26px;
+  .whiteboard-title {
+    display: none;
   }
 
   .whiteboard-toolbar {
-    gap: 12px;
-    padding: 14px;
+    padding: 12px 20px;
   }
 
-  .whiteboard-canvas-wrapper {
-    min-height: 350px;
+  .main-tool {
+    padding: 0 13px;
   }
 
-  .whiteboard-canvas {
-    height: 350px;
+  .download-button {
+    margin-left: 0;
   }
 }
 
-@media (max-width: 480px) {
-  .whiteboard-header h1 {
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .whiteboard-online {
+    gap: 7px;
+  }
+
+  .profile-circle {
+    display: none;
+  }
+
+  .whiteboard-area {
+    padding: 0 15px 20px;
+  }
+
+  .side-tools {
+    width: 58px;
+  }
+
+  .side-tool {
+    width: 42px;
+    height: 42px;
+  }
+
+  .classroom-video-panel {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .video-card {
+    width: 220px;
+  }
+
+  .call-controls {
+    flex-basis: 100%;
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE - SMALL MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .whiteboard-header {
+    min-height: 85px;
+    padding: 12px 15px;
+    justify-content: center;
+  }
+
+  .whiteboard-brand-text h2 {
     font-size: 23px;
   }
 
+  .whiteboard-brand-text span {
+    font-size: 11px;
+  }
+
+  .whiteboard-logo-box {
+    width: 50px;
+    height: 50px;
+    font-size: 21px;
+  }
+
+  .whiteboard-online {
+    display: none;
+  }
+
+  .classroom-video-panel {
+    justify-content: center;
+    padding: 14px;
+  }
+
+  .video-card {
+    width: 100%;
+    max-width: 320px;
+    height: 170px;
+  }
+
+  .call-controls {
+    justify-content: center;
+  }
+
   .whiteboard-toolbar {
-    flex-direction: column;
-    align-items: stretch;
+    justify-content: center;
+    padding: 12px 10px;
   }
 
-  .whiteboard-toolbar button {
+  .toolbar-divider {
+    display: none;
+  }
+
+  .brush-size {
     width: 100%;
+    justify-content: center;
+    padding: 8px 0;
   }
 
-  .whiteboard-actions {
-    flex-direction: column;
+  .whiteboard-area {
+    padding: 0 8px 12px;
+    min-height: 580px;
   }
 
-  .whiteboard-actions button {
-    width: 100%;
+  .side-tools {
+    width: 52px;
+  }
+
+  .canvas-area {
+    min-height: 550px;
+  }
+
+  .footer-left > span:last-child,
+  .footer-line {
+    display: none;
+  }
+
+  .whiteboard-footer {
+    padding: 15px;
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE - EXTRA SMALL
+========================================= */
+
+@media (max-width: 480px) {
+
+  .whiteboard-brand-text span {
+    display: none;
+  }
+
+  .main-tool {
+    height: 43px;
+    padding: 0 11px;
+    font-size: 12px;
+  }
+
+  .main-tool span {
+    font-size: 17px;
+  }
+
+  .color-picker {
+    gap: 9px;
+  }
+
+  .color-circle {
+    width: 21px;
+    height: 21px;
+  }
+
+  .brush-size input {
+    width: 100px;
+  }
+
+  .clear-button,
+  .download-button {
+    height: 43px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .side-tools {
+    width: 45px;
+  }
+
+  .side-tool {
+    width: 38px;
+    height: 38px;
+    font-size: 21px;
+  }
+
+  .canvas-area {
+    min-height: 480px;
+  }
+
+  .zoom-controls {
+    right: 12px;
+    bottom: 15px;
+  }
+
+  .footer-left strong {
+    font-size: 16px;
+  }
+
+  .footer-status {
+    font-size: 11px;
   }
 }

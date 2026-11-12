@@ -1,32 +1,61 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 export default function Header() {
   return (
     <header className="site-header">
-      <div className="container header-container">
-        <Link to="/" className="logo">
+
+      <Link to="/" className="logo-area">
+
+        <img
+          src={logo}
+          alt="TRUEQUE"
+          className="header-logo"
+        />
+
+        <span className="logo-text">
           TRUEQUE
+        </span>
+
+      </Link>
+
+      <nav className="nav-links">
+
+        <Link to="/">Home</Link>
+
+        <Link to="/dashboard">
+          Dashboard
         </Link>
 
-        <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/matching">Matching</Link>
-          <Link to="/skills">Skills</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/calendar">Calendar</Link>
-          <Link to="/chat">Chat</Link>
-          <Link to="/reviews">Reviews</Link>
-        </nav>
+        <Link to="/matching">
+          Skills
+        </Link>
 
-        <div className="header-actions">
-          <Link to="/login" className="btn btn-outline">
-            Login
-          </Link>
-          <Link to="/register" className="btn btn-primary">
-            Sign Up
-          </Link>
-        </div>
-      </div>
+        <Link to="/profile">
+          Profile
+        </Link>
+
+        <Link to="/quiz">
+          Quiz
+        </Link>
+
+        <Link to="/session">
+          Session
+        </Link>
+
+        <Link to="/login">
+          Login
+        </Link>
+
+        <Link
+          to="/register"
+          className="nav-button"
+        >
+          Sign Up
+        </Link>
+
+      </nav>
+
     </header>
   );
 }
