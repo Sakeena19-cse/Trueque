@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
 
 :root {
-  --burgundy: #800020;
-  --burgundy-dark: #5c0017;
-  --burgundy-light: #a52a45;
+  --burgundy: #004D49;
+  --burgundy-dark: #003D39;
+  --burgundy-light: #70A99A;
 
-  --cream: #fff5e1;
-  --cream-dark: #f3e2c3;
+  --cream: #DCEBE7;
+  --cream-dark: #F0F7F4;
 
-  --text-dark: #3b1118;
+  --text-dark: #123C42;
   --white: #ffffff;
 
   --font-heading: "Playfair Display", serif;
